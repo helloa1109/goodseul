@@ -9,6 +9,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           This <code>Is</code> DBC !!
+          이상혁 페이커
         </p>
         <a
           className="App-link"
