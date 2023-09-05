@@ -8,6 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+          This <code>Is</code> DBC !!
           이상혁 페이커
         </p>
         <a
