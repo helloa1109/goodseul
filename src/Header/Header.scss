@@ -1,0 +1,53 @@
+.headermain {
+    width: 375px;
+    // border: 1px solid red;
+    height: 8vh;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: var(--color--white);
+}
+
+.headerleftsection {
+    width: 50vw;
+    position: relative;
+    /* 상대 위치 지정 */
+    height: 8vh;
+    display: flex;
+    /* 내부 요소를 가로 배치 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+}
+
+.headerlogopng {
+    // border: 1px solid black;
+    width: 15vw !important;
+}
+
+.headerlogotext {
+    // border: 1px solid green;
+    font-weight: bold;
+    width: 20vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.headerlogopng {
+    width: 20vw;
+}
+
+.headerrightsection {
+    // border: 1px solid yellow;
+    margin-left: auto;
+    width: 20vw;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
