@@ -1,0 +1,36 @@
+@import "../global/global.scss";
+
+.SubHeaderMain {
+  width: $iphone13mini;
+  // border: 1px solid red;
+  height: 8vh;
+  font-family: 'Noto Sans KR', sans-serif;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: $흰색;
+
+  .SubHeaderLeftSection {
+    border: 1px solid red;
+    position: absolute;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .SubHeaderMiddleSection {
+    flex: 1; 
+    text-align: center;
+  }
+
+  .SubHeaderText {
+    font-weight:800;
+    font-size: 16px;
+  }
+}
