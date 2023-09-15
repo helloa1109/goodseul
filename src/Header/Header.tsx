@@ -1,9 +1,24 @@
 import React from 'react'
+import "./Header.scss";
+import logo from "./applelogo.png";
+import menu from "./Frame 54.png";
 
 const Header = () => {
   return (
-    <div>
-      <h1>test main입니다ㅇㅇ</h1>
+    <div className='headermain'>
+      <div className='headerleftsection'>
+        <div className='headerlogopng'>
+          <img src={logo} alt='logo' className='headerlogopng' />
+        </div>
+        <div className='headerlogotext'>
+          <div>GoodSeul</div>
+        </div>
+      </div>
+      <div className='headerrightsection'>
+        <div className='headermenu'>
+          <img src={menu} alt='menu' className='headermenuicon'/>
+        </div>
+      </div>
     </div>
   )
 }
