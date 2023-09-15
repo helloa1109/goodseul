@@ -1,5 +1,7 @@
+@import "../global/global.scss";
+
 .headermain {
-    width: 375px;
+    width: $iphone13mini;
     // border: 1px solid red;
     height: 8vh;
     font-family: 'Noto Sans KR', sans-serif;
@@ -8,7 +10,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    background-color: var(--color--white);
+    background-color: $흰색;
 }
 
 .headerleftsection {
