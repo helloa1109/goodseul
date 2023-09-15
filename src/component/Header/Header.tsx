@@ -1,7 +1,7 @@
 import React from 'react'
-import "./Header.scss";
-import logo from "./applelogo.png";
-import menu from "./Frame 54.png";
+import "../../style/header/Header.scss";
+import logo from "../../image/header/applelogo.png";
+import menu from "../../image/header/Frame 54.png";
 
 const Header = () => {
   return (
