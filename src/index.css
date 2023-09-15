@@ -7,11 +7,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --color--red : #8C2323;
-  --color--white : #F2F2F2;
-  --color--lightgray : #595959;
-  --color--darkgray : #262626;
-  --color--black : #0D0D0D;
 }
 
 code {
