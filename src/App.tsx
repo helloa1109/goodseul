@@ -14,6 +14,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/test' element={<Test1/>}/>
+        <Route path="/*" element={
+                        <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
+                    } />
       </Routes>
     </BrowserRouter>
   );
