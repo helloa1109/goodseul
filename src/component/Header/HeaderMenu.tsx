@@ -1,11 +1,30 @@
 import React from 'react';
 import "../../style/header/HeaderMenu.scss";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from 'recoil';
+import { HeaderMenuModal } from "../../recoil/header/HeaderAtom";
 
 const HeaderMenu = () => {
+    const [HeaderMenuModalOpen, setHeaderMenuModal] = useRecoilState(HeaderMenuModal);
 
+    const navigate = useNavigate();
 
-    return (
-        <div className='HeaderMenumodal' >
+    const handleTest = () => {
+         navigate("/test");
+         setHeaderMenuModal({
+            isOpen: false,
+            isClosed: true,
+        });
+    }
+
+    const menuClassName = HeaderMenuModalOpen.isOpen
+    ? 'HeaderMenumodal'
+    : 'HeaderMenumodal closed';
+
+    console.log("헤더메뉴",setHeaderMenuModal);
+
+return (
+    <div className={menuClassName}>
             <div className='HeaderMenuList'>
                 <ul>
                     <li>
@@ -14,8 +33,8 @@ const HeaderMenu = () => {
                     <li>
                         회원가입
                     </li>
-                    <li>
-                        페이지1
+                    <li onClick={handleTest}>
+                        테스트
                     </li>
                     <li>
                         페이지2
