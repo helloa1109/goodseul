@@ -2,14 +2,20 @@
 
 .HeaderMenumodal {
     width: $iphone13mini;
-    top: 100%;
+    top: 0;
     position: absolute;
     height: 100vh;
     background-color: $흰색;
-}  
+    animation: fadeInDown 0.5s ease-in-out;
+    z-index: 2;
 
-.HeaderMenuList {   
-    
+    .closed{
+        animation: fadeOutUp 0.5s ease-in-out;
+    }
+}
+
+.HeaderMenuList {
+
     ul {
         list-style: none;
         // border: 1px solid red;
@@ -19,17 +25,44 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    
+        position: absolute;
+        top: 5%;
+        width: 100%;
+
         li {
             width: 100%;
-            font-weight: 900;
+            font-weight: 800;
             height: 10vh;
             background-color: $흰색;
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 24px;
         }
-          
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -20%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0); /* 위로 이동 (-100%는 화면 위로) */
     }
 }

@@ -1,11 +1,12 @@
 import { atom } from 'recoil';
 
-export const currentPageState = atom({
-  key: 'currentPage',
-  default: '/',
-});
-
-export const HeaderMenuModal = atom ({
+export const HeaderMenuModal = atom <{
+    isOpen : boolean;
+    isClosed : boolean;
+}>({
     key : 'HeaderMenuModal',
-    default : false,
-})
+    default: {
+        isOpen: false,
+        isClosed : true, 
+      },
+});

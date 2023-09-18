@@ -1,19 +1,24 @@
-import React from 'react'
+import React  from 'react'
 import "../../style/header/Header.scss";
 import logo from "../../image/header/applelogo.png";
-import menu from "../../image/header/Frame 54.png";
 import { useRecoilState } from 'recoil';
-import {HeaderMenuModal} from "../../recoil/header/HeaderAtom";
+import { HeaderMenuModal } from "../../recoil/header/HeaderAtom";
 import HeaderMenu from './HeaderMenu';
 
 
 const Header = () => {
 
   const [HeaderMenuModalOpen, setHeaderMenuModal] = useRecoilState(HeaderMenuModal);
-
+  
   const toggleMenu = () => {
-    setHeaderMenuModal(!HeaderMenuModalOpen);
+    setHeaderMenuModal((prev) => ({
+      ...prev,
+      isOpen: !prev.isOpen,
+      isClosed: !prev.isClosed,
+    }));
   }
+  console.log("헤더메인",HeaderMenuModalOpen);
+
 
   return (
     <div className='headermain'>
@@ -25,12 +30,16 @@ const Header = () => {
           <div>GoodSeul</div>
         </div>
       </div>
-      <div className='headerrightsection' onClick={toggleMenu}>
+      <div className='headerrightsection'>
         <div className='headermenu'>
-          <img src={menu} alt='menu' className='headermenuicon'/>
+          <input id="toggle" type="checkbox" onClick={toggleMenu}/>
+          <label className="hamburger"htmlFor="toggle">
+            <div className="top"></div>
+            <div className="middle"></div>
+          </label>
         </div>
       </div>
-      {HeaderMenuModalOpen && <HeaderMenu/>}
+      {HeaderMenuModalOpen.isOpen && <HeaderMenu />}
     </div>
   )
 }
