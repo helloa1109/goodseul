@@ -5,8 +5,12 @@ const Login = () => {
   return (
     <div>
         <div>
-            <input type="text" />
-            <input type="text" />
+            <div>
+                <input type="email" placeholder='이메일'/>
+            </div>
+            <div>
+                <input type="password" placeholder='비밀번호'/>
+            </div>
         </div>
     </div>
   )

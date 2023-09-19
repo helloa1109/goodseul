@@ -6,6 +6,8 @@ import Main from './component/Main/Main';
 import SubHeader from './component/Header/SubHeader';
 import Test1 from './component/Main/Test1';
 import {PlayMain,PlayRouter} from './pages/plays';
+import Login from './component/Login/Login';
+import Join from './component/Join/Join';
 
 
 
@@ -22,6 +24,8 @@ function App() {
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/join' element={<Join/>}/>
       </Routes>
     </BrowserRouter>
   );
