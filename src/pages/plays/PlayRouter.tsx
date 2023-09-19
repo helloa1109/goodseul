@@ -1,20 +1,23 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Attendance from './Attendance';
+import {Attendance, PlayShop} from './';
+
 
 
 
 const PlayRouter = () => {
-    const {pID} = useParams();
-    const returnPage = (pID:string):React.JSX.Element => {
+    const { pID } = useParams();
+    const returnPage = (pID: string): React.JSX.Element => {
         switch (pID) {
             case "atd":
-                return <Attendance/>;
+                return <Attendance />;
+            case "shop":
+                return <PlayShop />;
             default:
                 return <div>404 Not Found</div>;
         }
     }
-    return returnPage(pID??"");
+    return <div className='divPlays'>{returnPage(pID ?? "")}</div>
 };
 
 export default PlayRouter;
