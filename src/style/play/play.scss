@@ -1,24 +1,118 @@
 @import "../global/global.scss";
 
 #divPlayMain {
+    width: $iphone13mini;
 
-    // margin:0;
-    // background-color: red;
     * {
         font-family: 'Noto Sans KR', sans-serif;
     }
 
-    // font-style: 'Noto Sans KR';
     ul {
         list-style: none;
         padding: 0;
 
         li {
+            display: flex;
+            flex-direction: column;
+            height: 150px;
+            box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
+            justify-content: flex-end;
+            padding: 10px;
             font-weight: bold;
+            font-size: 20px;
+            background-size: 75%;
+            background-position-x: right;
+            background-position-y: center;
+            background-repeat: no-repeat;
+            margin-top: 10px;
+            // background-size: cover;
         }
     }
 
     .spanRed {
         color: $버건디;
+    }
+}
+
+.divPlays {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    width: $iphone13mini;
+    width:355px;
+    background-color: #f2f2f2;
+    padding:10px;
+    margin:auto;
+    ul{
+        list-style: none;
+        padding:0;
+    }
+    .c1{
+        color:$검은색;
+    }
+    .c2{
+        color:$어두운회색;
+    }
+    .c3{
+        color:$밝은회색;
+    }
+    .c4{
+        color:$흰색;
+    }
+    .c5{
+        color:$버건디;
+    }
+    .c6{
+        color:black;
+    }
+
+    .b1{
+        background-color:$검은색;
+    }
+    .b2{
+        background-color:$어두운회색;
+    }
+    .b3{
+        background-color:$밝은회색;
+    }
+    .b4{
+        background-color:$흰색;
+    }
+    .b5{
+        background-color:$버건디;
+    }
+    .b6{
+        background-color: black;
+    }
+    .s1{
+        font-size: 25px;
+    }
+    .s2{
+        font-size:20px;
+    }
+    .s3{
+        font-size: 15px;
+    }
+    .s4{
+        font-size: 10px;
+    }
+
+    h1,h2,h3,h4{
+        margin:0px;
+    }
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+    h4{
+        font-size: 10px;
     }
 }

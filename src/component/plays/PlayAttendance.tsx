@@ -25,10 +25,12 @@ const PlayAttendance = () => {
     };
 
     return (
-        <div>
+        <div className='cardarea b4'>
             {
                 lst.map((v, i) => (
-                    <div key={i} className='eong' onClick={handleClick} />
+                    <div key={i} className='eong' onClick={handleClick} >
+
+                    </div>
                 ))
             }
         </div>
