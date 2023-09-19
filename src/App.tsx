@@ -10,7 +10,7 @@ import {PlayMain,PlayRouter} from './pages/plays';
 
 
 function App() {
-
+ 
   return (
     <BrowserRouter>
       {window.location.pathname === '/' ? <Header /> : <SubHeader />}
