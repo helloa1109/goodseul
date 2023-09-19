@@ -3,7 +3,6 @@ import "../../style/header/SubHeader.scss";
 import arrow from "../../image/header/control.png";
 
 const SubHeader = () => {
-
     return (
         <div className='SubHeaderMain'>
             <div className='SubHeaderLeftSection'>
