@@ -5,6 +5,7 @@ import Header from './component/Header/Header';
 import Main from './component/Main/Main';
 import SubHeader from './component/Header/SubHeader';
 import Test1 from './component/Main/Test1';
+import PlayMain from './pages/plays/PlayMain';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/test' element={<Test1/>}/>
+        <Route path='/play' element={<PlayMain/>}/>
         <Route path="/*" element={
                         <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
                     } />
