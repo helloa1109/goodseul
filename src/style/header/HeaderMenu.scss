@@ -8,10 +8,10 @@
     background-color: $흰색;
     animation: fadeInDown 0.5s ease-in-out;
     z-index: 2;
+}
 
-    .closed{
-        animation: fadeOutUp 0.5s ease-in-out;
-    }
+.closed{
+    animation: fadeOutUp 0.5s ease-in-out;
 }
 
 .HeaderMenuList {

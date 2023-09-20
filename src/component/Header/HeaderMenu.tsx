@@ -1,7 +1,7 @@
-import React from 'react';
+import React  from 'react';
 import "../../style/header/HeaderMenu.scss";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from 'recoil';
+import { useRecoilState} from 'recoil';
 import { HeaderMenuModal } from "../../recoil/header/HeaderAtom";
 
 const HeaderMenu = () => {
@@ -17,11 +17,12 @@ const HeaderMenu = () => {
         });
     }
 
-    const menuClassName = HeaderMenuModalOpen.isOpen
-    ? 'HeaderMenumodal'
-    : 'HeaderMenumodal closed';
+    const menuClassName = HeaderMenuModalOpen.isClosed
+    ? 'HeaderMenumodal closed'
+    : 'HeaderMenumodal ';
 
-    console.log("헤더메뉴",setHeaderMenuModal);
+    console.log("헤더",HeaderMenuModalOpen);
+    console.log("classname", menuClassName);
 
 return (
     <div className={menuClassName}>
