@@ -7,7 +7,7 @@ import SubHeader from './component/Header/SubHeader';
 import {PlayMain,PlayRouter} from './pages/plays';
 import Login from './component/Login/Login';
 import SignUp from './component/SignUp/SignUp';
-import Category from './component/Category/Category';
+import Purpose from './component/Purpose/Purpose';
 import Review from "./component/Review/Review";
 import LocationBased from './component/LocationBased/LocationBased';
 
@@ -24,7 +24,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/signUp' element={<SignUp/>}/>
         <Route path='/Review' element={<Review/>}/>
-        <Route path='/Category' element={<Category/>}/>
+        <Route path='/Purpose' element={<Purpose/>}/>
         <Route path='/Location' element={<LocationBased/>}/>
 
         <Route path="/*" element={
