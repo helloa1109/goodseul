@@ -4,10 +4,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './component/Header/Header';
 import Main from './component/Main/Main';
 import SubHeader from './component/Header/SubHeader';
-import Test1 from './component/Main/Test1';
 import {PlayMain,PlayRouter} from './pages/plays';
 import Login from './component/Login/Login';
-import Join from './component/Join/Join';
+import SignUp from './component/SignUp/SignUp';
 import Category from './component/Category/Category';
 import Review from "./component/Review/Review";
 import LocationBased from './component/LocationBased/LocationBased';
@@ -20,11 +19,10 @@ function App() {
       {window.location.pathname === '/' ? <Header /> : <SubHeader />}
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/test' element={<Test1 />} />
         <Route path='/play' element={<PlayMain />} />
         <Route path='/play/:pID' element={<PlayRouter />} />
         <Route path='/login' element={<Login/>} />
-        <Route path='/join' element={<Join/>}/>
+        <Route path='/signUp' element={<SignUp/>}/>
         <Route path='/Review' element={<Review/>}/>
         <Route path='/Category' element={<Category/>}/>
         <Route path='/Location' element={<LocationBased/>}/>
