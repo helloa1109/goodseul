@@ -16,7 +16,9 @@ const Header = () => {
       isOpen: !prev.isOpen,
       isClosed: !prev.isClosed,
     }));
+
   }
+
   console.log("헤더메인",HeaderMenuModalOpen);
 
 
