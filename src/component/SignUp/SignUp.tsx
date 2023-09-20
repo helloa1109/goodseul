@@ -23,10 +23,10 @@ const Join = () => {
                 <div>*이름</div>
                 <div>
                     <div>
-                        <input type="text" placeholder='성' />
+                        <input type="text" placeholder='성' value={""}/>
                     </div>
                     <div>
-                        <input type="text" placeholder='이름'/>
+                        <input type="text" placeholder='이름' value={""}/>
                     </div>
                 </div>
             </div>
@@ -47,12 +47,12 @@ const Join = () => {
                 <div>
                     <div>*이메일</div>
                     <div>*ID로 사용될 이메일입니다.</div>
-                    <div><input type="email" placeholder='name@example.com' /></div>
+                    <div><input type="email" placeholder='name@example.com' value={""}/></div>
                     <div>이메일 인증받기</div>
                 </div>
                 <div>
                     <div>*비밀번호</div>
-                    <div><input type="password" placeholder='암호' /></div>
+                    <div><input type="password" placeholder='암호' value={""}/></div>
                     <div><input type="password" placeholder='암호 확인' /></div>
                 </div>
                 <div>
