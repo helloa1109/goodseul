@@ -1,6 +1,28 @@
 import React from 'react'
+import { signUpEmailInput, signUpNickNameInput, signUpPhoneNumberInput, signUpPwInput } from '../../recoil/SignUp/SignUpAtom';
+import { useRecoilState } from 'recoil';
+import { signUpApi } from '../../apis/SignUp/SignUpApi';
 
-const Join = () => {
+const SignUp:React.FC = () => {
+    const [signUpEmail , setSignUpEmail] = useRecoilState(signUpEmailInput);
+    const [signUpPw , setSignUpPw] = useRecoilState(signUpPwInput);
+    const [signUpNickName, setSignNickName] = useRecoilState(signUpNickNameInput);
+    const [signUpPhoneNumber, setSignUpPhoneNumber] = useRecoilState(signUpPhoneNumberInput);
+
+    const changeSignUpEmail:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSignUpEmail(e.target.value);
+    };
+    const changeSignUpPw:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSignUpPw(e.target.value);
+    };
+    const changeNickName:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSignNickName(e.target.value);
+    };
+    const changeSignUpPhoneNumber:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSignUpPhoneNumber(e.target.value);
+    };
+
+
   return (
     <div>
         <div>
@@ -18,15 +40,12 @@ const Join = () => {
         <div>
             *은 필수 입력 사항입니다.
         </div>
-        <form>
+        <form onSubmit={() => {signUpApi(signUpEmail,signUpPw,signUpNickName,signUpPhoneNumber)}}>
             <div>
                 <div>*이름</div>
                 <div>
                     <div>
-                        <input type="text" placeholder='성' value={""}/>
-                    </div>
-                    <div>
-                        <input type="text" placeholder='이름' value={""}/>
+                        <input type="text" placeholder='닉네임' value={signUpNickName} onChange={changeNickName}/>
                     </div>
                 </div>
             </div>
@@ -47,20 +66,20 @@ const Join = () => {
                 <div>
                     <div>*이메일</div>
                     <div>*ID로 사용될 이메일입니다.</div>
-                    <div><input type="email" placeholder='name@example.com' value={""}/></div>
+                    <div><input type="email" placeholder='name@example.com' value={signUpEmail} onChange={changeSignUpEmail}/></div>
                     <div>이메일 인증받기</div>
                 </div>
                 <div>
                     <div>*비밀번호</div>
-                    <div><input type="password" placeholder='암호' value={""}/></div>
+                    <div><input type="password" placeholder='암호' value={signUpPw} onChange={changeSignUpPw}/></div>
                     <div><input type="password" placeholder='암호 확인' /></div>
                 </div>
                 <div>
                     <div>*전화번호</div>
-                    <div><input type="number" placeholder='전화번호' /></div>
+                    <div><input type="number" placeholder='전화번호' value={signUpPhoneNumber} onChange={changeSignUpPhoneNumber}/></div>
                 </div>
             </div>
-
+            <button>가입하기</button>
 
         </form>
         
@@ -68,4 +87,4 @@ const Join = () => {
   )
 }
 
-export default Join
+export default SignUp

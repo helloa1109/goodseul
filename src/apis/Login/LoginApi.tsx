@@ -9,7 +9,7 @@ export const loginApi = (loginID:string,loginPW:string) => {
     axios({
         method:'post',
         url:severUrl + "/login",
-        data:IdPw,
+        data:JSON.stringify(IdPw),
         headers:{'Content-Type': 'application/json'}
     })
     .then(res => {
