@@ -26,7 +26,6 @@ function App() {
         <Route path='/Review' element={<Review/>}/>
         <Route path='/Purpose' element={<Purpose/>}/>
         <Route path='/Location' element={<LocationBased/>}/>
-
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />
