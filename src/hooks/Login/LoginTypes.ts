@@ -1,9 +1,5 @@
 import { type } from "os";
-
-export type login = {
-    email:string;
-    password:string;
-};
+import { signUp } from "../SignUp/SignUpTypes";
 
 export type accessToken = {
     accessToken:string;
@@ -12,3 +8,5 @@ export type accessToken = {
 export type refreshToken = {
     refreshToken:string;
 }
+
+export type login = Omit<signUp,'nickname'|'phonenumber' >
