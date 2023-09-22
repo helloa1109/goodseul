@@ -1,44 +1,41 @@
-import React  from 'react';
+import React from 'react';
 import "../../style/header/HeaderMenu.scss";
-import { useNavigate } from "react-router-dom";
-import { useRecoilState} from 'recoil';
-import { HeaderMenuModal } from "../../recoil/header/HeaderAtom";
-
+import { useNavigate} from "react-router-dom";
+import { useRecoilState } from 'recoil';
+import {  HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 const HeaderMenu = () => {
-    const [HeaderMenuModalOpen, setHeaderMenuModal] = useRecoilState(HeaderMenuModal);
-
+    
+    const [isOpen] = useRecoilState(HeaderMenuModalAtom);
+    
     const navigate = useNavigate();
 
-    const handleTest = () => {
-         navigate("/test");
-         setHeaderMenuModal({
-            isOpen: false,
-            isClosed: true,
-        });
+    const handleLogin = () => {
+        navigate("/login");
     }
 
-    const menuClassName = HeaderMenuModalOpen.isClosed
-    ? 'HeaderMenumodal closed'
-    : 'HeaderMenumodal ';
-
-    console.log("헤더",HeaderMenuModalOpen);
-    console.log("classname", menuClassName);
+    const handleSignUp = () => {
+        navigate("/signup");
+    }
 
 return (
-    <div className={menuClassName}>
+    <div className={`HeaderMenumodal ${isOpen ? 'opened' : 'closed'}`}>
             <div className='HeaderMenuList'>
                 <ul>
-                    <li>
+                    <li onClick={handleLogin}>
                         로그인
                     </li>
-                    <li>
+                    <li onClick={handleSignUp}>
                         회원가입
                     </li>
-                    <li onClick={handleTest}>
-                        테스트
+                    
+                    <li>
+                        페이지1
                     </li>
                     <li>
                         페이지2
+                    </li>
+                    <li>
+                        페이지3
                     </li>
                 </ul>
             </div>
