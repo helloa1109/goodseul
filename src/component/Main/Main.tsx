@@ -3,7 +3,7 @@ import React from 'react'
 const Main = () => {
   return (
     <div>
-      <div className='headermain'></div>
+      {/* <div className='headermain'></div> */}
       <div className='main_remotewrap'>
         <div className='main_slogan'></div>
         <div className='main_remote'></div>

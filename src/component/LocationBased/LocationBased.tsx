@@ -7,7 +7,7 @@ import gwangju from "../../image/LocationBased/region4.png";
 
 const LocationBased = () => {
   const regionImages = [seoul, geongi, gangwondo, gwangju,gwangju];
-  const regionTexts = ["서울", "경기","강원도","광주","어디냐"];
+  const regionTexts = ["서울", "경기","강원도","광주","평택"];
 
   return (
     <div className='LocationBased'>
