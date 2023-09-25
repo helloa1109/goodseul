@@ -9,7 +9,8 @@ import Login from './component/Login/Login';
 import SignUp from './component/SignUp/SignUp';
 import Purpose from './component/Purpose/Purpose';
 import Review from "./component/Review/Review";
-import LocationBased from './component/LocationBased/LocationBased';
+import LocationPages from './pages/LocationBased/LocationPages';
+import RequestPages from './pages/Request/RequestPages';
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
         <Route path='/signUp' element={<SignUp/>}/>
         <Route path='/Review' element={<Review/>}/>
         <Route path='/Purpose' element={<Purpose/>}/>
-        <Route path='/Location' element={<LocationBased/>}/>
+        <Route path='/Location' element={<LocationPages/>}/>
+        <Route path='/Request' element={<RequestPages/>}/>
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />
