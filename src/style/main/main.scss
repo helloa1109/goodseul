@@ -1,3 +1,183 @@
-body{
+@import "../global/global.scss";
+
+
+/* 메인의 글로벌 설정 */
+.main_burgundy{
+    color: $버건디;
+}
+.main_lightgray{
+    color: $밝은회색
+}
+.main_bigtxt{
+    font-size: 30px;
+    font-weight: 700;
+}
+.main_midtxt{
+    font-size: 25px;
+    font-weight: 700;
+}
+.main_smalltxt{
+    font-size: 20px;
+    font-weight: 700;
+}
+.main_vsmalltxt{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* 메인 css 시작*/
+
+.main_event{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+.main_remotewrap{
+    border: 1px red solid;
+}
+.main_slogan{
+    margin: 70px 48px 84px 20px;
+    font-size: 30px;
+    font-weight: 700;
+}
+/*페이지 리모트*/
+.main_remote{
+    display: flex;
+    justify-content: space-between;
+    width: 314px;
+    height: 415px;
+    margin-left: 45px;
+    margin-right: 16px;
+    
+}
+.main_remote_form{
+    background-color: #d9d9d9;
+    border-radius: 15px;
+}
+.main_remote_long{
+    width: 150px;
+    height: 300px;
+}
+.main_remote_short{
+    width: 150px;
+    height: 100px;
+}
+/*실시간 세션*/
+.main_onair_txt{
+    margin: 145px 0 55px 20px;
+}
+.main_onair{
+    height: 350px;
+    margin: 0 0 100px 55px;
+    border: 1px red solid;
+    
+}
+.main_ad{
+    height: 100px;
+    
+}
+/*후기, 위치별 섹션*/
+.main_reviewwrap{
+    margin-top: 140px;
+}
+.main_review_txt{
+    text-align: end;
+}
+.main_review{
+    margin-top: 30px;
+    width: 230px;
+    height: 150px;
+    border: 1px red solid;
+    margin-left: 24px;
+    
+}
+.main_locatewrap{
+    border: 1px red solid;
+    margin-top: 115px;
+}
+.main_locate_txt{
+    margin-left: 20px;
+}
+.main_locate{
+    display: flex;
+    justify-content: space-around;
+}
+.main_locate_extxt{
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+    margin-left: 30px;
+}
+.main_locate_extxt span{
+    text-align: left;
+}
+.main_locate_extxt span:last-child{
+    margin-top: 14px;
+    
+}
+.main_locatepic{
+    width: 200px;
+    height: 300px;
+    background-color: #d9d9d9;
+    margin-right: 20px;
+    border-radius: 15px;
+}
+
+/*목적별 섹션*/
+.main_purposewrap{
+    border: 1px red solid;
+    margin-top: 195px;
+    
+}
+.main_purposetxt{
+    text-align: center;
+}
+.main_purpose{
+    margin-top: 70px;
+    height: 330px;
+    border: 1px red solid;
+}
+/*견적 섹션*/
+.main_estimatewrap{
+    border: 1px red solid;
+    margin-top: 315px;
+    
+}
+.main_estimate_welcome{
+    margin: 0 0 315px 0;
+    text-align: center;
+}
+.main_estimate_detail1{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.main_estimate_detail2{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-top: 115px;
+}
+.main_estimate_detail3{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 115px;
+}
+.main_estimate_box{
+    margin-top: 65px;
+    background-color: $버건디;
+    width: 100vw;
+    height: 520px;
+}
+.main_estimate_go{
+    width: 300px;
+    height: 200px;
+    background-color: $흰색;
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
     
 }
