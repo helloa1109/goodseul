@@ -9,7 +9,7 @@ const SubHeader = () => {
 
     const [isOpen,setIsOpen] = useRecoilState(HeaderMenuModalAtom);
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
 
     const Location = useLocation();
 
@@ -23,6 +23,16 @@ const SubHeader = () => {
         subHeaderTitle = "로그인";
     } else if (Location.pathname === "/signup") {
         subHeaderTitle = "회원가입";
+    } else if (Location.pathname === "/Location"){
+        subHeaderTitle = "위치기반";
+    } else if (Location.pathname === "/Review"){
+        subHeaderTitle = "후기";
+    } else if (Location.pathname === "/Purpose"){
+        subHeaderTitle = "목적별";
+    } else if (Location.pathname === "/play"){
+        subHeaderTitle = "플레이";
+    } else if (Location.pathname === "/Request"){
+        subHeaderTitle = "견적요청";
     }
 
     return (

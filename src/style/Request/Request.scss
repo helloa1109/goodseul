@@ -1,0 +1,55 @@
+@import "../global/global.scss";
+
+.RequsetMain{
+    width: $iphone13mini;
+    height: 100vh;
+
+    .RequestFirstText{
+        // border: 1px solid red;
+        position: absolute;
+        top: 13%;
+        left: 5%;
+        font-size: 22px;
+        font-weight: 800;
+
+        span {
+            font-size: 34px;
+        }
+    }
+
+    .RequestSecondTextSection{
+        position: absolute;
+        top: 21%;
+        left: 8%;
+    }
+
+    .RequestFirstText::first-letter{
+        font-size: 34px;
+    }
+
+    .RequestSecondText:nth-child(1){
+        color: $밝은회색;
+    }
+
+    .RequestSecondText:nth-child(2){
+        background-color: $버건디;
+        display: inline-block;
+        color: $흰색;
+    }
+
+    .RequestSecondText{
+        font-weight: 600;
+    }
+
+    .Request1{
+        // border: 1px solid red;
+        height: 10vh;
+        top: 25%;
+        width: 275px;
+        height: 50vh;
+        margin: 0 auto;
+        position: relative;
+        background-color: #D9D9D9;
+        border-radius: 15px;
+    }
+}

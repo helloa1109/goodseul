@@ -17,6 +17,26 @@ const HeaderMenu = () => {
         navigate("/signup");
     }
 
+    const handleLocation = () => {
+        navigate("/Location");
+    }
+
+    const handlePurpose = () => {
+        navigate("/Purpose");
+    }
+
+    const handleReview = () => {
+        navigate("/Review");
+    }
+
+    const handlePlay = () => {
+        navigate("/play");
+    }
+
+    const handleRequest = () => {
+        navigate("/Request");
+    }
+
 return (
     <div className={`HeaderMenumodal ${isOpen ? 'opened' : 'closed'}`}>
             <div className='HeaderMenuList'>
@@ -28,14 +48,22 @@ return (
                         회원가입
                     </li>
                     
-                    <li>
-                        페이지1
+                    <li onClick={handleLocation}>
+                        위치기반
                     </li>
-                    <li>
-                        페이지2
+                    <li onClick={handleReview}>
+                        후기
                     </li>
-                    <li>
-                        페이지3
+                    <li onClick={handlePurpose}> 
+                        목적별
+                    </li>
+
+                    <li onClick={handlePlay}>
+                        플레이
+                    </li>
+
+                    <li onClick={handleRequest}>
+                        견적요청
                     </li>
                 </ul>
             </div>
