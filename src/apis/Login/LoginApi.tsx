@@ -15,12 +15,12 @@ export const handleLoginApi = (IdPw: login) => {
     })
       .then(res => {
         // Authorization 및 Authorization-Refresh 헤더에서 값 추출
-        const authorizationHeader = res.headers['authorization'];
-        const authorizationRefreshHeader = res.headers['authorization-refresh'];
+        const accessToken = res.headers['authorization'];
+        const refreshToken = res.headers['authorization-refresh'];
   
         // 추출한 값 콘솔에 출력
-        console.log("Authorization:", authorizationHeader);
-        console.log("Authorization-Refresh:", authorizationRefreshHeader);
+        console.log("accessToken:", accessToken);
+        console.log("refreshToken-Refresh:", refreshToken);
       })
       .catch(err => {
         alert("axios 실패");
