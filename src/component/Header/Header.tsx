@@ -24,10 +24,6 @@ const Header = () => {
     
   }, [locationHook.pathname, setIsMain]); 
 
-  useEffect(()=>{
-    console.log("호출 몇 번 됩니까 ?");
-  });
-
   const toggleMenu = () => {
     setIsModalOpen(!isModalOpen);
   }
@@ -39,9 +35,6 @@ const Header = () => {
             <div className='headerlogopng'>
               <img src={logo} alt='logo' className='headerlogopng' />
             </div>
-            <div className='headerlogotext'>
-              <div>GoodSeul</div>
-            </div>
           </div>
           <div className='headerrightsection'>
             <div className='headermenu'>
@@ -52,6 +45,9 @@ const Header = () => {
               </label>
             </div>
           </div>
+          <div className='headerlogotext'>
+              <div>구슬</div>
+            </div>
           <HeaderMenu />
         </div>
     ) : (
