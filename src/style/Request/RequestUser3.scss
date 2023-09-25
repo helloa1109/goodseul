@@ -1,0 +1,48 @@
+@import "../global/global.scss";
+
+.RequestUser3 {
+    width: $iphone13mini;
+    background-color: $버건디;
+    height: 100vh;
+
+    .RequestUser3Header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-top: 50px;
+
+        .RequestUser3Title {
+            color: white;
+            font-size: 38px;
+            font-weight: 700;
+        }
+
+        .RequestUser3Middle {
+            display: flex;
+            /* 텍스트 세로 배치*/
+            flex-direction: column; 
+            align-content: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            /* 줄넘김을 허용 */
+            white-space: normal; 
+            padding-top: 20px;
+            font-size: 22px;
+        }
+
+        .RequestUser3More {
+            width: 50vw;
+            color: white;
+            display: flex;
+            align-items: center;
+            flex-direction: row; 
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+            cursor: pointer;
+        }
+
+    }
+}
