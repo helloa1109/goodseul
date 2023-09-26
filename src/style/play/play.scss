@@ -40,67 +40,90 @@
     display: flex;
     flex-direction: column;
     width: $iphone13mini;
-    width:355px;
+    width: 355px;
     background-color: #f2f2f2;
-    padding:10px;
-    margin:auto;
-    ul{
+    // background-color: red;
+    padding: 10px;
+    margin: auto;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+
+    ul {
         list-style: none;
-        padding:0;
-    }
-    .c1{
-        color:$검은색;
-    }
-    .c2{
-        color:$어두운회색;
-    }
-    .c3{
-        color:$밝은회색;
-    }
-    .c4{
-        color:$흰색;
-    }
-    .c5{
-        color:$버건디;
-    }
-    .c6{
-        color:black;
+        padding: 0;
     }
 
-    .b1{
-        background-color:$검은색;
+    .c1 {
+        color: $검은색;
     }
-    .b2{
-        background-color:$어두운회색;
+
+    .c2 {
+        color: $어두운회색;
     }
-    .b3{
-        background-color:$밝은회색;
+
+    .c3 {
+        color: $밝은회색;
     }
-    .b4{
-        background-color:$흰색;
+
+    .c4 {
+        color: $흰색;
     }
-    .b5{
-        background-color:$버건디;
+
+    .c5 {
+        color: $버건디;
     }
-    .b6{
+
+    .c6 {
+        color: black;
+    }
+
+    .b1 {
+        background-color: $검은색;
+    }
+
+    .b2 {
+        background-color: $어두운회색;
+    }
+
+    .b3 {
+        background-color: $밝은회색;
+    }
+
+    .b4 {
+        background-color: $흰색;
+    }
+
+    .b5 {
+        background-color: $버건디;
+    }
+
+    .b6 {
         background-color: black;
     }
-    .s1{
+
+    .s1 {
         font-size: 25px;
     }
-    .s2{
-        font-size:20px;
+
+    .s2 {
+        font-size: 20px;
     }
-    .s3{
+
+    .s3 {
         font-size: 15px;
     }
-    .s4{
+
+    .s4 {
         font-size: 10px;
     }
 
-    h1,h2,h3,h4{
-        margin:0px;
+    h1,
+    h2,
+    h3,
+    h4 {
+        margin: 0px;
     }
+
     h1 {
         font-size: 25px;
     }
@@ -112,7 +135,127 @@
     h3 {
         font-size: 15px;
     }
-    h4{
+
+    h4 {
         font-size: 10px;
     }
+    
+    .gameRanking {
+        // position: absolute;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba($color: #000000, $alpha: 0.4);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transition: all 0.2s ease;
+        transform: translate(120%,0px);
+        
+        .gameRankingHeader {
+            display: flex;
+            flex-direction: row;
+
+
+            .gameRankingTab {
+                color: white;
+                background-color: lighten($color: #8c2323, $amount: 40%);
+                clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+                height: 2rem;
+                width: 45%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+                font-weight: bolder;
+            }
+
+            .selectedTab {
+                background-color: #8c2323;
+            }
+
+            div:last-child {
+                color: white;
+                background-color: #8c2323;
+                width: 10%;
+                border-radius: 8px;
+                height: 90%;
+                margin-top: 2px;
+                margin-right: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+                font-weight: bolder;
+            }
+        }
+
+        .gameRankingBody {
+            font-size: 1rem;
+            text-align: center;
+            border: none;
+            border-collapse: collapse;
+            background: linear-gradient(to bottom, #8c2323, rgba(#8c2323, 0));
+            th {
+                background-color: #8c2323;
+            }
+
+            tbody {
+                tr {
+                    border: 1px dotted;
+                }
+            }
+
+            tbody,
+            tfoot {
+                border-top: 3px solid;
+                background-color: rgba($color: #fff, $alpha: 0.5);
+            }
+
+            // border-color: #8c2323;
+        }
+    }
+
+    .gameInformation {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba($color: #000000, $alpha: 0.4);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        gap: 1rem;
+        transition: all 0.2s ease;
+
+        .gameTitle {
+            color: invert($color: #000000);
+            background-color: black;
+            width: 100%;
+            text-align: center;
+            font-size: 500%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .btnGame {
+            padding: 1rem;
+            color: white;
+            font-size: 1rem;
+            border-radius: 8px;
+        }
+
+        .btnStart {
+            background-color: $버건디;
+        }
+
+        .btnRanking {
+            color: black;
+            background-color: darkturquoise;
+        }
+    }
+
 }

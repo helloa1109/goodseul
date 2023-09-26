@@ -12,7 +12,7 @@ const PlayAttendance = () => {
 
     const handleClick = (e: any) => {
         const item = e.target as HTMLDivElement;
-        if (item.classList.contains("eongflip")) return;
+        if (item.classList.contains("eongflip") || item.classList.contains("opened")) return;
 
         const poppedValue = lst.pop();
         if (poppedValue !== undefined) {
