@@ -2,13 +2,13 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './component/Header/Header';
-import Main from './component/Main/Main';
+import Main from './pages/Main/Main';
 import SubHeader from './component/Header/SubHeader';
 import {PlayMain,PlayRouter} from './pages/plays';
 import Login from './component/Login/Login';
 import SignUp from './component/SignUp/SignUp';
-import Purpose from './component/Purpose/Purpose';
-import Review from "./component/Review/Review";
+import Purpose from './pages/Purpose/Purpose';
+import Review from "./pages/Review/Review";
 import LocationPages from './pages/LocationBased/LocationPages';
 import RequestPages from './pages/Request/RequestPages';
 
