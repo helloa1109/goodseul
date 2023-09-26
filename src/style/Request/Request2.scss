@@ -1,0 +1,53 @@
+@import "../global/global.scss";
+
+.RequestUser2 {
+    width: $iphone13mini;
+    height: 100vh;
+    background-color: $어두운회색;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .RequestUser2Group {
+        width: 80vw;
+        height: 85vh;
+
+        .RequestUser2Section {
+            background-color: $검은색;
+            width: 70vw;
+            height: 40vh;
+            margin: 20px auto;
+            border-radius: 15px;
+            padding-top: 10px;
+
+            .text1,
+            .text2 {
+                color: white;
+                font-weight: 800;
+                font-size: 22px;
+                width: 100%;
+                // border: 1px solid red;
+                height: 5vh;
+                text-align: center;
+            }
+
+            .RequestUser2SmallGroup {
+                width: 100%;
+                height: 8vh;
+                color: white;
+                text-align: center;
+                position: relative;
+                top: 5%;
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .RequestUser2InfoImg {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+    }
+}
