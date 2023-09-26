@@ -9,7 +9,6 @@ const RequestPages = () => {
       <RequestUser1/>
       <RequestUser2/>
       <RequestUser3/>
-
     </div>
   )
 }
