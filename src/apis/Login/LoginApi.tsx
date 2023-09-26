@@ -1,28 +1,32 @@
 import axios from "axios";
 import { login } from "../../hooks/Login/LoginTypes";
+import { useRecoilState } from "recoil";
+import { accessTokenState, refreshTokenState } from "../../recoil/Login/LoginAtom";
 
 
-let severUrl:string = "http://192.168.0.106:8080";
-// 오타 고쳐라 
-// - 이상혁
+let serverUrl:string = "http://192.168.0.106:8080";
 
-export const handleLoginApi = (IdPw: login) => {
+export const LoginApi = (IdPw: login) => {
     axios({
       method: 'post',
-      url: severUrl + "/login",
+      url: serverUrl + "/login",
       data: JSON.stringify(IdPw),
       headers: { 'Content-Type': 'application/json' }
     })
       .then(res => {
-        // Authorization 및 Authorization-Refresh 헤더에서 값 추출
-        const accessToken = res.headers['authorization'];
-        const refreshToken = res.headers['authorization-refresh'];
-  
-        // 추출한 값 콘솔에 출력
-        console.log("accessToken:", accessToken);
-        console.log("refreshToken-Refresh:", refreshToken);
+        //로그인 성공시 status:200
+        if(res?.status === 200 ) {
+
+            localStorage.setItem('accessToken', res.headers['authorization']);
+            localStorage.setItem('refreshToken', res.headers['authorization-refresh']);
+            
+        }else{
+            console.log("애러는 여기에 : " + res);
+            alert("로그인 애러 : " + res.status);
+        }
       })
       .catch(err => {
-        alert("axios 실패");
+        alert("axios 호출 애러" + err);
+        console.log("axios 호출 애러" + err);
       });
   }

@@ -8,3 +8,13 @@ export const loginPwInput = atom ({
     key: 'loginPW',
     default : ""
 })
+
+export const accessTokenState = atom ({
+    key: 'accessToken',
+    default: ""
+})
+
+export const refreshTokenState = atom ({
+    key: 'refreshToken',
+    default: ""
+})

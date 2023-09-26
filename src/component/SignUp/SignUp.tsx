@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { signUpEmailInput, signUpNickNameInput, signUpPhoneNumberInput, signUpPwCkInput, signUpPwInput } from '../../recoil/SignUp/SignUpAtom';
 import { useRecoilState } from 'recoil';
 import { signUpApi } from '../../apis/SignUp/SignUpApi';
 import { signUp } from '../../hooks/SignUp/SignUpTypes';
+import { accessTokenState } from '../../recoil/Login/LoginAtom';
+import { useNavigate } from 'react-router-dom';
+import { Token } from '../../hooks/JWT/JWTType';
 
 const SignUp:React.FC = () => {
+    const navi = useNavigate();
+
     const [signUpEmail , setSignUpEmail] = useRecoilState(signUpEmailInput);
     const [signUpPw , setSignUpPw] = useRecoilState(signUpPwInput);
     const [signUpNickName, setSignNickName] = useRecoilState(signUpNickNameInput);
@@ -30,10 +35,20 @@ const SignUp:React.FC = () => {
             "email":signUpEmail, 
             "password":signUpPw,
             "nickname":signUpNickName, 
-            "phonenumber":signUpPhoneNumber };
+            "phonenumber":signUpPhoneNumber 
+        };
 
+    const accessToken:Token = localStorage.getItem('accessToken');
+    const refreshToken:Token = localStorage.getItem('refreshToken');
+
+    const naviLogin = () => {
+        navi('/Login');
+    }
+    
   return (
     <div>
+        <div>accessToken ? : {accessToken}</div>
+        <div>refreshToken ? : {refreshToken}</div>
         <div>
             구슬 ID 새성
         </div>
@@ -41,10 +56,11 @@ const SignUp:React.FC = () => {
             하나의 구슬 ID로 구슬의 서비스를 이용할 수 있습니다.
         </div>
         <div>
-            구슬 ID를 이미 가지고 계십니까? 
-            <a href='./login'>
+            구슬 ID를 이미 가지고 계십니까?
+            {/*네비게이트로 변경하기 a태그 x*/}
+            <div onClick={naviLogin}>
                 로그인하기
-            </a>
+            </div>
         </div>
         <div>
             *은 필수 입력 사항입니다.
