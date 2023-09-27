@@ -2,7 +2,7 @@ import React from 'react'
 import "../../style/Request/RequestUser3.scss";
 import arrow from "../../image/Request/chevron.left.png";
 import { useNavigate} from "react-router-dom";
-
+import Slide from "../../component/Request/RequestSlide";
 const RequestUser3 = () => {
 
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const RequestUser3 = () => {
                     더 알아보기<img src={arrow} alt='arrow' className='RequestUser3MoreImg'/>
                 </div>
             </div>
-            
+            <Slide/>
         </div>
     )
 }

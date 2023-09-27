@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import "../../style/header/Header.scss";
-import logo from "../../image/header/applelogo.png";
+import logo from "../../image/header/GoodSeul-Logo_.png";
 import { useRecoilState } from 'recoil';
 import { HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 import { IsMainAtom } from '../../recoil/header/HeaderAtom';

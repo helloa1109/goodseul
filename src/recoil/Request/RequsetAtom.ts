@@ -24,3 +24,13 @@ export const CategoryValue = atom({
     key: 'categoryValue',
     default: '',
 });
+
+export const CategoryArrayValue = atom({
+    key: 'categoryArrayValue',
+    default: ["축하","장례/제사","질병/회복","승진/학업","개업/사업"],
+});
+
+export const OnLoginValue = atom({
+    key: 'onLoginValue',
+    default: ["실시간","지역","부재중","연락두절","연락가능"],
+});
