@@ -1,5 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import React, { useState } from 'react';
+import "../../style/SearchBar/SearchBar.scss"
 
 function SearchBar() {
 
@@ -14,14 +17,23 @@ function SearchBar() {
     };
 
     return (
-        <div className='searchbar'>
+        <div className='searchBar'>
+             
             <input
                 type="text"
                 placeholder="검색어를 입력하세요"
                 value={searchTerm}
                 onChange={changeSearchItem}
+                className='searchBar_main'
+                
             />
-            <button onClick={handleSearch}>검색</button>     
+            <FontAwesomeIcon 
+                icon={faMagnifyingGlass} 
+                className='searchBar_glass'
+                onClick={handleSearch}
+            />  
+            
+            
         </div>
     );
 }

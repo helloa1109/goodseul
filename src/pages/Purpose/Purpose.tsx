@@ -9,11 +9,15 @@ const Purpose = () => {
         <SearchBar/>
       </div>
       <div className='purpose_tagwrap'>
+        <span className='purpose_vsmallheavytxt'>당신의 바램</span>
+        <div className='purpose_tagList'>
 
+        </div>
       </div>
       <div className='purpose_listwrap'>
-        <div className='purpose_list_txt'>
-          검색결과
+       <span className='purpose_vsmallheavytxt purpose_burgundy'>검색결과</span>
+        <div className='purpose_list'>
+          
         </div>
       </div>
     </div>
