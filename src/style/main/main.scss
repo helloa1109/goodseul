@@ -24,6 +24,10 @@
     font-size: 15px;
     font-weight: 400;
 }
+.main_vsmallheavytxt{
+    font-size: 15px;
+    font-weight: 700;
+}
 
 /* 메인 css 시작*/
 
@@ -31,9 +35,6 @@
     height: 50px;
     text-align: center;
     line-height: 50px;
-}
-.main_remotewrap{
-    border: 1px red solid;
 }
 .main_slogan{
     margin: 70px 48px 84px 20px;
@@ -69,12 +70,23 @@
 .main_onair{
     height: 350px;
     margin: 0 0 100px 55px;
-    border: 1px red solid;
-    
 }
 .main_ad{
     height: 100px;
-    
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: $흰색;
+}
+.main_ad button{
+    width: 85px;
+    height: 30px;
+    border-radius: 50px;
+    margin-right: 25px;
+    background-color: $검은색;
+    color: white;
+    line-height: 20px;
+
 }
 /*후기, 위치별 섹션*/
 .main_reviewwrap{
@@ -87,12 +99,10 @@
     margin-top: 30px;
     width: 230px;
     height: 150px;
-    border: 1px red solid;
     margin-left: 24px;
     
 }
 .main_locatewrap{
-    border: 1px red solid;
     margin-top: 115px;
 }
 .main_locate_txt{
@@ -125,7 +135,6 @@
 
 /*목적별 섹션*/
 .main_purposewrap{
-    border: 1px red solid;
     margin-top: 195px;
     
 }
@@ -135,28 +144,34 @@
 .main_purpose{
     margin-top: 70px;
     height: 330px;
-    border: 1px red solid;
 }
 /*견적 섹션*/
 .main_estimatewrap{
-    border: 1px red solid;
     margin-top: 315px;
     
 }
 .main_estimate_welcome{
     margin: 0 0 315px 0;
     text-align: center;
+    
+}
+.main_estimate_welcome span span{
+    background-color: $버건디;
+    color: white;
+    
 }
 .main_estimate_detail1{
     display: flex;
     flex-direction: column;
     text-align: left;
+    margin-left: 20px;
 }
 .main_estimate_detail2{
     display: flex;
     flex-direction: column;
     text-align: right;
     margin-top: 115px;
+    margin-right: 20px;
 }
 .main_estimate_detail3{
     display: flex;
@@ -164,20 +179,39 @@
     text-align: center;
     margin-top: 115px;
 }
-.main_estimate_box{
-    margin-top: 65px;
+.main_estimate_box {
+    margin-top: 120px;
     background-color: $버건디;
-    width: 100vw;
-    height: 520px;
+    width: 100%;
+    height: 360px;
+    display: flex; /* 수평 중앙 정렬을 위한 Flex Container */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
 }
 .main_estimate_go{
     width: 300px;
     height: 200px;
+    border-radius: 15px;
     background-color: $흰색;
-    position: relative;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
     text-align: center;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.main_estimate_txt {
+    display: flex;
+    flex-direction: column;
+    margin-top: 75px;
     
+}
+.main_estimate_txt span:last-child{
+    margin-top: 17px;
+}
+.main_footer{
+    height: 360px;
+    background-color: $어두운회색;
+}
+.main_foot_txt{
+    width: 300px;
+    height: 220px;
+    padding: 100px 50px 40px 25px;
+    color: white;
 }

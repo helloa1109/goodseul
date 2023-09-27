@@ -33,7 +33,7 @@ const Main = () => {
           
         </div>
         <div className='main_ad'>
-          자세 히 봅 니 다
+          <button className='main_vsmallheavytxt'>자세히보기</button>
         </div>
       </div>
       <div className='main_reviewwrap'>
@@ -72,29 +72,48 @@ const Main = () => {
       </div>
       <div className='main_estimatewrap'>
         <div className='main_estimate_welcome'>
-          견적내기란?
+          <span className='main_bigtxt'><span>&nbsp;견적내기&nbsp;</span>&nbsp;란?</span>
           
         </div>
         <div className='main_estimate_detail'>
           <div className='main_estimate_detail1'>
-            <span>견적내기는</span>
-            <span>원하는 구슬님과</span>            
+            <span className='main_lightgray main_vsmallheavytxt'>견적내기는</span>
+            <span className='main_smalltxt'>원하는 <span className='main_smalltxt main_burgundy'>구슬</span>님과</span>            
           </div>
           <div className='main_estimate_detail2'>
-            <span>견적내기는</span>
-            <span>원하는 장소에서</span>
+            <span className='main_lightgray main_vsmallheavytxt'>견적내기는</span>
+            <span className='main_smalltxt'>원하는 <span className='main_smalltxt main_burgundy'>장소</span>에서</span>
           </div>
           <div className='main_estimate_detail3'>
-            <span>견적내기는</span>
-            <span>당신의 바람대로</span>
+            <span className='main_lightgray main_vsmallheavytxt'>견적내기는</span>
+            <span className='main_smalltxt'>당신의 <span className='main_smalltxt main_burgundy'>바람</span>대로</span>
           </div>
         </div>
         <div className='main_estimate_box'>
           <div className='main_estimate_go'>
-            <span>견적내기에 대해</span>
-            <span>더 자세히 알아보고 싶으신가요?</span>
-            <span>더 알아보기</span>
+            <div className='main_estimate_txt'>
+              <span className='main_smalltxt'><span className='main_burgundy'>견적내기</span>에 대해</span>
+              <span>더 자세히 알아보고 싶으신가요?</span>
+              <span className='main_vsmalltxt main_burgundy'>더 알아보기 &gt; </span>
+            </div>
           </div>
+        </div>
+      </div>
+      <div className='main_footer'>
+        <div className='main_foot_txt'>
+          <div>
+            회사소개 인재채용 기술 블로그 고객센터
+          </div>
+          <div>
+            깃허브
+          </div>
+          <div>
+            2003.02-2023.08 GOODSEUL | The GoodSeul | 서울시 마포구
+            강남대로 94길20 7층 | 개인정보처리방침 | 이용약관
+            DOPE BOYZ CLUB
+          </div>
+          <div>face insta you</div>
+          <div>02 1234 5678</div>
         </div>
       </div>
     </div>
