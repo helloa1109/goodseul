@@ -71,7 +71,9 @@ const RequestUser1 = () => {
             <div className='RequestMenu'>
                 <div className={`RequestSelect ${showCalendar ? 'active' : ''}`} onClick={handleDateClick}>
                     {date ? (
-                        <p>날짜 : {moment(date).format("MM-DD")}</p>
+                        <div className='isClickRequestDate'>
+                        <p>날짜 : </p><span>{moment(date).format("MM-DD")}</span>
+                        </div>
                     ) : (
                         <p>날짜</p>
                     )}
@@ -88,7 +90,9 @@ const RequestUser1 = () => {
                 )}
                 <div className='RequestSelect' onClick={handleReigonClick}>
                     {regionValue ? (
-                        <p>지역 : {regionValue}</p>
+                        <div className='isClickRequestRegion'>
+                        <p>지역 : </p><span>{regionValue}</span>
+                        </div>
                     ) : (
                         <p>지역</p>
                     )}
@@ -122,7 +126,9 @@ const RequestUser1 = () => {
                 )}
                 <div className='RequestSelect' onClick={handleCategoryClick}>
                 {categoryValue ? (
-                        <p>분류 : {categoryValue}</p>
+                    <div className='isClickRequestCategory'>
+                        <p>분류 : </p><span>{categoryValue}</span>
+                        </div>
                     ) : (
                         <p>분류</p>
                     )}
