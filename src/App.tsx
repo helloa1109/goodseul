@@ -11,6 +11,7 @@ import Purpose from './pages/Purpose/Purpose';
 import Review from "./pages/Review/Review";
 import LocationPages from './pages/LocationBased/LocationPages';
 import RequestPages from './pages/Request/RequestPages';
+import RequestListPages from './pages/RequestList/RequestPages';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/Purpose' element={<Purpose/>}/>
         <Route path='/Location' element={<LocationPages/>}/>
         <Route path='/Request' element={<RequestPages/>}/>
+        <Route path='/RequestList' element={<RequestListPages/>}/>
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />

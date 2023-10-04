@@ -68,7 +68,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-
+            
             .ArrowIcon {
                 display: flex;
                 align-items: center;
@@ -191,6 +191,22 @@
     }
 }
 
+.isClickRequestRegion,
+.isClickRequestDate,
+.isClickRequestCategory{
+    display: flex;
+    align-items: center;
+}
+
+.isClickRequestRegion > span,
+.isClickRequestDate > span,
+.isClickRequestCategory > span{
+    color: $검은색;
+    font-weight: 800;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
 /* 달력 추가 css */
 .CalendarContainer {
     position: absolute;
@@ -257,12 +273,10 @@
 
 @keyframes fadeInDown {
     0% {
-        opacity: 0;
-        transform: translate3d(0, -20%, 0);
+        transform: translate3d(0, -10%, 0);
     }
 
     100% {
-        opacity: 1;
-        transform: translateZ(0);
+        transform: translateZ(0, 10% , 0);
     }
 }

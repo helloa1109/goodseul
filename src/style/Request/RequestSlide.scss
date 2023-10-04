@@ -1,0 +1,139 @@
+@import "../global/global.scss";
+
+.swiper {
+    margin-top: 50px;
+    width: 100%;
+    height: 63vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.swiper-slide img {
+    display: block;
+}
+
+.swiper-slide{
+    display: flex;
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+    margin-right: 0 !important;
+}
+
+.SlideMap{
+   width: 300px;
+   height: 60vh;
+   margin: 0 auto;
+   box-shadow: rgba(0, 0, 0, 0.45) 30px 0px 20px -20px;
+}
+
+.SlideImg{
+    width: 100%;
+    height: 45vh;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.45) -30px 0px 10px -20px;
+}
+
+.SlideMapText{
+    width: 300px;
+    background-color: white;
+    height: 13vh;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+
+    .SlideName{
+            font-weight: 800;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            
+            span{
+                color: $버건디;
+                font-weight: 800;   
+            }
+    }
+
+    .SlideReviewCount{
+        color: $어두운회색;
+        font-weight: 800;
+        font-size: 12px;
+        white-space: nowrap;
+        height: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 22px;
+        width: 90px;
+        cursor: pointer;
+    }
+
+    .SlideReviewGroup{
+        float: left;
+        
+        width: 300px;
+    }
+}
+
+.SlideMapHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 45%;
+
+    p {
+        margin-left: 30px;
+    }
+}
+
+.SlideArrow{
+    width: 17px;
+    margin-left: 5px;
+}
+
+.SlideTagBox{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 50%;
+    border-radius: 15px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin: 0 auto;
+
+    span {
+        width: 75px;
+        height: 28px;
+        text-align: center;
+        border-radius: 15px;
+        margin-left: 15px;
+        color: white;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        font-weight: 800;
+        display: flex;
+    }
+
+    .SlideTagText:nth-child(1){
+        background-color: mediumslateblue;
+    }
+
+    .SlideTagText:nth-child(2){
+        background-color: darkorange;
+    }
+
+    .SlideTagText:nth-child(3){
+        background-color: olive;
+    }
+}
