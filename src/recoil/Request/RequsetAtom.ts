@@ -34,3 +34,4 @@ export const OnLoginValue = atom({
     key: 'onLoginValue',
     default: ["실시간","지역","부재중","연락두절","연락가능"],
 });
+
