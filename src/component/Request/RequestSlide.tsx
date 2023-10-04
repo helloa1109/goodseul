@@ -36,10 +36,7 @@ const RequestSlide = () => {
         // API 호출
         ReviewListApi()
             .then((response: AxiosResponse<ReviewListResponse>) => {
-                // API 응답을 확인하기 위해 데이터를 콘솔에 출력
                 console.log(response.data);
-
-                // API 응답을 처리하고 상태 업데이트
                 setReviews(response.data.reviews);
             })
             .catch((error: any) => {
