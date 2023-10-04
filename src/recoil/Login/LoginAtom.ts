@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import jwt_decode from "jwt-decode";
 
 export const loginIdInput = atom ({
     key: 'loginID',
@@ -9,12 +10,17 @@ export const loginPwInput = atom ({
     default : ""
 })
 
-export const accessTokenState = atom ({
-    key: 'accessToken',
+export const accessTokenData = atom ({
+    key: 'accessTokenData',
     default: ""
 })
 
 export const refreshTokenState = atom ({
     key: 'refreshToken',
+    default: ""
+})
+
+export const loginEmail = atom ({
+    key: 'email',
     default: ""
 })

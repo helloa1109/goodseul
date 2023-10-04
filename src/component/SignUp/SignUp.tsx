@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { signUpEmailInput, signUpNickNameInput, signUpPhoneNumberInput, signUpPwCkInput, signUpPwInput } from '../../recoil/SignUp/SignUpAtom';
 import { useRecoilState } from 'recoil';
 import { signUpApi } from '../../apis/SignUp/SignUpApi';
 import { signUp } from '../../hooks/SignUp/SignUpTypes';
-import { accessTokenState } from '../../recoil/Login/LoginAtom';
 import { useNavigate } from 'react-router-dom';
 import { Token } from '../../hooks/JWT/JWTType';
 
@@ -44,7 +43,7 @@ const SignUp:React.FC = () => {
     const naviLogin = () => {
         navi('/Login');
     }
-    
+
   return (
     <div>
         <div>accessToken ? : {accessToken}</div>

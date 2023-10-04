@@ -4,6 +4,8 @@ import { loginIdInput, loginPwInput } from '../../recoil/Login/LoginAtom';
 import { LoginApi } from '../../apis/Login/LoginApi';
 import { login } from '../../hooks/Login/LoginTypes';
 import { useNavigate } from 'react-router-dom';
+import { axiosPunch } from '../../apis/JWT/JWTConfig';
+import { Token } from '../../hooks/JWT/JWTType';
 
 const Login:React.FC = () => {
     const navi = useNavigate();
@@ -19,8 +21,8 @@ const Login:React.FC = () => {
         setLoginPw(e.target.value);
     };
 
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
+    const accessToken:Token = localStorage.getItem('accessToken');
+    const refreshToken:Token  = localStorage.getItem('refreshToken');
 
     const IdPw:login = {
         "email":loginId, 
@@ -30,7 +32,6 @@ const Login:React.FC = () => {
     const naviSignUp = () => {
         navi('/signUp');
     }
-
     const handleLogin = async () => {
         try {
             await LoginApi(IdPw);
@@ -40,6 +41,21 @@ const Login:React.FC = () => {
             console.error(error);
         }
     };
+    
+    let serverUrl:string = "http://192.168.0.102:8080";
+    const testApi = () =>{
+        axiosPunch({
+            method:'get',
+            url: serverUrl + "/api/totalPoint?member_idx=" + 5,
+            headers: { 'Content-Type': 'application/json' }
+        }).then(res =>{
+            console.log(JSON.stringify(res.data));
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+    
+    
     
 
   return (
@@ -58,6 +74,7 @@ const Login:React.FC = () => {
             로그인
         </div>
         <div onClick={naviSignUp}>회원가입</div>
+        <div onClick={testApi}>엑시오스펀치</div>
     </div>
   )
 }
