@@ -19,3 +19,8 @@ export const signUpPhoneNumberInput = atom ({
     key: 'signUpPhoneNumber',
     default : ""
 })
+
+export const signUpPwCkInput = atom ({
+    key: 'signUpPwCk',
+    default : ""
+})
