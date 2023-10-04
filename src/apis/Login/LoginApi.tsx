@@ -1,21 +1,33 @@
 import axios from "axios";
 import { login } from "../../hooks/Login/LoginTypes";
+import { useRecoilState } from "recoil";
 
 
-let severUrl:string = "http://192.168.0.106:8080";
+// let serverUrl:string = "http://192.168.0.102:8080";
+let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 
-export const loginApi = (loginID:string,loginPW:string) => {
-    const IdPw:login = {"email":loginID , "password":loginPW};
+export const LoginApi = (IdPw:login) => {
     axios({
-        method:'post',
-        url:severUrl + "/login",
-        data:JSON.stringify(IdPw),
-        headers:{'Content-Type': 'application/json'}
+      method: 'post',
+      url: serverUrl + "/login",
+      data: JSON.stringify(IdPw),
+      headers: { 'Content-Type': 'application/json' }
     })
-    .then(res => {
-        alert("axios 통과");
-    })
-    .catch(err => {
-        alert("axios 실패");
-    });
-}
+      .then(res => {
+        //로그인 성공시 status:200
+        if(res?.status === 200 ) {
+
+            localStorage.setItem('accessToken', res.headers['authorization']);
+            localStorage.setItem('refreshToken', res.headers['authorization-refresh']);
+
+        }else{
+            console.log("애러는 여기에 : " + res);
+            alert("로그인 애러 : " + res.status);
+        }
+      })
+      .catch(err => {
+        alert("axios 호출 애러" + err);
+        console.log("axios 호출 애러" + err);
+        throw err;
+      });
+  }
