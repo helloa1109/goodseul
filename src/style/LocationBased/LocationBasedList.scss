@@ -4,3 +4,27 @@
     width: $iphone13mini;
     height: 70vh;
 }
+
+.swiper {
+    width: 200px;
+    height: 320px;
+}
+
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-weight: bold;
+    color: #fff;
+    width: 200px;
+}
+
+.t {
+ 
+    background-color: rgb(206, 17, 17);
+}
+
+.ss > .swiper-wrapper{
+    width: 200px;
+}

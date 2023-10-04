@@ -7,6 +7,7 @@ import Calendar from 'react-calendar';
 import { CategoryValue, RegionValue, ShowCalendar, ShowCategory, ShowRegion } from '../../recoil/Request/RequsetAtom';
 import { useRecoilState } from 'recoil';
 import moment from 'moment';
+import { RequestWrite } from '../../apis/Request/RequestApi';
 
 const RequestUser1 = () => {
     const [showCalendar, setShowCalendar] = useRecoilState(ShowCalendar);
@@ -14,7 +15,31 @@ const RequestUser1 = () => {
     const [showCategory, setShowCategory] = useRecoilState(ShowCategory);
     const [date, setDate] = useState(new Date());
     const [regionValue, setRegionValue] = useRecoilState(RegionValue);
-    const [categoryValue, setCategoryValue ] = useRecoilState(CategoryValue);
+    const [categoryValue, setCategoryValue] = useRecoilState(CategoryValue);
+
+
+    const [requestDetails, setRequestDetails] = useState("");
+
+    const handleRequestSubmit = () => {
+        if (!regionValue || !date || !categoryValue || !requestDetails) {
+            alert("모든 입력해주세요");
+        } else {
+            const requestData = {
+                details: requestDetails,
+                location: regionValue,
+                purpose: categoryValue,
+                selectedDate: date, // 선택한 날짜 추가
+            };
+    
+            RequestWrite(requestData);
+            console.log(requestDetails);
+            console.log(regionValue);
+            console.log(categoryValue);
+            console.log(date);
+
+        }
+    };
+    
 
     const handleDateClick = () => {
         if (showRegin || showCategory) {
@@ -40,11 +65,6 @@ const RequestUser1 = () => {
         setShowCategory(!showCategory);
     }
 
-    const handleDateChange = (newDate: any) => {
-        setDate(newDate);
-        setShowCalendar(false);
-    };
-
     const handleRegionChange = (event: any) => {
         const selectedRegion = event.target.textContent;
         setRegionValue(selectedRegion);
@@ -56,6 +76,11 @@ const RequestUser1 = () => {
         setCategoryValue(selectedCategory);
         setShowCategory(false);
     }
+
+    const handleDateChange = (newDate: any) => {
+        setDate(newDate);
+        setShowCalendar(false);
+    };
 
 
     return (
@@ -72,7 +97,7 @@ const RequestUser1 = () => {
                 <div className={`RequestSelect ${showCalendar ? 'active' : ''}`} onClick={handleDateClick}>
                     {date ? (
                         <div className='isClickRequestDate'>
-                        <p>날짜 : </p><span>{moment(date).format("MM-DD")}</span>
+                            <p>날짜 : </p><span>{moment(date).format("YY-MM-DD")}</span>
                         </div>
                     ) : (
                         <p>날짜</p>
@@ -91,7 +116,7 @@ const RequestUser1 = () => {
                 <div className='RequestSelect' onClick={handleReigonClick}>
                     {regionValue ? (
                         <div className='isClickRequestRegion'>
-                        <p>지역 : </p><span>{regionValue}</span>
+                            <p>지역 : </p><span>{regionValue}</span>
                         </div>
                     ) : (
                         <p>지역</p>
@@ -125,9 +150,9 @@ const RequestUser1 = () => {
                     </div>
                 )}
                 <div className='RequestSelect' onClick={handleCategoryClick}>
-                {categoryValue ? (
-                    <div className='isClickRequestCategory'>
-                        <p>분류 : </p><span>{categoryValue}</span>
+                    {categoryValue ? (
+                        <div className='isClickRequestCategory'>
+                            <p>분류 : </p><span>{categoryValue}</span>
                         </div>
                     ) : (
                         <p>분류</p>
@@ -160,11 +185,13 @@ const RequestUser1 = () => {
 
                 <div className='RequestWriteForm'>
                     <textarea className='RequestWriteInside'
-                        placeholder='견적 요청 내용 작성하기&#13;빠른 견적시 작성한 게시글은 7일 뒤에 삭제됩니다'>
+                        placeholder='견적 요청 내용 작성하기&#13;빠른 견적시 작성한 게시글은 7일 뒤에 삭제됩니다'
+                        value={requestDetails}
+                        onChange={(e) => setRequestDetails(e.target.value)}>
                     </textarea>
                 </div>
                 <div className='RequestButtonGroup'>
-                    <button>
+                    <button onClick={handleRequestSubmit}>
                         <img src={light} alt='light' className='lightbutton' />
                         빠른 견적 요청 하기</button>
                 </div>
