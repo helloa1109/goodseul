@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { tokenExpCheck } from "./tokenExpCheck"
 import { Token } from "../../hooks/JWT/JWTType";
 
@@ -7,7 +7,6 @@ import { Token } from "../../hooks/JWT/JWTType";
 let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 
 export const tokensRefresh = (refreshToken:Token) => {
-    const accessToken:Token = localStorage.getItem('accessToken');
     axios({
         method:'get',
         url: serverUrl + "/api/jwt-test",
@@ -16,13 +15,10 @@ export const tokensRefresh = (refreshToken:Token) => {
         if(res?.status === 200 ) {
             const newAccessToken:string = res.headers['authorization'];
             const newRefreshToken:string = res.headers['authorization-refresh'];
-            console.log("newAccessToken" + newAccessToken);
-            console.log("newRefreshToken" + newRefreshToken);
+            // console.log("newAccessToken" + newAccessToken);
+            // console.log("newRefreshToken" + newRefreshToken);
             localStorage.setItem('accessToken', newAccessToken);
             localStorage.setItem('refreshToken', newRefreshToken);
-        }else{
-            console.log("애러는 여기에 : " + res);
-            alert("호출 애러 : " + res.status);
         }
     }).catch(error => {
         return error;
@@ -31,7 +27,7 @@ export const tokensRefresh = (refreshToken:Token) => {
     return localStorage.getItem('accessToken');
 }
 
-export const axiosPunch = axios.create();
+export const axiosPunch:AxiosInstance = axios.create();
 
 axiosPunch.interceptors.request.use(
     async (config) => {
@@ -39,7 +35,7 @@ axiosPunch.interceptors.request.use(
         const refreshToken:Token = localStorage.getItem('refreshToken');
         console.log(1);
         //refreshToken이 존재하고 refreshToken의 만료시간이 지났거나 refreshToken이 없으면
-        if((!tokenExpCheck(refreshToken) && refreshToken) || refreshToken === null){
+        if((!tokenExpCheck(refreshToken) && refreshToken) || !refreshToken){
             console.log(2);
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
@@ -61,3 +57,16 @@ axiosPunch.interceptors.request.use(
     }
 );
 
+axiosPunch.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        throw error;
+    }
+);
+
+axios.interceptors.response.use(
+    (res) => res,
+    (error) => {
+        throw error;
+    }
+);

@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRecoilState } from 'recoil';
 import { loginIdInput, loginPwInput } from '../../recoil/Login/LoginAtom';
+import { isLoginState } from '../../recoil/JWT/JWTAtom';
 import { LoginApi } from '../../apis/Login/LoginApi';
 import { login } from '../../hooks/Login/LoginTypes';
 import { useNavigate } from 'react-router-dom';
 import { axiosPunch } from '../../apis/JWT/JWTConfig';
-import { Token } from '../../hooks/JWT/JWTType';
+import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
+import { JWTHandleError } from '../../apis/JWT/JWTHandleError';
+import kakaoLoginIcon from "../../image/Login/kakaoLoginIcon.png";
+import googleLoginIcon from "../../image/Login/googleLoginIcon.png";
+import naverLoginIcon from "../../image/Login/naverLoginIcon.png";
+import '../../style/Login/Login.scss';
 
 const Login:React.FC = () => {
     const navi = useNavigate();
+    let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 
     const [loginId , setLoginId] = useRecoilState(loginIdInput);
     const [loginPw , setLoginPw] = useRecoilState(loginPwInput);
@@ -21,9 +28,6 @@ const Login:React.FC = () => {
         setLoginPw(e.target.value);
     };
 
-    const accessToken:Token = localStorage.getItem('accessToken');
-    const refreshToken:Token  = localStorage.getItem('refreshToken');
-
     const IdPw:login = {
         "email":loginId, 
         "password":loginPw
@@ -32,49 +36,65 @@ const Login:React.FC = () => {
     const naviSignUp = () => {
         navi('/signUp');
     }
+    
+    const [LoginState ,setLoginState] = useRecoilState<boolean>(isLoginState);
+    const [loginError , setLoginError] = useState<string|null>(null);
+
     const handleLogin = async () => {
         try {
-            await LoginApi(IdPw);
-            // 이후 로그인 후의 처리를 할 수 있습니다.
+            if(loginId !== "" && loginPw !== "") {
+                await LoginApi(IdPw);
+                // 이후 로그인 후의 처리를 할 수 있습니다.
+                await setLoginState(true);
+                navi("/"); 
+            }else {
+                setLoginError("아이디 또는 비밀번호를 입력해주세요.");
+            }
         } catch (error) {
             // 에러 처리
-            console.error(error);
+            setLoginError(JWTHandleError(error));
         }
-    };
-    
-    let serverUrl:string = "http://192.168.0.102:8080";
-    const testApi = () =>{
-        axiosPunch({
-            method:'get',
-            url: serverUrl + "/api/totalPoint?member_idx=" + 5,
-            headers: { 'Content-Type': 'application/json' }
-        }).then(res =>{
-            console.log(JSON.stringify(res.data));
-        }).catch(err => {
-            console.log(err);
-        })
-    }
-    
-    
-    
+    }; 
 
   return (
-    <div>
-        <div>
-        <div>accessToken ? : {accessToken}</div>
-        <div>refreshToken ? : {refreshToken}</div>
-            <div>
-                <input type="email" placeholder='이메일' value={loginId} onChange={onChangeLoginId} style={{width:'300px', height:'50px', fontSize:'30px'}}/>
-            </div>
-            <div>
-                <input type="password" placeholder='비밀번호' value={loginPw} onChange={onChangeLoginPw} style={{width:'300px', height:'50px', fontSize:'30px'}}/>
-            </div>
+    <div className='loginPage'>
+        <div className='loginPageHeadMessege'>
+            <div className='loginTxtMain'><span className='loginTxtMainPointTxt'>굿</span>을 더 <span className='loginTxtMainPointTxt'>슬</span>기롭게 하는 방법</div>
+            <div className='loginTxtSub'><span className='loginTxtSubPointTxt'>구슬</span>에 로그인하세요</div>
         </div>
-        <div onClick={handleLogin}>
+        <div className='loginIdPwInputBody'>
+            <div className='IdInputBody'>
+                <div className='IdInputTxt'>ID</div>
+                <input className='IdInput' type="email" placeholder='이메일' value={loginId} onChange={onChangeLoginId}/>
+            </div>
+            <div className='PwInputBody'>
+                <div className='PwInputTxt'>PASSWORD</div>
+                <input className='PwInput' type="password" placeholder='비밀번호' value={loginPw} onChange={onChangeLoginPw}/>
+            </div>
+            {loginError && (
+            <p className='loginErrorMessege'>{loginError}</p>
+        )}
+        </div>
+
+        <div className='lgoinSubBody'>
+            <span className='IdPwFind'>아이디/비밀번호 찾기</span>&nbsp;|&nbsp;
+            <span className='signUpButton' onClick={naviSignUp}>회원가입</span>
+        </div>
+        <button className='loginButton' onClick={handleLogin}>
             로그인
+        </button>
+        
+        <div className='socialLoginBody'>
+            <div className='kakaoLogin'>
+                <img className='socialLoginIcon' src={kakaoLoginIcon} alt="카카오 이미지 없음" />
+            </div>
+            <div className='googleLogin'>
+                <img className='socialLoginIcon' src={googleLoginIcon}  alt="구글 이미지 없음" />
+            </div>
+            <div className='NaverLogin'>
+                <img className='socialLoginIcon' src={naverLoginIcon}  alt="네이버 이미지 없음" />
+            </div>
         </div>
-        <div onClick={naviSignUp}>회원가입</div>
-        <div onClick={testApi}>엑시오스펀치</div>
     </div>
   )
 }
