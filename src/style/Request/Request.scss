@@ -3,6 +3,7 @@
 .RequsetMain {
     width: $iphone13mini;
     height: 100vh;
+    font-family: inter;
 
     .RequestFirstText {
         position: absolute;
@@ -47,32 +48,34 @@
         height: 67vh;
         margin: 0 auto;
         position: relative;
-        background: rgba(182, 72, 72, 0.25);
-        box-shadow: 0 8px 12px 0 rgba(31, 38, 135, 0.37);
-        backdrop-filter: blur(0px);
-        -webkit-backdrop-filter: blur(0px);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        // background-color: #ccc;
         border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        outline: rgb(233, 237, 244) solid 1px;
+        outline-offset: -0.5px;
+        box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
 
         .RequestSelect {
             position: relative;
-            width: 65vw;
+            width: 67vw;
             background-color: white;
+            border-radius: 0.25rem;
+            outline: rgb(233, 237, 244) solid 3px;
+            outline-offset: -0.5px;
+            box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
             height: 5vh;
             margin: 0 auto 20px;
             border-radius: 15px;
-            color: $버건디;
+            color: #ccc;
             font-weight: 800;
             font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-
+            font-size: 14px;
 
             .ArrowIcon {
                 display: flex;
@@ -100,6 +103,9 @@
             color: white;
             display: flex;
             flex-direction: column;
+            outline: rgb(233, 237, 244) solid 3px;
+            outline-offset: -0.5px;
+            box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
             align-items: center;
             justify-content: center;
 
@@ -162,7 +168,7 @@
 .showCategory {
     width: 65vw;
     height: 40vh;
-    background-color: $흰색;
+    background-color: white;
     animation: fadeInDown 0.5s ease-in-out;
     border-radius: 15px;
     z-index: 99;
@@ -172,6 +178,9 @@
     position: absolute;
     top: calc(24% + 9px);
     left: 15px;
+    outline: rgb(233, 237, 244) solid 3px;
+    outline-offset: -0.5px;
+    box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
 
     ul {
         width: 100%;
@@ -189,9 +198,9 @@
             width: 100%;
             flex: 1;
             margin: 10px 0;
-            border-bottom: 1px solid #ccc;
             font-weight: 600;
             font-size: 16px;
+            border: none;
         }
 
     }
@@ -202,15 +211,17 @@
 .isClickRequestCategory {
     display: flex;
     align-items: center;
+    width: 100%;
+
 }
 
 .isClickRequestRegion>span,
 .isClickRequestDate>span,
 .isClickRequestCategory>span {
     color: $검은색;
-    font-weight: 800;
+    font-weight: 600;
     white-space: nowrap;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 /* 달력 추가 css */
@@ -236,6 +247,9 @@
 .react-calendar {
     border: none !important;
     border-radius: 15px;
+    outline: rgb(233, 237, 244) solid 2px;
+    outline-offset: -0.5px;
+    box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
 }
 
 /* 오늘 날짜 하이라이트 커스텀 */
@@ -286,4 +300,10 @@
     100% {
         transform: translateZ(0, 10%, 0);
     }
+}
+
+.lcoation {
+    width: 15px;
+    margin-right: 10px;
+    opacity: 0.2;
 }

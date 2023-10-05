@@ -54,11 +54,21 @@
             white-space: nowrap;
             display: flex;
             align-items: center;
-            font-size: 18px;
+            font-size: 18px;      
+            width: 150px;
+            flex-shrink: 0;
             
             span{
+                
                 color: $버건디;
                 font-weight: 800;   
+            }
+
+            p{
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
     }
 
@@ -82,7 +92,6 @@
             animation: text-slide 20s linear infinite;
             margin-right: 15px;
             font-size: 16px;
-            background-color: #ccc;
         }
     }
 
@@ -127,7 +136,7 @@
     margin: 10px 5px auto;
 
     span {
-        width: 75px;
+        width: 60px;
         height: 28px;
         text-align: center;
         border-radius: 15px;
