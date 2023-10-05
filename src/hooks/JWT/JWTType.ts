@@ -12,5 +12,7 @@ export type accessDecodeToken = {
 
 export type decodeToken = {
         "sub":string,
-        "exp":number
+        "exp":number,
+        "idx":number,
+        "email":string
 }

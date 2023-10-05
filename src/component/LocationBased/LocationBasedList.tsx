@@ -21,7 +21,7 @@ const LocationBasedList = () => {
         modules={[EffectCards]}
         className="mySwiper"
       >
-        <div className='ss'>
+        <div className='nodap'>
         <SwiperSlide className='t'>Slide 1</SwiperSlide>
         <SwiperSlide className='t'>Slide 2</SwiperSlide>
         <SwiperSlide className='t'>Slide 3</SwiperSlide>

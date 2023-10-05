@@ -3,7 +3,9 @@ import "../../style/Request/Request.scss";
 import 'react-calendar/dist/Calendar.css';
 import arrow from "../../image/Request/Vector.png";
 import light from "../../image/Request/light.png";
+import location from "../../image/Request/pin.png";
 import Calendar from 'react-calendar';
+import { useNavigate} from "react-router-dom";
 import { CategoryValue, RegionValue, ShowCalendar, ShowCategory, ShowRegion } from '../../recoil/Request/RequsetAtom';
 import { useRecoilState } from 'recoil';
 import moment from 'moment';
@@ -17,26 +19,24 @@ const RequestUser1 = () => {
     const [regionValue, setRegionValue] = useRecoilState(RegionValue);
     const [categoryValue, setCategoryValue] = useRecoilState(CategoryValue);
 
-
     const [requestDetails, setRequestDetails] = useState("");
+    const navigate = useNavigate();
 
-    const handleRequestSubmit = () => {
+
+    const handleRequestSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (!regionValue || !date || !categoryValue || !requestDetails) {
             alert("모든 입력해주세요");
         } else {
             const requestData = {
+                desiredDate: date,
                 details: requestDetails,
                 location: regionValue,
                 purpose: categoryValue,
-                selectedDate: date, // 선택한 날짜 추가
             };
     
             RequestWrite(requestData);
-            console.log(requestDetails);
-            console.log(regionValue);
-            console.log(categoryValue);
-            console.log(date);
-
+            alert("견적작성이 완료되었습니다.");
+            navigate("/");
         }
     };
     
@@ -77,11 +77,11 @@ const RequestUser1 = () => {
         setShowCategory(false);
     }
 
-    const handleDateChange = (newDate: any) => {
+    const handleDateChange = (newDate:any) => {
         setDate(newDate);
         setShowCalendar(false);
+        console.log("빠이",newDate);
     };
-
 
     return (
         <div className='RequsetMain'>
@@ -97,7 +97,7 @@ const RequestUser1 = () => {
                 <div className={`RequestSelect ${showCalendar ? 'active' : ''}`} onClick={handleDateClick}>
                     {date ? (
                         <div className='isClickRequestDate'>
-                            <p>날짜 : </p><span>{moment(date).format("YY-MM-DD")}</span>
+                            <p>날짜  </p><span>{moment(date).format("YY-MM-DD")}</span>
                         </div>
                     ) : (
                         <p>날짜</p>
@@ -116,10 +116,10 @@ const RequestUser1 = () => {
                 <div className='RequestSelect' onClick={handleReigonClick}>
                     {regionValue ? (
                         <div className='isClickRequestRegion'>
-                            <p>지역 : </p><span>{regionValue}</span>
+                            <p><img src={location} alt='' className='lcoation'/>지역 </p><span>{regionValue}</span>
                         </div>
                     ) : (
-                        <p>지역</p>
+                        <p><img src={location} alt='' className='lcoation'/>지역</p>
                     )}
                     <div className='ArrowIcon'>
                         <img src={arrow} alt='arrow' />
@@ -152,7 +152,7 @@ const RequestUser1 = () => {
                 <div className='RequestSelect' onClick={handleCategoryClick}>
                     {categoryValue ? (
                         <div className='isClickRequestCategory'>
-                            <p>분류 : </p><span>{categoryValue}</span>
+                            <p>분류 </p><span>{categoryValue}</span>
                         </div>
                     ) : (
                         <p>분류</p>

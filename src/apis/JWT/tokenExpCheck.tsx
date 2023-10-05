@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 
 export const tokenExpCheck = (token:Token) => {
     console.log(7);
-    if(token === null){
+    if(token === null || !token){
         console.log(8);
         return false;
     }else{
@@ -13,6 +13,6 @@ export const tokenExpCheck = (token:Token) => {
         console.log(JWTExp);
         console.log(currentTime);
         console.log("JWTExp >= currentTime : " + (JWTExp >= currentTime));
-        return JWTExp >= currentTime;
+        return JWTExp - 250 >= currentTime;
     }
 }

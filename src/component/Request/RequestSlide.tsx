@@ -3,17 +3,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "../../style/Request/RequestSlide.scss";
 import "../../style/LocationBased/LocationBased.scss"
-import geongi from "../../image/LocationBased/testimg.jpg";
-import arrow from "../../image/Request/arrow-right.png";
 import { useNavigate } from "react-router-dom";
 
 import { useRecoilState } from 'recoil';
 import { selectedRegionState } from "../../recoil/LocationBased/LocationAtom";
 
-import { AxiosResponse } from "axios";
-
 import { ReviewListApi } from "../../apis/Request/RequestApi";
-import { Review, ReviewListResponse } from "../../hooks/Request/RequestType";
+import { Review } from "../../hooks/Request/RequestType";
 
 const RequestSlide = () => {
 
@@ -33,28 +29,26 @@ const RequestSlide = () => {
     const [reviews, setReviews] = useState<Review[]>([]);
 
     useEffect(() => {
-        // API 호출
-        ReviewListApi()
-            .then((response: AxiosResponse<ReviewListResponse>) => {
-                // API 응답을 확인하기 위해 데이터를 콘솔에 출력
-                console.log(response.data);
-
-                // API 응답을 처리하고 상태 업데이트
-                setReviews(response.data.reviews);
-            })
-            .catch((error: any) => {
-                console.error("Error fetching review list:", error);
-            });
+        const fetchData = async () => {
+            try {
+                const response = await ReviewListApi();
+                console.log("오냐?", response.data);
+                setReviews(response.data);
+            } catch (error) {
+                console.error("오지마", error);
+            }
+        };
+        fetchData();
     }, []);
 
-    console.log(reviews);
+    console.log("dd", reviews);
 
 
     return (
         <Swiper
             centeredSlides={true} //가운데 정렬
             slidesPerView={1} //한 슬라이드에 보여줄 갯수
-            spaceBetween={100} //슬라이드간 거리
+            spaceBetween={200} //슬라이드간 거리
             // loop={true} //슬라이드 반복 여부
             // autoplay={{ delay: 1000, disableOnInteraction: true }} //자동 슬라이드 시간
             freeMode={true}
@@ -63,7 +57,9 @@ const RequestSlide = () => {
             {reviews.map((review, index) => (
                 <SwiperSlide key={index}>
                     <div className='SlideMap' onClick={() => handleRegionClick(index)}>
-                        <img className='SlideImg' src='http://dopeboyzclub.ddns.net:7733/project/images/"Oh"/c46719a6-4062-46d9-95c0-5d782c862123' />
+                        <img
+                            className='SlideImg'
+                            src={`http://dopeboyzclub.ddns.net:7733/images/${review.goodseulProfile}`}alt=''/>
                         <div className='SlideMapText'>
                             <div className='SlideMapHeader'>
                                 <div className='SlideName'>
@@ -72,19 +68,20 @@ const RequestSlide = () => {
                                 <div className='SlideTagBox'>
                                     <span className='SlideTagText'>{review.skill}</span>
                                     <span className='SlideTagText'>{review.rtype}</span>
-                                    <span className='SlideTagText'>{review.skill}</span>
                                 </div>
                             </div>
                             <div className='SlideReviewGroup'>
                                 <div className='SlideReviewCount'>
-                                    <span>{review.rcontent}{review.rcontent}{review.rcontent}{review.rcontent}{review.rcontent}</span>
-                                    {/* <img src={arrow} alt='arrow' className='SlideArrow' /> */}
+                                <span>🎖️{review.randSubject.split(',')[0]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[1]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[2]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[3]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[4]}🎖️</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
-
             ))}
         </Swiper>
     );
