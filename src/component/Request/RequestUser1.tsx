@@ -20,23 +20,19 @@ const RequestUser1 = () => {
 
     const [requestDetails, setRequestDetails] = useState("");
 
-    const handleRequestSubmit = () => {
+
+    const handleRequestSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (!regionValue || !date || !categoryValue || !requestDetails) {
             alert("모든 입력해주세요");
         } else {
             const requestData = {
+                desiredDate: date,
                 details: requestDetails,
                 location: regionValue,
                 purpose: categoryValue,
-                selectedDate: date, // 선택한 날짜 추가
             };
     
             RequestWrite(requestData);
-            console.log(requestDetails);
-            console.log(regionValue);
-            console.log(categoryValue);
-            console.log(date);
-
         }
     };
     
@@ -77,11 +73,11 @@ const RequestUser1 = () => {
         setShowCategory(false);
     }
 
-    const handleDateChange = (newDate: any) => {
+    const handleDateChange = (newDate:any) => {
         setDate(newDate);
         setShowCalendar(false);
+        console.log("빠이",newDate);
     };
-
 
     return (
         <div className='RequsetMain'>
