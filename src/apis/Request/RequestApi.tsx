@@ -1,16 +1,28 @@
 import axios, { AxiosResponse } from "axios";
 import { axiosPunch } from "../JWT/JWTConfig";
+
 // 서버 URL 변수 설정
 const serverUrl = "http://dopeboyzclub.ddns.net:7780";
 
-export const ReviewListApi = (): Promise<AxiosResponse> => {
-    return axios({
-        method: 'get',
-        url: `${serverUrl}/api/lv0/review?page=0&size=6&sortDirection=DESC&sortProperty=rCreateDate`,
-    });
-}
+export const ReviewListApi = async () => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${serverUrl}/api/lv0/review/premium`,
+        });
+
+        console.log("try",response);
+        
+        return response; 
+    } catch (error) {
+        console.error(error);
+        // 오류 처리
+        throw error;
+    }
+};
 
 export const RequestWrite = (requestData:any) => {
+
     axiosPunch({
         method: 'post',
         url: serverUrl + "/api/lv1/offer",

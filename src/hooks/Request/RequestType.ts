@@ -3,22 +3,17 @@ export interface Review {
     goodseulName: string;
     skill: string;
     isPremium: number;
-    uidx: number;
-    uname: string;
+    goodseulProfile: string;
+    likeCount : number;
+    randSubject: string;
     ridx: number;
+    rtype: string;
     rsubject: string;
     rcontent: string;
-    rtype: string;
+    rcreateDate: Date;
     gidx: number;
-    rcreateDate: string;
-}
-
-export interface ReviewListResponse {
-    reviews: Review[];
-    totalPages: number;
-    hasNext: boolean;
-    currentPage: number;
-    totalElements: number;
+    uidx: number;
+    uname: string;
 }
 
 export interface DesiredDate {
