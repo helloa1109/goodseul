@@ -9,3 +9,8 @@ export const IsMainAtom = atom<boolean>({
     key: 'isMainAtom',
     default: false,
 });
+
+// export const IsMainFadeAtom = atom<number>({
+//     key: 'isMainFadeAtom',
+//     default: 
+// })

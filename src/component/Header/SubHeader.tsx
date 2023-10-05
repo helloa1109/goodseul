@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import {  HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 import "../../style/header/SubHeader.scss";
 import arrow from "../../image/header/control.png";
+import Header from './Header';
 
 const SubHeader = () => {
 
@@ -16,6 +17,9 @@ const SubHeader = () => {
     const goBack = () => {
         setIsOpen(false);
         navigate(-1);
+        if(Location.pathname === "/"){
+            <Header/>
+        }
     }
 
     let subHeaderTitle = "구슬";

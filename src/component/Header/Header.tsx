@@ -26,6 +26,7 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsModalOpen(!isModalOpen);
+    
   }
 
   return (

@@ -1,24 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "../../style/Request/RequestSlide.scss";
 import "../../style/LocationBased/LocationBased.scss"
-import geongi from "../../image/LocationBased/testimg.jpg";
-import arrow from "../../image/Request/arrow-right.png";
 import { useNavigate } from "react-router-dom";
 
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { selectedRegionState } from "../../recoil/LocationBased/LocationAtom";
-import { CategoryArrayValue, OnLoginValue } from '../../recoil/Request/RequsetAtom';
+
+import { ReviewListApi } from "../../apis/Request/RequestApi";
+import { Review } from "../../hooks/Request/RequestType";
 
 const RequestSlide = () => {
 
-    const regionImages = [geongi, geongi, geongi, geongi, geongi];
-    const regionTexts = ["조경철", "신동휘", "이상혁", "경상도", "제주"];
-    const SlideReviewText = ["1700", "1400", "100", "54", "6"];
-
-    const CategoryValue = useRecoilValue(CategoryArrayValue);
-    const onLoginValue = useRecoilValue(OnLoginValue);
 
     const navigate = useNavigate();
 
@@ -32,43 +26,62 @@ const RequestSlide = () => {
         setSelectedRegion(index);
     };
 
+    const [reviews, setReviews] = useState<Review[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await ReviewListApi();
+                console.log("오냐?", response.data);
+                setReviews(response.data);
+            } catch (error) {
+                console.error("오지마", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    console.log("dd", reviews);
 
 
     return (
         <Swiper
             centeredSlides={true} //가운데 정렬
-            slidesPerView={5} //한 슬라이드에 보여줄 갯수
+            slidesPerView={1} //한 슬라이드에 보여줄 갯수
             spaceBetween={200} //슬라이드간 거리
-            loop={true} //슬라이드 반복 여부
-            autoplay={{ delay: 1000, disableOnInteraction: true }} //자동 슬라이드 시간
+            // loop={true} //슬라이드 반복 여부
+            // autoplay={{ delay: 1000, disableOnInteraction: true }} //자동 슬라이드 시간
             freeMode={true}
         >
 
-            {regionImages.map((imageUrl, index) => (
-                <SwiperSlide>
-                    <div className='SlideMap' key={index} onClick={() => handleRegionClick(index)}>
-                        <img src={imageUrl} alt={`Region ${index + 1}`} className='SlideImg' />
+            {reviews.map((review, index) => (
+                <SwiperSlide key={index}>
+                    <div className='SlideMap' onClick={() => handleRegionClick(index)}>
+                        <img
+                            className='SlideImg'
+                            src={`http://dopeboyzclub.ddns.net:7733/images/${review.goodseulProfile}`}alt=''/>
                         <div className='SlideMapText'>
                             <div className='SlideMapHeader'>
                                 <div className='SlideName'>
-                                    <p>{regionTexts[index]}</p><span>구슬님</span>
+                                    <p>{review.goodseulName}</p><span>구슬님</span>
                                 </div>
-                                <div className='SlideReviewGroup'>
-                                    <div className='SlideReviewCount' onClick={handleReview}>
-                                        <span>후기 {SlideReviewText[index]}</span>
-                                        <img src={arrow} alt='arrow' className='SlideArrow' />
-                                    </div>
+                                <div className='SlideTagBox'>
+                                    <span className='SlideTagText'>{review.skill}</span>
+                                    <span className='SlideTagText'>{review.rtype}</span>
                                 </div>
                             </div>
-                            <div className='SlideTagBox'>
-                                <span className='SlideTagText'>{CategoryValue[index]}</span>
-                                <span className='SlideTagText'>{onLoginValue[index]}</span>
-                                <span className='SlideTagText'>{onLoginValue[index]}</span>
+                            <div className='SlideReviewGroup'>
+                                <div className='SlideReviewCount'>
+                                <span>🎖️{review.randSubject.split(',')[0]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[1]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[2]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[3]}🎖️</span>
+                                <span>🎖️{review.randSubject.split(',')[4]}🎖️</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
-
             ))}
         </Swiper>
     );
