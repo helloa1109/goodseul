@@ -1,3 +1,136 @@
-body{
-    
+@import "../global/global.scss";
+
+.loginPage {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 80px;
+    width: $iphone13mini;
+}
+
+.loginPageHeadMessege {
+    width: 256px;
+    height: 83px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.loginTxtMain {
+    font-size: 15px;
+    text-align: center;
+    padding-bottom: 8px;
+    width: 184px;
+}
+
+.loginTxtMainPointTxt {
+    font-size: 25px !important;
+}
+
+.loginTxtSub{
+    font-size: 30px;
+    font-weight: bold;  
+}
+
+.loginTxtSubPointTxt{
+    color: $흰색;
+    background-color: $버건디;
+    height: 30px;
+    display: inline-block;
+}
+
+.loginIdPwInputBody{
+    width: 250px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 35px;
+    gap: 5px;
+}
+.IdInputBody, .PwInputBody {
+    display: flex;
+    gap: 10px;
+    flex-direction: column; 
+    margin-top: 20px;
+}
+
+.IdInputTxt, .PwInputTxt{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.IdInput {
+    background-image: url("../../image/Login/IdIcon.png");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    width: 228px;
+    border: none;
+    border-bottom: 1px solid $밝은회색;
+    outline: none;
+    font-size: 15px;
+    color: $어두운회색;
+}
+.PwInput {
+    background-image: url("../../image/Login/passwordIcon.png");
+    background-repeat: no-repeat;
+    background-size: 18px;
+    padding-left: 10px;
+    width: 228px;
+    border: none;
+    border-bottom: 1px solid $밝은회색;
+    outline: none;
+    font-size: 15px;
+    color: $어두운회색;
+}
+
+.IdInput, .PwInput{
+    padding-left: 20px;
+}
+
+.loginErrorMessege{
+    position: relative;
+    margin-bottom: 12px;
+    margin-top: 0px;
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    margin-left: 0px;
+    text-align: left;
+    width: 250px;
+}
+
+.lgoinSubBody {
+    font-size: 15px;
+    color: $밝은회색;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.loginButton {
+    width: 250px;
+    border-radius: 50px;
+    background-color: $검은색;
+    color: $흰색;
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+}
+
+.socialLoginBody {
+    margin-top: 70px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 35px;
+    height: 48px;
+}
+
+.socialLoginIcon {
+    width: 48px;
+    height: 48px;
 }
