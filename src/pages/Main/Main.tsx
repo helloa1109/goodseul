@@ -1,6 +1,7 @@
 import React from 'react'
 import "../../style/main/main.scss"
 import "../../style/global/global.scss"
+import OnAir from "../../component/Slider/Main/OnAir"
 
 const Main = () => {
   return (
@@ -15,12 +16,12 @@ const Main = () => {
         </div>
         <div className='main_remote'>
           <div className='main_remote_right' style={{marginRight:'14px'}}>
-            <div className='main_remote_short main_remote_form' style={{marginBottom:'15px'}}>실시간</div>
-            <div className='main_remote_long main_remote_form'>위치별</div>
+            <div className='main_remote_short main_remote_form main_remoteonair' style={{marginBottom:'15px'}}>실시간</div>
+            <div className='main_remote_long main_remote_form main_remotelocate'>위치별</div>
           </div>
           <div className='main_remote_left'>
-            <div className='main_remote_long main_remote_form' style={{marginBottom:'15px'}}>목적별</div>
-            <div className='main_remote_short main_remote_form'>견적내기</div>
+            <div className='main_remote_long main_remote_form main_remotepurpose' style={{marginBottom:'15px'}}>목적별</div>
+            <div className='main_remote_short main_remote_form main_remoteestimate'>견적내기</div>
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@ const Main = () => {
           <span className='main_lightgray main_smalltxt' style={{marginLeft:'10px'}}>곧바로 상담 가능한 구슬님</span>
         </div>
         <div className='main_onair'>
-          
+          <OnAir/>
         </div>
         <div className='main_ad'>
           <button className='main_vsmallheavytxt'>자세히보기</button>
