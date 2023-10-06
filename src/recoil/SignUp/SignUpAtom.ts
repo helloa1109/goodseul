@@ -15,6 +15,11 @@ export const signUpNickNameInput = atom ({
     default : ""
 })
 
+export const signUpNameInput = atom ({
+    key: 'signUpName',
+    default : ""
+})
+
 export const signUpPhoneNumberInput = atom ({
     key: 'signUpPhoneNumber',
     default : ""
