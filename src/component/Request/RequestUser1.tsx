@@ -5,7 +5,7 @@ import arrow from "../../image/Request/Vector.png";
 import light from "../../image/Request/light.png";
 import location from "../../image/Request/pin.png";
 import Calendar from 'react-calendar';
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CategoryValue, RegionValue, ShowCalendar, ShowCategory, ShowRegion } from '../../recoil/Request/RequsetAtom';
 import { useRecoilState } from 'recoil';
 import moment from 'moment';
@@ -20,6 +20,7 @@ const RequestUser1 = () => {
     const [categoryValue, setCategoryValue] = useRecoilState(CategoryValue);
 
     const [requestDetails, setRequestDetails] = useState("");
+
     const navigate = useNavigate();
 
 
@@ -33,13 +34,13 @@ const RequestUser1 = () => {
                 location: regionValue,
                 purpose: categoryValue,
             };
-    
+
             RequestWrite(requestData);
             alert("견적작성이 완료되었습니다.");
             navigate("/");
         }
     };
-    
+
 
     const handleDateClick = () => {
         if (showRegin || showCategory) {
@@ -77,11 +78,12 @@ const RequestUser1 = () => {
         setShowCategory(false);
     }
 
-    const handleDateChange = (newDate:any) => {
+    const handleDateChange = (newDate: any) => {
         setDate(newDate);
         setShowCalendar(false);
-        console.log("빠이",newDate);
+        console.log("빠이", newDate);
     };
+
 
     return (
         <div className='RequsetMain'>
@@ -116,37 +118,47 @@ const RequestUser1 = () => {
                 <div className='RequestSelect' onClick={handleReigonClick}>
                     {regionValue ? (
                         <div className='isClickRequestRegion'>
-                            <p><img src={location} alt='' className='lcoation'/>지역 </p><span>{regionValue}</span>
+                            <p><img src={location} alt='' className='lcoation' />지역 </p><span>{regionValue}</span>
                         </div>
                     ) : (
-                        <p><img src={location} alt='' className='lcoation'/>지역</p>
+                        <p><img src={location} alt='' className='lcoation' />지역</p>
                     )}
                     <div className='ArrowIcon'>
                         <img src={arrow} alt='arrow' />
                     </div>
                 </div>
                 {showRegin && (
-                    <div className='showRegion'>
-                        <ul>
-                            <li onClick={handleRegionChange}>
-                                서울
-                            </li>
-                            <li onClick={handleRegionChange}>
-                                경기/인천
-                            </li>
-                            <li onClick={handleRegionChange}>
-                                충청도
-                            </li>
-                            <li onClick={handleRegionChange}>
-                                경상도
-                            </li>
-                            <li onClick={handleRegionChange}>
-                                강원도
-                            </li>
-                            <li onClick={handleRegionChange}>
-                                제주
-                            </li>
-                        </ul>
+                    <div className='modalRectangle'>
+                        <div className='modalFrame' onClick={handleReigonClick}></div>
+                        <div className='showRegion'>
+                            <ul>
+                                <li className='CategoryFirst'>
+                                    <div className='showClose'>
+                                        <span onClick={handleReigonClick}>지역을 선택해주세요</span>
+                                        <span>* 중복선택 불가능</span>
+                                        
+                                    </div>
+                                </li>
+                                <li onClick={handleRegionChange}>
+                                    서울
+                                </li>
+                                <li onClick={handleRegionChange}>
+                                    경기/인천
+                                </li>
+                                <li onClick={handleRegionChange}>
+                                    충청도
+                                </li>
+                                <li onClick={handleRegionChange}>
+                                    경상도
+                                </li>
+                                <li onClick={handleRegionChange}>
+                                    강원도
+                                </li>
+                                <li onClick={handleRegionChange}>
+                                    제주
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 )}
                 <div className='RequestSelect' onClick={handleCategoryClick}>
@@ -162,24 +174,33 @@ const RequestUser1 = () => {
                     </div>
                 </div>
                 {showCategory && (
-                    <div className='showCategory'>
-                        <ul>
-                            <li onClick={handleCategoryChange}>
-                                축하
-                            </li>
-                            <li onClick={handleCategoryChange}>
-                                장례/제사
-                            </li>
-                            <li onClick={handleCategoryChange}>
-                                질병/회복
-                            </li>
-                            <li onClick={handleCategoryChange}>
-                                승진/학업
-                            </li>
-                            <li onClick={handleCategoryChange}>
-                                개업/사업
-                            </li>
-                        </ul>
+                    <div className='modalRectangle'>
+                        <div className='modalFrame' onClick={handleCategoryClick}></div>
+                        <div className='showCategory'>
+                            <ul>
+                                <li  className='RegionFirst'>
+                                    <div className='showClose'>
+                                        <span onClick={handleCategoryClick}>분야별 카테고리를 선택해주세요</span>
+                                        <span>* 중복선택 불가능</span>
+                                    </div>
+                                </li>
+                                <li onClick={handleCategoryChange}>
+                                    축하
+                                </li>
+                                <li onClick={handleCategoryChange}>
+                                    장례/제사
+                                </li>
+                                <li onClick={handleCategoryChange}>
+                                    질병/회복
+                                </li>
+                                <li onClick={handleCategoryChange}>
+                                    승진/학업
+                                </li>
+                                <li onClick={handleCategoryChange}>
+                                    개업/사업
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 )}
 

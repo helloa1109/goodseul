@@ -160,25 +160,24 @@
     }
 }
 
-.showCategory {
-    top: calc(35% + 10px) !important;
-}
 
 .showRegion,
 .showCategory {
-    width: 65vw;
-    height: 40vh;
+    bottom: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    // border-bottom-left-radius: 15px;
+    // border-bottom-right-radius: 15px;
+    width: 100vw;
+    height: 50vh;
     background-color: white;
-    animation: fadeInDown 0.5s ease-in-out;
-    border-radius: 15px;
+    // animation: fadeIn 0.4s inherit;
     z-index: 99;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: calc(24% + 9px);
-    left: 15px;
-    outline: rgb(233, 237, 244) solid 3px;
+    position: fixed;
+    outline: rgb(233, 237, 244) solid 1px;
     outline-offset: -0.5px;
     box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
 
@@ -191,7 +190,7 @@
         flex-direction: column;
         padding: 0;
         margin: 0;
-
+        
         li {
             list-style: none;
             text-align: center;
@@ -200,10 +199,46 @@
             margin: 10px 0;
             font-weight: 600;
             font-size: 16px;
+            cursor: pointer;
+            // border-bottom: 1px solid #ccc;
+        }
+
+        .CategoryFirst{
             border: none;
         }
 
     }
+}
+
+.showRegion > ul > li:first-child > .showClose,
+.showCategory > ul > li:first-child > .showClose{
+    width: 100%;    
+}
+
+.showCategory > ul > li:first-child> .showClose > span:nth-child(1),
+.showRegion > ul > li:first-child> .showClose > span:nth-child(1){
+    margin-left: 20px;
+    white-space:normal;
+    font-size: 16px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 20px;
+    background-image: url("../../image/Request/close.png");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: 320px;
+}
+
+.showCategory > ul > li:first-child> .showClose > span:nth-child(2),
+.showRegion > ul > li:first-child> .showClose > span:nth-child(2){
+    font-weight: 800;
+    font-size: 14px;
+    color: #ccc;
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 .isClickRequestRegion,
@@ -212,7 +247,6 @@
     display: flex;
     align-items: center;
     width: 100%;
-
 }
 
 .isClickRequestRegion>span,
@@ -292,6 +326,45 @@
     }
 }
 
+.react-calendar__navigation button{
+    background-color: $버건디 !important;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+
+.lcoation {
+    width: 15px;
+    margin-right: 10px;
+    opacity: 0.2;
+}
+
+.modalRectangle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.modalFrame{
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0.5;
+    width: $iphone13mini;
+    height: 100vh;
+    z-index: 2;
+    position: fixed;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 @keyframes fadeInDown {
     0% {
         transform: translate3d(0, -10%, 0);
@@ -300,10 +373,4 @@
     100% {
         transform: translateZ(0, 10%, 0);
     }
-}
-
-.lcoation {
-    width: 15px;
-    margin-right: 10px;
-    opacity: 0.2;
 }

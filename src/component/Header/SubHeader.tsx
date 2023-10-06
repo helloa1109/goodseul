@@ -17,9 +17,6 @@ const SubHeader = () => {
     const goBack = () => {
         setIsOpen(false);
         navigate(-1);
-        if(Location.pathname === "/"){
-            <Header/>
-        }
     }
 
     let subHeaderTitle = "구슬";
@@ -37,6 +34,9 @@ const SubHeader = () => {
         subHeaderTitle = "플레이";
     } else if (Location.pathname === "/Request"){
         subHeaderTitle = "견적요청";
+    } else if (Location.pathname === "/"){
+        setIsOpen(false);
+        <Header/>
     }
 
     return (
