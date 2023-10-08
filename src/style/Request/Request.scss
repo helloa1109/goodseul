@@ -62,14 +62,15 @@
             position: relative;
             width: 67vw;
             background-color: white;
-            border-radius: 0.25rem;
-            outline: rgb(233, 237, 244) solid 3px;
-            outline-offset: -0.5px;
-            box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
+            // border-radius: 0.25rem;
+            border-bottom: 1px solid rgb(233, 237, 244);
+            // outline: rgb(233, 237, 244) solid 3px;
+            // outline-offset: -0.5px;
+            // box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
             height: 5vh;
             margin: 0 auto 20px;
-            border-radius: 15px;
-            color: #ccc;
+            // border-radius: 15px;
+            color: #8b8787;
             font-weight: 800;
             font-size: 16px;
             display: flex;
@@ -103,14 +104,13 @@
             color: white;
             display: flex;
             flex-direction: column;
-            outline: rgb(233, 237, 244) solid 3px;
-            outline-offset: -0.5px;
-            box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
+            // outline: rgb(233, 237, 244) solid 3px;
+            // outline-offset: -0.5px;
+            // box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
             align-items: center;
             justify-content: center;
 
             .RequestWriteInside {
-                // background-color: $밝은회색;
                 width: 60vw;
                 height: 27vh;
                 border-radius: 15px;
@@ -160,14 +160,11 @@
     }
 }
 
-
 .showRegion,
 .showCategory {
     bottom: 0;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    // border-bottom-left-radius: 15px;
-    // border-bottom-right-radius: 15px;
     width: 100vw;
     height: 50vh;
     background-color: white;
@@ -200,7 +197,7 @@
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
-            // border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid rgb(233, 237, 244);
         }
 
         .CategoryFirst{
@@ -210,9 +207,11 @@
     }
 }
 
-.showRegion > ul > li:first-child > .showClose,
-.showCategory > ul > li:first-child > .showClose{
-    width: 100%;    
+.showCategory > ul > li:first-child,
+.showRegion > ul > li:first-child,
+.showCategory > ul > li:last-child,
+.showRegion > ul > li:last-child{
+    border: none;
 }
 
 .showCategory > ul > li:first-child> .showClose > span:nth-child(1),
@@ -343,17 +342,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 .modalFrame{
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
     opacity: 0.5;
     width: $iphone13mini;
     height: 100vh;
     z-index: 2;
     position: fixed;
-    animation: fadeIn 0.4s ease-in-out;
+    animation: fadeIn 0.4s initial;
 }
 
 @keyframes fadeIn {

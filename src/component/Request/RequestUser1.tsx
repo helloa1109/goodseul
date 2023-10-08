@@ -26,7 +26,7 @@ const RequestUser1 = () => {
 
     const handleRequestSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (!regionValue || !date || !categoryValue || !requestDetails) {
-            alert("모든 입력해주세요");
+            alert("모두 입력해주세요");
         } else {
             const requestData = {
                 desiredDate: date,

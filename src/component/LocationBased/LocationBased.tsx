@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import "../../style/LocationBased/LocationBased.scss";
 import seoul from "../../image/LocationBased/region1.png";
 import geongi from "../../image/LocationBased/region2.png";
@@ -6,6 +6,7 @@ import gangwondo from "../../image/LocationBased/region3.png";
 import gwangju from "../../image/LocationBased/region4.png";
 import { useRecoilState } from 'recoil';
 import { selectedRegionState } from "../../recoil/LocationBased/LocationAtom";
+import { getGoodSeulList } from '../../apis/LocationBasedList/LocationBasedListApi';
 
 const LocationBased = () => {
   const regionImages = [seoul, geongi, gangwondo, gwangju,gwangju];
@@ -15,7 +16,13 @@ const LocationBased = () => {
 
   const handleRegionClick = (index: number) => {
     setSelectedRegion(index);
+    getGoodSeulList(index); 
   };
+
+  // useEffect(() => {
+  //   getGoodSeulList(selectedRegion); 
+  // }, [selectedRegion]);
+
 
   return (
     <div className='LocationBased'>
