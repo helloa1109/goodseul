@@ -4,7 +4,8 @@
     width: $iphone13mini;
     height: 100vh;
     font-family: inter;
-
+    background-color: #F8F8F8;
+    
     .RequestFirstText {
         position: absolute;
         top: 13%;
@@ -43,33 +44,26 @@
 
     .RequestMenu {
         height: 10vh;
-        top: 23%;
+        top: 24%;
         width: 275px;
         height: 67vh;
         margin: 0 auto;
         position: relative;
-        // background-color: #ccc;
+        background-color: white;
         border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        outline: rgb(233, 237, 244) solid 1px;
-        outline-offset: -0.5px;
-        box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
+        border: 1px solid #E3E3E3;
 
         .RequestSelect {
             position: relative;
             width: 67vw;
             background-color: white;
-            // border-radius: 0.25rem;
             border-bottom: 1px solid rgb(233, 237, 244);
-            // outline: rgb(233, 237, 244) solid 3px;
-            // outline-offset: -0.5px;
-            // box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
             height: 5vh;
             margin: 0 auto 20px;
-            // border-radius: 15px;
             color: #8b8787;
             font-weight: 800;
             font-size: 16px;
@@ -104,9 +98,6 @@
             color: white;
             display: flex;
             flex-direction: column;
-            // outline: rgb(233, 237, 244) solid 3px;
-            // outline-offset: -0.5px;
-            // box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
             align-items: center;
             justify-content: center;
 
@@ -116,7 +107,6 @@
                 border-radius: 15px;
                 margin: 0 auto;
                 border: none;
-                // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
                 outline: none;
                 color: black;
                 resize: none;
@@ -125,7 +115,6 @@
 
             .RequestWriteInside::placeholder {
                 color: #A9A9A9;
-                padding-top: 10px;
                 padding-left: 5px;
                 font-size: 13px;
             }
@@ -205,7 +194,6 @@
         .CategoryFirst {
             border: none;
         }
-
     }
 }
 
@@ -250,9 +238,9 @@
     width: 100%;
 }
 
-.isClickRequestRegion>span,
-.isClickRequestDate>span,
-.isClickRequestCategory>span {
+.isClickRequestRegion > span,
+.isClickRequestDate > span,
+.isClickRequestCategory > span {
     color: $검은색;
     font-weight: 600;
     white-space: nowrap;
@@ -334,7 +322,6 @@
     border-top-right-radius: 15px;
 }
 
-
 .lcoation {
     width: 15px;
     margin-right: 10px;
@@ -345,8 +332,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // animation: fadeIn 1s ease-in;
-
 }
 
 .modalFrame {

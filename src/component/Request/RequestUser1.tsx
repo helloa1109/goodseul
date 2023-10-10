@@ -21,8 +21,7 @@ const RequestUser1 = () => {
     const [regionValue, setRegionValue] = useRecoilState(RegionValue);
     const [categoryValue, setCategoryValue] = useRecoilState(CategoryValue);
 
-    const [requestDetails, setRequestDetails] = useState("");
-
+    const [requestDetails, setRequestDetails] = useState("");    
 
     const navigate = useNavigate();
 
@@ -93,10 +92,6 @@ const RequestUser1 = () => {
     const MIN_Y = 60; // 바텀시트가 최대로 높이 올라갔을 때의 y 값
     const MAX_Y = window.innerHeight - 60;  // 바텀시트가 최소로 내려갔을 때의 y 값  752
     const BOTTOM_SHEET_HEIGHT = window.innerHeight - MIN_Y; // 바텀시트의 세로 길이 752
-
-    console.log(BOTTOM_SHEET_HEIGHT);
-
-    console.log("y", MAX_Y);
 
 
     return (
