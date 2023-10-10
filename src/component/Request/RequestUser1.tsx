@@ -10,6 +10,8 @@ import { CategoryValue, RegionValue, ShowCalendar, ShowCategory, ShowRegion } fr
 import { useRecoilState } from 'recoil';
 import moment from 'moment';
 import { RequestWrite } from '../../apis/Request/RequestApi';
+import { motion } from 'framer-motion' 
+import styled from "styled-components";
 
 const RequestUser1 = () => {
     const [showCalendar, setShowCalendar] = useRecoilState(ShowCalendar);
@@ -20,6 +22,7 @@ const RequestUser1 = () => {
     const [categoryValue, setCategoryValue] = useRecoilState(CategoryValue);
 
     const [requestDetails, setRequestDetails] = useState("");
+
 
     const navigate = useNavigate();
 
@@ -56,6 +59,7 @@ const RequestUser1 = () => {
             setShowCategory(false);
         }
         setShowRegion(!showRegin);
+        console.log("열닫", showRegin);
     };
 
     const handleCategoryClick = () => {
@@ -64,6 +68,7 @@ const RequestUser1 = () => {
             setShowCalendar(false);
         }
         setShowCategory(!showCategory);
+
     }
 
     const handleRegionChange = (event: any) => {
@@ -83,6 +88,15 @@ const RequestUser1 = () => {
         setShowCalendar(false);
         console.log("빠이", newDate);
     };
+
+
+    const MIN_Y = 60; // 바텀시트가 최대로 높이 올라갔을 때의 y 값
+    const MAX_Y = window.innerHeight - 60;  // 바텀시트가 최소로 내려갔을 때의 y 값  752
+    const BOTTOM_SHEET_HEIGHT = window.innerHeight - MIN_Y; // 바텀시트의 세로 길이 752
+
+    console.log(BOTTOM_SHEET_HEIGHT);
+
+    console.log("y", MAX_Y);
 
 
     return (
@@ -129,36 +143,56 @@ const RequestUser1 = () => {
                 </div>
                 {showRegin && (
                     <div className='modalRectangle'>
-                        <div className='modalFrame' onClick={handleReigonClick}></div>
-                        <div className='showRegion'>
-                            <ul>
-                                <li className='CategoryFirst'>
-                                    <div className='showClose'>
-                                        <span onClick={handleReigonClick}>지역을 선택해주세요</span>
-                                        <span>* 중복선택 불가능</span>
-                                        
-                                    </div>
-                                </li>
-                                <li onClick={handleRegionChange}>
-                                    서울
-                                </li>
-                                <li onClick={handleRegionChange}>
-                                    경기/인천
-                                </li>
-                                <li onClick={handleRegionChange}>
-                                    충청도
-                                </li>
-                                <li onClick={handleRegionChange}>
-                                    경상도
-                                </li>
-                                <li onClick={handleRegionChange}>
-                                    강원도
-                                </li>
-                                <li onClick={handleRegionChange}>
-                                    제주
-                                </li>
-                            </ul>
-                        </div>
+                        <div className='modalFrame' onClick={handleReigonClick} />
+
+                        {/* <motion.div
+                            drag="y" 
+                            className='bottom-sheet-container'
+                            initial="visible"
+                            variants={{
+                                visible: { y: 0 },
+                                hidden: { y: "100%" }
+                            }}
+                            dragConstraints={{ top: 500 }}
+                            dragElastic={0.2}
+                            onDragEnd={(event, info) => {
+                                const { point } = info;
+                                // 모달의 아래 경계에 도착했을 때
+                                if (point.y >= BOTTOM_SHEET_HEIGHT) {
+                                    setShowRegion(false);
+                                }
+                            }}
+                        > */}
+                            <div className='showRegion'>
+                                <ul>
+                                    <li className='CategoryFirst'>
+                                        <div className='showClose'>
+                                            <span onClick={handleReigonClick}>지역을 선택해주세요</span>
+                                            <span>* 중복선택 불가능</span>
+
+                                        </div>
+                                    </li>
+                                    <li onClick={handleRegionChange}>
+                                        서울
+                                    </li>
+                                    <li onClick={handleRegionChange}>
+                                        경기/인천
+                                    </li>
+                                    <li onClick={handleRegionChange}>
+                                        충청도
+                                    </li>
+                                    <li onClick={handleRegionChange}>
+                                        경상도
+                                    </li>
+                                    <li onClick={handleRegionChange}>
+                                        강원도
+                                    </li>
+                                    <li onClick={handleRegionChange}>
+                                        제주
+                                    </li>
+                                </ul>
+                            </div>
+                        {/* </motion.div> */}
                     </div>
                 )}
                 <div className='RequestSelect' onClick={handleCategoryClick}>
@@ -177,8 +211,9 @@ const RequestUser1 = () => {
                     <div className='modalRectangle'>
                         <div className='modalFrame' onClick={handleCategoryClick}></div>
                         <div className='showCategory'>
+                            
                             <ul>
-                                <li  className='RegionFirst'>
+                                <li className='RegionFirst'>
                                     <div className='showClose'>
                                         <span onClick={handleCategoryClick}>분야별 카테고리를 선택해주세요</span>
                                         <span>* 중복선택 불가능</span>
@@ -220,5 +255,29 @@ const RequestUser1 = () => {
         </div>
     )
 }
+
+const BackgroundOverlay = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background: black;
+`;
+
+      <BackgroundOverlay
+        variants={{
+          opened: {
+            backdropFilter: 'blur(1px)',
+            pointerEvents: 'all',
+            opacity: 0.7,
+          },
+          closed: {
+            backdropFilter: 'blur(0px)',
+            pointerEvents: 'none',
+            opacity: 0,
+          },
+        }}
+      />
 
 export default RequestUser1

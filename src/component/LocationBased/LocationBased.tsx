@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import "../../style/LocationBased/LocationBased.scss";
 import seoul from "../../image/LocationBased/region1.png";
 import geongi from "../../image/LocationBased/region2.png";

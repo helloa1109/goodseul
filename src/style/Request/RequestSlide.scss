@@ -139,13 +139,14 @@
 }
 
 .RequestSlidePages::-webkit-scrollbar {
-    display: none;
+    display: none !important;
 }
 
 .RequestSlidePages {
-    
-    scrollbar-width: none;
-    -webkit-scrollbar-width: none;
+    overflow: hidden !important;
+    -ms-overflow-style: none !important; /* 인터넷 익스플로러 */
+    scrollbar-width: none !important;
+    -webkit-scrollbar-width: none !important;
 }
 
 

@@ -168,8 +168,9 @@
     width: 100vw;
     height: 50vh;
     background-color: white;
+    animation: bottom-sheet-up 0.7s ease-in-out;
     // animation: fadeIn 0.4s inherit;
-    z-index: 99;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,7 +188,8 @@
         flex-direction: column;
         padding: 0;
         margin: 0;
-        
+        margin-top: 30px;
+
         li {
             list-style: none;
             text-align: center;
@@ -200,24 +202,24 @@
             border-bottom: 1px solid rgb(233, 237, 244);
         }
 
-        .CategoryFirst{
+        .CategoryFirst {
             border: none;
         }
 
     }
 }
 
-.showCategory > ul > li:first-child,
-.showRegion > ul > li:first-child,
-.showCategory > ul > li:last-child,
-.showRegion > ul > li:last-child{
+.showCategory>ul>li:first-child,
+.showRegion>ul>li:first-child,
+.showCategory>ul>li:last-child,
+.showRegion>ul>li:last-child {
     border: none;
 }
 
-.showCategory > ul > li:first-child> .showClose > span:nth-child(1),
-.showRegion > ul > li:first-child> .showClose > span:nth-child(1){
+.showCategory>ul>li:first-child>.showClose>span:nth-child(1),
+.showRegion>ul>li:first-child>.showClose>span:nth-child(1) {
     margin-left: 20px;
-    white-space:normal;
+    white-space: normal;
     font-size: 16px;
     font-weight: 800;
     display: flex;
@@ -230,8 +232,8 @@
     background-position-x: 320px;
 }
 
-.showCategory > ul > li:first-child> .showClose > span:nth-child(2),
-.showRegion > ul > li:first-child> .showClose > span:nth-child(2){
+.showCategory>ul>li:first-child>.showClose>span:nth-child(2),
+.showRegion>ul>li:first-child>.showClose>span:nth-child(2) {
     font-weight: 800;
     font-size: 14px;
     color: #ccc;
@@ -270,6 +272,7 @@
 
 .RequestSelect.active+.CalendarContainer {
     animation: fadeInDown 0.5s ease-in-out;
+    // animation: bottom-sheet-up 0.7s ease-in-out;
 }
 
 .RequestSelect.active {
@@ -325,7 +328,7 @@
     }
 }
 
-.react-calendar__navigation button{
+.react-calendar__navigation button {
     background-color: $버건디 !important;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -338,37 +341,69 @@
     opacity: 0.2;
 }
 
-.modalRectangle{
+.modalRectangle {
     display: flex;
     align-items: center;
     justify-content: center;
+    // animation: fadeIn 1s ease-in;
+
 }
 
-.modalFrame{
+.modalFrame {
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0.5;
     width: $iphone13mini;
     height: 100vh;
     z-index: 2;
     position: fixed;
-    animation: fadeIn 0.4s initial;
 }
+
+.bottom-sheet-container {
+    width: 45px;
+    height: 7px;
+    
+    background-color: #ccc;
+    border-radius: 15px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    border: 1px solid purple;
+}
+
+// .closed{
+//     animation: bottom-sheet-down 0.7s ease-in-out;
+// }
+
 
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
 }
 
-@keyframes fadeInDown {
+
+@keyframes bottom-sheet-up {
     0% {
-        transform: translate3d(0, -10%, 0);
+        transform: translateY(420px);
     }
 
     100% {
-        transform: translateZ(0, 10%, 0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes bottom-sheet-down {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(420px);
     }
 }
