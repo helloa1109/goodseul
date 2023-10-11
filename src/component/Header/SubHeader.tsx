@@ -34,6 +34,10 @@ const SubHeader = () => {
         subHeaderTitle = "플레이";
     } else if (Location.pathname === "/Request"){
         subHeaderTitle = "견적요청";
+    } else if (Location.pathname === "/OnAir"){
+        subHeaderTitle = "실시간 상담";
+    } else if (Location.pathname === "/GuseulDetail"){
+        subHeaderTitle = "상세보기";
     } else if (Location.pathname === "/"){
         setIsOpen(false);
         <Header/>
