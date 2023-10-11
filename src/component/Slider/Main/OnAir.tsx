@@ -15,21 +15,32 @@ export default function App() {
         slidesPerView={2}
         spaceBetween={15}
         >
-        <SwiperSlide className="onair_slide">
-           ddd
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd1
+         </div>
         </SwiperSlide>
-        <SwiperSlide className="onair_slide">
-           ddd2
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd2
+         </div>
         </SwiperSlide>
-        <SwiperSlide className="onair_slide">
-           ddd2
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd3
+         </div>
         </SwiperSlide>
-        <SwiperSlide className="onair_slide">
-           ddd2
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd4
+         </div>
         </SwiperSlide>
-        <SwiperSlide className="onair_slide">
-           ddd2
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd5
+         </div>
         </SwiperSlide>
+        
         
     </Swiper>
   );

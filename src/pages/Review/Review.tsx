@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "../../style/review/review.scss"
 import "../../style/global/global.scss"
 import SearchBar from '../../component/SearchBar/SearchBar'
-import { reviewList } from '../../apis/Review/Review'
+import { reviewBList } from '../../apis/Review/ReviewBest'
 import { ReviewCData } from '../../hooks/Review/Review'
 import { useNavigate } from 'react-router-dom'
 
@@ -19,7 +19,7 @@ const Review = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await reviewList();
+        const res = await reviewBList();
         console.log(res.data);
 
         // 데이터가 유효한 경우에만 setRList 호출
