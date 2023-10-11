@@ -42,6 +42,7 @@ const RequestList = () => {
                     <div className='isOpenListCategory'>
                     {listSelectCategory && (
                         <ul>
+                            
                             <li>
                                 축하
                             </li>

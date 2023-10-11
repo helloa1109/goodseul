@@ -40,7 +40,6 @@
             flex-shrink: 0;
             
             span{
-                
                 color: $버건디;
                 font-weight: 800;   
             }
@@ -70,7 +69,7 @@
         text-overflow: ellipsis;
 
         span{
-            animation: text-slide 20s linear infinite;
+            animation: textLoop 10s infinite;
             margin-right: 15px;
             font-size: 16px;
         }
@@ -81,7 +80,6 @@
         width: 300px;
         height: 5vh;
         display: flex;
-        // border: 1px solid red;
     }
 
     .SlideReviewCount::-webkit-scrollbar {
@@ -117,31 +115,41 @@
     margin: 10px 5px auto;
 
     span {
-        width: 60px;
-        height: 28px;
-        text-align: center;
+        width: 50px;
+        height: 20px;
         border-radius: 15px;
-        margin-left: 15px;
-        color: white;
+        text-align: center;
         justify-content: center;
-        margin: 0 auto;
+        margin: 0 10px;
         align-items: center;
         font-weight: 800;
         display: flex;
+        font-size: 14px;
     }
 
     .SlideTagText:nth-child(1){
-        background-color: mediumslateblue;
+        background-color: #FFF0E6;
+        color: #FF5701;
     }
 
     .SlideTagText:nth-child(2){
-        background-color: darkorange;
-    }
-
-    .SlideTagText:nth-child(3){
-        background-color: olive;
+        background-color: #D2DEFF;
+        color: #396EFF;
     }
 }
+
+.RequestSlidePages::-webkit-scrollbar {
+    display: none !important;
+}
+
+.RequestSlidePages {
+    overflow: hidden !important;
+    -ms-overflow-style: none !important; /* 인터넷 익스플로러 */
+    scrollbar-width: none !important;
+    -webkit-scrollbar-width: none !important;
+}
+
+
 
 @keyframes text-slide {
     0% {
@@ -151,3 +159,18 @@
         transform: translateX(-100%); /* 끝 지점: 화면 왼쪽 밖으로 이동 */
     }
 }
+
+.SlideReviewGroup > .SlideReviewCount > span:nth-child(1){
+    background-color: #396EFF;
+}
+
+@keyframes textLoop {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
