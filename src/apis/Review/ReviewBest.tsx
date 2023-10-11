@@ -1,9 +1,8 @@
-import axios, { AxiosResponse } from "axios";
-import { ReviewCData } from '../../hooks/Review/Review'
+import axios from "axios";
 
 const serverUrl = "http://dopeboyzclub.ddns.net:7780";
 
-export const reviewList = () => {
+export const reviewBList = () => {
   return axios({
     method:'get',
     url:`${serverUrl}/api/lv0/review/best`,
