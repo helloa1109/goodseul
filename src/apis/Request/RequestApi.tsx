@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios  from "axios";
 import { axiosPunch } from "../JWT/JWTConfig";
 
 // 서버 URL 변수 설정

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../../style/LocationBased/LocationBasedList.scss";
 import { useRecoilValue } from "recoil";
-import { selectedRegionState } from "../../recoil/LocationBased/LocationAtom";
+import { selectedRegionState, testList } from "../../recoil/LocationBased/LocationAtom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards } from 'swiper/modules';
 import 'swiper/css';
@@ -12,26 +12,32 @@ const LocationBasedList = () => {
 
     console.log(selectedRegion);
 
+    const ListValue = useRecoilValue(testList);
+  
+
+    console.log("리스트 벨류에요",ListValue);
+
+
+
   return (
     <div className='LocationList'>
       <Swiper
         effect={'cards'}
         grabCursor={true}
-        centeredSlides={true} //가운데 정렬
+        centeredSlides={true}
         modules={[EffectCards]}
         className="mySwiper"
       >
-        <div className='nodap'>
-        <SwiperSlide className='t'>Slide 1</SwiperSlide>
-        <SwiperSlide className='t'>Slide 2</SwiperSlide>
-        <SwiperSlide className='t'>Slide 3</SwiperSlide>
-        <SwiperSlide className='t'>Slide 4</SwiperSlide>
-        <SwiperSlide className='t'>Slide 5</SwiperSlide>
-        <SwiperSlide className='t'>Slide 6</SwiperSlide>
-        <SwiperSlide className='t'>Slide 7</SwiperSlide>
-        <SwiperSlide className='t'>Slide 8</SwiperSlide>
-        <SwiperSlide className='t'>Slide 9</SwiperSlide>
-        </div>
+        {ListValue.map((List,index) => (
+        <SwiperSlide className='t' key={index}>
+            <div className='a'>
+              <p>{List.goodseulProfile}</p>
+              <p>{List.skill}</p>
+              <p>{List.career}</p>
+              <p>{List.goodseulName}</p>
+            </div>
+        </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   )

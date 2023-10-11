@@ -48,18 +48,15 @@ const RequestSlide = () => {
         <Swiper
             centeredSlides={true} //가운데 정렬
             slidesPerView={1} //한 슬라이드에 보여줄 갯수
-            spaceBetween={200} //슬라이드간 거리
-            // loop={true} //슬라이드 반복 여부
-            // autoplay={{ delay: 1000, disableOnInteraction: true }} //자동 슬라이드 시간
+            // spaceBetween={80} //슬라이드간 거리
             freeMode={true}
         >
-
             {reviews.map((review, index) => (
                 <SwiperSlide key={index}>
                     <div className='SlideMap' onClick={() => handleRegionClick(index)}>
                         <img
                             className='SlideImg'
-                            src={`http://dopeboyzclub.ddns.net:7733/images/${review.goodseulProfile}`}alt=''/>
+                            src={`http://dopeboyzclub.ddns.net:7733/images/${review.goodseulProfile}`} alt='' />
                         <div className='SlideMapText'>
                             <div className='SlideMapHeader'>
                                 <div className='SlideName'>
@@ -72,16 +69,17 @@ const RequestSlide = () => {
                             </div>
                             <div className='SlideReviewGroup'>
                                 <div className='SlideReviewCount'>
-                                <span>🎖️{review.randSubject.split(',')[0]}🎖️</span>
-                                <span>🎖️{review.randSubject.split(',')[1]}🎖️</span>
-                                <span>🎖️{review.randSubject.split(',')[2]}🎖️</span>
-                                <span>🎖️{review.randSubject.split(',')[3]}🎖️</span>
-                                <span>🎖️{review.randSubject.split(',')[4]}🎖️</span>
+                                    <span>{review.randSubject.split(',')[0]}</span>
+                                    <span>{review.randSubject.split(',')[1]}</span>
+                                    <span>{review.randSubject.split(',')[2]}</span>
+                                    <span>{review.randSubject.split(',')[3]}</span>
+                                    <span>{review.randSubject.split(',')[4]}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
+                
             ))}
         </Swiper>
     );
