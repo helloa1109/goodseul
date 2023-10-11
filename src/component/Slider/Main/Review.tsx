@@ -1,20 +1,41 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-
+import "../../../style/main/reviewSlider.scss"
+import "swiper/css"
 
 
 export default function App() {
+
   return (
-    <Swiper className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
+    <Swiper 
+        loop={true}
+        slidesPerView={2}
+        spaceBetween={5}
+        >
+        <SwiperSlide>
+            <div className="review_slide">
+                여기에 리뷰 넣기1
+            </div>
+        </SwiperSlide>
+        <SwiperSlide>
+            <div className="review_slide">
+                여기에 리뷰 넣기2
+            </div>
+        </SwiperSlide>
+        <SwiperSlide>
+            <div className="review_slide">
+                여기에 리뷰 넣기3
+            </div>
+        </SwiperSlide>
+        <SwiperSlide>
+            <div className="review_slide">
+                여기에 리뷰 넣기4
+            </div>
+        </SwiperSlide>
+        <SwiperSlide>
+            <div className="review_slide">
+                여기에 리뷰 넣기5
+            </div>
+        </SwiperSlide>
     </Swiper>
   );
 }

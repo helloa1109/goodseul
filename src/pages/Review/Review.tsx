@@ -4,12 +4,17 @@ import "../../style/global/global.scss"
 import SearchBar from '../../component/SearchBar/SearchBar'
 import { reviewList } from '../../apis/Review/Review'
 import { ReviewCData } from '../../hooks/Review/Review'
+import { useNavigate } from 'react-router-dom'
 
 
 const Review = () => {
  
   const [rList, setRList] = useState<ReviewCData[]>([]);
 
+  const navi = useNavigate();
+  const heaadingReviewSearch = () =>{
+    navi("/")
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,20 +35,6 @@ const Review = () => {
 
     fetchData();
   }, []);
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
 
   return (
     <div>
