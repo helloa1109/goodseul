@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import "../../style/Request/Request.scss";
 import 'react-calendar/dist/Calendar.css';
 import arrow from "../../image/Request/Vector.png";
@@ -87,6 +87,21 @@ const RequestUser1 = () => {
         setShowCalendar(false);
         console.log("빠이", newDate);
     };
+
+    useEffect(() => {
+        if (showRegin || showCategory || showCalendar) {
+            // 스크롤 이벤트를 막음
+            document.body.style.overflow = 'hidden';
+        } else {
+            // 스크롤 이벤트를 복구
+            document.body.style.overflow = 'auto';
+        }
+
+        // 컴포넌트 언마운트 시 스타일을 원래대로 돌려놓음
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [showRegin, showCategory,showCalendar]);
 
 
     const MIN_Y = 60; // 바텀시트가 최대로 높이 올라갔을 때의 y 값
