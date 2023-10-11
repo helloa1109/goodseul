@@ -12,6 +12,13 @@ import Review from "./pages/Review/Review";
 import LocationPages from './pages/LocationBased/LocationPages';
 import RequestPages from './pages/Request/RequestPages';
 import RequestListPages from './pages/RequestList/RequestPages';
+import OnAir from './pages/OnAir/OnAir';
+import GuseulDetail from './pages/GuseulDetail/GuseulDetail';
+import Community from './pages/Community/Community';
+import CommunityDetail from './pages/Community/ComminutyDetail';
+import CommunityForm from './pages/Community/CommunityForm';
+import CommunityList from './pages/Community/CommunityList';
+
 
 
 function App() {
@@ -30,6 +37,13 @@ function App() {
         <Route path='/Location' element={<LocationPages/>}/>
         <Route path='/Request' element={<RequestPages/>}/>
         <Route path='/RequestList' element={<RequestListPages/>}/>
+        <Route path='/OnAir' element={<OnAir/>}/>
+        <Route path='/GuseulDetail' element={<GuseulDetail/>}/>
+        
+        <Route path='/Community' element={<Community/>}/>
+        <Route path='/CommunityDetail' element={<CommunityDetail/>}/>
+        <Route path='/CommunityForm' element={<CommunityForm/>}/>
+        <Route path='/CommunityList' element={<CommunityList/>}/>
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />

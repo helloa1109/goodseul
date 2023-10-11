@@ -16,6 +16,8 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "axios": "^1.5.0",
+    "framer-motion": "^10.16.4",
+    "gsap": "^3.12.2",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -25,6 +27,7 @@
     "react-scripts": "5.0.1",
     "recoil": "^0.7.7",
     "sass": "^1.67.0",
+    "styled-components": "^6.0.8",
     "swiper": "^10.3.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"

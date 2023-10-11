@@ -2,8 +2,16 @@ import React from 'react'
 import "../../style/main/main.scss"
 import "../../style/global/global.scss"
 import OnAir from "../../component/Slider/Main/OnAir"
+import Purpose from "../../component/Slider/Main/Purpose"
+import Review from "../../component/Slider/Main/Review"
+import { useNavigate } from 'react-router-dom'
 
 const Main = () => {
+  const navi = useNavigate();
+  const heaadingEstimate = () =>{
+    navi("/")
+  }
+
   return (
     <div>
       <div className='main_event'>
@@ -31,7 +39,7 @@ const Main = () => {
           <span className='main_lightgray main_smalltxt' style={{marginLeft:'10px'}}>곧바로 상담 가능한 구슬님</span>
         </div>
         <div className='main_onair'>
-          <OnAir/>
+          <OnAir/> 
         </div>
         <div className='main_ad'>
           <button className='main_vsmallheavytxt'>자세히보기</button>
@@ -43,7 +51,7 @@ const Main = () => {
             <span className='main_lightgray main_smalltxt' style={{marginRight:'35px'}}>구슬을 선택해야 하는 이유</span>
         </div>
         <div className='main_review'>
-          
+          <Review/>
         </div>
       </div>
       <div className='main_locatewrap'>
@@ -69,7 +77,9 @@ const Main = () => {
             <span className='main_burgundy main_midtxt'>바라는 그대로</span><br/>
             <span className='main_lightgray main_smalltxt'>당신의 바람이 이뤄지는 그 때까지</span>
         </div>
-        <div className='main_purpose'></div>
+        <div className='main_purpose'>
+          <Purpose/>
+        </div>
       </div>
       <div className='main_estimatewrap'>
         <div className='main_estimate_welcome'>
@@ -95,7 +105,7 @@ const Main = () => {
             <div className='main_estimate_txt'>
               <span className='main_smalltxt'><span className='main_burgundy'>견적내기</span>에 대해</span>
               <span>더 자세히 알아보고 싶으신가요?</span>
-              <span className='main_vsmalltxt main_burgundy'>더 알아보기 &gt; </span>
+              <span className='main_vsmalltxt main_burgundy' onClick={heaadingEstimate}>더 알아보기 &gt; </span>
             </div>
           </div>
         </div>

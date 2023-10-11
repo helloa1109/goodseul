@@ -2,33 +2,27 @@
 
 .LocationList {
     width: $iphone13mini;
-    height: 70vh;
-    border: 1px solid brown;
-  }
-  
-  .mySwiper {
+    height: 55vh;
+    width: 375px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Add this to make sure the Swiper container fills the height */
+    margin-top: 50px;
+    border: 1px solid blue;
   }
-  
-  .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    font-weight: bold;
-    color: #fff;
-    width: 200px;
-    height: 100%;
-  }
-  
   .t {
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
-    background-color: rgb(206, 17, 17);
+    background-color: rgb(243, 205, 36);
   }
+
+    p{
+      border: 1px solid red;
+      width: 100px;
+      height: 50px;
+    }
+
   

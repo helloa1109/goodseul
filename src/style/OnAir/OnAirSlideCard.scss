@@ -1,0 +1,23 @@
+@import "../global/global.scss";
+
+.OnAirSlideCardPage{
+    position: fixed;
+    width: 375px;
+
+    .OnAirSlideCardSection{
+        
+        width: 100vw;
+        height: 500px;
+    }
+    
+    .OnAirSlideCardPoint{
+        width: 200px;
+        height: 300px;
+        border-radius: 30px;
+        background: var(--Color-3, #595959);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+}
