@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import {  HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 import "../../style/header/SubHeader.scss";
 import arrow from "../../image/header/control.png";
+import Header from './Header';
 
 const SubHeader = () => {
 
@@ -33,11 +34,13 @@ const SubHeader = () => {
         subHeaderTitle = "플레이";
     } else if (Location.pathname === "/Request"){
         subHeaderTitle = "견적요청";
-    }else if (Location.pathname === "/OnAir"){
+    } else if (Location.pathname === "/OnAir"){
         subHeaderTitle = "실시간 상담";
-    }
-    else if (Location.pathname === "/GuseulDetail"){
+    } else if (Location.pathname === "/GuseulDetail"){
         subHeaderTitle = "상세보기";
+    } else if (Location.pathname === "/"){
+        setIsOpen(false);
+        <Header/>
     }
 
     return (

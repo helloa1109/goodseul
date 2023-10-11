@@ -7,6 +7,7 @@ const HeaderMenu = () => {
     
     const [isOpen] = useRecoilState(HeaderMenuModalAtom);
     
+    
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -47,6 +48,7 @@ const HeaderMenu = () => {
 
 return (
     <div className={`HeaderMenumodal ${isOpen ? 'opened' : 'closed'}`}>
+
             <div className='HeaderMenuList'>
                 <ul>
                     <li onClick={handleLogin}>

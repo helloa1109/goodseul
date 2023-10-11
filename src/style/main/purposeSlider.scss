@@ -1,0 +1,36 @@
+@import "../global/global.scss";
+
+.purpose_slider{
+    width: 230px;
+    height: 330px;
+}
+
+.purpose_slide{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+.red {
+    background-color: rgb(206, 17, 17);
+}
+  
+.blue {
+    background-color: rgb(0, 140, 255);
+}
+  
+.green {
+    background-color: rgb(10, 184, 111);
+}
+  
+.orange {
+    background-color: rgb(211, 122, 7);
+}
+  
+.yellow {
+    background-color: rgb(118, 163, 12);
+  }
+  

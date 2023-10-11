@@ -1,5 +1,4 @@
 import { atom } from 'recoil';
-import jwt_decode from "jwt-decode";
 
 export const loginIdInput = atom ({
     key: 'loginID',

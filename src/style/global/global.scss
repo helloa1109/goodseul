@@ -3,5 +3,34 @@ $흰색 : #F2F2F2;
 $밝은회색 : #595959;
 $어두운회색 : #262626;
 $검은색 : #0D0D0D;
+$더밝은회색 : #d9d9d9;
 
 $iphone13mini : 375px;
+
+
+/* 글로벌 폰트 설정 */
+
+$font_bigtxt: (
+    font-size: 30px,
+    font-weight: 700
+);
+
+$font_midtxt: (
+    font-size: 25px,
+    font-weight: 700
+);
+
+$font_smalltxt:(
+    font-size: 20px,
+    font-weight: 700
+);
+
+$font_vsmalltxt:(
+    font-size: 15px,
+    font-weight: 400
+);
+
+$font_vsmallheavytxt:(
+    font-size: 15px,
+    font-weight: 700
+);

@@ -3,15 +3,27 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import React, { useState } from 'react';
 import "../../style/SearchBar/SearchBar.scss"
+import { searchResult } from '../../apis/SearchBar/SearchBar';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 function SearchBar() {
 
-    const [searchTerm, setSearchTerm] = useState('')
+    const serverUrl = "http://dopeboyzclub.ddns.net:7780"
+    const currentPage = useLocation();
+    const nav = useNavigate();
+
+    const [searchTerm, setSearchTerm] = useState<string>('')
     const changeSearchItem :React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSearchTerm(e.target.value)
     }
 
     const handleSearch = () => {
+        searchResult(searchTerm)
+        .then(res=>{
+            nav("/");
+            console.log(res.data);
+        })
         
         setSearchTerm('');
     };
@@ -33,7 +45,7 @@ function SearchBar() {
                 onClick={handleSearch}
             />  
             
-            
+            {searchTerm}
         </div>
     );
 }

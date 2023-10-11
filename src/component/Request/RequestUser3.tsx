@@ -26,7 +26,9 @@ const RequestUser3 = () => {
                     더 알아보기<img src={arrow} alt='arrow' className='RequestUser3MoreImg'/>
                 </div>
             </div>
+            <div className='aa'>
             <Slide/>
+            </div>
         </div>
     )
 }

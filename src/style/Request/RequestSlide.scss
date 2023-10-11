@@ -1,27 +1,8 @@
 @import "../global/global.scss";
 
-.swiper {
-    margin-top: 50px;
-    width: 100%;
-    height: 63vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
 
 .swiper-slide img {
     display: block;
-}
-
-.swiper-slide{
-    display: flex;
-    align-items: center;
-    background-position: center;
-    background-size: cover;
-    margin-right: 0 !important;
 }
 
 .SlideMap{
@@ -48,19 +29,26 @@
     border-bottom-right-radius: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
 
     .SlideName{
             font-weight: 800;
             white-space: nowrap;
             display: flex;
             align-items: center;
-            font-size: 18px;
+            font-size: 18px;      
+            width: 150px;
+            flex-shrink: 0;
             
             span{
                 color: $버건디;
                 font-weight: 800;   
+            }
+
+            p{
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
     }
 
@@ -73,16 +61,30 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 22px;
-        width: 90px;
+        -ms-overflow-style: none;
+        width: 300px;
+        height: 100%;
         cursor: pointer;
+        overflow: auto;
+        text-overflow: ellipsis;
+
+        span{
+            animation: textLoop 10s infinite;
+            margin-right: 15px;
+            font-size: 16px;
+        }
     }
 
     .SlideReviewGroup{
-        float: left;
-        
+        -ms-overflow-style: none;
         width: 300px;
+        height: 5vh;
+        display: flex;
     }
+
+    .SlideReviewCount::-webkit-scrollbar {
+        display: none;
+      }
 }
 
 .SlideMapHeader{
@@ -93,6 +95,7 @@
 
     p {
         margin-left: 30px;
+        color: black;
     }
 }
 
@@ -104,36 +107,70 @@
 .SlideTagBox{
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 50%;
     height: 50%;
     border-radius: 15px;
     justify-content: center; /* 수평 중앙 정렬 */
     align-items: center; /* 수직 중앙 정렬 */
-    margin: 0 auto;
+    margin: 10px 5px auto;
 
     span {
-        width: 75px;
-        height: 28px;
-        text-align: center;
+        width: 50px;
+        height: 20px;
         border-radius: 15px;
-        margin-left: 15px;
-        color: white;
+        text-align: center;
         justify-content: center;
-        margin: 0 auto;
+        margin: 0 10px;
         align-items: center;
         font-weight: 800;
         display: flex;
+        font-size: 14px;
     }
 
     .SlideTagText:nth-child(1){
-        background-color: mediumslateblue;
+        background-color: #FFF0E6;
+        color: #FF5701;
     }
 
     .SlideTagText:nth-child(2){
-        background-color: darkorange;
-    }
-
-    .SlideTagText:nth-child(3){
-        background-color: olive;
+        background-color: #D2DEFF;
+        color: #396EFF;
     }
 }
+
+.RequestSlidePages::-webkit-scrollbar {
+    display: none !important;
+}
+
+.RequestSlidePages {
+    overflow: hidden !important;
+    -ms-overflow-style: none !important; /* 인터넷 익스플로러 */
+    scrollbar-width: none !important;
+    -webkit-scrollbar-width: none !important;
+}
+
+
+
+@keyframes text-slide {
+    0% {
+        transform: translateX(100%); /* 시작 지점: 화면 오른쪽 밖에서 시작 */
+    }
+    100% {
+        transform: translateX(-100%); /* 끝 지점: 화면 왼쪽 밖으로 이동 */
+    }
+}
+
+.SlideReviewGroup > .SlideReviewCount > span:nth-child(1){
+    background-color: #396EFF;
+}
+
+@keyframes textLoop {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
