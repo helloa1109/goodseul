@@ -12,8 +12,8 @@ const Review = () => {
   const [rList, setRList] = useState<ReviewCData[]>([]);
 
   const navi = useNavigate();
-  const heaadingReviewSearch = () =>{
-    navi("/")
+  const headingReviewSearch = () =>{
+    navi("/ReviewSearch")
   }
 
   useEffect(() => {
