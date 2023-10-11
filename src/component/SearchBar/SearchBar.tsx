@@ -21,7 +21,8 @@ function SearchBar() {
     const handleSearch = () => {
         searchResult(searchTerm)
         .then(res=>{
-            nav("/");
+            if(currentPage.pathname === "/Review")
+            nav("/ReviewSearch");
             console.log(res.data);
         })
         
@@ -44,8 +45,6 @@ function SearchBar() {
                 className='searchBar_glass'
                 onClick={handleSearch}
             />  
-            
-            {searchTerm}
         </div>
     );
 }
