@@ -1,28 +1,102 @@
 @import "../global/global.scss";
 
-.LocationList {
-    width: $iphone13mini;
-    height: 55vh;
-    width: 375px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    border: 1px solid blue;
-  }
-  .t {
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(243, 205, 36);
-  }
+.LocationBasedPages{
+  width: $iphone13mini;
+}
 
-    p{
-      border: 1px solid red;
-      width: 100px;
-      height: 50px;
+.mySwiper {
+  width: 300px;
+  height: 100px;
+  margin-top: 50px;
+}
+
+.GoodSeulList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  height: 500px;
+  width: 250px;
+
+    .GoodSeulLocationImg{
+      width: 100%;
     }
+}
 
-  
+.GoodSeulList > .LocationGoodSeultList >.GoodSeulLocationHeader{
+  margin-top: 10px;
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  p,span{
+    font-weight: 800;
+  }
+
+
+  span {
+    color: $버건디;
+  }
+
+  .GoodSeulLocationReviewCount{
+    color: black;
+    font-size: 18px;
+  }
+
+}
+
+.GoodSeulList > .LocationGoodSeultList > .GoodSeulLocationCenterContent{
+
+  width: 100%;
+  justify-content: flex-start;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    background-color:  black;
+    width: 12vw;
+    height: 3vh;
+    margin-left: 13px;
+    border-radius: 15px;
+    
+  }
+}
+
+.GoodSeulLocationFooter{
+  font-size: 14px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+
+.GoodSeulList:nth-child(1n) {
+  background-color: rgb(206, 17, 17);
+}
+
+.GoodSeulList:nth-child(2n) {
+  background-color: rgb(0, 140, 255);
+}
+
+.GoodSeulList:nth-child(3n) {
+  background-color: rgb(10, 184, 111);
+}
+
+.GoodSeulList:nth-child(4n) {
+  background-color: rgb(211, 122, 7);
+}
+
+.GoodSeulList:nth-child(5n) {
+  background-color: rgb(118, 163, 12);
+}
