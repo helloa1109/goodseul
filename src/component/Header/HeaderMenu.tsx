@@ -37,6 +37,14 @@ const HeaderMenu = () => {
         navigate("/Request");
     }
 
+    const handleOnAir = () => {
+        navigate("/OnAir");
+    }
+
+    const handleGuseulDetail = () => {
+        navigate("/GuseulDetail");
+    }
+
 return (
     <div className={`HeaderMenumodal ${isOpen ? 'opened' : 'closed'}`}>
             <div className='HeaderMenuList'>
@@ -65,6 +73,15 @@ return (
                     <li onClick={handleRequest}>
                         견적요청
                     </li>
+
+                    <li onClick={handleOnAir}>
+                        실시간 상담
+                    </li>
+
+                    <li onClick={handleGuseulDetail}>
+                        구슬님 상세보기(임시)
+                    </li>
+
                 </ul>
             </div>
         </div>
