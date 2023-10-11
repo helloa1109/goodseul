@@ -1,27 +1,8 @@
 @import "../global/global.scss";
 
-.swiper {
-    margin-top: 50px;
-    width: 100%;
-    height: 63vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
 
 .swiper-slide img {
     display: block;
-}
-
-.swiper-slide{
-    display: flex;
-    align-items: center;
-    background-position: center;
-    background-size: cover;
-    margin-right: 0 !important;
 }
 
 .SlideMap{
