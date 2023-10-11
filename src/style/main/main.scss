@@ -31,10 +31,9 @@
 
 /* 메인 css 시작*/
 
-.main_event{
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
+.main_wrap{
+    width: $iphone13mini;
+    overflow-x: hidden;
 }
 .main_slogan{
     margin: 70px 48px 84px 20px;
@@ -65,7 +64,7 @@
 }
 /*실시간 세션*/
 .main_onair_txt{
-    margin: 145px 0 55px 20px;
+    margin: 100px 0 55px 20px;
 }
 .main_onair{
     height: 350px;
@@ -133,7 +132,7 @@
 
 /*목적별 섹션*/
 .main_purposewrap{
-    margin-top: 195px;
+    margin-top: 100px;
     
 }
 .main_purposetxt{
