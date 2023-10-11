@@ -1,47 +1,72 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import "../../style/LocationBased/LocationBasedList.scss";
 import { useRecoilValue } from "recoil";
 import { selectedRegionState, testList } from "../../recoil/LocationBased/LocationAtom";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper/modules';
+
+import { EffectCards , Autoplay} from 'swiper/modules';
+
+
 import 'swiper/css';
 import 'swiper/css/effect-cards';
+
+
 const LocationBasedList = () => {
 
-    const selectedRegion = useRecoilValue(selectedRegionState);
+  const selectedRegion = useRecoilValue(selectedRegionState);
 
-    console.log(selectedRegion);
+  console.log(selectedRegion);
 
-    const ListValue = useRecoilValue(testList);
-  
+  const ListValue = useRecoilValue(testList);
 
-    console.log("리스트 벨류에요",ListValue);
-
+  console.log("리스트 벨류에요", ListValue);
 
 
   return (
-    <div className='LocationList'>
-      <Swiper
-        effect={'cards'}
-        grabCursor={true}
-        centeredSlides={true}
-        modules={[EffectCards]}
-        className="mySwiper"
-      >
-        {ListValue.map((List,index) => (
-        <SwiperSlide className='t' key={index}>
-            <div className='a'>
-              <p>{List.goodseulProfile}</p>
-              <p>{List.skill}</p>
-              <p>{List.career}</p>
-              <p>{List.goodseulName}</p>
-            </div>
+    <Swiper
+      effect={'cards'}
+      grabCursor={true}
+      modules={[EffectCards]}
+      // initialSlide={5}
+      // threshold={100} //마우스 스와이프 민감도
+      loop={true}
+      // resistance={false}  // 슬라이드 터치 저항 여부
+      slideToClickedSlide={true} // 해당 슬라이드 클릭 시 이동
+      pagination={true}
+      // initialSlide={5}
+      // slidesPerView={1} //한 슬라이드에 보여줄 갯수
+      // spaceBetween={200} //슬라이드간 거리
+      freeMode={true}
+      autoplay={{
+        delay: 100, // 시간 설정
+        disableOnInteraction: true, // false-스와이프 후 자동 재생
+      }}
+      className="mySwiper"
+    >
+      {ListValue.map((List, index) => (
+        <SwiperSlide key={index} className='GoodSeulList'>
+          <div className='LocationGoodSeultList'>
+            <img
+              className='GoodSeulLocationImg'
+              src={`http://dopeboyzclub.ddns.net:7733/images/${List.goodseulProfile}`} alt='' />
+              <div className='GoodSeulLocationHeader'>
+                <p>{List.goodseulName}<span> 구슬님</span></p>
+                <p className='GoodSeulLocationReviewCount'>4.5</p>
+              </div>
+              <div className='GoodSeulLocationCenterContent'>
+                <span>{List.skill}</span>
+                <span>{List.skill}</span>
+                <span>{List.skill}</span>
+              </div>
+              <div className='GoodSeulLocationFooter'>
+                <span>여러분의 성공을 위해 최선을 다하겠습니다.</span>  
+              </div>            
+          </div>
         </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+      ))}
+    </Swiper>
   )
 }
 
+
 export default LocationBasedList
- 
