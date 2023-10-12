@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect  } from 'react';
 import "../../style/LocationBased/LocationBased.scss";
 import seoul from "../../image/LocationBased/region1.png";
 import geongi from "../../image/LocationBased/region2.png";
@@ -11,11 +11,11 @@ import { GoodSeullist } from "../../hooks/LocationBasedList/LocationBasedList";
 
 const LocationBased = () => {
   const regionImages = [seoul, geongi, gangwondo, gwangju,gwangju];
-  const regionTexts = ["서울", "경기","충청도","경상도","제주"];
+  const regionTexts = ["서울", "경기/인천","충청도","경상도","제주"];
 
   const [selectedLocation, setSelecteLocation] = useRecoilState(selectedLocationState);
   
-  const [data, setData] = useState<GoodSeullist[]>([]); 
+
   const [List, setList] = useRecoilState(testList);
 
   const handleRegionClick = async (index: number) => {
@@ -25,17 +25,13 @@ const LocationBased = () => {
     try {
       const response = await getGoodSeulList(selectedLocation);
       setList(response);
-      setData(response);
       console.log("list",List);
-      
-      // console.log("try임",res.data);
-      // console.log("location",data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
   console.log("list2",List);
-  console.log("data임",data);
 
   useEffect(() => {
     if (selectedLocation) {

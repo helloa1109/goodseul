@@ -10,23 +10,26 @@
   width: 300px;
   height: 100px;
   margin-top: 50px;
-
+  
 }
 
 .GoodSeulList {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  // align-items: center;
+  // justify-content: center;
   border-radius: 18px;
   font-size: 22px;
   font-weight: bold;
   color: #fff;
-  height: 500px;
+  height: 430px;
   width: 250px;
   
-
-    .GoodSeulLocationImg{
-      width: 100%;
+    .GoodSeulLocationImg,
+    .default-img {
+      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+      width: 300px;
+      height: 300px;
     }
 }
 
@@ -72,7 +75,10 @@
     height: 3vh;
     margin-left: 13px;
     border-radius: 15px;
-    
+  }
+
+  .no-skill{
+   display: none;
   }
 }
 
@@ -86,6 +92,8 @@
 
 
 .GoodSeulList {
-  background-color: coral;
+  background-color: #ccc;
 }
+
+
 
