@@ -4,13 +4,14 @@ import { useRecoilValue } from "recoil";
 import { selectedRegionState, testList } from "../../recoil/LocationBased/LocationAtom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from "swiper";
-import { EffectCards } from 'swiper/modules';
+import { EffectCards , Pagination} from 'swiper/modules';
 import { Autoplay } from "swiper/modules";
 import defaultImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 
 
 import 'swiper/css';
 import 'swiper/css/effect-cards';
+import 'swiper/css/pagination';
 
 SwiperCore.use([Autoplay]);
 const LocationBasedList = () => {
@@ -28,7 +29,7 @@ const LocationBasedList = () => {
     <Swiper
       effect={'cards'}
       grabCursor={true}
-      modules={[EffectCards]}
+      modules={[EffectCards, Pagination]}
       // initialSlide={5}
       // threshold={100} //마우스 스와이프 민감도
       loop={true}
@@ -39,7 +40,7 @@ const LocationBasedList = () => {
       // slidesPerView={1} //한 슬라이드에 보여줄 갯수
       // spaceBetween={200} //슬라이드간 거리
       freeMode={true}
-      autoplay={{ delay: 1000, disableOnInteraction: false }}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
       className="mySwiper"
     >
       {ListValue.map((List, index) => (

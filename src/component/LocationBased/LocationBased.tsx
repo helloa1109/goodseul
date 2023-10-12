@@ -1,4 +1,4 @@
-import React, { useEffect  } from 'react';
+import React, { useEffect , useState} from 'react';
 import "../../style/LocationBased/LocationBased.scss";
 import seoul from "../../image/LocationBased/region1.png";
 import geongi from "../../image/LocationBased/region2.png";
@@ -17,28 +17,34 @@ const LocationBased = () => {
   
 
   const [List, setList] = useRecoilState(testList);
+  const [initialLoad, setInitialLoad] = useState(true);
 
-  const handleRegionClick = async (index: number) => {
-    const selectedRegionName = regionTexts[index];
-    setSelecteLocation(selectedRegionName);
-    
+  useEffect(() => {
+    if (initialLoad) {
+      
+      setSelecteLocation("서울");
+
+      fetchData("서울");
+      setInitialLoad(false);
+    }
+  }, [selectedLocation, setList, setSelecteLocation, initialLoad]);
+
+
+  const fetchData = async (location:string) => {
     try {
-      const response = await getGoodSeulList(selectedLocation);
+      const response = await getGoodSeulList(location);
       setList(response);
-      console.log("list",List);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  console.log("list2",List);
+  const handleRegionClick = async (index:number) => {
+    const selectedRegionName = regionTexts[index];
+    setSelecteLocation(selectedRegionName);
 
-  useEffect(() => {
-    if (selectedLocation) {
-      getGoodSeulList(selectedLocation);
-    }
-
-  }, [selectedLocation]);
+    fetchData(selectedRegionName);
+  };
 
 
   return (

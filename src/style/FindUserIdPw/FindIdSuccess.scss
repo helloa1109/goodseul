@@ -1,0 +1,85 @@
+@import "../global/global.scss";
+
+.FindIdSuccess {
+    width: $iphone13mini;
+
+    .FindIdSuccessHeader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .FindIdSuccessHeader>span {
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .FindIdSuccessUserInfo {
+        margin-top: 50px;
+        margin-left: 31px;
+        border-bottom: 1px solid #000000;
+        width: 250px;
+    }
+
+    .FindIdSuccessUserInfo>span {
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    .FindIdSuccessUserId{
+        display: flex;
+        align-items: center;
+        margin-left: 50px;
+        margin-top: 25px;
+    }
+
+    .FindIdSuccessUserId > span{
+        margin-left: 10px;
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .SelectCircleOut {
+        display: flex;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        border-radius: 50px;
+        background-color: $더밝은회색;
+    }
+
+    .SelectCircleIn {
+        width: 10px;
+        height: 10px;
+        border-radius: 50px;
+        background-color: $버건디;
+        margin: 0 auto;
+    }
+
+    .FindIdSuccessFooter{
+        margin-top: 418px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .FindIdSuccessFooter > span {
+        color: #0070C9;
+        font-weight: 700;
+        font-size: 10px;
+    }
+
+    .FindIdSuccessBtn{
+        margin-top: 37px;
+        border: none;
+        border-radius: 15px;
+        color: white;
+        background-color: $버건디;
+        width: 150px;
+        height: 40px;
+        font-size: 15px;
+        font-weight: 700;
+    }
+}

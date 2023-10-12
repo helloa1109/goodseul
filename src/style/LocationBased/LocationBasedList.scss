@@ -1,6 +1,6 @@
 @import "../global/global.scss";
 
-.LocationBasedPages{
+.LocationBasedPages {
   width: $iphone13mini;
   height: 90vh;
   overflow: hidden;
@@ -8,9 +8,8 @@
 
 .mySwiper {
   width: 300px;
-  height: 100px;
-  margin-top: 50px;
-  
+  height: 450px;
+  margin-top: 70px;
 }
 
 .GoodSeulList {
@@ -21,26 +20,33 @@
   border-radius: 18px;
   font-size: 22px;
   font-weight: bold;
-  color: #fff;
-  height: 430px;
+  // color: #fff;
+  height: 400px;
   width: 250px;
-  
-    .GoodSeulLocationImg,
-    .default-img {
-      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-      width: 300px;
-      height: 300px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .GoodSeulLocationImg,
+  .default-img {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    width: 240px;
+    height: 240px;
+    border-radius: 50px;
+    margin: 0 auto;
+  }
 }
 
-.GoodSeulList > .LocationGoodSeultList >.GoodSeulLocationHeader{
+.GoodSeulList>.LocationGoodSeultList>.GoodSeulLocationHeader {
   margin-top: 10px;
   height: 6vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
 
-  p,span{
+  p,
+  span {
     font-weight: 800;
   }
 
@@ -49,18 +55,18 @@
     color: $버건디;
   }
 
-  .GoodSeulLocationReviewCount{
+  .GoodSeulLocationReviewCount {
     color: black;
     font-size: 18px;
   }
 
 }
 
-.GoodSeulList > .LocationGoodSeultList > .GoodSeulLocationCenterContent{
+.GoodSeulList>.LocationGoodSeultList>.GoodSeulLocationCenterContent {
 
   width: 100%;
   justify-content: flex-start;
-  margin-left: 10px;
+  // margin-left: 10px;
   display: flex;
   align-items: center;
 
@@ -70,19 +76,20 @@
     justify-content: center;
     text-align: center;
     font-size: 14px;
-    background-color:  black;
+    background-color: $버건디;
     width: 12vw;
     height: 3vh;
     margin-left: 13px;
     border-radius: 15px;
+    color: white;
   }
 
-  .no-skill{
-   display: none;
+  .no-skill {
+    display: none;
   }
 }
 
-.GoodSeulLocationFooter{
+.GoodSeulLocationFooter {
   font-size: 14px;
   align-items: center;
   display: flex;
@@ -92,8 +99,5 @@
 
 
 .GoodSeulList {
-  background-color: #ccc;
+  background-color: #FCF6F5;
 }
-
-
-
