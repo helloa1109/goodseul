@@ -2,12 +2,15 @@
 
 .LocationBasedPages{
   width: $iphone13mini;
+  height: 90vh;
+  overflow: hidden;
 }
 
 .mySwiper {
   width: 300px;
   height: 100px;
   margin-top: 50px;
+
 }
 
 .GoodSeulList {
@@ -20,6 +23,7 @@
   color: #fff;
   height: 500px;
   width: 250px;
+  
 
     .GoodSeulLocationImg{
       width: 100%;
@@ -81,22 +85,7 @@
 }
 
 
-.GoodSeulList:nth-child(1n) {
-  background-color: rgb(206, 17, 17);
+.GoodSeulList {
+  background-color: coral;
 }
 
-.GoodSeulList:nth-child(2n) {
-  background-color: rgb(0, 140, 255);
-}
-
-.GoodSeulList:nth-child(3n) {
-  background-color: rgb(10, 184, 111);
-}
-
-.GoodSeulList:nth-child(4n) {
-  background-color: rgb(211, 122, 7);
-}
-
-.GoodSeulList:nth-child(5n) {
-  background-color: rgb(118, 163, 12);
-}

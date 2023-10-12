@@ -3,14 +3,15 @@ import "../../style/LocationBased/LocationBasedList.scss";
 import { useRecoilValue } from "recoil";
 import { selectedRegionState, testList } from "../../recoil/LocationBased/LocationAtom";
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-import { EffectCards , Autoplay} from 'swiper/modules';
+import SwiperCore from "swiper";
+import { EffectCards } from 'swiper/modules';
+import { Autoplay } from "swiper/modules";
 
 
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 
-
+SwiperCore.use([Autoplay]);
 const LocationBasedList = () => {
 
   const selectedRegion = useRecoilValue(selectedRegionState);
@@ -37,10 +38,7 @@ const LocationBasedList = () => {
       // slidesPerView={1} //한 슬라이드에 보여줄 갯수
       // spaceBetween={200} //슬라이드간 거리
       freeMode={true}
-      autoplay={{
-        delay: 100, // 시간 설정
-        disableOnInteraction: true, // false-스와이프 후 자동 재생
-      }}
+      autoplay={{ delay: 1000, disableOnInteraction: false }}
       className="mySwiper"
     >
       {ListValue.map((List, index) => (
