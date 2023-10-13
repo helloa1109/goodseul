@@ -27,11 +27,23 @@ const FindPw3Auth = () => {
     // 키 입력 처리
     // 입력란 내용이 있을 경우 -> 입력값 지움
     // 이전 input 으로 focus 잡히게 설정
+     // inputRef 및 current가 null이 아닌 경우
     const handleInput = (index: number) => {
+        const inputRef = inputRefs[index];
+        if (inputRef && inputRef.current) {
+            const inputValue = inputRef.current.value;
+            
+            if (!/^[0-9]+$/.test(inputValue)) {
+                // 입력이 숫자가 아닌 경우, 입력을 지움
+                inputRef.current.value = '';
+            }
+        }
+    
         if (index < inputRefs.length - 1) {
             inputRefs[index + 1].current?.focus();
         }
     };
+    
 
     // 백스페이스 키 처리
     // event.key === 'backspace ' : 이벤트가 백스페이스 키 인지 확인함

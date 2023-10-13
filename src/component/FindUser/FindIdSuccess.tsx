@@ -13,6 +13,10 @@ const FindIdSuccess = () => {
         setIsFindId(false);
         navigate("/findidpw");
     }
+    
+    const handleLogin = () => {
+        navigate("/login");
+    }
 
     return (
         <div className='FindIdSuccess'>
@@ -30,7 +34,7 @@ const FindIdSuccess = () => {
             </div>
             <div className='FindIdSuccessFooter'>
                 <span onClick={handleFindPw}>비밀번호 찾기</span>
-                <button className='FindIdSuccessBtn'>로그인</button>
+                <button className='FindIdSuccessBtn' onClick={handleLogin}>로그인</button>
             </div>
         </div>
     )
