@@ -9,4 +9,4 @@ export type refreshToken = {
     refreshToken:string;
 }
 
-export type login = Omit<signUp,'nickname'|'phonenumber' >
+export type login = Pick<signUp,'email'|'password' >

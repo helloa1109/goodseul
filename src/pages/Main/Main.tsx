@@ -4,6 +4,7 @@ import "../../style/global/global.scss"
 import OnAir from "../../component/Slider/Main/OnAir"
 import Purpose from "../../component/Slider/Main/Purpose"
 import Review from "../../component/Slider/Main/Review"
+import Locate from "../../component/Slider/Main/Locate"
 import { useNavigate } from 'react-router-dom'
 
 
@@ -12,7 +13,7 @@ import { useNavigate } from 'react-router-dom'
 const Main = () => {
   const navi = useNavigate();
   const heaadingEstimate = () =>{
-    navi("/")
+    navi("/request");
   }
 
   
@@ -97,7 +98,7 @@ const Main = () => {
             <span className='main_lightgray main_vsmalltxt'>만나러 가기 <img src='' alt='22'/></span>
           </div>
           <div className='main_locatepic'>
-            전국 어디든 바라는 곳에서
+            <Locate/>
           </div>
         
         
