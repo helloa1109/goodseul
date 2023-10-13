@@ -9,7 +9,7 @@ let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 export const tokensRefresh = (refreshToken:Token) => {
     axios({
         method:'get',
-        url: serverUrl + "/api/jwt-test",
+        url: "http://dopeboyzclub.ddns.net:7780/api/jwt-test",
         headers: { 'Authorization-refresh': `Bearer ${refreshToken}`}
     }).then(res => {
         if(res?.status === 200 ) {
@@ -40,7 +40,7 @@ axiosPunch.interceptors.request.use(
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             alert("로그아웃 되었습니다.");
-            window.location.reload();
+            window.location.href = "http://dopeboyzclub.com";
         //accessToken 이 만료되고 refreshToken 이 존재할때
         } else if((!tokenExpCheck(accessToken) && refreshToken)){
             console.log(3);
