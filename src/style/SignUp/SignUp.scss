@@ -1,5 +1,23 @@
 @import "../global/global.scss";
 
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.checkInput{
+    color: red;
+    font-size: 12px;
+}
+
 .signUpBody{
     width: $iphone13mini;
     display: flex;
@@ -45,10 +63,13 @@
 }
 
 .signUpInputTxtStyle01{
-    width: 255px;
+    width: 240px;
     padding-left: 15px;
     font-size: 15px;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .signUpInputBodyStyle01{
@@ -68,19 +89,31 @@
     padding-left: 35px;
     align-items: center;
     background-position: left;
-    background-position-x: 10px;
+    background-position-x: 13px;
+}
+
+.signUpInputStyle01::placeholder{
+    font-size: 12px;
 }
 
 .signUpNameInput {
-    background-image: url("../../image/Login/IdIcon.png");
-    background-size: 20px;
+    background-image: url("../../image/SignUp/nameIcon.png");
+    background-size: 15px;
 }
 
+
 .signUpNickNameInput{
-    background-image: url("../../image/Login/IdIcon.png");
-    background-size: 20px;
+    background-image: url("../../image/SignUp/nameIcon.png");
+    background-size: 15px;
 }
  
+.signUpNickNameCheck{
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 195px;
+    color: #0070C9;
+}
+
 .signUpEmailStyle{
     display: flex;
     flex: 1;
@@ -88,6 +121,11 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+}
+
+.signUpEmailInput{
+    background-image: url("../../image/SignUp/emailIcon.png");
+    background-size: 15px;
 }
 
 .signUpEmailButton{
@@ -118,6 +156,15 @@
     color: $어두운회색;
     font-size: 15px;
     padding-left: 35px;
+    background-image: url("../../image/SignUp/certificationIcon.png");
+    background-size: 17px;
+    background-position: left;
+    background-position-x: 13px;
+    background-repeat: no-repeat;
+}
+
+.emailCertificationNumberInput::placeholder{
+    font-size: 12px;
 }
 
 .emailCertificationButton{
@@ -139,8 +186,70 @@
 }
 
 .signUpPwInput{
-    background-image: url("../../image/Login/passwordIcon.png");
-    background-size: 20px; 
+    background-image: url("../../image/SignUp/passwordIcon.png");
+    background-size: 15px; 
+}
+
+.signUpPhoneNumberInput{
+    background-image: url("../../image/SignUp/phoneNumber.png");
+    background-size: 15px; 
+}
+
+.signUpBirthInput{
+    background-image: url("../../image/SignUp/birthIcon.png");
+    background-size: 15px; 
+}
+
+.signUpRegionInput{
+    background-image: url("../../image/SignUp/regionIcon.png");
+    background-size: 15px; 
+}
+
+.signUpSpecialtyInputRegionToggle{
+    position: absolute;
+    margin-top: 23px;
+    margin-left: -35px;
+}
+
+.signUpOptionList{
+    width: 100%;
+    height: 40vh;
+    background-color: white;
+    animation: bottom-sheet-up 0.7s ease-in-out;
+    border-radius: 15px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    outline: rgb(233, 237, 244) solid 3px;
+    outline-offset: -0.5px;
+    box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
+
+    ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+
+        li {
+            list-style: none;
+            text-align: center;
+            width: 100%;
+            flex: 1;
+            margin: 10px 0;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+        }
+
+    }
 }
 
 .signUpGoodseul{
@@ -175,6 +284,7 @@
 }
 .signUpGoodseulSubPointTxt{
     color: #0070C9;
+    font-weight: bold;
 }
 
 .signUpGoodseulTxtSub {
@@ -188,6 +298,11 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+.signUpGoodseulNickNameInput{
+    background-image: url("../../image/SignUp/nameIcon.png");
+    background-size: 15px; 
 }
 
 .signUpSpecialty{
@@ -208,11 +323,31 @@
     gap: 5px;
 }
 
+.signUpSpecialtyMainInputBody{
+    width: 270px;
+}
+
 .signUpSpecialtySubInputBody{
     display: flex;
     width: 270px;
     gap: 22px;
     align-items: center;
+}
+
+.signUpSpecialtyInput, .signUpSpecialtySubInput{
+    background-image: url("../../image/SignUp/specialtyIcon.png");
+    background-size: 15px;
+}
+
+.signUpSpecialtyInputMainToggle{
+    position: absolute;
+    margin-top: 23px;
+    margin-left: -35px;
+    
+}
+.signUpSpecialtyInputSubToggle{
+    position: absolute;
+    margin-left: 185px;
 }
 
 .signUpSpecialtySubInput{
@@ -224,6 +359,13 @@
     border-radius: 15px;
     padding-left: 35px;
     outline-color: $어두운회색;
+    background-position: left;
+    background-position-x: 13px;
+    background-repeat: no-repeat;
+}
+
+.signUpSpecialtySubInput::placeholder{
+    font-size: 12px;
 }
 
 .signUpAddOptionButton{
@@ -312,7 +454,7 @@
 .signUpCareerDeleteOptionButton{
     display: inline-block;
     text-align: center;
-    line-height: 50px;
+    line-height: 60px;
     padding-left: 22px;
 }
 
@@ -327,3 +469,24 @@
     margin-bottom: 40px;
     margin-top: 28px;
 }
+
+@keyframes bottom-sheet-up {
+    0% {
+        transform: translateY(420px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bottom-sheet-down {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(420px);
+    }
+}
+;

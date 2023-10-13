@@ -9,7 +9,7 @@ export const signUpApi = async (SignUp: signUp) => {
     try {
       const response = await axios({
         method: 'post',
-        url: serverUrl + "/api/lv0/sign-up",
+        url: serverUrl + "/api/lv0/user/sign-up",
         data: JSON.stringify(SignUp),
         headers: { 'Content-Type': 'application/json' }
       });
@@ -27,4 +27,5 @@ export const signUpApi = async (SignUp: signUp) => {
       JWTHandleError(error);
     }
   };
+  
   
