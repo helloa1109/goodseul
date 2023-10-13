@@ -120,15 +120,7 @@ const PlayBall = () => {
     }
 
     return (
-        <div style={{
-            position: 'relative',
-            overflow: 'hidden',
-            height: '600px',
-            width: '355px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-        }}>
+        <div>
             <canvas ref={cvRef} />
             {!isPlaying ? <div className='gameInformation'>
                 <div className='gameTitle'>게임 제목</div>
@@ -208,7 +200,7 @@ class Ball {
     }
 }
 
-class Game {
+class Game { 
     balls: Ball[] = [];
     constructor(
         public cv: HTMLCanvasElement,

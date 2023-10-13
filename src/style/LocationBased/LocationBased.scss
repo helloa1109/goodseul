@@ -2,8 +2,7 @@
 
 .LocationBased {
     width: $iphone13mini;
-    // border: 1px solid red;
-    height: 13vh;
+    height: 14vh;
     overflow-x: auto;
     display: flex;
     align-items: center;
@@ -17,6 +16,7 @@
 .LocationBasedHeader {
     display: flex;
     margin-left: 10px;
+    margin-top: 20px;
     
     .LocationBasedregion {
         height: 100%;
@@ -27,7 +27,6 @@
         margin-right: 10px;
 
         .RegionGroup {
-            // border: 1px solid red;
             width: 30vw;
             height: 11vh;
             display: flex;

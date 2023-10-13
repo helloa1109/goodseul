@@ -1,0 +1,24 @@
+@import "../global/global.scss";
+
+.FindUserIdPw{
+    width: $iphone13mini;
+    height: 100vh;
+
+    .FindUserIdPwHeader{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+
+    .FindUserIdPwHeader > span:nth-child(1){
+        font-weight: 700;
+        font-size: 25px;
+    }
+
+    .FindUserIdPwHeader > span:nth-child(2){
+        font-weight: 700;
+        font-size: 10px;
+        color: $버건디;
+    }
+}

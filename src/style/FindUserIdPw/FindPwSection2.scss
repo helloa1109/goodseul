@@ -1,0 +1,108 @@
+@import "../global/global.scss";
+
+.FindPwSection2{
+    width: $iphone13mini;
+
+    .FindPwSection2Header{
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .FindPwSection2Header > span{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .FindPwSection2Header > span:nth-child(1){
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .FindPwSection2Header > span:nth-child(2){
+        margin-top: 2px;
+        font-size: 10px;
+        font-weight: 700;
+        color: $버건디;
+    }
+
+    .FindPwSection2SelectGroup{
+        margin-top: 91px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .FindPwSection2SelectGroup > .FindPwSection2Phone,
+    .FindPwSection2SelectGroup > .FindPwSection2Email{
+        border: 1px solid $버건디;
+        width: 250px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 20px;
+        
+    }
+
+    .FindPwSection2SelectGroup > .FindPwSection2Phone > span{
+        margin-right: 48px;
+    }
+
+    .FindPwSection2SelectGroup > .FindPwSection2Email > span{
+        margin-right: 66px;
+    }
+
+    .FindPwSection2SelectGroup > .FindPwSection2Email{
+        margin-top: 36px;
+    }
+
+    .FindPwSection2IconGroup{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $흰색;
+        border: 1px solid $버건디;
+        border-radius: 50px;
+        width: 35px;
+        height: 35px;
+        margin-left: 20px;
+    }
+
+    .FindPwSection2Icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .FindPwSection2Footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 279px;
+    }
+
+    .FindPwSection2Footer > span {
+        color: #0070C9;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .FindPwSection2Footer > .FindpwSection2Btn{
+        width: 150px;
+        height: 40px;
+        border: none;
+        color: white;
+        background-color: $버건디;
+        font-weight: 800;
+        font-size: 15px;
+        border-radius: 15px;
+        margin-top: 31px;
+    }
+}

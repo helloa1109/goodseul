@@ -1,14 +1,16 @@
 import React from 'react'
 import { useNavigate , useLocation} from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {  HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 import "../../style/header/SubHeader.scss";
 import arrow from "../../image/header/control.png";
 import Header from './Header';
+import { isFindIdAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
 
 const SubHeader = () => {
 
     const [isOpen,setIsOpen] = useRecoilState(HeaderMenuModalAtom);
+    const isFindId = useRecoilValue<boolean>(isFindIdAtom);
 
     const navigate = useNavigate(); 
 
@@ -17,9 +19,6 @@ const SubHeader = () => {
     const goBack = () => {
         setIsOpen(false);
         navigate(-1);
-        if(Location.pathname === "/"){
-            <Header/>
-        }
     }
 
     let subHeaderTitle = "구슬";
@@ -37,7 +36,22 @@ const SubHeader = () => {
         subHeaderTitle = "플레이";
     } else if (Location.pathname === "/Request"){
         subHeaderTitle = "견적요청";
+    } else if (Location.pathname === "/OnAir"){
+        subHeaderTitle = "실시간 상담";
+    } else if (Location.pathname === "/GuseulDetail"){
+        subHeaderTitle = "상세보기";
+    } else if (Location.pathname === "/"){
+        setIsOpen(false);
+        <Header/>
+    }else if (isFindId){
+        subHeaderTitle = "아이디찾기"
+    }else if (!isFindId){
+        subHeaderTitle = "비밀번호찾기"
+    }else if (Location.pathname === "/findpwauth"){
+        subHeaderTitle = "인증코드 입력";
     }
+
+    console.log(Location.pathname);
 
     return (
         <div className='SubHeaderMain'>

@@ -4,17 +4,44 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+import "../../../style/main/onairSlider.scss"
 
 
 
 export default function App() {
   return (
-    <Swiper className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
+    <Swiper
+        loop={true}
+        slidesPerView={2}
+        spaceBetween={15}
+        >
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd1
+         </div>
+        </SwiperSlide>
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd2
+         </div>
+        </SwiperSlide>
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd3
+         </div>
+        </SwiperSlide>
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd4
+         </div>
+        </SwiperSlide>
+        <SwiperSlide >
+         <div className="onair_slide">
+            ddd5
+         </div>
+        </SwiperSlide>
+        
+        
     </Swiper>
   );
 }

@@ -1,0 +1,87 @@
+@import "../global/global.scss";
+
+.FindUserIdPwForm {
+    width: $iphone13mini;
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .FindUserIdPwSection {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .FindUserIdPwSection>span {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 4px;
+        margin-top: 22px;
+        margin-left: 15px;
+    }
+
+    .FindUserIdPwSection>.FindUserIdPwInput {
+        width: 230px;
+        height: 50px;
+        border: none;
+        background-color: $흰색;
+        border-radius: 15px;
+        background-repeat: no-repeat;
+        // background-size: 20px auto;
+        background-position: 10px;
+        padding-left: 40px;
+        outline: none;
+    }
+
+    .FindUserIdPwSection:nth-child(1)>.FindUserIdPwInput {
+        background-image: url("../../image/Login/IdIcon.png");
+    }
+
+    .FindUserIdPwSection:nth-child(2)>.FindUserIdPwInput {
+        background-image: url("../../image/Login/IdIcon.png");
+    }
+
+    .FindUserIdPwSection:nth-child(3)>.FindUserIdPwInput {
+        background-image: url("../../image/Login/IdIcon.png");
+    }
+
+    .FindUserIdPwChangePage {
+        text-align: center;
+        margin-top: 21px;
+    }
+
+    .FindUserIdPwChangePage>span {
+        color: #0070C9;
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    .FindUserIdPwSubmitBtn {
+        margin-top: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .FindUserIdPwSubmitBtn>.FindUserPwBtn,
+    .FindUserIdPwSubmitBtn>.FindUserIdBtn {
+        background-color: $버건디;
+        border: none;
+        width: 150px;
+        height: 40px;
+        color: white;
+        border-radius: 15px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .FindUserIdPwSocial {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 70px;
+        margin-bottom: 20px;
+        gap: 35px;
+        height: 48px;
+    }
+}

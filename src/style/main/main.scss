@@ -31,10 +31,9 @@
 
 /* 메인 css 시작*/
 
-.main_event{
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
+.main_wrap{
+    width: $iphone13mini;
+    overflow-x: hidden;
 }
 .main_slogan{
     margin: 70px 48px 84px 20px;
@@ -45,7 +44,7 @@
 .main_remote{
     display: flex;
     justify-content: space-between;
-    width: 314px;
+    width: 315px;
     height: 415px;
     margin-left: 45px;
     margin-right: 16px;
@@ -65,9 +64,10 @@
 }
 /*실시간 세션*/
 .main_onair_txt{
-    margin: 145px 0 55px 20px;
+    margin: 100px 0 55px 20px;
 }
 .main_onair{
+    width: 520px;
     height: 350px;
     margin: 0 0 100px 55px;
 }
@@ -96,11 +96,9 @@
     text-align: end;
 }
 .main_review{
-    margin-top: 30px;
-    width: 230px;
-    height: 150px;
-    margin-left: 24px;
-    
+   margin-top: 30px;
+   margin-left: 20px;
+   width: 480px;
 }
 .main_locatewrap{
     margin-top: 115px;
@@ -135,7 +133,7 @@
 
 /*목적별 섹션*/
 .main_purposewrap{
-    margin-top: 195px;
+    margin-top: 100px;
     
 }
 .main_purposetxt{

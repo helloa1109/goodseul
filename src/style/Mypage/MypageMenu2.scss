@@ -1,0 +1,54 @@
+@import "../global/global.scss";
+
+.MypageMenu2{
+    width: 300px;
+    height: 200px;
+    background-color: $흰색;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.MypageMenuSection2{
+    
+    height: 100%;
+    width: 100%;
+}
+
+.MypageMenuList{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.MypageMenuList > span {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    margin-right: 50px;
+    width: 100px;
+}
+
+.MypageMenu2Icon{
+    background-color: $어두운회색;
+    margin-left: 33px;
+    border-radius: 15px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MypageMenu2ArrowIcon{
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+}

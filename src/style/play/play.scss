@@ -45,8 +45,19 @@
     // background-color: red;
     padding: 10px;
     margin: auto;
+
     // overflow-x: hidden;
     // overflow-y: auto;
+    >div {
+        position: relative;
+        overflow: hidden;
+        // height: 600px;
+        width: 355px;
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        flex-direction: column;
+    }
 
     ul {
         list-style: none;
@@ -139,7 +150,7 @@
     h4 {
         font-size: 10px;
     }
-    
+
     .gameRanking {
         // position: absolute;
         position: absolute;
@@ -151,8 +162,8 @@
         top: 0;
         left: 0;
         transition: all 0.2s ease;
-        transform: translate(120%,0px);
-        
+        transform: translate(120%, 0px);
+
         .gameRankingHeader {
             display: flex;
             flex-direction: row;
@@ -197,6 +208,7 @@
             border: none;
             border-collapse: collapse;
             background: linear-gradient(to bottom, #8c2323, rgba(#8c2323, 0));
+
             th {
                 background-color: #8c2323;
             }
@@ -258,4 +270,62 @@
         }
     }
 
+
+    @keyframes canvasRotate0{
+        0%{
+            transform : rotate(-270deg) scale(1);
+        }    
+    
+        50%{
+            transform : rotate(-315deg) scale(0.7);
+        }
+    
+        100%{
+            transform : rotate(-360deg) scale(1);
+        }
+    }
+    
+    @keyframes canvasRotate1{
+        0%{
+            transform : rotate(0deg) scale(1);
+        }    
+    
+        50%{
+            transform : rotate(-45deg) scale(0.7);
+        }
+    
+        100%{
+            transform : rotate(-90deg) scale(1);
+        }
+    }
+    
+    @keyframes canvasRotate2{
+        0%{
+            transform : rotate(-90deg) scale(1);
+        }    
+    
+        50%{
+            transform : rotate(-135deg) scale(0.7);
+        }
+    
+        100%{
+            transform : rotate(-180deg) scale(1);
+        }
+    }
+    
+    @keyframes canvasRotate3{
+        0%{
+            transform : rotate(-180deg) scale(1);
+        }    
+    
+        50%{
+            transform : rotate(-225deg) scale(0.7);
+        }
+    
+        100%{
+            transform : rotate(-270deg) scale(1);
+        }
+    }
+    
+    
 }
