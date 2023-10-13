@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './component/Header/Header';
 import Main from './pages/Main/Main';
 import SubHeader from './component/Header/SubHeader';
-import {PlayMain,PlayRouter} from './pages/plays';
+import { PlayMain, PlayRouter } from './pages/plays';
 import Login from './component/Login/Login';
 import SignUp from './component/SignUp/SignUp';
 import Purpose from './pages/Purpose/Purpose';
@@ -25,11 +25,18 @@ import MyPageChat from './pages/MyPage/MyPageChat';
 import MyPageChangeInfo from './pages/MyPage/MyPageChangeInfo';
 import MyPageRequest from './pages/MyPage/MyPageRequest';
 import MyPageCoupon from './pages/MyPage/MyPageCoupon';
-
-
+import FindUserIdPw from './component/FindUser/FindUserIdPw';
+import FindIdSuccess from './component/FindUser/FindIdSuccess';
+import { useRecoilValue } from 'recoil';
+import { isPathTrueAtom } from './recoil/FindUserIdPw/FindUserIdPwAtom';
+import FindPwSection2 from './component/FindUser/FindPwSection2';
+import FindPw3Auth from './component/FindUser/FindPw3Auth';
+import FindPw4 from './component/FindUser/FindPw4';
 
 function App() {
- 
+
+  const isPathTure = useRecoilValue<boolean>(isPathTrueAtom);
+
   return (
     <BrowserRouter>
       {window.location.pathname === '/' ? <Header /> : <SubHeader />}
@@ -37,29 +44,41 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/play' element={<PlayMain />} />
         <Route path='/play/:pID' element={<PlayRouter />} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signUp' element={<SignUp/>}/>
-        <Route path='/Review' element={<Review/>}/>
-        <Route path='/ReviewSearch' element={<ReviewSearch/>}/>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signUp' element={<SignUp />} />
+        <Route path='/findidpw' element={<FindUserIdPw />} />
 
-        <Route path='/Purpose' element={<Purpose/>}/>
-        <Route path='/Location' element={<LocationPages/>}/>
-        <Route path='/Request' element={<RequestPages/>}/>
-        <Route path='/RequestList' element={<RequestListPages/>}/>
-        <Route path='/OnAir' element={<OnAir/>}/>
-        <Route path='/GuseulDetail' element={<GuseulDetail/>}/>
-        
-        <Route path='/Community' element={<Community/>}/>
-        <Route path='/CommunityDetail' element={<CommunityDetail/>}/>
-        <Route path='/CommunityForm' element={<CommunityForm/>}/>
-        <Route path='/CommunityList' element={<CommunityList/>}/>
+        {isPathTure ? null : (
+          <>
+            <Route path='/findidsuccess' element={<FindIdSuccess />} />
+            <Route path='/findpw2' element={<FindPwSection2 />} />
+            <Route path='/findpwauth' element={<FindPw3Auth/>}/>
+            <Route path='/findpw4'element={<FindPw4/>}/>
+          </>
+        )}
 
-        <Route path='/MyPage' element={<MyPage/>}/>
-        <Route path='/MyPageReview' element={<MyPageReview/>}/>
-        <Route path='/MyPageChat' element={<MyPageChat/>}/>
-        <Route path='/MyPageChangeInfo' element={<MyPageChangeInfo/>}/>
-        <Route path='/MyPageRequest' element={<MyPageRequest/>}/>
-        <Route path='/MyPageCoupon' element={<MyPageCoupon/>}/>
+
+        <Route path='/Review' element={<Review />} />
+        <Route path='/ReviewSearch' element={<ReviewSearch />} />
+
+        <Route path='/Purpose' element={<Purpose />} />
+        <Route path='/Location' element={<LocationPages />} />
+        <Route path='/Request' element={<RequestPages />} />
+        <Route path='/RequestList' element={<RequestListPages />} />
+        <Route path='/OnAir' element={<OnAir />} />
+        <Route path='/GuseulDetail' element={<GuseulDetail />} />
+
+        <Route path='/Community' element={<Community />} />
+        <Route path='/CommunityDetail' element={<CommunityDetail />} />
+        <Route path='/CommunityForm' element={<CommunityForm />} />
+        <Route path='/CommunityList' element={<CommunityList />} />
+
+        <Route path='/MyPage' element={<MyPage />} />
+        <Route path='/MyPageReview' element={<MyPageReview />} />
+        <Route path='/MyPageChat' element={<MyPageChat />} />
+        <Route path='/MyPageChangeInfo' element={<MyPageChangeInfo />} />
+        <Route path='/MyPageRequest' element={<MyPageRequest />} />
+        <Route path='/MyPageCoupon' element={<MyPageCoupon />} />
 
 
         <Route path="/*" element={

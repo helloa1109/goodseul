@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../../style/header/HeaderMenu.scss";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from 'recoil';
-import {  HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
+import { HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
+import { isLoginState } from '../../recoil/JWT/JWTAtom';
+
 const HeaderMenu = () => {
-    
-    const [isOpen] = useRecoilState(HeaderMenuModalAtom);
-    
-    
+
+    const [isOpen,setIsOpen] = useRecoilState(HeaderMenuModalAtom);
+    const [isLogin,setIsLogin] = useRecoilState(isLoginState);
+
+    console.log("이즈 로그인?", isLogin);
+
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -42,29 +46,70 @@ const HeaderMenu = () => {
         navigate("/OnAir");
     }
 
-    const handleGuseulDetail = () => {
-        navigate("/GuseulDetail");
+    const handleCommunity = () => {
+        navigate("/Community");
     }
 
-return (
-    <div className={`HeaderMenumodal ${isOpen ? 'opened' : 'closed'}`}>
+    const handleMypage = () => {
+        navigate("/Mypage");
+    }
+
+    useEffect(() => {
+        if (isOpen) {
+
+            document.body.style.overflow = 'hidden';
+        } else {
+
+            document.body.style.overflow = 'auto';
+        }
+
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isOpen]);
+
+    const handleLogout = async () => {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        setIsOpen(false);
+        setIsLogin(false);
+        navigate("/");
+    }
+
+    return (
+        <div className={`HeaderMenumodal ${isOpen ? 'opened' : 'closed'}`}>
 
             <div className='HeaderMenuList'>
                 <ul>
-                    <li onClick={handleLogin}>
-                        로그인
-                    </li>
-                    <li onClick={handleSignUp}>
-                        회원가입
-                    </li>
-                    
+                    {isLogin ? (
+                        <li onClick={handleLogout}>
+                            로그아웃
+                        </li>
+                    ) : <li onClick={handleLogin}>
+                        로그인</li>}
+
+                    {isLogin ? (
+                        null) :
+                        <li onClick={handleSignUp}>
+                            회원가입
+                        </li>
+                    }
+
+                    {isLogin ? (
+                        <li onClick={handleMypage}>
+                            마이페이지
+                        </li>
+                    ) : null}
+
                     <li onClick={handleLocation}>
                         위치기반
                     </li>
+
                     <li onClick={handleReview}>
                         후기
                     </li>
-                    <li onClick={handlePurpose}> 
+
+                    <li onClick={handlePurpose}>
                         목적별
                     </li>
 
@@ -80,8 +125,8 @@ return (
                         실시간 상담
                     </li>
 
-                    <li onClick={handleGuseulDetail}>
-                        구슬님 상세보기(임시)
+                    <li onClick={handleCommunity}>
+                        커뮤니티
                     </li>
 
                 </ul>

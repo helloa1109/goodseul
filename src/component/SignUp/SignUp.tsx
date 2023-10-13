@@ -1,19 +1,64 @@
-import React from 'react'
-import { signUpEmailInput, signUpNickNameInput, signUpPhoneNumberInput, signUpPwCkInput, signUpPwInput } from '../../recoil/SignUp/SignUpAtom';
+import React, { useEffect, useState } from 'react'
+import { signUpEmailInput, signUpNickNameInput, signUpPhoneNumberInput, signUpPwCkInput, signUpPwInput, emailCertificationHidden, signUpNameInput, emailCertification, signUpBirthInput, signUpRegionInput, signUpGoodseulState, signUpGoodseulSpecialtyState, signUpGoodseulCareerState, regionOptionState, specialtyOptionState, signUpSpecialtyInput, specialtyOptionState01, specialtyOptionState02, specialtyOptionState03, specialtyOptionState04, signUpSpecialtyInput01, signUpSpecialtyInput02, signUpSpecialtyInput03, signUpSpecialtyInput04, signMainFileName, signSubFileName01, signSubFileName02, signSubFileName03, signSubFileName04, emailCertificationCheckState, goodseulNickInput, signUpNickNameCheckState } from '../../recoil/SignUp/SignUpAtom';
 import { useRecoilState } from 'recoil';
 import { signUpApi } from '../../apis/SignUp/SignUpApi';
-import { signUp } from '../../hooks/SignUp/SignUpTypes';
-import { useNavigate } from 'react-router-dom';
-import { Token } from '../../hooks/JWT/JWTType';
+import { signUp, signUpCheck } from '../../hooks/SignUp/SignUpTypes';
+import '../../style/SignUp/SignUp.scss';
+import deleteOptionIcon from '../../image/SignUp/deleteOptionIcon.png';
+import addOptionIcon from '../../image/SignUp/addOptionIcon.png';
+import toggleIcon from '../../image/SignUp/toggleIcon.png';
+import { signUpUserCheck } from '../../apis/SignUp/SignUpCheck';
+import { EmailCheckResult } from '../../apis/SignUp/EmailCheck';
 
-const SignUp:React.FC = () => {
-    const navi = useNavigate();
-
-    const [signUpEmail , setSignUpEmail] = useRecoilState(signUpEmailInput);
-    const [signUpPw , setSignUpPw] = useRecoilState(signUpPwInput);
-    const [signUpNickName, setSignNickName] = useRecoilState(signUpNickNameInput);
-    const [signUpPhoneNumber, setSignUpPhoneNumber] = useRecoilState(signUpPhoneNumberInput);
-    const [signUpPwCk, setSignUpPwCk] = useRecoilState(signUpPwCkInput);
+const SignUp = () => {
+    const [signUpName, setSignName] = useRecoilState<string>(signUpNameInput);
+    const [signUpNickName, setSignNickName] = useRecoilState<string>(signUpNickNameInput);
+    const [signUpNickNameCheck, setSignUpNickNameCheck] = useRecoilState<boolean>(signUpNickNameCheckState)
+    const [signUpEmail , setSignUpEmail] = useRecoilState<string>(signUpEmailInput);
+    const [emailCertificationHiddenState, setEmailCertificationHiddenState] = useRecoilState<boolean>(emailCertificationHidden);
+    const [emailCertificationInput, setEmailCertificationInput] = useRecoilState<string>(emailCertification);
+    const [emailCertificationCheck, setEmailCertificationCheck] = useRecoilState<boolean>(emailCertificationCheckState);
+    const [signUpPw , setSignUpPw] = useRecoilState<string>(signUpPwInput);
+    const [signUpPwCk, setSignUpPwCk] = useRecoilState<string>(signUpPwCkInput);
+    const [signUpPhoneNumber, setSignUpPhoneNumber] = useRecoilState<string>(signUpPhoneNumberInput);
+    const [signUpBirth, setSignUpBirth] = useRecoilState<string>(signUpBirthInput);
+    const [signUpRegion, setSignUpRegion] = useRecoilState<string>(signUpRegionInput);
+    const [signUpGoodseul, setSignUpGoodseul] = useRecoilState<boolean>(signUpGoodseulState);
+    const [goodseulNick, setGoodseulNick] = useRecoilState<string>(goodseulNickInput);
+    const [signSpecialty, setSignSpecialty] = useRecoilState<string>(signUpSpecialtyInput);
+    const [signSpecialty01, setSignSpecialty01] = useRecoilState<string>(signUpSpecialtyInput01);
+    const [signSpecialty02, setSignSpecialty02] = useRecoilState<string>(signUpSpecialtyInput02);
+    const [signSpecialty03, setSignSpecialty03] = useRecoilState<string>(signUpSpecialtyInput03);
+    const [signSpecialty04, setSignSpecialty04] = useRecoilState<string>(signUpSpecialtyInput04);
+    const [signGoodseulSpecialty, setSignGoodseulSpecialty] = useRecoilState<number>(signUpGoodseulSpecialtyState);
+    const [signGoodseulCareer, setSignGoodseulCareer] = useRecoilState<number>(signUpGoodseulCareerState);
+    const [regionOption, setRegionOption] = useRecoilState<boolean>(regionOptionState);
+    const [specialtyOption, setSpecialtyOption] = useRecoilState<boolean>(specialtyOptionState);
+    const [specialtyOption01, setSpecialtyOption01] = useRecoilState<boolean>(specialtyOptionState01);
+    const [specialtyOption02, setSpecialtyOption02] = useRecoilState<boolean>(specialtyOptionState02);
+    const [specialtyOption03, setSpecialtyOption03] = useRecoilState<boolean>(specialtyOptionState03);
+    const [specialtyOption04, setSpecialtyOption04] = useRecoilState<boolean>(specialtyOptionState04);
+    const [mainFileValue, setMailFileValue] = useState(null);
+    const [subFileValue01, setSubFileValue01] = useState(null);
+    const [subFileValue02, setSubFileValue02] = useState(null);
+    const [subFileValue03, setSubFileValue03] = useState(null);
+    const [subFileValue04, setSubFileValue04] = useState(null);
+    const [mainFileName, setMainFileName] = useRecoilState<string>(signMainFileName);
+    const [subFileName01, setSubFileName01] = useRecoilState<string>(signSubFileName01);
+    const [subFileName02, setSubFileName02] = useRecoilState<string>(signSubFileName02);
+    const [subFileName03, setSubFileName03] = useRecoilState<string>(signSubFileName03);
+    const [subFileName04, setSubFileName04] = useRecoilState<string>(signSubFileName04);
+    const [checkCase0, setCheckCase0] = useState<boolean>(false);
+    const [checkCase1, setCheckCase1] = useState<boolean>(false);
+    const [checkCase2, setCheckCase2] = useState<boolean>(false);
+    const [checkCase3, setCheckCase3] = useState<boolean>(false);
+    const [checkCase4, setCheckCase4] = useState<boolean>(false);
+    const [checkCase5, setCheckCase5] = useState<boolean>(false);
+    const [checkCase6, setCheckCase6] = useState<boolean>(false);
+    const [checkCase7, setCheckCase7] = useState<boolean>(false);
+    const [checkCase8, setCheckCase8] = useState<boolean>(false);
+    const [checkCase9, setCheckCase9] = useState<boolean>(false);
+    const [checkCase10, setCheckCase10] = useState<boolean>(false);
 
     const changeSignUpEmail:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpEmail(e.target.value);
@@ -24,89 +69,819 @@ const SignUp:React.FC = () => {
     const changeNickName:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignNickName(e.target.value);
     };
+    const changeName:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSignName(e.target.value);
+    };
     const changeSignUpPhoneNumber:React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setSignUpPhoneNumber(e.target.value);
+        const currentValue:string = e.target.value;
+        if(!isNaN(Number(currentValue))){
+            setSignUpPhoneNumber(currentValue);
+        }else{
+            setSignUpPhoneNumber(signUpPhoneNumber);
+        }
     };
     const changeSignUpPwCk:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpPwCk(e.target.value);
     };
-    const SignUp:signUp = { 
-            "email":signUpEmail, 
+    const chamgeSignUpEmailCertification:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+            const currentValue:string = e.target.value;
+            if(!isNaN(Number(currentValue))){
+                    setEmailCertificationInput(currentValue);
+            }else{
+                setEmailCertificationInput(emailCertificationInput);
+            }
+    };
+    const changeSignUpBirth:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        const currentValue:string = e.target.value;
+        if(!isNaN(Number(currentValue))){
+            setSignUpBirth(currentValue);
+        }else{
+            setSignUpBirth(signUpBirth);
+        }
+    };
+    const changeSignUpRegion:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSignUpRegion(e.target.value);
+    }
+
+    const changeSignUpGoodseulNick:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setGoodseulNick(e.target.value);
+    }
+
+    const SignUp:signUp = {
+            "name":signUpName,
+            "nickname":signUpNickName,
+            "email":signUpEmail,
             "password":signUpPw,
-            "nickname":signUpNickName, 
-            "phonenumber":signUpPhoneNumber 
+            "phoneNumber":signUpPhoneNumber,
+            "birth":signUpBirth,
+            "location":signUpRegion
         };
 
-    const accessToken:Token = localStorage.getItem('accessToken');
-    const refreshToken:Token = localStorage.getItem('refreshToken');
+    const SignUpCheck:signUpCheck = {
+            "name":signUpName,
+            "nickname":signUpNickName,
+            "email":signUpEmail,
+            "password":signUpPw,
+            "phoneNumber":signUpPhoneNumber,
+            "birth":signUpBirth,
+            "location":signUpRegion,
+            "emailCertificationCheck":emailCertificationCheck,
+            "signUpPwCk":signUpPwCk,
+            "signUpGoodseul":signUpGoodseul,
+            "goodseulNick":goodseulNick
+    };
+    
 
-    const naviLogin = () => {
-        navi('/Login');
+    const handleEmailCertification = async() => {
+        try {
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if(signUpEmail === "" || !emailRegex.test(signUpEmail)){
+                setCheckCase2(true);
+                setCheckCase3(false);
+                return
+            }
+            setCheckCase2(false);
+            const emailCheckState = await EmailCheckResult();
+            setEmailCertificationCheck(emailCheckState);
+            if(emailCertificationCheck) {
+                setEmailCertificationHiddenState(true);
+                //인증번호 보내는 엑시오스 실행
+            }
+            }catch (error){
+
+            }
+    }
+
+    const submitEmailCertification = () => {
+        try {
+            if(emailCertificationInput.length !== 6){
+                //경고메메시 상태 변경해서 화면에 보여주기
+                return
+            }
+            //인증번호 확인 엑시오스 실행
+            setEmailCertificationCheck(true);//true 대신 엑시오스 실행값 넣기
+        } catch (error) {
+            
+        }
+
+    }
+
+    const hiddenSignUpGoodseul = () => {
+        setGoodseulNick("");
+        setSignSpecialty("");
+        setMainFileName("");
+        setMailFileValue(null);
+        setSignGoodseulSpecialty(0);
+        setSignGoodseulCareer(0);
+        DeleteSpecialtyOptionButton();
+        DeleteCareerOptionButton();
+        setSignUpGoodseul(!signUpGoodseul);
+    }
+
+    const AddSpecialtyOptionButton = () => {
+        setSignGoodseulSpecialty(signGoodseulSpecialty+1);
+    }
+
+    const DeleteSpecialtyOptionButton:any = () => {
+        setSpecialtyOption(false);
+        setSpecialtyOption01(false);
+        setSpecialtyOption02(false);
+        setSpecialtyOption03(false);
+        setSpecialtyOption04(false);
+        setRegionOption(false);
+        setSignGoodseulSpecialty(signGoodseulSpecialty-1);
+        switch(signGoodseulSpecialty){
+            case 1:
+                setSignSpecialty01("");
+                break;
+                
+            case 2:
+                 setSignSpecialty02("");
+                 break;
+
+            case 3:
+                setSignSpecialty03("");
+                break;
+
+            default:
+                setSignSpecialty04("");
+                break;
+        }
+    }
+
+    const AddCareerOptionButton = () => {
+        setSignGoodseulCareer(signGoodseulCareer+1);
+    }
+
+    const DeleteCareerOptionButton = () => {
+        setSignGoodseulCareer(signGoodseulCareer-1);
+        switch(signGoodseulCareer){
+            case 1:
+                setSubFileName01("파일이름");
+                setSubFileValue01(null);
+                break;
+                
+            case 2:
+                setSubFileName02("파일이름");
+                setSubFileValue02(null);
+                 break;
+
+            case 3:
+                setSubFileName03("파일이름");
+                setSubFileValue03(null);
+                break;
+
+            default:
+                setSubFileName04("파일이름");
+                setSubFileValue04(null);
+                break;
+        }
+    }
+
+    const handleRegionOption = () => {
+            setSpecialtyOption(false);
+            setSpecialtyOption01(false);
+            setSpecialtyOption02(false);
+            setSpecialtyOption03(false);
+            setSpecialtyOption04(false);
+            setRegionOption(!regionOption);
+    };
+
+    const handleRegionChange = (event: any) => {
+        const selectedRegion = event.target.textContent;
+        setSignUpRegion(selectedRegion);
+        setRegionOption(false);
+    };
+
+    const handleSpecialtyOption = () => {
+            setRegionOption(false);
+            setSpecialtyOption(!specialtyOption);
+            setSpecialtyOption01(false);
+            setSpecialtyOption02(false);
+            setSpecialtyOption03(false);
+            setSpecialtyOption04(false);
+    };
+
+    const handleSpecialtyOption01 = () => {
+            setRegionOption(false);
+            setSpecialtyOption(false);
+            setSpecialtyOption01(!specialtyOption01);
+            setSpecialtyOption02(false);
+            setSpecialtyOption03(false);
+            setSpecialtyOption04(false);
+    };
+
+    const handleSpecialtyOption02 = () => {
+            setRegionOption(false);
+            setSpecialtyOption(false);
+            setSpecialtyOption01(false);
+            setSpecialtyOption02(!specialtyOption02);
+            setSpecialtyOption03(false);
+            setSpecialtyOption04(false);
+    };
+
+    const handleSpecialtyOption03 = () => {
+            setRegionOption(false);
+            setSpecialtyOption(false);
+            setSpecialtyOption01(false);
+            setSpecialtyOption02(false);
+            setSpecialtyOption03(!specialtyOption03);
+            setSpecialtyOption04(false);
+    };
+
+    const handleSpecialtyOption04 = () => {
+            setSpecialtyOption(false);
+            setSpecialtyOption01(false);
+            setSpecialtyOption02(false);
+            setSpecialtyOption03(false);
+            setSpecialtyOption04(!specialtyOption04);
+    };
+
+    const specialtyOptionCheck = (selectedSpecialty:any) => {
+        switch(selectedSpecialty){
+            case signSpecialty:
+                return true
+
+            case signSpecialty01:
+                return true
+            
+            case signSpecialty02:
+                return true
+
+            case signSpecialty03:
+                return true
+
+            case signSpecialty04:
+                return true
+
+            default:
+                return false
+        }
+    }
+
+    const handleSpecialtyChange = (event: any) => {
+        const selectedSpecialty = event.target.textContent;
+        if(specialtyOptionCheck(selectedSpecialty)) {
+            alert("이미선택된 특기입니다.");
+            setSpecialtyOption(false);
+            return;
+        }
+        setSignSpecialty(selectedSpecialty);
+        setSpecialtyOption(false);
+    };
+
+    const handleSpecialtyChange01 = (event: any) => {
+        const selectedSpecialty = event.target.textContent;
+        if(specialtyOptionCheck(selectedSpecialty)) {
+            alert("이미선택된 특기입니다.");
+            setSpecialtyOption01(false);
+            return;
+        }
+        setSignSpecialty01(selectedSpecialty);
+        setSpecialtyOption01(false);
+    };
+
+    const handleSpecialtyChange02 = (event: any) => {
+        const selectedSpecialty = event.target.textContent;
+        if(specialtyOptionCheck(selectedSpecialty)) {
+            alert("이미선택된 특기입니다.");
+            setSpecialtyOption02(false);
+            return;
+        }
+        setSignSpecialty02(selectedSpecialty);
+        setSpecialtyOption02(false);
+    };
+
+    const handleSpecialtyChange03 = (event: any) => {
+        const selectedSpecialty = event.target.textContent;
+        if(specialtyOptionCheck(selectedSpecialty)) {
+            alert("이미선택된 특기입니다.");
+            setSpecialtyOption03(false);
+            return;
+        }
+        setSignSpecialty03(selectedSpecialty);
+        setSpecialtyOption03(false);
+    };
+
+    const handleSpecialtyChange04 = (event: any) => {
+        const selectedSpecialty = event.target.textContent;
+        if(specialtyOptionCheck(selectedSpecialty)) {
+            alert("이미선택된 특기입니다.");
+            setSpecialtyOption04(false);
+            return;
+        }
+        setSignSpecialty04(selectedSpecialty);
+        setSpecialtyOption04(false);
+    };
+    
+    const SpecialtySubInputform = Array.from({length:signGoodseulSpecialty }, (v,i) => (
+        <div key={i} className='signUpSpecialtySubInputBody'>
+            { i === 0 ? <input className='signUpSpecialtySubInput' readOnly onClick={handleSpecialtyOption01} value={signSpecialty01} type="text" placeholder='특기사항'/> 
+            : i === 1 ? <input className='signUpSpecialtySubInput' readOnly onClick={handleSpecialtyOption02} value={signSpecialty02} type="text" placeholder='특기사항'/> 
+            : i === 2 ? <input className='signUpSpecialtySubInput' readOnly onClick={handleSpecialtyOption03} value={signSpecialty03} type="text" placeholder='특기사항'/> 
+            :<input className='signUpSpecialtySubInput' readOnly onClick={handleSpecialtyOption04} value={signSpecialty04} type="text" placeholder='특기사항'/>}
+            <img className='signUpSpecialtyInputSubToggle' src={toggleIcon} alt='토글아이콘'/>
+            <span className='signUpDeleteOptionButton' onClick={DeleteSpecialtyOptionButton}><img src={deleteOptionIcon} alt="마이너스아이콘" /></span>
+            { specialtyOption01 && (
+                    <div className='signUpOptionList'>
+                        <ul>
+                            <li onClick={handleSpecialtyChange01}>
+                                축하
+                            </li>
+                            <li onClick={handleSpecialtyChange01}>
+                                장례/제사
+                            </li>
+                            <li onClick={handleSpecialtyChange01}>
+                                질병/회복
+                            </li>
+                            <li onClick={handleSpecialtyChange01}>
+                                승진/학업
+                            </li>
+                            <li onClick={handleSpecialtyChange01}>
+                                개업/사업
+                            </li>
+                        </ul>
+                    </div>
+                )}
+            { specialtyOption02 && (
+                    <div className='signUpOptionList'>
+                        <ul>
+                            <li onClick={handleSpecialtyChange02}>
+                                축하
+                            </li>
+                            <li onClick={handleSpecialtyChange02}>
+                                장례/제사
+                            </li>
+                            <li onClick={handleSpecialtyChange02}>
+                                질병/회복
+                            </li>
+                            <li onClick={handleSpecialtyChange02}>
+                                승진/학업
+                            </li>
+                            <li onClick={handleSpecialtyChange02}>
+                                개업/사업
+                            </li>
+                        </ul>
+                    </div>
+                )}
+            { specialtyOption03 && (
+                    <div className='signUpOptionList'>
+                        <ul>
+                            <li onClick={handleSpecialtyChange03}>
+                                축하
+                            </li>
+                            <li onClick={handleSpecialtyChange03}>
+                                장례/제사
+                            </li>
+                            <li onClick={handleSpecialtyChange03}>
+                                질병/회복
+                            </li>
+                            <li onClick={handleSpecialtyChange03}>
+                                승진/학업
+                            </li>
+                            <li onClick={handleSpecialtyChange03}>
+                                개업/사업
+                            </li>
+                        </ul>
+                    </div>
+                )}
+            { specialtyOption04 && (
+                    <div className='signUpOptionList'>
+                        <ul>
+                            <li onClick={handleSpecialtyChange04}>
+                                축하
+                            </li>
+                            <li onClick={handleSpecialtyChange04}>
+                                장례/제사
+                            </li>
+                            <li onClick={handleSpecialtyChange04}>
+                                질병/회복
+                            </li>
+                            <li onClick={handleSpecialtyChange04}>
+                                승진/학업
+                            </li>
+                            <li onClick={handleSpecialtyChange04}>
+                                개업/사업
+                            </li>
+                        </ul>
+                    </div>
+                )}
+        </div>
+    ));
+
+    const signMainFileValue = (e:any) => {
+        setMainFileName(e.target.value);
+        setMailFileValue(e.target.files[0]);
+    }
+
+    const signSubFile01Value = (e:any) => {
+        setSubFileName01(e.target.value);
+        setSubFileValue01(e.target.files[0]);
+    }
+
+    const signSubFile02Value = (e:any) => {
+        setSubFileName02(e.target.value);
+        setSubFileValue02(e.target.files[0]);
+    }
+
+    const signSubFile03Value = (e:any) => {
+        setSubFileName03(e.target.value);
+        setSubFileValue03(e.target.files[0]);
+    }
+
+    const signSubFile04Value = (e:any) => {
+        setSubFileName04(e.target.value);
+        setSubFileValue04(e.target.files[0]);
+    }
+
+
+    const CareerSubInputform = Array.from({length:signGoodseulCareer }, (v,i) => (
+        <div  key={i} className='signCareerSubInputBody'>
+            {i === 0 ? 
+            <div className='signCareerInput'>
+                <input className='signCareerSubInputFileName' readOnly value={subFileName01}/>
+                <label className='signCareerSubInputFileLabel'>
+                    <span className='signCareerInputbutton'>첨부</span>
+                    <input className='signCareerSubInputFile' onChange={signSubFile01Value} type="file"/>
+                </label>
+                <span className='signUpCareerDeleteOptionButton' onClick={DeleteCareerOptionButton}><img src={deleteOptionIcon} alt="마이너스아이콘"/></span>
+            </div>
+            : i === 1 ? 
+            <div className='signCareerInput'>
+                <input className='signCareerSubInputFileName' readOnly value={subFileName02}/>
+                <label className='signCareerSubInputFileLabel'>
+                    <span className='signCareerInputbutton'>첨부</span>
+                    <input className='signCareerSubInputFile' onChange={signSubFile02Value} type="file"/>
+                </label>
+                <span className='signUpCareerDeleteOptionButton' onClick={DeleteCareerOptionButton}><img src={deleteOptionIcon} alt="마이너스아이콘"/></span>
+            </div> 
+        : i === 2 ? 
+            <div className='signCareerInput'>
+                <input className='signCareerSubInputFileName' readOnly value={subFileName03}/>
+                <label className='signCareerSubInputFileLabel'>
+                    <span className='signCareerInputbutton'>첨부</span>
+                    <input className='signCareerSubInputFile' onChange={signSubFile03Value} type="file"/>
+                </label>
+                <span className='signUpCareerDeleteOptionButton' onClick={DeleteCareerOptionButton}><img src={deleteOptionIcon} alt="마이너스아이콘"/></span>
+            </div>
+        : 
+            <div className='signCareerInput'>
+                <input className='signCareerSubInputFileName' readOnly value={subFileName04}/>
+                <label className='signCareerSubInputFileLabel'>
+                    <span className='signCareerInputbutton'>첨부</span>
+                    <input className='signCareerSubInputFile' onChange={signSubFile04Value} type="file"/>
+                </label>
+                <span className='signUpCareerDeleteOptionButton' onClick={DeleteCareerOptionButton}><img src={deleteOptionIcon} alt="마이너스아이콘"/></span>
+            </div>
+            }
+        </div>
+    ));
+    
+
+    useEffect(() => {
+        if (regionOption || specialtyOption || specialtyOption01 || specialtyOption02 || specialtyOption03 || specialtyOption04) {
+            // 스크롤 이벤트를 막음
+            document.body.style.overflow = 'hidden';
+        } else {
+            // 스크롤 이벤트를 복구
+            document.body.style.overflow = 'auto';
+        }
+
+        // 컴포넌트 언마운트 시 스타일을 원래대로 돌려놓음
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [regionOption, specialtyOption, specialtyOption01, specialtyOption02, specialtyOption03, specialtyOption04]);
+
+    const handleSignUp = (idx:number) => {
+        switch(idx){
+            case 0:
+                setCheckCase0(true);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;              
+            case 1:
+                setCheckCase0(false);
+                setCheckCase1(true);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;
+            case 2:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(true);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;
+            case 3:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(true);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;
+            case 4:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(true);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;   
+            case 5:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(true);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;
+            case 6:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(true);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;
+            case 7:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(true);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                break;
+            case 8:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(true);
+                setCheckCase9(false);
+                break;
+            case 9:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(true);
+                break;
+            case 10:
+                setCheckCase0(false);
+                setCheckCase1(false);
+                setCheckCase2(false);
+                setCheckCase3(false);
+                setCheckCase4(false);
+                setCheckCase5(false);
+                setCheckCase6(false);
+                setCheckCase7(false);
+                setCheckCase8(false);
+                setCheckCase9(false);
+                return true
+            default:
+                alert("알수없는오류");
+                break;
+        }
+        // signUpApi(SignUp);
+    }
+
+    const NickNameCheck = () => {
+        try {
+            if(signUpUserCheck(SignUpCheck) === 1){
+                handleSignUp(1);
+                return
+            }
+            //닉네임 중복 체크 엑시오스 호출
+        } catch (error) {
+            
+        }
+        setCheckCase10(!checkCase10);
+    }
+
+    const PhoneNumberCheck = () => {
+        try {
+            if(signUpUserCheck(SignUpCheck) === 6){
+                handleSignUp(6);
+                return
+            }
+            //닉네임 중복 체크 엑시오스 호출
+        } catch (error) {
+            
+        }
     }
 
   return (
-    <div>
-        <div>accessToken ? : {accessToken}</div>
-        <div>refreshToken ? : {refreshToken}</div>
-        <div>
-            구슬 ID 새성
-        </div>
-        <div>
-            하나의 구슬 ID로 구슬의 서비스를 이용할 수 있습니다.
-        </div>
-        <div>
-            구슬 ID를 이미 가지고 계십니까?
-            {/*네비게이트로 변경하기 a태그 x*/}
-            <div onClick={naviLogin}>
-                로그인하기
+    <div className='signUpBody'>
+        <div className='singUpTxtBody'>
+            <div className='signUpTxtMain'>
+                구슬 ID 생성
+            </div>
+            <div className='signUpTxtSub'>
+                *은 필수 입력 사항입니다.
             </div>
         </div>
-        <div>
-            *은 필수 입력 사항입니다.
-        </div>
-        <form onSubmit={(e) => { e.preventDefault(); signUpApi(SignUp)}}>
-            <div>
-                <div>*이름</div>
-                <div>
-                    <div>
-                        <input type="text" placeholder='닉네임' value={signUpNickName} onChange={changeNickName}/>
+        <form onSubmit={(e) => { e.preventDefault(); handleSignUp(signUpUserCheck(SignUpCheck))}}>
+            <div className='signUpInputBody'>
+                    <div className='signUpName signUpStyle01'>
+                        <div className='signUpNameTxt signUpInputTxtStyle01'>*이름{checkCase0 && <span className='checkInput'>이름을 입력해주세요.</span> }</div>
+                        <div className='signUpNameInputBody signUpInputBodyStyle01'>
+                            <input className='signUpNameInput signUpInputStyle01' type="text" placeholder='이름' value={signUpName} onChange={changeName}/>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div>
-                <div>*지역</div>
-                <div>
-                    <div>
-                        <option value={0}>서울</option>
+                    <div className='signUpNickName signUpStyle01'>
+                        <div className='signUpNickNameTxt signUpInputTxtStyle01'>*닉네임{checkCase1 ? <span className='checkInput'>닉네임을 입력해주세요.</span> : checkCase10 ? <span className='checkInput'>닉네임 중복확인을 해주세요.</span> : null}</div>
+                        <div className='signUpNickNameInputBody signUpInputBodyStyle01'>
+                            <input className='signUpNickNameInput signUpInputStyle01' type="text" placeholder='닉네임' value={signUpNickName} onChange={changeNickName}/>
+                            <div className='signUpNickNameCheck' onClick={NickNameCheck}>중복확인</div>
+                        </div>
                     </div>
-                </div>
+                    <div className='signUpEmail'>
+                        <div className='signUpEmailTxt signUpInputTxtStyle01'>*이메일{ checkCase2 ? <span className='checkInput'>이메일을 입력해주세요.</span> : checkCase3 ? <span className='checkInput'>이메일 인증을 진행해 주세요.</span> : null}</div>
+                        <div className='signUpEmailStyle'>
+                            <div className='signUpInputBodyStyle01'>
+                                <input className='signUpEmailInput signUpInputStyle01' type="email" placeholder='ID로 사용될 이메일 입니다.' value={signUpEmail} onChange={changeSignUpEmail}/>
+                            </div>
+                            { !emailCertificationHiddenState? 
+                            (<button className='signUpEmailButton' type='button' onClick={handleEmailCertification}>이메일 인증받기</button>):
+                            (<button className='signUpEmailButton' type='button' onClick={handleEmailCertification}>인증번호 다시받기</button>)
+                            }
+                        </div>
+                        { emailCertificationHiddenState && (<div className='emailCertification'>
+                            <span className='emailCertificationInputBody'>
+                                <input className='emailCertificationNumberInput' type="text" maxLength={6} placeholder='인증번호를 입력해주세요' value={emailCertificationInput} onChange={chamgeSignUpEmailCertification} />
+                            </span>
+                            <button className='emailCertificationButton' onClick={submitEmailCertification} type='button'>확인</button>
+                        </div> )}
+                    </div>
+                    <div className='signUpPw'>
+                        <div className='signUpPwInputTxt signUpInputTxtStyle01'>*비밀번호{ (checkCase4 || checkCase5) && <span className='checkInput'>비밀번호를 입력해주세요.</span> }</div>
+                        <div className='signUpPwInputBodys'>
+                            <div className='signUpPwInputBody'>
+                                <input className='signUpPwInput signUpInputStyle01' type="password" placeholder='암호' value={signUpPw} onChange={changeSignUpPw}/>
+                            </div>
+                            <div className='signUpPwInputBody'>
+                                <input className='signUpPwInput signUpInputStyle01' type="password" placeholder='암호 확인' value={signUpPwCk} onChange={changeSignUpPwCk} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='signUpPhoneNumber signUpStyle01'>
+                        <div className='signUpPhoneNumberTxt signUpInputTxtStyle01'>*전화번호{ checkCase6 && <span className='checkInput'>전화번호를 입력해주세요.</span> }</div>
+                        <div className='signUpPhoneNumberInputBody signUpInputBodyStyle01'>
+                            <input className='signUpPhoneNumberInput signUpInputStyle01' type="text" maxLength={11} placeholder='Ex) 01012345678' value={signUpPhoneNumber} onChange={changeSignUpPhoneNumber}/>
+                            <div className='signUpNickNameCheck' onClick={PhoneNumberCheck}>중복확인</div>
+                        </div>
+                    </div>
+                    <div className='signUpBirth signUpStyle01'>
+                        <div className='signUpBirthTxt signUpInputTxtStyle01'>*생년월일{ checkCase7 && <span className='checkInput'>생년월일을 입력해주세요.</span> }</div>
+                        <div className='signUpBirthInputBody signUpInputBodyStyle01'>
+                            <input className='signUpBirthInput signUpInputStyle01' type="text" maxLength={8} placeholder='Ex) 20230904' value={signUpBirth} onChange={changeSignUpBirth}/>
+                        </div>
+                    </div>
+                    <div className='signUpRegion signUpStyle01'>
+                        <div className='signUpRegionTxt signUpInputTxtStyle01'>*지역{ checkCase8 && <span className='checkInput'>지역을 선택해주세요.</span> }</div>
+                        <div className='signUpRegionInputBody signUpInputBodyStyle01'>
+                            <input className='signUpRegionInput signUpInputStyle01' readOnly type="text" placeholder='지역을 선택해 주세요.' onClick={handleRegionOption} value={signUpRegion} onChange={changeSignUpRegion}/>
+                            <img className='signUpSpecialtyInputRegionToggle' src={toggleIcon} alt='토글아이콘'/>
+                        </div>
+                        {   regionOption && (
+                    <div className='signUpOptionList'>
+                        <ul>
+                            <li onClick={handleRegionChange}>
+                                서울
+                            </li>
+                            <li onClick={handleRegionChange}>
+                                경기/인천
+                            </li>
+                            <li onClick={handleRegionChange}>
+                                충청도
+                            </li>
+                            <li onClick={handleRegionChange}>
+                                경상도
+                            </li>
+                            <li onClick={handleRegionChange}>
+                                강원도
+                            </li>
+                            <li onClick={handleRegionChange}>
+                                제주
+                            </li>
+                        </ul>
+                    </div>
+                )}
+                    </div>
+                    <div className='signUpGoodseul'>
+                        <div className='signUpGoodseulTxt'>
+                            <div className='signUpGoodseulTxtMain'>혹시 <span className='signUpGoodseulMainPointTxt'>구슬</span>님 이십니까 ?</div>
+                            <div className='signUpGoodseulTxtSub'>추가정보를 입력하여 구슬님 <span className='signUpGoodseulSubPointTxt' onClick={hiddenSignUpGoodseul}>인증</span>을 완료하세요.</div>
+                        </div>
+                    { signUpGoodseul && (<div className='signUpGoodseulBody'>
+                        <div className='signUpGoodseulNickName signUpStyle01'>
+                            <div className='signUpGoodseulNickNameTxt signUpInputTxtStyle01'>*횔동명{ checkCase9 && <span className='checkInput'>활동명을 입력해주세요.</span> }</div>
+                            <div className='signUpGoodseulNickNameInputBody signUpInputBodyStyle01'>
+                                <input className='signUpGoodseulNickNameInput signUpInputStyle01' onChange={changeSignUpGoodseulNick} value={goodseulNick} type="text" placeholder='본인의 활동명을 작성해주세요.'/>
+                            </div>
+                        </div>
+                        <div className='signUpSpecialty'>
+                            <div className='signUpSpecialtyTxt signUpInputTxtStyle01'>특기</div>
+                            <div className='signUpSpecialtyInputBody signUpInputBodyStyle01'>
+                                <div className='signUpSpecialtyMainInputBody'>
+                                    <input className='signUpSpecialtyInput signUpInputStyle01' readOnly onClick={handleSpecialtyOption} value={signSpecialty} type="text" placeholder='자신이 잘하는 분야를 선택해주세요.'/>
+                                    <img className='signUpSpecialtyInputMainToggle' src={toggleIcon} alt='토글아이콘'/>
+                                </div>
+                                {SpecialtySubInputform}
+                            </div>
+                            {   signGoodseulSpecialty <= 3 && (<div className='signUpAddOptionButton' onClick={AddSpecialtyOptionButton}><img src={addOptionIcon} alt="플러스아이콘" /></div>)}
+                            {specialtyOption && (
+                                <div className='signUpOptionList'>
+                                    <ul>
+                                        <li onClick={handleSpecialtyChange}>
+                                            축하
+                                        </li>
+                                        <li onClick={handleSpecialtyChange}>
+                                            장례/제사
+                                        </li>
+                                        <li onClick={handleSpecialtyChange}>
+                                            질병/회복
+                                        </li>
+                                        <li onClick={handleSpecialtyChange}>
+                                            승진/학업
+                                        </li>
+                                        <li onClick={handleSpecialtyOption}>
+                                            개업/사업
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}                  
+                       </div>
+                        <div className='signCareer'>
+                            <div className='signCareerTxtMain signUpInputTxtStyle01'>경력</div>
+                            <div className='signCareerTxtSub'>자신의 경력을 작성하고 자료를 첨부해 주세요.<br/>
+                            첨부된 자료는 검토 후 인증 구슬님 자료로 활용됩니다.</div>
+                            <div className='signCareerInputBody'>
+                                <div className='signCareerInput'>
+                                    <input className='signCareerInputFileName' readOnly value={mainFileName}/>
+                                    <label className='signCareerInputFileLabel'>
+                                        <span className='signCareerInputbutton'>첨부</span>
+                                        <input className='signCareerInputFile' onChange={signMainFileValue} type="file"/>
+                                    </label>
+                                </div>
+                                {CareerSubInputform}
+                            </div>
+                            {   signGoodseulCareer <= 3 && (<div className='signUpAddOptionButton' onClick={AddCareerOptionButton}><img src={addOptionIcon} alt="플러스아이콘" /></div>)}
+                        </div>
+                    </div> )}
+                    </div>
+                <button className='signUpSubmitButton' type='submit'>HAVE A ‘굿' DAY</button>
             </div>
-            <div>
-                <div>*생년월일</div>
-                <div><input type="number" placeholder='Ex)20230904' value={""}/></div>
-            </div>
-            <br/>
-            <div>
-                <div>
-                    <div>*이메일</div>
-                    <div>*ID로 사용될 이메일입니다.</div>
-                    <div><input type="email" placeholder='name@example.com' value={signUpEmail} onChange={changeSignUpEmail}/></div>
-                    <div>이메일 인증받기</div>
-                </div>
-                <div>
-                    <div>*비밀번호</div>
-                    <div><input type="password" placeholder='암호' value={signUpPw} onChange={changeSignUpPw}/></div>
-                    <div><input type="password" placeholder='암호 확인' value={signUpPwCk} onChange={changeSignUpPwCk} /></div>
-                </div>
-                <div>
-                    <div>*전화번호</div>
-                    <div><input type="number" placeholder='전화번호' value={signUpPhoneNumber} onChange={changeSignUpPhoneNumber}/></div>
-                </div>
-            </div>
-            <button type='submit'>가입하기</button>
-
         </form>
-        
     </div>
   )
 }

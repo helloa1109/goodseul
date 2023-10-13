@@ -2,40 +2,14 @@ import React, { useEffect, useState } from 'react'
 import "../../style/review/review.scss"
 import "../../style/global/global.scss"
 import SearchBar from '../../component/SearchBar/SearchBar'
-import { reviewBList } from '../../apis/Review/ReviewBest'
-import { ReviewCData } from '../../hooks/Review/Review'
 import { useNavigate } from 'react-router-dom'
+import ReviewBestList from '../../component/reviewList/ReviewBestList'
+import ReviewPremiumList from '../../component/reviewList/ReviewPremiumList'
+
+
 
 
 const Review = () => {
- 
-  const [rList, setRList] = useState<ReviewCData[]>([]);
-
-  const navi = useNavigate();
-  const headingReviewSearch = () =>{
-    navi("/ReviewSearch")
-  }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await reviewBList();
-        console.log(res.data);
-
-        // 데이터가 유효한 경우에만 setRList 호출
-        if (res.data) {
-          setRList(res.data);
-        } else {
-          console.error("Data is undefined");
-        }
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <div>
       <div className='review_sloganwrap'>
@@ -54,33 +28,18 @@ const Review = () => {
       <div className='review_searchwrap'>
         <SearchBar/>
       </div>
-      <div className='review_bestwrap'>
-        <div className='review_besttxt'>
+      <div className='review_besttxt'>
           <span className='review_vsamllheavytxt'>베스트리뷰</span>
         </div>
-        
-        <div className='review_bestList_wrap'>
-          
-           <div className='review_best'>
-            {rList.map((item, idx) => (
-              <div key={idx}>
-                {/* ReviewCData에서 적절한 필드를 사용하여 UI를 생성 */}
-                <div>{item.goodseulName}</div>
-                <div>{item.rcontent}</div>
-                {/* 필요한 다른 필드 추가 */}
-              </div>
-            ))}
-          </div>
-          </div>
-        </div>
+              {
+                ReviewBestList()
+              }   
       <div className='review_premiumwrap'>
         <div className='review_premium_txtwrap'>
           <span className='review_vsamllheavytxt'>프리미엄 리뷰</span>
-          <div className='reivew_premiumList_wrap'>    
-            <div className='review_premium'>     
-            
-            </div>    
-          </div>
+              {
+                ReviewPremiumList()
+              }
         </div>
       </div>
       

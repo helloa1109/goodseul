@@ -5,15 +5,28 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "../../../style/main/onairSlider.scss"
+import 'swiper/css/effect-creative';
+
+import { EffectCreative } from 'swiper/modules';
+
 
 
 
 export default function App() {
   return (
     <Swiper
-        loop={true}
-        slidesPerView={2}
-        spaceBetween={15}
+      grabCursor={true}
+      effect={'creative'}
+      creativeEffect={{
+         prev: {
+         shadow: true,
+         translate: [0, 0, -400],
+         },
+         next: {
+         translate: ['100%', 0, 0],
+         },
+      }}
+      modules={[EffectCreative]}
         >
         <SwiperSlide >
          <div className="onair_slide">
@@ -29,19 +42,12 @@ export default function App() {
          <div className="onair_slide">
             ddd3
          </div>
-        </SwiperSlide>
+        </SwiperSlide>   
         <SwiperSlide >
          <div className="onair_slide">
             ddd4
          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-         <div className="onair_slide">
-            ddd5
-         </div>
-        </SwiperSlide>
-        
-        
+        </SwiperSlide>   
     </Swiper>
   );
 }

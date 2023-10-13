@@ -36,7 +36,8 @@ export default function App() {
         loop={true}
         slidesPerView={2}
         spaceBetween={5}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        speed={1000}
+        autoplay={{ delay: 3000, disableOnInteraction: true }}
         >
             {
                 PRList.map((item, idx)=>(

@@ -16,9 +16,8 @@ export const LoginApi = async (IdPw:login) => {
         localStorage.setItem('accessToken', res.headers['authorization']);
         localStorage.setItem('refreshToken', res.headers['authorization-refresh']);
       } else {
-        console.log("애러는 여기에 : " + res);
-        alert("로그인 애러 : " + res.status);
-      }
+        console.log(res);
+      }  
     } catch (error:any) {
       throw error;
     }
