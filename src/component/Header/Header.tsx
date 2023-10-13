@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import "../../style/header/Header.scss";
 import logo from "../../image/header/GoodSeul-Logo_.png";
@@ -26,8 +26,14 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsModalOpen(!isModalOpen);
-    
+    setIsToggleChecked(!isToggleChecked);
   }
+
+  const [isToggleChecked, setIsToggleChecked] = useState(false);
+
+  useEffect(() => {
+    setIsToggleChecked(isModalOpen);
+  }, [isModalOpen]);
 
   return (
     isMain ? (
@@ -39,7 +45,7 @@ const Header = () => {
           </div>
           <div className='headerrightsection'>
             <div className='headermenu'>
-              <input id="toggle" type="checkbox" onClick={toggleMenu} />
+              <input id="toggle" type="checkbox" checked={isToggleChecked} onClick={toggleMenu} />
               <label className="hamburger" htmlFor="toggle">
                 <div className="top"></div>
                 <div className="middle"></div>
