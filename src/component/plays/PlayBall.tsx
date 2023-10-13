@@ -8,6 +8,8 @@ const PlayBall = () => {
     const cvRef = useRef<HTMLCanvasElement | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [ballGame, setBallGame] = useState<Game | null>(null);
+    const gameID:number = 1;
+
 
     //캔버스 랜더링완료시
     useEffect(() => {
@@ -85,8 +87,6 @@ const PlayBall = () => {
                 }
             }
         }
-
-
     }
 
     const handleClickCanvas = (e: MouseEvent | TouchEvent) => {
