@@ -1,0 +1,78 @@
+@import "../global/global.scss";
+
+.FindPw3Auth{
+    width: $iphone13mini;
+
+    .FindPw3Header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+
+    .FindPw3Header > span:nth-child(1){
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    .FindPw3Header > span:nth-child(2){
+        font-weight: 700;
+        font-size: 10px;
+        color: $버건디;
+        margin-top: 2px;
+    }
+
+    .FindPw3AuthInputGroup{
+        margin-top: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .FindPw3AuthInputGroup > .FindPw3AuthInput {
+        width: 50px;
+        height: 70px;
+        border-radius: 15px;
+        background-color: $밝은회색;
+        border: none;
+        margin-right: 13px;
+        outline: none;
+        color: white;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .FindPw3AuthFooter{
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .FindPw3AuthFooter > span:nth-child(1){
+        color: $버건디;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .FindPw3AuthFooter > span:nth-child(2){
+        margin-top: 20px;
+        font-weight: 700;
+        font-size: 10px;
+        color: #0070C9;
+    }
+
+    .FindPw3AuthBtn{
+        border: none;
+        background-color: $버건디;
+        width: 150px;
+        height: 40px;
+        border-radius: 15px;
+        margin-top: 394px;
+        color: white;
+        font-weight: 700;
+        font-size: 15px;
+    }
+}

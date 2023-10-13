@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Attendance, PlayBall, PlayShop } from './';
+import PlayRun from '../../component/plays/PlayRun';
 
 
 
@@ -16,6 +17,8 @@ const PlayRouter = () => {
                 return <Attendance />;
             case "ball":
                 return <PlayBall />;
+            case "run":
+                return <PlayRun />;
             default:
                 return <div>404 Not Found</div>;
         }

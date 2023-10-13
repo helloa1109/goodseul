@@ -5,7 +5,7 @@ export class PlayState {
     public textAlign: CanvasTextAlign = 'start';
     public textBaseline: CanvasTextBaseline = 'top';
     constructor(
-        private ctx: CanvasRenderingContext2D,
+        private ctx: CanvasRenderingContext2D | HTMLCanvasElement,
         public x: number = 0,
         public y: number = 0,
         private size: number = 25,
@@ -26,12 +26,22 @@ export class PlayState {
     setFontFace(e: string) {
         this.font = e;
     }
+    
+    nextLine(){
+        this.y += this.size*1.4;
+    }
 
 
     draw(
         text: string
     ) {
-        let ctx = this.ctx;
+        let ctx: CanvasRenderingContext2D;
+        if (this.ctx instanceof CanvasRenderingContext2D) {
+            ctx = this.ctx;
+        }
+        else {
+            ctx = this.ctx.getContext('2d') as CanvasRenderingContext2D;
+        }
         ctx.save();
 
         ctx.textAlign = this.textAlign;
@@ -54,11 +64,13 @@ export const ClearCanvas = (e: HTMLCanvasElement | CanvasRenderingContext2D) => 
     if (e instanceof HTMLCanvasElement) {
         let ctx = e.getContext('2d');
         if (ctx) {
-            ctx.clearRect(0, 0, e.width, e.height);
+            let num = e.width>e.height ? e.width : e.height;
+            ctx.clearRect(0, 0, num,num);
         }
     }
     else {
         let cv = e.canvas;
-        e.clearRect(0, 0, cv.width, cv.height);
+        let num = cv.width>cv.height ? cv.width : cv.height;
+        e.clearRect(0, 0, num,num);
     }
 }

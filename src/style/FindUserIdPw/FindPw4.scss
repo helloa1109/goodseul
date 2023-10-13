@@ -1,0 +1,123 @@
+@import "../global/global.scss";
+
+.FindPw4{
+    width: $iphone13mini;
+
+    .FindPw4Header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+
+    .FindPw4Header > span:nth-child(1){
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    .FindPw4Header > span:nth-child(2){
+        font-weight: 700;
+        font-size: 10px;
+        color: $버건디;
+    }
+    
+    .FindPw4InputGroup{
+        margin-top: 41px;
+        display: flex;
+        flex-direction: column;
+         align-items: center;
+        justify-content: center;
+    }
+    
+    .FindPw4InputGroup > span {
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 170px;
+        margin-bottom: 5px;
+    }
+
+    .FindPw4InputGroup > .InputWithIcon > .FindPw4Input{
+        width: 230px;
+        height: 50px;
+        border-radius: 15px;
+        border: none;
+        background-color: $흰색;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        background-image: url("../../image/Login/IdIcon.png");
+        background-repeat: no-repeat;
+        background-position: 10px;
+        padding-left: 40px;
+        outline: none;
+    }
+    
+
+    .FindPw4Icon {
+        position: absolute; 
+        right: 70px;
+        top: 30%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+    }
+
+    .FindPw4Icon1{
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 70px; 
+        top: 37%;
+        transform: translateY(-50%);
+        margin: auto;
+        cursor: pointer;
+    }
+
+    .FindPw4CheckIcon1.success {
+        animation: successAnimation 1s ease-in-out; /* 애니메이션 지속 시간 및 타이밍 함수 설정 */
+    }
+    
+   
+
+
+    .FindPw4CheckIcon1{
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 90px; 
+        top: 37%;
+        transform: translateY(-50%);
+        margin: auto;
+    }
+
+    .FindPw4Footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 405px;
+    }
+
+    .FindPw4Footer > .FindPw4Btn {
+        width: 150px;
+        height: 40px;
+        background-color: $버건디;
+        color: white;
+        border-radius: 15px;
+        border: none;
+        font-weight: 700;
+        font-size: 15px;
+    }
+}
+
+@keyframes successAnimation {
+    0% {
+        opacity: 0; 
+        transform: translateX(-40%) translateY(-50%); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0); 
+    }
+}
