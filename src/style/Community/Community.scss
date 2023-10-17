@@ -1,0 +1,74 @@
+@import "../global/global.scss";
+
+.CommunityPage{
+    width: 375px;
+    height: 815px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+
+    .CommunityPageTitle{
+        position: fixed;
+        top: 80px;
+        left: 20px;
+    }
+
+    .CommunityPageTitle p{
+        color: #000;
+        font-family: Noto Sans KR;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+    }
+
+    .CommunityPageTitle span{
+        color: #000;
+        font-family: Noto Sans KR;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+    }
+    
+    .CommunityPageSubTitle{
+        position: fixed;
+        top: 148px;
+        left: 34px;
+        font-style: normal;      
+        font-family: Noto Sans KR;
+    }
+
+    .CommunityPageSubTitle p{
+        color: #595959;
+        font-size: 15px;
+        font-weight: 400;
+        
+    }
+
+    .CommunityPageSubTitle span{
+        color: #F2F2F2;
+        font-size: 15px;
+        font-weight: 500;
+        background-color: #8C2323;
+    }
+
+    .CommunityPageThirdTitle{
+        width: 100vw;
+        position: fixed;
+        top: 490px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: -0.408px;
+    }
+
+    .CommunityPageThirdTitle p {
+        color: #000;
+        font-family: Noto Sans KR;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+    }
+}

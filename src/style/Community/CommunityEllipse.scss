@@ -1,0 +1,107 @@
+@import "../global/global.scss";
+
+.CommunityEllipsePage{
+    width: 338px;
+    height: 265px;
+    flex-shrink: 0;
+    position: fixed;
+    // top: 250px;
+    // left: 20px;
+    fill: #D9D9D9;
+    // background-color: red;
+
+    .CommunityEllipses{
+        .Ellipse1{
+            position: fixed;
+            top: 325px;
+            left: 20px;
+        }
+    
+        .Ellipse2{
+            position: fixed;
+            top: 245px;
+            left: 55px;
+        }
+    
+        .Ellipse3{
+            position: fixed;
+            top: 229px;
+            left: 138px;
+        }
+    
+        .Ellipse4{
+            position: fixed;
+            top: 220px;
+            left: 188px;
+        }
+    
+        .Ellipse5{
+            position: fixed;
+            top: 265px;
+            left: 288px;
+        }
+    
+        .Ellipse6{
+            position: fixed;
+            top: 360px;
+            left: 60px;
+        }
+    
+        .Ellipse7{
+            position: fixed;
+            top: 310px;
+            left: 138px;
+            background-image: url('../../image/OnAir/onair5.jpg');
+            background-size: cover;
+            border-radius: 50%;
+            z-index: 9999;
+        }
+    
+        .Ellipse8{
+            position: fixed;
+            top: 325px;
+            left: 243px;
+        }
+    
+        .Ellipse9{
+            position: fixed;
+            top: 415px;
+            left: 135px;
+        }
+    
+        .Ellipse10{
+            position: fixed;
+            top: 398px;
+            left: 217px;
+        }
+    
+        .Ellipse11{
+            position: fixed;
+            top: 413px;
+            left: 267px;
+        }
+    
+        .Ellipse12{
+            position: fixed;
+            top: 385px;
+            left: 318px;
+        }
+    
+        @keyframes scaleAnimation {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.3); 
+            }
+            100% {
+              transform: scale(1); 
+            }
+          }
+          
+          .Ellipse7 {
+            animation: scaleAnimation 2s ease-in-out infinite;
+          }    
+    }
+
+}
