@@ -3,8 +3,11 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import React, { useState } from 'react';
 import "../../style/SearchBar/SearchBar.scss"
-import { searchResult } from '../../apis/SearchBar/SearchBar';
+import { goSearch } from '../../apis/SearchBar/SearchBar';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { ReviewCData } from '../../hooks/Review/Review';
+import { searchResultState } from '../../recoil/Review/ReviewAtom';
 
 
 function SearchBar() {
@@ -14,15 +17,21 @@ function SearchBar() {
     const nav = useNavigate();
 
     const [searchTerm, setSearchTerm] = useState<string>('')
+    const [searchResult, setSearchResult] = useRecoilState(searchResultState);
     const changeSearchItem :React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSearchTerm(e.target.value)
     }
 
     const handleSearch = () => {
-        searchResult(searchTerm)
+        goSearch(searchTerm)
         .then(res=>{
-            nav("/");
-            console.log(res.data);
+            if(currentPage.pathname === "/Review"){
+                setSearchResult(res.data.reviews);
+                nav("/ReviewSearch");
+               
+            }else{
+                setSearchResult(res.data.reviews);
+            }
         })
         
         setSearchTerm('');
@@ -44,8 +53,6 @@ function SearchBar() {
                 className='searchBar_glass'
                 onClick={handleSearch}
             />  
-            
-            {searchTerm}
         </div>
     );
 }

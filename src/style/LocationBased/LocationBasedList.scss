@@ -1,22 +1,102 @@
 @import "../global/global.scss";
 
-.LocationList {
-    width: $iphone13mini;
-    height: 55vh;
-    width: 375px;
+.LocationBasedPages {
+  width: $iphone13mini;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.mySwiper {
+  width: 300px;
+  height: 450px;
+  margin-top: 70px;
+}
+
+.GoodSeulList {
+  display: flex;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  // align-items: center;
+  // justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  // color: #fff;
+  height: 400px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .GoodSeulLocationImg,
+  .default-img {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    width: 240px;
+    height: 240px;
+    border-radius: 50px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    border: 1px solid blue;
   }
-  .t {
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(243, 205, 36);
+}
+
+.GoodSeulList>.LocationGoodSeultList>.GoodSeulLocationHeader {
+  margin-top: 10px;
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  p,
+  span {
+    font-weight: 800;
   }
 
-  
+
+  span {
+    color: $버건디;
+  }
+
+  .GoodSeulLocationReviewCount {
+    color: black;
+    font-size: 18px;
+  }
+
+}
+
+.GoodSeulList>.LocationGoodSeultList>.GoodSeulLocationCenterContent {
+
+  width: 100%;
+  justify-content: flex-start;
+  // margin-left: 10px;
+  display: flex;
+  align-items: center;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    background-color: $버건디;
+    width: 12vw;
+    height: 3vh;
+    margin-left: 13px;
+    border-radius: 15px;
+    color: white;
+  }
+  .no-skill {
+    display: none;
+  }
+}
+
+.GoodSeulLocationFooter {
+  font-size: 14px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.GoodSeulList {
+  background-color: #FCF6F5;
+}
+

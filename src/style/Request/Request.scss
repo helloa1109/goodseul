@@ -164,6 +164,7 @@
     align-items: center;
     justify-content: center;
     position: fixed;
+    bottom: 0;
     outline: rgb(233, 237, 244) solid 1px;
     outline-offset: -0.5px;
     box-shadow: rgba(39, 46, 64, 0.08) 0px 0.125rem 0.25rem;
@@ -356,6 +357,7 @@
     z-index: 2;
     border: 1px solid purple;
 }
+
 
 // .closed{
 //     animation: bottom-sheet-down 0.7s ease-in-out;

@@ -1,22 +1,45 @@
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import "../../style/main/main.scss"
 import "../../style/global/global.scss"
 import OnAir from "../../component/Slider/Main/OnAir"
 import Purpose from "../../component/Slider/Main/Purpose"
 import Review from "../../component/Slider/Main/Review"
+import Locate from "../../component/Slider/Main/Locate"
 import { useNavigate } from 'react-router-dom'
+
+
+
 
 const Main = () => {
   const navi = useNavigate();
   const heaadingEstimate = () =>{
-    navi("/")
+    navi("/request");
   }
 
+  
+  
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const key = e.currentTarget.getAttribute('data-key');
+    const onair = document.querySelector(".main_onairarrive");
+    const location = document.querySelector(".main_locatearrive");
+    const purpose = document.querySelector(".main_purposearrive");
+    const estimate = document.querySelector(".main_estimatearrive");
+      if (key === "1") {
+        onair?.scrollIntoView({behavior:'smooth'});
+      } else if(key === "2"){
+        location?.scrollIntoView({behavior:'smooth'});
+      } else if(key === "3"){
+        purpose?.scrollIntoView({behavior:'smooth'});
+      } else {
+        estimate?.scrollIntoView({behavior:'smooth'});
+      }
+  }
+  
+
+ 
+
   return (
-    <div>
-      <div className='main_event'>
-       이벤트 문구이다
-      </div>
+    <div className='main_wrap'>
       <div className='main_remotewrap'>
         <div className='main_slogan'>
           <span className='main_burgundy'>구슬</span>, 좋은 인연을 만나는<br/>
@@ -24,15 +47,24 @@ const Main = () => {
         </div>
         <div className='main_remote'>
           <div className='main_remote_right' style={{marginRight:'14px'}}>
-            <div className='main_remote_short main_remote_form main_remoteonair' style={{marginBottom:'15px'}}>실시간</div>
-            <div className='main_remote_long main_remote_form main_remotelocate'>위치별</div>
+            <div className='main_remote_short main_remote_form main_remoteonair' style={{marginBottom:'15px'}} onClick={handleClick} data-key="1">
+              실시간
+            </div>
+            <div className='main_remote_long main_remote_form main_remotelocate' onClick={handleClick} data-key="2">
+              위치별
+            </div>
           </div>
           <div className='main_remote_left'>
-            <div className='main_remote_long main_remote_form main_remotepurpose' style={{marginBottom:'15px'}}>목적별</div>
-            <div className='main_remote_short main_remote_form main_remoteestimate'>견적내기</div>
+            <div className='main_remote_long main_remote_form main_remotepurpose' style={{marginBottom:'15px'}} onClick={handleClick} data-key="3">
+              목적별
+            </div>
+            <div className='main_remote_short main_remote_form main_remoteestimate' onClick={handleClick} data-key="4">
+              견적내기
+            </div>
           </div>
         </div>
       </div>
+      <hr className='main_onairarrive' style={{visibility:'hidden'}}/>
       <div className='main_onairwrap'>
         <div className='main_onair_txt'>
           <span className='main_burgundy main_midtxt'>실시간 상담</span><br/>
@@ -54,6 +86,7 @@ const Main = () => {
           <Review/>
         </div>
       </div>
+      <hr className='main_locatearrive' style={{visibility:'hidden'}}/>
       <div className='main_locatewrap'>
         <div className='main_locate_txt'>
           <span className='main_burgundy main_midtxt'>원하는 장소에서</span>
@@ -65,13 +98,14 @@ const Main = () => {
             <span className='main_lightgray main_vsmalltxt'>만나러 가기 <img src='' alt='22'/></span>
           </div>
           <div className='main_locatepic'>
-            전국 어디든 바라는 곳에서
+            <Locate/>
           </div>
         
         
           
         </div>
       </div>
+      <hr className='main_purposearrive' style={{visibility:'hidden'}}/>
       <div className='main_purposewrap'>
         <div className='main_purposetxt'>
             <span className='main_burgundy main_midtxt'>바라는 그대로</span><br/>
@@ -81,6 +115,7 @@ const Main = () => {
           <Purpose/>
         </div>
       </div>
+      <hr className='main_estimatearrive' style={{visibility:'hidden'}}/>
       <div className='main_estimatewrap'>
         <div className='main_estimate_welcome'>
           <span className='main_bigtxt'><span>&nbsp;견적내기&nbsp;</span>&nbsp;란?</span>
@@ -130,5 +165,6 @@ const Main = () => {
     </div>
   )
 }
+
 
 export default Main

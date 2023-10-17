@@ -1,14 +1,45 @@
 import React from 'react'
 import "../../style/GuseulDetail/GuseulDetail.scss";
 import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
+import { RoomCreate } from '../../apis/Chat/ChatApis';
+import { useNavigate } from 'react-router-dom';
+import { RoomIdxAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
+import { useRecoilState } from 'recoil';
+import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 
 function GuseulDetail() {
+
+    const [person1, setPerson1] = useRecoilState(person1State);
+    const [person2, setPerson2] = useRecoilState(person2State);
+
+    const navigate = useNavigate();
+    const [res, setRes] = useRecoilState<string>(RoomIdxAtom);
+console.log("jwt",(JWTDecoding() as any).swef);
+
+    const handleChat = async () => {
+        try {
+            const res = await RoomCreate();
+            if (res && res.data) {
+                setRes(res.data);
+                const data = JSON.parse(res.config.data);
+
+                setPerson1(data.person1);
+                setPerson2(data.person2);
+                const roomId = res.data;
+                navigate(`/room/${roomId}`);
+                console.log(roomId);
+            }
+        } catch (error) {
+            console.error("Error creating room:", error);
+        }
+    }
+
     return (
         <div className='GuseulDetailPage'>
 
             <img src={GuseulBackImg} alt='Guseul Back Image' className='GuseulDetailBackImage' />
 
-            <div className='GuseulDetailPopUp'>
+            <div className='GuseulDetailPopUp' >
 
                 <p className='GuseulName'>
                     이상혁 구슬님
@@ -57,7 +88,7 @@ function GuseulDetail() {
                     </h4>
                 </div>
 
-                <div className='GuseulDetailBtn'>
+                <div className='GuseulDetailBtn' onClick={handleChat}>
                     상담신청
                 </div>
 

@@ -1,14 +1,16 @@
 import React from 'react'
 import { useNavigate , useLocation} from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {  HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 import "../../style/header/SubHeader.scss";
 import arrow from "../../image/header/control.png";
 import Header from './Header';
+import { isFindIdAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
 
 const SubHeader = () => {
 
-    const [isOpen,setIsOpen] = useRecoilState(HeaderMenuModalAtom);
+    const [isOpen,setIsOpen] = useRecoilState<boolean>(HeaderMenuModalAtom);
+    const isFindId = useRecoilValue<boolean>(isFindIdAtom);
 
     const navigate = useNavigate(); 
 
@@ -20,6 +22,7 @@ const SubHeader = () => {
     }
 
     let subHeaderTitle = "구슬";
+
     if (Location.pathname === "/login") {
         subHeaderTitle = "로그인";
     } else if (Location.pathname === "/signup") {
@@ -41,6 +44,20 @@ const SubHeader = () => {
     } else if (Location.pathname === "/"){
         setIsOpen(false);
         <Header/>
+    }else if (Location.pathname === "/findidpw" && isFindId){
+        subHeaderTitle = "아이디찾기"
+    }else if (Location.pathname === "/findidpw" && !isFindId){
+        subHeaderTitle = "비밀번호찾기"
+    }else if (Location.pathname === "/findpwauth"){
+        subHeaderTitle = "인증코드 입력";
+    }else if (Location.pathname === "/findpw4") {
+        subHeaderTitle = "새로운 비밀번호 입력";
+    }else if (Location.pathname === "/findpw2") {
+        subHeaderTitle = "비밀번호찾기 인증";
+    }else if (Location.pathname === "/findidsuccess") {
+        subHeaderTitle = "아이디찾기";
+    }else if (Location.pathname === "/play/ball"){
+        subHeaderTitle = "플레이볼랭킹";
     }
 
     return (
