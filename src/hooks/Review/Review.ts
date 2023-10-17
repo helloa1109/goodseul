@@ -6,7 +6,8 @@ export type ReviewCData = {
     isPremium: number;
     likeCount:number;
     uidx: number;
-    uname: string;
+    unick: string;
+    uprofile: string;
     ridx: number;
     rsubject: string;
     rcontent: string;

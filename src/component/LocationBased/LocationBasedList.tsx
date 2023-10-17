@@ -65,7 +65,9 @@ const LocationBasedList = () => {
               <span>여러분의 성공을 위해 최선을 다하겠습니다.</span>
             </div>
           </div>
+          
         </SwiperSlide>
+        
       ))}
     </Swiper>
   )
