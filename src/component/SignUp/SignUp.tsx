@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { signUpEmailInput, signUpNickNameInput, signUpPhoneNumberInput, signUpPwCkInput, signUpPwInput, emailCertificationHidden, signUpNameInput, emailCertification, signUpBirthInput, signUpRegionInput, signUpGoodseulState, signUpGoodseulSpecialtyState, signUpGoodseulCareerState, regionOptionState, specialtyOptionState, signUpSpecialtyInput, specialtyOptionState01, specialtyOptionState02, specialtyOptionState03, specialtyOptionState04, signUpSpecialtyInput01, signUpSpecialtyInput02, signUpSpecialtyInput03, signUpSpecialtyInput04, signMainFileName, signSubFileName01, signSubFileName02, signSubFileName03, signSubFileName04, emailCertificationCheckState, goodseulNickInput, signUpNickNameCheckState } from '../../recoil/SignUp/SignUpAtom';
+import { emailCertificationHidden, signUpGoodseulState, signUpGoodseulSpecialtyState, signUpGoodseulCareerState } from '../../recoil/SignUp/SignUpAtom';
 import { useRecoilState } from 'recoil';
 import { signUpApi } from '../../apis/SignUp/SignUpApi';
 import { signUp, signUpCheck } from '../../hooks/SignUp/SignUpTypes';
@@ -7,47 +7,56 @@ import '../../style/SignUp/SignUp.scss';
 import deleteOptionIcon from '../../image/SignUp/deleteOptionIcon.png';
 import addOptionIcon from '../../image/SignUp/addOptionIcon.png';
 import toggleIcon from '../../image/SignUp/toggleIcon.png';
+import successIcon from '../../image/SignUp/successIcon.png';
+import errorIcon from '../../image/SignUp/errorIcon.png';
 import { signUpUserCheck } from '../../apis/SignUp/SignUpCheck';
-import { EmailCheckResult } from '../../apis/SignUp/EmailCheck';
+import { EmailCertification } from '../../apis/SignUp/EmailCheck';
+import hidePwIcon from "../../image/Mypage/show.png";
+import showPwIcon from "../../image/Mypage/showIcon.png";
 
 const SignUp = () => {
-    const [signUpName, setSignName] = useRecoilState<string>(signUpNameInput);
-    const [signUpNickName, setSignNickName] = useRecoilState<string>(signUpNickNameInput);
-    const [signUpNickNameCheck, setSignUpNickNameCheck] = useRecoilState<boolean>(signUpNickNameCheckState)
-    const [signUpEmail , setSignUpEmail] = useRecoilState<string>(signUpEmailInput);
+    const [signUpName, setSignName] = useState<string>("");
+    const [signUpNickName, setSignNickName] = useState<string>("");
+    const [signUpNickNameCheck, setSignUpNickNameCheck] = useState<boolean>(false)
+    const [signUpEmail , setSignUpEmail] = useState<string>("");
     const [emailCertificationHiddenState, setEmailCertificationHiddenState] = useRecoilState<boolean>(emailCertificationHidden);
-    const [emailCertificationInput, setEmailCertificationInput] = useRecoilState<string>(emailCertification);
-    const [emailCertificationCheck, setEmailCertificationCheck] = useRecoilState<boolean>(emailCertificationCheckState);
-    const [signUpPw , setSignUpPw] = useRecoilState<string>(signUpPwInput);
-    const [signUpPwCk, setSignUpPwCk] = useRecoilState<string>(signUpPwCkInput);
-    const [signUpPhoneNumber, setSignUpPhoneNumber] = useRecoilState<string>(signUpPhoneNumberInput);
-    const [signUpBirth, setSignUpBirth] = useRecoilState<string>(signUpBirthInput);
-    const [signUpRegion, setSignUpRegion] = useRecoilState<string>(signUpRegionInput);
+    const [emailCertificationInput, setEmailCertificationInput] = useState<string>("");
+    const [emailCertificationCheck, setEmailCertificationCheck] = useState<boolean>(false);
+    const [emailCertificationNumber, setEmailCertificationNumber] = useState<string>("");
+    const [signUpPw , setSignUpPw] = useState<string>("");
+    const [signUpPwCk, setSignUpPwCk] = useState<string>("");
+    const [signUpPwShow, setSignUpPwShow] = useState<boolean>(false);
+    const [signUpPwCkShow, setSignUpPwCkShow] = useState<boolean>(false);
+    const [signUpPwCheckState, setSignUpPwCheckState] = useState<boolean>(false);
+    const [signUpPhoneNumber, setSignUpPhoneNumber] = useState<string>("");
+    const [signUpPhoneNumberCheck, setSignUpPhoneNumberCheck] = useState<boolean>(false);
+    const [signUpBirth, setSignUpBirth] = useState<string>("");
+    const [signUpRegion, setSignUpRegion] = useState<string>("");
     const [signUpGoodseul, setSignUpGoodseul] = useRecoilState<boolean>(signUpGoodseulState);
-    const [goodseulNick, setGoodseulNick] = useRecoilState<string>(goodseulNickInput);
-    const [signSpecialty, setSignSpecialty] = useRecoilState<string>(signUpSpecialtyInput);
-    const [signSpecialty01, setSignSpecialty01] = useRecoilState<string>(signUpSpecialtyInput01);
-    const [signSpecialty02, setSignSpecialty02] = useRecoilState<string>(signUpSpecialtyInput02);
-    const [signSpecialty03, setSignSpecialty03] = useRecoilState<string>(signUpSpecialtyInput03);
-    const [signSpecialty04, setSignSpecialty04] = useRecoilState<string>(signUpSpecialtyInput04);
+    const [goodseulNick, setGoodseulNick] = useState<string>("");
+    const [signSpecialty, setSignSpecialty] = useState<string>("");
+    const [signSpecialty01, setSignSpecialty01] = useState<string>("");
+    const [signSpecialty02, setSignSpecialty02] = useState<string>("");
+    const [signSpecialty03, setSignSpecialty03] = useState<string>("");
+    const [signSpecialty04, setSignSpecialty04] = useState<string>("");
     const [signGoodseulSpecialty, setSignGoodseulSpecialty] = useRecoilState<number>(signUpGoodseulSpecialtyState);
     const [signGoodseulCareer, setSignGoodseulCareer] = useRecoilState<number>(signUpGoodseulCareerState);
-    const [regionOption, setRegionOption] = useRecoilState<boolean>(regionOptionState);
-    const [specialtyOption, setSpecialtyOption] = useRecoilState<boolean>(specialtyOptionState);
-    const [specialtyOption01, setSpecialtyOption01] = useRecoilState<boolean>(specialtyOptionState01);
-    const [specialtyOption02, setSpecialtyOption02] = useRecoilState<boolean>(specialtyOptionState02);
-    const [specialtyOption03, setSpecialtyOption03] = useRecoilState<boolean>(specialtyOptionState03);
-    const [specialtyOption04, setSpecialtyOption04] = useRecoilState<boolean>(specialtyOptionState04);
+    const [regionOption, setRegionOption] = useState<boolean>(false);
+    const [specialtyOption, setSpecialtyOption] = useState<boolean>(false);
+    const [specialtyOption01, setSpecialtyOption01] = useState<boolean>(false);
+    const [specialtyOption02, setSpecialtyOption02] = useState<boolean>(false);
+    const [specialtyOption03, setSpecialtyOption03] = useState<boolean>(false);
+    const [specialtyOption04, setSpecialtyOption04] = useState<boolean>(false);
     const [mainFileValue, setMailFileValue] = useState(null);
     const [subFileValue01, setSubFileValue01] = useState(null);
     const [subFileValue02, setSubFileValue02] = useState(null);
     const [subFileValue03, setSubFileValue03] = useState(null);
     const [subFileValue04, setSubFileValue04] = useState(null);
-    const [mainFileName, setMainFileName] = useRecoilState<string>(signMainFileName);
-    const [subFileName01, setSubFileName01] = useRecoilState<string>(signSubFileName01);
-    const [subFileName02, setSubFileName02] = useRecoilState<string>(signSubFileName02);
-    const [subFileName03, setSubFileName03] = useRecoilState<string>(signSubFileName03);
-    const [subFileName04, setSubFileName04] = useRecoilState<string>(signSubFileName04);
+    const [mainFileName, setMainFileName] = useState<string>("파일명");
+    const [subFileName01, setSubFileName01] = useState<string>("파일명");
+    const [subFileName02, setSubFileName02] = useState<string>("파일명");
+    const [subFileName03, setSubFileName03] = useState<string>("파일명");
+    const [subFileName04, setSubFileName04] = useState<string>("파일명");
     const [checkCase0, setCheckCase0] = useState<boolean>(false);
     const [checkCase1, setCheckCase1] = useState<boolean>(false);
     const [checkCase2, setCheckCase2] = useState<boolean>(false);
@@ -59,29 +68,48 @@ const SignUp = () => {
     const [checkCase8, setCheckCase8] = useState<boolean>(false);
     const [checkCase9, setCheckCase9] = useState<boolean>(false);
     const [checkCase10, setCheckCase10] = useState<boolean>(false);
+    const [checkCase11, setCheckCase11] = useState<boolean>(false);
+    const [checkCase12, setCheckCase12] = useState<boolean>(false);
 
     const changeSignUpEmail:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpEmail(e.target.value);
+        setEmailCertificationCheck(false);
     };
     const changeSignUpPw:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpPw(e.target.value);
+        if(e.target.value === signUpPwCk) {
+            setSignUpPwCheckState(true);
+            setCheckCase12(false);
+        }else{
+            setSignUpPwCheckState(false);
+            setCheckCase12(true);   
+        }
+    };
+    const changeSignUpPwCk:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSignUpPwCk(e.target.value);
+        if(signUpPw === e.target.value) {
+            setSignUpPwCheckState(true);
+            setCheckCase12(false);
+        }else{
+            setSignUpPwCheckState(false);
+            setCheckCase12(true);
+        }
     };
     const changeNickName:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignNickName(e.target.value);
+        setSignUpNickNameCheck(false);
     };
     const changeName:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignName(e.target.value);
     };
     const changeSignUpPhoneNumber:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         const currentValue:string = e.target.value;
+        setSignUpPhoneNumberCheck(false);
         if(!isNaN(Number(currentValue))){
             setSignUpPhoneNumber(currentValue);
         }else{
             setSignUpPhoneNumber(signUpPhoneNumber);
         }
-    };
-    const changeSignUpPwCk:React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setSignUpPwCk(e.target.value);
     };
     const chamgeSignUpEmailCertification:React.ChangeEventHandler<HTMLInputElement> = (e) => {
             const currentValue:string = e.target.value;
@@ -141,11 +169,15 @@ const SignUp = () => {
                 return
             }
             setCheckCase2(false);
-            const emailCheckState = await EmailCheckResult();
-            setEmailCertificationCheck(emailCheckState);
-            if(emailCertificationCheck) {
-                setEmailCertificationHiddenState(true);
+            //이메일 중복체크 엑시오스 실행
+            //const emailCheckState = await EmailDuplicateCheck(signUpEmail);
+            const emailCheckState = true;
+            if(emailCheckState) {
                 //인증번호 보내는 엑시오스 실행
+                setEmailCertificationNumber(await EmailCertification(signUpEmail));
+                setEmailCertificationHiddenState(true);
+            }else {
+                //이메일 중복일 경우 여기서 처리
             }
             }catch (error){
 
@@ -153,23 +185,26 @@ const SignUp = () => {
     }
 
     const submitEmailCertification = () => {
-        try {
             if(emailCertificationInput.length !== 6){
                 //경고메메시 상태 변경해서 화면에 보여주기
+                console.log("인증번호를 올바르게 입력해주세요.");
                 return
             }
-            //인증번호 확인 엑시오스 실행
-            setEmailCertificationCheck(true);//true 대신 엑시오스 실행값 넣기
-        } catch (error) {
-            
-        }
-
+            if(Number(emailCertificationNumber) === Number(emailCertificationInput)){
+                setEmailCertificationCheck(true);
+                setEmailCertificationHiddenState(false);
+                setEmailCertificationInput("");
+            }else{
+                //인증번호가 틀렸습니다 메세지
+                setEmailCertificationCheck(false);
+                alert("인증번호를 확인해주세요.");
+            }
     }
 
     const hiddenSignUpGoodseul = () => {
         setGoodseulNick("");
         setSignSpecialty("");
-        setMainFileName("");
+        setMainFileName("파일명");
         setMailFileValue(null);
         setSignGoodseulSpecialty(0);
         setSignGoodseulCareer(0);
@@ -686,6 +721,11 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase10(false);
+                setCheckCase11(false);
+                if(emailCertificationCheck){
+
+                }
                 return true
             default:
                 alert("알수없는오류");
@@ -696,27 +736,55 @@ const SignUp = () => {
 
     const NickNameCheck = () => {
         try {
-            if(signUpUserCheck(SignUpCheck) === 1){
+            if(signUpNickName === ""){
                 handleSignUp(1);
                 return
             }
             //닉네임 중복 체크 엑시오스 호출
+            setSignUpNickNameCheck(true);
+            const signUpNickNameCheck = true;
+
+            if(!signUpNickNameCheck) {
+                setCheckCase1(false);
+                setCheckCase10(true);
+            }else{
+                setCheckCase1(false);
+                setCheckCase10(false);
+            }
         } catch (error) {
             
         }
-        setCheckCase10(!checkCase10);
     }
 
     const PhoneNumberCheck = () => {
         try {
-            if(signUpUserCheck(SignUpCheck) === 6){
+            if(signUpPhoneNumber === ""){
                 handleSignUp(6);
                 return
             }
-            //닉네임 중복 체크 엑시오스 호출
+            //휴대폰번호 중복 체크 엑시오스 호출
+            setSignUpPhoneNumberCheck(true);
+            const signUpPhoneNumberCheck = true;
+
+            if(!signUpPhoneNumberCheck) {
+                setCheckCase6(false);
+                setCheckCase11(true);
+            }else{
+                setCheckCase6(false);
+                setCheckCase11(false);
+            }
+
         } catch (error) {
             
         }
+    }
+
+    const isSignUpPwShow = () => {
+        setSignUpPwShow(!signUpPwShow);
+    }
+
+    const isSignUpPwCkShow = () => {
+        setSignUpPwCkShow(!signUpPwCkShow);
     }
 
   return (
@@ -740,17 +808,18 @@ const SignUp = () => {
                     <div className='signUpNickName signUpStyle01'>
                         <div className='signUpNickNameTxt signUpInputTxtStyle01'>*닉네임{checkCase1 ? <span className='checkInput'>닉네임을 입력해주세요.</span> : checkCase10 ? <span className='checkInput'>닉네임 중복확인을 해주세요.</span> : null}</div>
                         <div className='signUpNickNameInputBody signUpInputBodyStyle01'>
-                            <input className='signUpNickNameInput signUpInputStyle01' type="text" placeholder='닉네임' value={signUpNickName} onChange={changeNickName}/>
-                            <div className='signUpNickNameCheck' onClick={NickNameCheck}>중복확인</div>
+                            <input className='signUpNickNameInput signUpInputStyle01' type="text" disabled={signUpNickNameCheck} placeholder='닉네임' value={signUpNickName} onChange={changeNickName}/>
+                            { !signUpNickNameCheck ? (<div className='signUpIconState' onClick={NickNameCheck}>중복확인</div>) : <div className='signUpIconState' ><img src={successIcon} className='signUpSuccessIcon' alt="성공 아이콘"/></div>}
                         </div>
                     </div>
                     <div className='signUpEmail'>
-                        <div className='signUpEmailTxt signUpInputTxtStyle01'>*이메일{ checkCase2 ? <span className='checkInput'>이메일을 입력해주세요.</span> : checkCase3 ? <span className='checkInput'>이메일 인증을 진행해 주세요.</span> : null}</div>
+                        <div className='signUpEmailTxt signUpInputTxtStyle01'>*이메일{ checkCase2 ? <span className='checkInput'>이메일을 정확하게 입력해주세요.</span> : checkCase3 ? <span className='checkInput'>이메일 인증을 진행해 주세요.</span> : null}</div>
                         <div className='signUpEmailStyle'>
                             <div className='signUpInputBodyStyle01'>
-                                <input className='signUpEmailInput signUpInputStyle01' type="email" placeholder='ID로 사용될 이메일 입니다.' value={signUpEmail} onChange={changeSignUpEmail}/>
-                            </div>
-                            { !emailCertificationHiddenState? 
+                                <input className='signUpEmailInput signUpInputStyle01' type="email" disabled={emailCertificationCheck} placeholder='ID로 사용될 이메일 입니다.' value={signUpEmail} onChange={changeSignUpEmail}/>
+                                {emailCertificationCheck && (<div className='signUpIconState' ><img src={successIcon} className='signUpSuccessIcon' alt="성공 아이콘"/></div>)}
+                           </div>
+                            { emailCertificationCheck? null : !emailCertificationHiddenState? 
                             (<button className='signUpEmailButton' type='button' onClick={handleEmailCertification}>이메일 인증받기</button>):
                             (<button className='signUpEmailButton' type='button' onClick={handleEmailCertification}>인증번호 다시받기</button>)
                             }
@@ -763,21 +832,24 @@ const SignUp = () => {
                         </div> )}
                     </div>
                     <div className='signUpPw'>
-                        <div className='signUpPwInputTxt signUpInputTxtStyle01'>*비밀번호{ (checkCase4 || checkCase5) && <span className='checkInput'>비밀번호를 입력해주세요.</span> }</div>
+                        <div className='signUpPwInputTxt signUpInputTxtStyle01'>*비밀번호{ (checkCase4 || checkCase5) ? <span className='checkInput'>비밀번호를 입력해주세요.</span> : checkCase12 ? <span className='checkInput'>비밀번호가 일치하지 않습니다.</span> : null}</div>
                         <div className='signUpPwInputBodys'>
                             <div className='signUpPwInputBody'>
-                                <input className='signUpPwInput signUpInputStyle01' type="password" placeholder='암호' value={signUpPw} onChange={changeSignUpPw}/>
+                                <input className='signUpPwInput signUpInputStyle01' type={signUpPwShow ? "text": "password"} placeholder='암호' value={signUpPw} onChange={changeSignUpPw}/>
+                                {!signUpPwShow ? <div className='signUpIconState' onClick={isSignUpPwShow} ><img src={hidePwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div> : <div className='signUpIconState' onClick={isSignUpPwShow}><img src={showPwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div>}
                             </div>
                             <div className='signUpPwInputBody'>
-                                <input className='signUpPwInput signUpInputStyle01' type="password" placeholder='암호 확인' value={signUpPwCk} onChange={changeSignUpPwCk} />
+                                <input className='signUpPwInput signUpInputStyle01' type={signUpPwCkShow ? "text": "password"} placeholder='암호 확인' value={signUpPwCk} onChange={changeSignUpPwCk} />
+                                {!signUpPwCkShow ? <div className='signUpIconState' onClick={isSignUpPwCkShow}><img src={hidePwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div> : <div className='signUpIconState' onClick={isSignUpPwCkShow}><img src={showPwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div>}
+                                {signUpPwCheckState ? <div className='signUpIconState' ><img className='signUpPwSuccessIcon' src={successIcon} alt="" /></div> : <div className='signUpIconState' ><img className='signUpPwSuccessIcon' src={errorIcon} alt="" /></div>}
                             </div>
                         </div>
                     </div>
                     <div className='signUpPhoneNumber signUpStyle01'>
-                        <div className='signUpPhoneNumberTxt signUpInputTxtStyle01'>*전화번호{ checkCase6 && <span className='checkInput'>전화번호를 입력해주세요.</span> }</div>
+                        <div className='signUpPhoneNumberTxt signUpInputTxtStyle01'>*전화번호{ checkCase6 ? <span className='checkInput'>전화번호를 입력해주세요.</span> : checkCase11 ? <span className='checkInput'>전화번호 중복확인을 해주세요.</span> : null}</div>
                         <div className='signUpPhoneNumberInputBody signUpInputBodyStyle01'>
-                            <input className='signUpPhoneNumberInput signUpInputStyle01' type="text" maxLength={11} placeholder='Ex) 01012345678' value={signUpPhoneNumber} onChange={changeSignUpPhoneNumber}/>
-                            <div className='signUpNickNameCheck' onClick={PhoneNumberCheck}>중복확인</div>
+                            <input className='signUpPhoneNumberInput signUpInputStyle01' disabled={signUpPhoneNumberCheck} type="text" maxLength={11} placeholder='Ex) 01012345678' value={signUpPhoneNumber} onChange={changeSignUpPhoneNumber}/>
+                            {!signUpPhoneNumberCheck ? (<div className='signUpIconState' onClick={PhoneNumberCheck}>중복확인</div>) : <div className='signUpIconState' ><img src={successIcon} className='signUpSuccessIcon' alt="성공 아이콘"/></div>}
                         </div>
                     </div>
                     <div className='signUpBirth signUpStyle01'>
@@ -833,7 +905,7 @@ const SignUp = () => {
                             <div className='signUpSpecialtyTxt signUpInputTxtStyle01'>특기</div>
                             <div className='signUpSpecialtyInputBody signUpInputBodyStyle01'>
                                 <div className='signUpSpecialtyMainInputBody'>
-                                    <input className='signUpSpecialtyInput signUpInputStyle01' readOnly onClick={handleSpecialtyOption} value={signSpecialty} type="text" placeholder='자신이 잘하는 분야를 선택해주세요.'/>
+                                    <input className='signUpSpecialtyInput signUpInputStyle01' readOnly onClick={handleSpecialtyOption} value={signSpecialty} type="text"  placeholder='자신이 잘하는 분야를 선택해주세요.'/>
                                     <img className='signUpSpecialtyInputMainToggle' src={toggleIcon} alt='토글아이콘'/>
                                 </div>
                                 {SpecialtySubInputform}
