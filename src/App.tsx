@@ -32,6 +32,7 @@ import { isPathTrueAtom } from './recoil/FindUserIdPw/FindUserIdPwAtom';
 import FindPwSection2 from './component/FindUser/FindPwSection2';
 import FindPw3Auth from './component/FindUser/FindPw3Auth';
 import FindPw4 from './component/FindUser/FindPw4';
+import Room from './component/Chat/Room';
 
 function App() {
 
@@ -57,12 +58,11 @@ function App() {
           </>
         )}
 
-
         <Route path='/Review' element={<Review />} />
         <Route path='/ReviewSearch' element={<ReviewSearch />} />
 
         <Route path='/Purpose' element={<Purpose />} />
-        <Route path='/Location' element={<LocationPages />} />
+        <Route path='/Location' element={<LocationPages/>} />
         <Route path='/Request' element={<RequestPages />} />
         <Route path='/RequestList' element={<RequestListPages />} />
         <Route path='/OnAir' element={<OnAir />} />
@@ -80,6 +80,7 @@ function App() {
         <Route path='/MyPageRequest' element={<MyPageRequest />} />
         <Route path='/MyPageCoupon' element={<MyPageCoupon />} />
 
+        <Route path='/room/:roomId' element={<Room/>}/>
 
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
