@@ -45,7 +45,9 @@ const Login:React.FC = () => {
             if(loginId !== "" && loginPw !== "") {
                 await LoginApi(IdPw);
                 // 이후 로그인 후의 처리를 할 수 있습니다.
-                await setLoginState(true);
+                setLoginState(true);
+                setLoginId("");
+                setLoginPw("");
                 navi("/"); 
             }else {
                 setLoginError("아이디 또는 비밀번호를 입력해주세요.");
@@ -53,6 +55,8 @@ const Login:React.FC = () => {
         } catch (error) {
             // 에러 처리
             setLoginError(JWTHandleError(error));
+            setLoginId("");
+            setLoginPw("");
         }
     }; 
 
