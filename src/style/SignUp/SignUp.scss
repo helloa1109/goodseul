@@ -18,6 +18,12 @@ input[type="number"] {
     font-size: 12px;
 }
 
+.signUpSuccessIcon{
+    position: relative;
+    display: inline-block;
+    left: 40px;
+}
+
 .signUpBody{
     width: $iphone13mini;
     display: flex;
@@ -107,11 +113,17 @@ input[type="number"] {
     background-size: 15px;
 }
  
-.signUpNickNameCheck{
+.signUpIconState{
     position: absolute;
     margin-top: -35px;
     margin-left: 195px;
     color: #0070C9;
+}
+
+.signUpPwSuccessIcon{
+    position: relative;
+    display: inline-block;
+    left: 10px;
 }
 
 .signUpEmailStyle{
