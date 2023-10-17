@@ -41,6 +41,7 @@ const SubHeader = () => {
         subHeaderTitle = "실시간 상담";
     } else if (Location.pathname === "/GuseulDetail"){
         subHeaderTitle = "상세보기";
+        
     } else if (Location.pathname === "/"){
         setIsOpen(false);
         <Header/>
