@@ -2,14 +2,34 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ClearCanvas, PlayState } from '../../apis/play/CanvasUtils';
 import { RandomBoolean, RandomColor, RandomNumber } from '../../apis/RandomUtils';
 import PlayRanking from './PlayRanking';
+import { axiosPunch } from '../../apis/JWT/JWTConfig';
+import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
+import { decodeToken } from '../../hooks/JWT/JWTType';
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '../../recoil/JWT/JWTAtom';
+import { useNavigate } from 'react-router-dom';
 
 
 const PlayBall = () => {
     const cvRef = useRef<HTMLCanvasElement | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [ballGame, setBallGame] = useState<Game | null>(null);
-    const gameID:number = 1;
-
+    const gameID: number = 1;
+    const serverUrl = "http://dopeboyzclub.ddns.net:7780";
+    const [rankingData, setRankingData] = useState<boolean | {
+        nickname: string;
+        rank: number;
+        score: number;
+        date: number;
+    }[]>(false);
+    const navi = useNavigate();
+    const isLogin = useRecoilValue(isLoginState);
+    useEffect(() => {
+        if (!isLogin) {
+            alert('로그인 후 이용 가능합니다.');
+            navi("/Login");
+        }
+    }, []);
 
     //캔버스 랜더링완료시
     useEffect(() => {
@@ -80,13 +100,54 @@ const PlayBall = () => {
                 }
                 if (ballGame.balls.length > 0) {
                     requestAnimationFrame(animateFrame);
-                }else{
+                } else {
                     //TODO : call submit score
-                    alert(`경과 시간 : ${(Math.round(elapsedTime) / 10).toFixed(1)}`);
+                    let score: string = (Math.round(elapsedTime) / 10).toFixed(1);
+                    alert(`경과 시간 : ${score}`);
                     setIsPlaying(false);
+                    submitScore({
+                        gameIdx: gameID.toString(),
+                        // userIdx: (JWTDecoding() as decodeToken).idx,
+                        score: Number(score),
+                        orderBy: 1
+                    });
                 }
             }
         }
+    }
+
+    const submitScore = async (data: { gameIdx: string, score: number, orderBy: number }) => {
+        let result = await axiosPunch({
+            method: 'post',
+            url: `${serverUrl}/api/lv1/rank`,
+            data: data
+        }).then(r => r.status === 200 ? true : false)
+            .catch(r => {
+                console.error(r);
+                alert('랭킹 등록을 실패하였습니다.');
+                return false;
+            });
+
+    }
+
+    const getRankinglist = async (isWeekly: boolean = false) => {
+        let data = await axiosPunch({
+            method: 'get',
+            url: `${serverUrl}/api/lv1/rank${isWeekly ? '/week' : ''}?gameIdx=${gameID}&orderBy=1`,
+        })
+            .then(r => {
+                let a = (r.data as { nickname: string, rank: number, score: number, date: number }[]);
+                if (a.length > 0)
+                    setRankingData(a);
+                else
+                    setRankingData(false);
+                return a.length > 0;
+            })
+            .catch(r => {
+                console.error(r);
+                return false;
+            });
+        // setRankData(data);
     }
 
     const handleClickCanvas = (e: MouseEvent | TouchEvent) => {
@@ -100,10 +161,10 @@ const PlayBall = () => {
     const handleStart = () => {
         if (cvRef.current) {
             if (!ballGame) {
-                let g: Game = new Game(cvRef.current, 25);
+                let g: Game = new Game(cvRef.current, 2);
                 g.init();
                 setBallGame(g);
-            }else{
+            } else {
                 ballGame.init();
             }
             elapsedTime = 0;
@@ -117,6 +178,7 @@ const PlayBall = () => {
         r.style.transform = 'translate(0%,0px)';
         r = document.getElementsByClassName('gameInformation')[0] as HTMLDivElement;
         r.style.transform = 'translate(-120%,0px)';
+        getRankinglist(true);
     }
 
     return (
@@ -127,7 +189,7 @@ const PlayBall = () => {
                 <div className='btnGame btnStart' onClick={handleStart}>게임 시작</div>
                 <div className='btnGame btnRanking' onClick={handleOpen}>랭킹 보기</div>
             </div> : null}
-            <PlayRanking gameID={5} />
+            <PlayRanking gameID={gameID} rankingData={rankingData} />
 
         </div>
     );
@@ -200,7 +262,7 @@ class Ball {
     }
 }
 
-class Game { 
+class Game {
     balls: Ball[] = [];
     constructor(
         public cv: HTMLCanvasElement,

@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { axiosPunch } from '../../apis/JWT/JWTConfig';
+import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '../../recoil/JWT/JWTAtom';
 
 const PlayAttendance = () => {
     const serverUrl = "http://dopeboyzclub.ddns.net:7780";
-
+    const navi = useNavigate();
     const [points, setPoints] = useState<number[]>([]);
     const [alreadyAttendance, setAlreadyAttendance] = useState<boolean>(false);
+    const isLogin = useRecoilValue(isLoginState);
     //실제로는 백엔드에서 처리함.
     //첫 출첵 또는 출첵판 리셋시 무작위 순서를 가진 배열을 DB에 저장.
     //이후 출첵호출시 pop시켜서 한개씩. 모두다 pop하여 0개가 되면 다음날 출첵페이지 접속시
@@ -15,14 +20,11 @@ const PlayAttendance = () => {
     //init시 이미 뽑은 카드는 어떻게 배치 및 표기???
     ///api/lv1/attendance
     useEffect(() => {
-        initBoard();
-        // axiosPunch({
-        //     method: 'get',
-        //     url: `${serverUrl}/api/lv1/attendance`,
-        //     headers: { 'Content-Type': 'application/json' }
-        // })
-        //     .then(r => { console.log(r.data) })
-        //     .catch(r => { console.error(r) });
+        if(isLogin){
+            initBoard();
+        }else{
+            alert("로그인 후 이용 가능합니다.");
+        }
     }, []);
 
     const initBoard = async () => {
@@ -40,7 +42,7 @@ const PlayAttendance = () => {
         if (data) {
             let ptsData = data.pointData.split(" ");
             // console.log(ptsData);
-            ptsData.pop();
+            // ptsData.pop();
             let toNum = ptsData.map(Number);
             // console.log(toNum);
             setPoints(toNum);
@@ -51,7 +53,7 @@ const PlayAttendance = () => {
     }
 
     const handleClick = async (e: any, idx: number) => {
-        if(alreadyAttendance) return;
+        if (alreadyAttendance) return;
 
         const item = e.target as HTMLDivElement;
         if (item.classList.contains("eongflip") || item.classList.contains("opened")) return;
@@ -63,6 +65,7 @@ const PlayAttendance = () => {
             // console.log(result);
             item.classList.add("eongflip");
             item.innerText = result.toString();
+            setAlreadyAttendance(true);
         }
         // const poppedValue = lst.pop();
         // if (poppedValue !== undefined) {

@@ -1,28 +1,56 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { RandomKorStr, RandomNumber, TimeDiff } from '../../apis/RandomUtils';
+import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
+import { decodeToken } from '../../hooks/JWT/JWTType';
+import { axiosPunch } from '../../apis/JWT/JWTConfig';
 
 type csProps = {
     gameID?: number,
+    rankingData: boolean | { nickname: string, rank: number, score: number, date: number }[],
 }
 
-const PlayRanking = ({ gameID }: csProps) => {
-    const classToggle = (e: HTMLDivElement) => {
+const PlayRanking = ({ gameID, rankingData }: csProps) => {
+    const userNick = (JWTDecoding() as decodeToken).nickname;
+    const [rankData, setRankData] = useState<{ nickname: string, rank: number, score: number, date: number }[]>();
+    const serverUrl = "http://dopeboyzclub.ddns.net:7780";
 
+    const classToggle = (e: HTMLDivElement) => {
         let tabs = document.querySelectorAll('.gameRankingTab');
         tabs.forEach(v => {
             v.classList.remove('selectedTab');
         });
-
         e.classList.add('selectedTab');
+    }
+
+    const getRankinglist = async (isWeekly: boolean = false) => {
+        let data = await axiosPunch({
+            method: 'get',
+            url: `${serverUrl}/api/lv1/rank${isWeekly ? '/week' : ''}?gameIdx=${gameID}&orderBy=1`,
+        })
+            .then(r => {
+                let a = (r.data as { nickname: string, rank: number, score: number, date: number }[]);
+                if (a.length > 0)
+                    setRankData(a);
+                else
+                    setRankData(undefined);
+                return a.length > 0;
+            })
+            .catch(r => {
+                console.error(r);
+                return false;
+            });
+        // setRankData(data);
     }
 
     const handleWeeklyRanking = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         classToggle(e.currentTarget);
+        getRankinglist(true);
         console.log('loadWeekly');
     }
 
     const handleTotalRanking = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         classToggle(e.currentTarget);
+        getRankinglist();
         console.log('loadTotal');
     }
 
@@ -34,7 +62,14 @@ const PlayRanking = ({ gameID }: csProps) => {
         r.style.transform = 'translate(0%,0px)';
     }
 
-    
+    useEffect(() => {
+        if (rankingData) {
+            setRankData(rankingData as { nickname: string, rank: number, score: number, date: number }[]);
+        }
+    }, [rankingData]);
+
+
+
 
     return (
         <div className='gameRanking' ref={rankingRef}>
@@ -49,28 +84,50 @@ const PlayRanking = ({ gameID }: csProps) => {
                     <tr>
                         <th style={{ width: '0px' }}>#</th>
                         <th>닉네임</th>
-                        <th>점수</th>
+                        <th>기록</th>
                         <th>날짜</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        [...Array(10)].map((v, i) => (
-                            <tr>
-                                <td>{i + 1}</td>
-                                <td>{RandomKorStr(2, 8)}</td>
-                                <td>{RandomNumber(0, 1000000)}</td>
-                                <td>{TimeDiff(new Date().getTime() - RandomNumber(0, 10000000000))}</td>
+                        rankData
+                            ? rankData.map((v, i, data) => {
+                                console.log(i, data.length - 1);
+                                console.log(Number(v.nickname), userNick);
+                                // console.log(i,i !== data.length - 1,Number(v.userIdx)!==userIdx);
+                                if (i !== data.length - 1 || v.nickname !== userNick) {
+                                    return (<tr>
+                                        <td>{v.rank}</td>
+                                        <td>{v.nickname}</td>
+                                        <td>{v.score}</td>
+                                        <td>{TimeDiff(v.date)}</td>
+                                    </tr>);
+                                } else {
+                                    return null;
+                                }
+                            })
+                            : <tr>
+                                <td colSpan={4}>랭킹정보가 없습니다.</td>
                             </tr>
-                        ))
                     }
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>487,524</td>
+                        {
+                            rankData && rankData.length > 1 && rankData.at(-1)?.nickname === userNick
+                                ?
+                                <>
+                                    <td>{rankData.at(-1)?.rank}</td>
+                                    <td>{rankData.at(-1)?.nickname}</td>
+                                    <td>{rankData.at(-1)?.score}</td>
+                                    <td>{TimeDiff(rankData.at(-1)?.date || 0)}</td>
+                                </>
+                                : <td colSpan={4}>내 랭킹이 없습니다.</td>
+                        }
+                        {/* <td>487,524</td>
                         <td>{RandomKorStr(2, 8)}</td>
                         <td>{RandomNumber(10, 1000000)}</td>
-                        <td>{TimeDiff(new Date().getTime() - RandomNumber(0, 1000000))}</td>
+                        <td>{TimeDiff(new Date().getTime() - RandomNumber(0, 1000000))}</td> */}
                     </tr>
                 </tfoot>
 

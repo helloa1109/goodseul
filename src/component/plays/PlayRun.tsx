@@ -12,6 +12,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ClearCanvas, PlayState } from '../../apis/play/CanvasUtils';
 import { RandomBoolean, RandomNumber } from '../../apis/RandomUtils';
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '../../recoil/JWT/JWTAtom';
+import { useNavigate } from 'react-router-dom';
 
 type bgImg = {
     src: string,    //배경 경로
@@ -71,9 +74,14 @@ const PlayRun = () => {
             speedx: -0.2,
         },
     ];
-    // useEffect(() => {
-    //     // console.log('blank');
-    // }, []);
+    const navi = useNavigate();
+    const isLogin = useRecoilValue(isLoginState);
+    useEffect(() => {
+        if (!isLogin) {
+            alert('로그인 후 이용 가능합니다.');
+            navi("/Login");
+        }
+    }, []);
 
     useEffect(() => {
         //캔버스가 할당되면 이미지를 로드
