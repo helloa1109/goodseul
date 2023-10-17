@@ -178,18 +178,20 @@ const PlayBall = () => {
         r.style.transform = 'translate(0%,0px)';
         r = document.getElementsByClassName('gameInformation')[0] as HTMLDivElement;
         r.style.transform = 'translate(-120%,0px)';
-        getRankinglist(true);
+        setRankingData(true);
+        // getRankinglist(true);
     }
 
+    const gmRef = useRef(null);
     return (
         <div>
             <canvas ref={cvRef} />
-            {!isPlaying ? <div className='gameInformation'>
+            {!isPlaying ? <div className='gameInformation' ref={gmRef}>
                 <div className='gameTitle'>게임 제목</div>
                 <div className='btnGame btnStart' onClick={handleStart}>게임 시작</div>
                 <div className='btnGame btnRanking' onClick={handleOpen}>랭킹 보기</div>
             </div> : null}
-            <PlayRanking gameID={gameID} rankingData={rankingData} />
+            <PlayRanking gameID={gameID} rankingData={rankingData} gameItem={gmRef} />
 
         </div>
     );

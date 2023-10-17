@@ -15,6 +15,8 @@ import { RandomBoolean, RandomNumber } from '../../apis/RandomUtils';
 import { useRecoilValue } from 'recoil';
 import { isLoginState } from '../../recoil/JWT/JWTAtom';
 import { useNavigate } from 'react-router-dom';
+import PlayRanking from './PlayRanking';
+import { axiosPunch } from '../../apis/JWT/JWTConfig';
 
 type bgImg = {
     src: string,    //배경 경로
@@ -40,6 +42,7 @@ const PlayRun = () => {
     const [platform, setPlatform] = useState<Platform>();
     const [loadingState, setLoadingState] = useState(false);
     const [objs, setObjs] = useState<Objects>();
+    const gameID: number = 2;
     const imgs = [
         "run_bg.png",   //배경 그라디언트
         "run_l1a.png",  //배경 구름
@@ -240,7 +243,8 @@ const PlayRun = () => {
                                 (pos.y >= cvPos.h / 2 + 32 && pos.y <= cvPos.h / 2 + 32 + game.btnRanking.height)
                             ) {
                                 //랭킹 버튼 클릭
-                                game.screenState = screenState.RANKING;
+                                // game.screenState = screenState.RANKING;
+                                handleOpen();
                             }
                             requestAnimationFrame(animate);
                             break;
@@ -360,10 +364,21 @@ const PlayRun = () => {
         }
     }
 
+    const handleOpen = () => {
+        let r: HTMLElement = document.getElementsByClassName('gameRanking')[0] as HTMLElement;
+        r.style.transform = 'translate(0%,0px)';
+        r = cvRef.current as HTMLElement;
+        r.style.transform = 'translate(-120%,0px)';
+        setRankingData(true);
+    }
 
+    const [rankingData, setRankingData] = useState(false);
     return (
         <div style={{ alignItems: 'center', height: '600px' }}>
-            <canvas ref={cvRef} id='gameCanvas' />
+            <canvas ref={cvRef} id='gameCanvas' style={{
+                transition: 'transform 0.2s ease'
+            }} />
+            <PlayRanking gameID={gameID} rankingData={rankingData} gameItem={cvRef} />
         </div>
     );
 };
@@ -420,6 +435,22 @@ class Game {
             score: 0,
         }
         this.scoreMultiflier = 1;
+    }
+    submitScore = async (data: { gameIdx: string, score: number, orderBy: number }) => {
+        const serverUrl = "http://dopeboyzclub.ddns.net:7780";
+
+        return await axiosPunch({
+            method: 'post',
+            url: `${serverUrl}/api/lv1/rank`,
+            data: data
+        })
+            .then(r => r.status === 200 ? true : false)
+            .catch(r => {
+                console.error(r);
+                alert('랭킹 등록을 실패하였습니다.');
+                return false;
+            });
+
     }
 
     setGameOverScreen(src: string) {
@@ -843,6 +874,11 @@ class Player {
             this.cv.width = 345;
             this.cv.height = 590;
             this.game.screenState = screenState.RESULT;
+            this.game.submitScore({
+                gameIdx: "2",
+                score: Number(this.game.gameState.score),
+                orderBy: 0
+            });
         }
 
     }

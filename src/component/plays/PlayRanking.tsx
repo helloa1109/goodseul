@@ -7,9 +7,10 @@ import { axiosPunch } from '../../apis/JWT/JWTConfig';
 type csProps = {
     gameID?: number,
     rankingData: boolean | { nickname: string, rank: number, score: number, date: number }[],
+    gameItem?:React.MutableRefObject<any|null>
 }
 
-const PlayRanking = ({ gameID, rankingData }: csProps) => {
+const PlayRanking = ({ gameID, rankingData,gameItem }: csProps) => {
     const userNick = (JWTDecoding() as decodeToken).nickname;
     const [rankData, setRankData] = useState<{ nickname: string, rank: number, score: number, date: number }[]>();
     const serverUrl = "http://dopeboyzclub.ddns.net:7780";
@@ -56,15 +57,17 @@ const PlayRanking = ({ gameID, rankingData }: csProps) => {
 
     const rankingRef = useRef<HTMLDivElement | null>(null);
     const handleClose = () => {
-        let r = document.getElementsByClassName('gameRanking')[0] as HTMLDivElement;
+        let r = rankingRef.current as HTMLElement;
         r.style.transform = 'translate(120%,0px)';
-        r = document.getElementsByClassName('gameInformation')[0] as HTMLDivElement;
+        // r = document.getElementsByClassName('gameInformation')[0] as HTMLDivElement;
+        r = gameItem?.current as HTMLElement;
         r.style.transform = 'translate(0%,0px)';
     }
 
     useEffect(() => {
-        if (rankingData) {
-            setRankData(rankingData as { nickname: string, rank: number, score: number, date: number }[]);
+        if (rankingData === true) {
+            getRankinglist(true);
+            // setRankData(rankingData as { nickname: string, rank: number, score: number, date: number }[]);
         }
     }, [rankingData]);
 
