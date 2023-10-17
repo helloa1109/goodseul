@@ -34,14 +34,18 @@ function ReviewBestList() {
               <div className='review_best' key={idx}> 
                 <div className='review_besttop'>
                   <img className='review_bestpic' src={imgurl+`${item.goodseulProfile}`} alt="Profile"/>
-                  <div className='review_bestlv'></div>
+                  <div className='review_bestcolor'></div>
                 </div>
                 
                 <div className='review_bestbot'>
-                    <div>{item.rcontent}</div>
-                    <div>{item.goodseulName}</div>
-                    <div>{item.star}</div>
-                    <button> 자세히 보기 </button>
+                    <div className='review_subject review_vxsmalltxt'>"{item.rsubject}"</div>
+                    <div className='review_GSname review_vsmallheavytxt'>{item.goodseulName} 구슬님</div>
+                    <div className='review_tags'>
+                      <div className='review_vstartxt'>{item.star}/</div>
+                      <div className='review_vstartxt'>{item.likeCount}/</div>
+                      <div className='review_vstartxt'>{item.skill}</div>
+                    </div>
+                    <button className='review_goDetail'> 자세히 보기 </button>
                 </div>      
               </div>
             ))}
