@@ -1,23 +1,103 @@
 @import "../global/global.scss";
 
-.OnAirSlideCardPage{
+.OnAirSlideCardPage {
     position: fixed;
     width: 375px;
+    top: 230px;
 
-    .OnAirSlideCardSection{
-        
+    .OnAirSlideCardSection {
         width: 100vw;
         height: 500px;
+        margin-left: 20px;
     }
     
-    .OnAirSlideCardPoint{
+    .OnAirProfileImage{
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 30px;
+        
+    }
+
+    .OnAirSlideCardPoint {
         width: 200px;
         height: 300px;
         border-radius: 30px;
         background: var(--Color-3, #595959);
+    }
+
+    .OnAirSlideCardBottom {
+        width: 200px;
+        height: 80px;
+        flex-shrink: 0;
+        border-radius: 0px 0px 30px 30px;
+        background: var(--Color-4, #262626);
+        position: fixed;
+        top: 220px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         display: flex;
+    }
+
+    .OnAirSlideCardName {
+        color: #FFF;
+        font-family: 'Noto Sans KR';
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        position: fixed;
+        top: 225px;
+        width: 200px;
+        text-align: center;
+    }
+
+    .OnAirSlideCardInfo {
+        color: #999999;
+        font-family: 'Noto Sans KR';
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .GuseulDetailTag {
+        display: flex;
+        justify-content: space-around;
+        position: fixed;
+        top: 260px;
+        width: 170px; /* 적절한 너비로 설정하세요 */
+        margin: 0 auto;
+    }
+
+    .GuseulDetailLocal,
+    .GuseulDetailSkill,
+    .GuseulDetailState {
+        width: 50px;
+        height: 20px;
+        flex-shrink: 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #F2F2F2;
+        font-weight: bold;
+        font-size: 12px;
+        border-radius: 30px;
+    }
+
+    .GuseulDetailLocal {
+        background-color: blue;
+        left: 15px;
+    }
+
+    .GuseulDetailSkill {
+        background-color: green;
+    }
+
+    .GuseulDetailState {
+        background-color: darkorange;
+        left: 125px;
     }
 }

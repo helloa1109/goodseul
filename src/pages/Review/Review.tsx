@@ -30,7 +30,7 @@ const Review = () => {
       </div>
       <div className='review_besttxt'>
           <span className='review_vsamllheavytxt'>베스트리뷰</span>
-        </div>
+      </div>
               {
                 ReviewBestList()
               }   

@@ -1,0 +1,21 @@
+@import "../global/global.scss";
+
+.OnAirSlideTitlePage {
+    position: fixed;
+    width: 375px;
+    top: 170px;
+    left: 26px;
+
+    ul {
+        list-style: none;
+        display: flex; 
+        justify-content: space-between; 
+        padding: 0; 
+        margin: 0; 
+    
+        li {
+          flex: 1; // 각 li 요소가 동일한 너비를 가지도록 설정
+          text-align: center; // 텍스트 중앙 정렬
+        }
+      }
+}

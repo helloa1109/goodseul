@@ -25,12 +25,22 @@
 }
 .review_vsmalltxt{
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
 }
 .review_vsmallheavytxt{
     font-size: 15px;
     font-weight: 700;
 }
+.review_vxsmalltxt{
+    font-size: 12px;
+    font-weight: bolder;
+}
+.review_vstartxt{
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
 
 /*리뷰 상단 텍스트 css 시작*/
 
@@ -59,6 +69,7 @@
 /*리뷰 베스트리뷰*/
 .review_besttxt{
     margin: 55px 0 0 20px;
+    
 }
 .review_bestList_wrap{
     margin: 15px 20px 0 20px;
@@ -70,41 +81,74 @@
     margin-top: 15px;
     width: 160px;
     height: 250px;
-    background-color: rgba($color: $검은색, $alpha: 0.5);
     border-radius: 15px;
-    color: white;
     display: flex;
     flex-direction: column;
-  
+    background-color: $더밝은회색;
+    
+    
 }
 .review_besttop{
-    height: 60%;
+    height: 55%;
 }
 .review_bestpic{
     position: absolute;
     width: 160px;
-    height: 250px;
-    z-index: -99;
-    border-radius: 15px;
-   
-    
+    height: 120px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 .review_bestbot{
     margin: 0 auto;
+}
+.review_bestbot div{
+    margin-left: 5px;
+    line-height: 20px;
+}
+.review_subject{
+    color: $밝은회색;
+}
+.review_tags div{
+    display: inline-block;
+}
+.review_goDetail{
+    margin-top: 15px;
+    background-color: white;
+    border: none;
+    width: 140px;
+    height: 30px;
+    border-radius: 100px;
+    
 }
 
 
 /*리뷰 프리미엄 리뷰*/
 .review_premiumwrap{
-    margin: 40px 0 0 20px;
+    margin: 40px 20px 0 20px;
+    
 }
 .review_premiumList_wrap{
     margin-top: 15px;
-    background-color: red;
+    
 }
-.review_premimum{
+.review_premium{
     margin-top: 15px;
     width: 335px;
     height: 170px;
-    background-color: $더밝은회색;
+    background-color: rgba($color: $검은색, $alpha: 0.3);
+    border-radius: 15px;
+    color: $흰색;
+}
+.review_prepic{
+    position: absolute;
+    width: 335px;
+    height: 170px;
+    object-fit: cover;
+    z-index: -99;
+    border-radius: 15px;
+
+}
+.review_subject{
+
 }

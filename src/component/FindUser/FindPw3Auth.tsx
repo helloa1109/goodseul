@@ -27,23 +27,23 @@ const FindPw3Auth = () => {
     // 키 입력 처리
     // 입력란 내용이 있을 경우 -> 입력값 지움
     // 이전 input 으로 focus 잡히게 설정
-     // inputRef 및 current가 null이 아닌 경우
+    // inputRef 및 current가 null이 아닌 경우
     const handleInput = (index: number) => {
         const inputRef = inputRefs[index];
         if (inputRef && inputRef.current) {
             const inputValue = inputRef.current.value;
-            
+            console.log(inputValue);
             if (!/^[0-9]+$/.test(inputValue)) {
                 // 입력이 숫자가 아닌 경우, 입력을 지움
                 inputRef.current.value = '';
             }
         }
-    
+
         if (index < inputRefs.length - 1) {
             inputRefs[index + 1].current?.focus();
         }
     };
-    
+
 
     // 백스페이스 키 처리
     // event.key === 'backspace ' : 이벤트가 백스페이스 키 인지 확인함
@@ -52,15 +52,29 @@ const FindPw3Auth = () => {
     // 백스페이스를 눌렀는데 값이 비어있지 않을경우 -> 현재 Input 입력값 지우기
     // 그 후 이전 input 으로 돌아감
     const handleKeyDown = (index: number, event: React.KeyboardEvent<HTMLInputElement>) => {
+        const inputRef = inputRefs[index];
+        const lastInput = inputRefs[3].current!;
         if (event.key === 'Backspace' && event.currentTarget.value === '') {
             event.preventDefault();
             if (index > 0) {
-                inputRefs[index - 1].current?.focus();
+                const prevInputRef = inputRefs[index - 1];
+                if (prevInputRef.current) {
+                    prevInputRef.current.value = '';
+                    prevInputRef.current.focus();
+                }
             } else {
-                inputRefs[0].current?.focus(); 
+                inputRefs[0].current?.focus();
             }
         } else if (event.key === 'Backspace' && event.currentTarget.value !== '') {
-            event.currentTarget.value = '';
+            if (index >= 0 && index <= 2) {
+                event.currentTarget.value = '';
+            }
+        } else if (event.key === 'Backspace' && index === inputRefs.length - 1) {
+            event.preventDefault();
+            const prevInputRef = inputRefs[index - 1];
+            if (prevInputRef.current) {
+                prevInputRef.current.focus();
+            }
         }
     };
 
@@ -70,19 +84,22 @@ const FindPw3Auth = () => {
             const timer = setInterval(() => {
                 setSeconds((prevSeconds) => prevSeconds - 1);
             }, 1000);
-        
+
             return () => clearInterval(timer);
         }
 
     }, [seconds]);
 
     // 코드 다시보내기 버튼
-    // 클릭안하면 시간초기화는 안됩니다.
-    // 타이머 0 일때 코드다시보내기 api 실행 시 타이머 초기화됨
     const HandleReset = () => {
-        if (seconds === 0) {
-            setSeconds(60);
-        }
+
+        // 타이머 0 일때 타이머 초기화
+        // if (seconds === 0) {
+        //     setSeconds(60);
+        // }
+
+        // 그냥 클릭 시 타이머 초기화
+        setSeconds(60);
     }
 
     return (
