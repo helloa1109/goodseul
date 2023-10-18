@@ -1,38 +1,89 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../../style/GuseulDetail/GuseulDetail.scss";
 import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
-import { RoomCreate } from '../../apis/Chat/ChatApis';
+import { RoomCreate, getGoodSeulInfo } from '../../apis/Chat/ChatApis';
 import { useNavigate } from 'react-router-dom';
 import { RoomIdxAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
 import { useRecoilState } from 'recoil';
 import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
+import { goodseulDto } from '../../hooks/Chat/ChatType';
 
 function GuseulDetail() {
 
+    // sender 
     const [person1, setPerson1] = useRecoilState(person1State);
+
+    // receiver
     const [person2, setPerson2] = useRecoilState(person2State);
 
+    // 구슬 idx
+    const [goodSeulIdx,setGoodSeulIdx] = useState<goodseulDto[]>([]);
+
     const navigate = useNavigate();
+
+    // 방만들때 res 값 받아오기
     const [res, setRes] = useRecoilState<string>(RoomIdxAtom);
-console.log("jwt",(JWTDecoding() as any).swef);
 
     const handleChat = async () => {
         try {
-            const res = await RoomCreate();
-            if (res && res.data) {
-                setRes(res.data);
-                const data = JSON.parse(res.config.data);
+            const goodSeulResponse = await getGoodSeulInfo();
+    
+            if (goodSeulResponse) {
+                const goodSeulIdx = goodSeulResponse.data.goodseulDto.idx;
+                console.log("bora",goodSeulIdx);
+                const roomCreateResponse = await RoomCreate(goodSeulIdx);
+    
+                if (roomCreateResponse) {
+                    setRes(roomCreateResponse.data);
+                    const data = JSON.parse(roomCreateResponse.config.data);
+                    console.log(data);
+    
+                    setPerson1(data.person1);
+                    setPerson2(data.person2);
+    
+                    const roomId = roomCreateResponse.data;
+                    navigate(`/room/${roomId}`);
+                    console.log("룸 디테일",roomId);
 
-                setPerson1(data.person1);
-                setPerson2(data.person2);
-                const roomId = res.data;
-                navigate(`/room/${roomId}`);
-                console.log(roomId);
+                }
             }
         } catch (error) {
             console.error("Error creating room:", error);
         }
     }
+    
+
+    const getData = async () => {
+        try{
+            const resopnse = await  getGoodSeulInfo();
+            if(resopnse && resopnse.data){
+                setGoodSeulIdx(resopnse.data.goodseulDto.idx);
+                console.log(goodSeulIdx);
+            }
+        } catch (error){
+            console.log("error",error);
+        }
+    }
+
+    useEffect(() => {
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await getGoodSeulInfo();
+    //         if (response && response.data) {
+    //             setGoodSeulIdx(response.data.goodseulDto.idx);
+    //         }
+    //     } catch (error) {
+    //         console.log("Error", error);
+    //     }
+    // };
+
+    // fetchData();
+    console.log("펄슨1 디테일",person1);
+    console.log("펄슨2 디테일",person2);
+}, [person1,person2]);
+
+
+    console.log(goodSeulIdx);
 
     return (
         <div className='GuseulDetailPage'>
@@ -41,7 +92,7 @@ console.log("jwt",(JWTDecoding() as any).swef);
 
             <div className='GuseulDetailPopUp' >
 
-                <p className='GuseulName'>
+                <p className='GuseulName' onClick={getData}>
                     이상혁 구슬님
                 </p>
 
