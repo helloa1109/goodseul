@@ -25,7 +25,6 @@ export const signUpApi = async (SignUp: signUp) => {
     } catch (error) {
       // 에러 처리
       console.log(error);
-      JWTHandleError(error);
     }
   };
   
@@ -50,6 +49,5 @@ export const signUpApi = async (SignUp: signUp) => {
     } catch (error) {
       // 에러 처리
       console.log(error);
-      JWTHandleError(error);
     }
   };

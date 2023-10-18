@@ -80,7 +80,8 @@ const SignUp = () => {
     const [checkCase15, setCheckCase15] = useState<boolean>(false);
     const [checkCase16, setCheckCase16] = useState<boolean>(false);
     const [checkCase17, setCheckCase17] = useState<boolean>(false);
-    
+    const [checkCase18, setCheckCase18] = useState<boolean>(false);
+    const [checkCase19, setCheckCase19] = useState<boolean>(true);
     const formData = new FormData();
     
 
@@ -89,12 +90,12 @@ const SignUp = () => {
     const skills = filteredSkillArray.join(',');
 
     const fileValues: (File | undefined)[] = [mainFileValue, subFileValue01, subFileValue02, subFileValue03, subFileValue04];
-    const files: (File | undefined)[] = fileValues.filter(value => value !== undefined);
+    const files: (File | undefined)[] = fileValues.filter(file => file !== undefined);
 
 
     
     const maxFileSize =  10 * 1024 * 1024;
-
+    const passRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/
 
     const changeSignUpEmail:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpEmail(e.target.value);
@@ -103,8 +104,14 @@ const SignUp = () => {
     const changeSignUpPw:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpPw(e.target.value);
         if(e.target.value === signUpPwCk) {
-            setSignUpPwCheckState(true);
             setCheckCase12(false);
+            setSignUpPwCheckState(false);
+            if(passRegex.test(e.target.value)){
+                setSignUpPwCheckState(true);
+                setCheckCase19(false);
+            }else{
+                setCheckCase19(true);
+            }
         }else{
             setSignUpPwCheckState(false);
             setCheckCase12(true);   
@@ -113,8 +120,14 @@ const SignUp = () => {
     const changeSignUpPwCk:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpPwCk(e.target.value);
         if(signUpPw === e.target.value) {
-            setSignUpPwCheckState(true);
             setCheckCase12(false);
+            setSignUpPwCheckState(false);
+            if(passRegex.test(e.target.value)) {
+                setSignUpPwCheckState(true);
+                setCheckCase19(false);
+            }else{
+                setCheckCase19(true);
+            }
         }else{
             setSignUpPwCheckState(false);
             setCheckCase12(true);
@@ -209,9 +222,6 @@ const SignUp = () => {
             "goodseulNick":goodseulNick
     };
 
-
-    formData.append("userDto",JSON.stringify(SignUp));
-    formData.append("goodseulDto",JSON.stringify(SignUpGoodseul));
 
 
     const handleEmailCertification = async() => {
@@ -694,6 +704,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;              
             case 1:
                 setCheckCase0(false);
@@ -706,6 +717,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;
             case 2:
                 setCheckCase0(false);
@@ -718,6 +730,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;
             case 3:
                 setCheckCase0(false);
@@ -730,6 +743,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;
             case 4:
                 setCheckCase0(false);
@@ -742,6 +756,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;   
             case 5:
                 setCheckCase0(false);
@@ -754,6 +769,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;
             case 6:
                 setCheckCase0(false);
@@ -766,6 +782,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;
             case 7:
                 setCheckCase0(false);
@@ -778,6 +795,7 @@ const SignUp = () => {
                 setCheckCase7(true);
                 setCheckCase8(false);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;
             case 8:
                 setCheckCase0(false);
@@ -790,6 +808,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(true);
                 setCheckCase9(false);
+                setCheckCase18(true);
                 break;
             case 9:
                 setCheckCase0(false);
@@ -802,6 +821,7 @@ const SignUp = () => {
                 setCheckCase7(false);
                 setCheckCase8(false);
                 setCheckCase9(true);
+                setCheckCase18(true);
                 break;
             case 10:
                 setCheckCase0(false);
@@ -817,31 +837,54 @@ const SignUp = () => {
                 setCheckCase10(false);
                 setCheckCase11(false);
                 if(emailCertificationCheck){
-                    setCheckCase3(false);
                     if(signUpNickNameCheck){
-                        setCheckCase10(false);
                         if(signUpPhoneNumberCheck){
-                            setCheckCase11(false);
                             if(signUpPwCheckState){
-                                setCheckCase12(false);
                                 if(signUpGoodseul){
-                                    await signUpGoodseulApi(formData);
-                                    navi('/login');
+                                    formData.append("email", SignUp.email);
+                                    formData.append("name", SignUp.name);
+                                    formData.append("nickname", SignUp.nickname);
+                                    formData.append("password", SignUp.password);
+                                    formData.append("phoneNumber", SignUp.phoneNumber);
+                                    formData.append("location", SignUp.location);
+                                    formData.append("birth", SignUp.birth);
+                                    formData.append("goodseulName", SignUpGoodseul.goodseulName);
+                                    formData.append("skill", SignUpGoodseul.skill);
+                                    for (let i = 0; i < files.length; i++) {
+                                        formData.append("uploads", files[i] as File);
+                                        console.log("files[] : " + files[i]);
+                                    }
+                                    try {
+                                        await signUpGoodseulApi(formData);
+                                        setCheckCase18(false);
+                                        navi('/login');
+                                    } catch (error) {
+                                        setCheckCase18(true);
+                                    }
                                 }else{
-                                    await signUpApi(SignUp);
-                                    navi('/login');
+                                    try {
+                                        await signUpApi(SignUp);
+                                        setCheckCase18(false);
+                                        navi('/login');
+                                    } catch (error) {
+                                        setCheckCase18(true);
+                                    }
                                 }
                             }else {
                                 setCheckCase12(true);
+                                setCheckCase18(true);
                             }        
                         }else{
                             setCheckCase11(true);
+                            setCheckCase18(true);
                         }
                     }else{
                         setCheckCase10(true);
+                        setCheckCase18(true);
                     }
                 }else{
                     setCheckCase3(true);
+                    setCheckCase18(true);
                 }
                 return false
             default:
@@ -878,8 +921,12 @@ const SignUp = () => {
 
     const PhoneNumberCheck = async () => {
         try {
-            if(signUpPhoneNumber === ""){
+            if(signUpPhoneNumber === "" ){
                 handleSignUp(6);
+                return
+            }else if(signUpPhoneNumber.length < 10){
+                setCheckCase6(true);
+                setCheckCase11(false);
                 return
             }
             //01011112222
@@ -959,14 +1006,14 @@ const SignUp = () => {
                          )}
                     </div>
                     <div className='signUpPw'>
-                        <div className='signUpPwInputTxt signUpInputTxtStyle01'>*비밀번호{ (checkCase4 || checkCase5) ? <span className='checkInput'>비밀번호를 입력해주세요.</span> : checkCase12 ? <span className='checkInput'>비밀번호가 일치하지 않습니다.</span> : null}</div>
+                        <div className='signUpPwInputTxt signUpInputTxtStyle01'>*비밀번호{ (checkCase4 || checkCase5) ? <span className='checkInput'>비밀번호를 입력해주세요.</span> : checkCase12 ? <span className='checkInput'>비밀번호가 일치하지 않습니다.</span> : checkCase19 ? <span className='checkInput'>영문숫자 조합8자리 이상입니다.</span> : <span className='checkInpu checkPwMsg'>비밀번호가 일치합니다.</span> }</div>
                         <div className='signUpPwInputBodys'>
                             <div className='signUpPwInputBody'>
-                                <input className='signUpPwInput signUpInputStyle01' type={signUpPwShow ? "text": "password"} placeholder='암호' value={signUpPw} onChange={changeSignUpPw}/>
+                                <input className='signUpPwInput signUpInputStyle01' type={signUpPwShow ? "text": "password"} placeholder='암호' value={signUpPw} onChange={changeSignUpPw} maxLength={12}/>
                                 {!signUpPwShow ? <div className='signUpIconState' onClick={isSignUpPwShow} ><img src={hidePwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div> : <div className='signUpIconState' onClick={isSignUpPwShow}><img src={showPwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div>}
                             </div>
                             <div className='signUpPwInputBody'>
-                                <input className='signUpPwInput signUpInputStyle01' type={signUpPwCkShow ? "text": "password"} placeholder='암호 확인' value={signUpPwCk} onChange={changeSignUpPwCk} />
+                                <input className='signUpPwInput signUpInputStyle01' type={signUpPwCkShow ? "text": "password"} placeholder='암호 확인' value={signUpPwCk} onChange={changeSignUpPwCk} maxLength={12}/>
                                 {!signUpPwCkShow ? <div className='signUpIconState' onClick={isSignUpPwCkShow}><img src={hidePwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div> : <div className='signUpIconState' onClick={isSignUpPwCkShow}><img src={showPwIcon} className='signUpSuccessIcon' alt="보이기 아이콘"/></div>}
                                 {signUpPwCheckState ? <div className='signUpIconState' ><img className='signUpPwSuccessIcon' src={successIcon} alt="" /></div> : <div className='signUpIconState' ><img className='signUpPwSuccessIcon' src={errorIcon} alt="" /></div>}
                             </div>
@@ -1063,7 +1110,7 @@ const SignUp = () => {
                         <div className='signCareer'>
                             <div className='signCareerTxtMain signUpInputTxtStyle01'>경력</div>
                             <div className='signCareerTxtSub'>자신의 경력을 작성하고 자료를 첨부해 주세요.<br/>
-                            첨부된 자료는 검토 후 인증 구슬님 자료로 활용됩니다.(10MB 이하 파일만 등록가능합니다.)</div>
+                            첨부된 자료는 검토 후 인증 구슬님 자료로 활용됩니다.<br/>(10MB 이하 파일만 등록가능합니다.)</div>
                             <div className='signCareerInputBody'>
                                 <div className='signCareerInput'>
                                     <input className='signCareerInputFileName' readOnly value={mainFileName}/>
@@ -1078,6 +1125,7 @@ const SignUp = () => {
                         </div>
                     </div> )}
                     </div>
+                    {checkCase18 && <div className='checkInput checkInfo'>입력한 회원정보를 다시 확인해주세요.</div>}
                 <button className='signUpSubmitButton' type='submit'>HAVE A ‘굿' DAY</button>
             </div>
         </form>
