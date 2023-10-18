@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './component/Header/Header';
 import Main from './pages/Main/Main';
-import SubHeader from './component/Header/SubHeader';
 import { PlayMain, PlayRouter } from './pages/plays';
 import Login from './component/Login/Login';
 import SignUp from './component/SignUp/SignUp';
@@ -40,7 +39,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {window.location.pathname === '/' ? <Header /> : <SubHeader />}
+      <Header/>
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/play' element={<PlayMain />} />
