@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Shoplist } from '../../component/plays';
-import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { axiosPunch } from '../../apis/JWT/JWTConfig';
-import { decodeToken } from '../../hooks/JWT/JWTType';
 import { useRecoilValue } from 'recoil';
 import { isLoginState } from '../../recoil/JWT/JWTAtom';
 
@@ -14,7 +12,7 @@ const PlayShop = () => {
         if (isLogin)
             axiosPunch({
                 method: 'get',
-                url: `${serverUrl}/api/lv1/point/total?member_idx=${(JWTDecoding() as decodeToken).idx}`,
+                url: `${serverUrl}/api/lv1/point/total`,
                 headers: { "Content-Type": 'application/json' }
             })
                 .then(res => { setPoint(res.data) })
