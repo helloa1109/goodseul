@@ -14,9 +14,9 @@ export const signUpUserCheck = (SignUpCheck: signUpCheck) =>{
         return 4
     }else if(SignUpCheck.signUpPwCk === "") {
         return 5
-    }else if(SignUpCheck.phoneNumber === "") {
+    }else if(SignUpCheck.phoneNumber === "" || SignUpCheck.phoneNumber.length !== 11) {
         return 6
-    }else if(SignUpCheck.birth === "") {
+    }else if(SignUpCheck.birth === "" || SignUpCheck.birth.length !== 8 ) {
         return 7
     }else if(SignUpCheck.location === "") {
         return 8
