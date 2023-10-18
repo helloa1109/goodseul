@@ -52,11 +52,11 @@ const SignUp = () => {
     const [specialtyOption02, setSpecialtyOption02] = useState<boolean>(false);
     const [specialtyOption03, setSpecialtyOption03] = useState<boolean>(false);
     const [specialtyOption04, setSpecialtyOption04] = useState<boolean>(false);
-    const [mainFileValue, setMailFileValue] = useState(null);
-    const [subFileValue01, setSubFileValue01] = useState(null);
-    const [subFileValue02, setSubFileValue02] = useState(null);
-    const [subFileValue03, setSubFileValue03] = useState(null);
-    const [subFileValue04, setSubFileValue04] = useState(null);
+    const [mainFileValue, setMailFileValue] = useState<File>();
+    const [subFileValue01, setSubFileValue01] = useState<File>();
+    const [subFileValue02, setSubFileValue02] = useState<File>();
+    const [subFileValue03, setSubFileValue03] = useState<File>();
+    const [subFileValue04, setSubFileValue04] = useState<File>();
     const [mainFileName, setMainFileName] = useState<string>("파일명");
     const [subFileName01, setSubFileName01] = useState<string>("파일명");
     const [subFileName02, setSubFileName02] = useState<string>("파일명");
@@ -81,13 +81,18 @@ const SignUp = () => {
     const [checkCase16, setCheckCase16] = useState<boolean>(false);
     const [checkCase17, setCheckCase17] = useState<boolean>(false);
     
+    const formData = new FormData();
+    
+
     const skillArray = [signSpecialty, signSpecialty01, signSpecialty02, signSpecialty03, signSpecialty04];
     const filteredSkillArray = skillArray.filter(skill => skill !== "");
     const skills = filteredSkillArray.join(',');
 
-    const fileValues = [mainFileValue, subFileValue01, subFileValue02, subFileValue03, subFileValue04];
-    const filteredValues = fileValues.filter(value => value !== null);
-    const careerFiles = filteredValues.join(",");
+    const fileValues: (File | undefined)[] = [mainFileValue, subFileValue01, subFileValue02, subFileValue03, subFileValue04];
+    const files: (File | undefined)[] = fileValues.filter(value => value !== undefined);
+
+
+    
     const maxFileSize =  10 * 1024 * 1024;
 
 
@@ -186,12 +191,8 @@ const SignUp = () => {
         };
 
     const SignUpGoodseul:signUpGoodseul = {
-        "goodseulDto": {
-          "career": careerFiles,
           "goodseulName": goodseulNick,
           "skill": skills
-        },
-        "userDto": SignUp
     };
 
     const SignUpCheck:signUpCheck = {
@@ -207,7 +208,13 @@ const SignUp = () => {
             "signUpGoodseul":signUpGoodseul,
             "goodseulNick":goodseulNick
     };
-    
+
+
+    formData.append("userDto",JSON.stringify(SignUp));
+    formData.append("goodseulDto",JSON.stringify(SignUpGoodseul));
+    for (let i = 0; i < files.length; i++) {
+        formData.append("uploads", files[i]);
+      }
 
     const handleEmailCertification = async() => {
         try {
@@ -262,7 +269,7 @@ const SignUp = () => {
         setGoodseulNick("");
         setSignSpecialty("");
         setMainFileName("파일명");
-        setMailFileValue(null);
+        setMailFileValue(undefined);
         setSignGoodseulSpecialty(0);
         setSignGoodseulCareer(0);
         DeleteSpecialtyOptionButton();
@@ -310,22 +317,22 @@ const SignUp = () => {
         switch(signGoodseulCareer){
             case 1:
                 setSubFileName01("파일이름");
-                setSubFileValue01(null);
+                setSubFileValue01(undefined);
                 break;
                 
             case 2:
                 setSubFileName02("파일이름");
-                setSubFileValue02(null);
+                setSubFileValue02(undefined);
                  break;
 
             case 3:
                 setSubFileName03("파일이름");
-                setSubFileValue03(null);
+                setSubFileValue03(undefined);
                 break;
 
             default:
                 setSubFileName04("파일이름");
-                setSubFileValue04(null);
+                setSubFileValue04(undefined);
                 break;
         }
     }
@@ -568,7 +575,7 @@ const SignUp = () => {
         }else{
             alert("파일은 사이즈가 너무 큽니다.");
             setMainFileName("");
-            setMailFileValue(null);  
+            setMailFileValue(undefined);  
         }
     }
 
@@ -579,7 +586,7 @@ const SignUp = () => {
         }else{
             alert("파일은 사이즈가 너무 큽니다.");
             setSubFileName01("");
-            setSubFileValue01(null); 
+            setSubFileValue01(undefined); 
         }
     }
 
@@ -590,7 +597,7 @@ const SignUp = () => {
         }else{
             alert("파일은 사이즈가 너무 큽니다.");
             setSubFileName02("");
-            setSubFileValue02(null); 
+            setSubFileValue02(undefined); 
         }
     }
 
@@ -601,7 +608,7 @@ const SignUp = () => {
         }else{
             alert("파일은 사이즈가 너무 큽니다.");
             setSubFileName03("");
-            setSubFileValue03(null); 
+            setSubFileValue03(undefined); 
         }       
     }
 
@@ -612,7 +619,7 @@ const SignUp = () => {
         }else{
             alert("파일은 사이즈가 너무 큽니다.");
             setSubFileName04("");
-            setSubFileValue04(null);
+            setSubFileValue04(undefined);
         }
         
     }
@@ -676,7 +683,7 @@ const SignUp = () => {
         };
     }, [regionOption, specialtyOption, specialtyOption01, specialtyOption02, specialtyOption03, specialtyOption04]);
 
-    const handleSignUp = (idx:number) => {
+    const handleSignUp = async (idx:number) => {
         switch(idx){
             case 0:
                 setCheckCase0(true);
@@ -820,10 +827,10 @@ const SignUp = () => {
                             if(signUpPwCheckState){
                                 setCheckCase12(false);
                                 if(signUpGoodseul){
-                                    signUpGoodseulApi(SignUpGoodseul);
+                                    await signUpGoodseulApi(formData);
                                     navi('/login');
                                 }else{
-                                    signUpApi(SignUp);
+                                    await signUpApi(SignUp);
                                     navi('/login');
                                 }
                             }else {
