@@ -57,4 +57,16 @@
 }
 .purpose_list{
     margin-top: 25px;
+    width: 335px;
+    height: 170px;
+    background-color: rgba($color: $검은색, $alpha: 0.3);
+    border-radius: 15px;
+}
+.purpose_pic{
+    width: 335px;
+    height: 170px;
+    position: absolute;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: -99;
 }

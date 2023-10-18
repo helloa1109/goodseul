@@ -1,7 +1,6 @@
-import React from 'react'
-import SearchBar from "../../component/SearchBar/SearchBar"
 import "../../style/purpose/purpose.scss"
 import PurposeTags from '../../component/Purpose/PurposeTags'
+import PurposeList from '../../component/Purpose/PurposeList'
 
 const Purpose = () => {
   return (
@@ -12,9 +11,8 @@ const Purpose = () => {
           <PurposeTags/>
         </div>
       </div>
-      <div className='purpose_listwrap'>
-       <span className='purpose_vsmallheavytxt purpose_burgundy'>검색결과</span>
-        
+      <div>
+        <PurposeList/>
       </div>
     </div>
   )
