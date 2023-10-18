@@ -10,8 +10,6 @@ const HeaderMenu = () => {
     const [isOpen,setIsOpen] = useRecoilState(HeaderMenuModalAtom);
     const [isLogin,setIsLogin] = useRecoilState(isLoginState);
 
-    console.log("이즈 로그인?", isLogin);
-
     const navigate = useNavigate();
 
     const handleLogin = () => {

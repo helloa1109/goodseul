@@ -12,6 +12,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ClearCanvas, PlayState } from '../../apis/play/CanvasUtils';
 import { RandomBoolean, RandomNumber } from '../../apis/RandomUtils';
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '../../recoil/JWT/JWTAtom';
+import { useNavigate } from 'react-router-dom';
+import PlayRanking from './PlayRanking';
+import { axiosPunch } from '../../apis/JWT/JWTConfig';
 
 type bgImg = {
     src: string,    //배경 경로
@@ -29,7 +34,7 @@ type bgImg = {
 const PlayRun = () => {
     //dopeboyzclub.ddns.net.7733
     //192.168.0.102.8000
-    const imgPreifx = 'http://192.168.0.102:8000/testimg/';
+    const imgPreifx = 'http://dopeboyzclub.ddns.net:7733/testimg/';
     const cvRef = useRef<HTMLCanvasElement | null>(null);
     const [player, setPlayer] = useState<Player | null>(null);
     const [game, setGame] = useState<Game>();
@@ -37,6 +42,7 @@ const PlayRun = () => {
     const [platform, setPlatform] = useState<Platform>();
     const [loadingState, setLoadingState] = useState(false);
     const [objs, setObjs] = useState<Objects>();
+    const gameID: number = 2;
     const imgs = [
         "run_bg.png",   //배경 그라디언트
         "run_l1a.png",  //배경 구름
@@ -71,9 +77,14 @@ const PlayRun = () => {
             speedx: -0.2,
         },
     ];
-    // useEffect(() => {
-    //     // console.log('blank');
-    // }, []);
+    const navi = useNavigate();
+    const isLogin = useRecoilValue(isLoginState);
+    useEffect(() => {
+        if (!isLogin) {
+            alert('로그인 후 이용 가능합니다.');
+            navi("/Login");
+        }
+    }, []);
 
     useEffect(() => {
         //캔버스가 할당되면 이미지를 로드
@@ -232,7 +243,8 @@ const PlayRun = () => {
                                 (pos.y >= cvPos.h / 2 + 32 && pos.y <= cvPos.h / 2 + 32 + game.btnRanking.height)
                             ) {
                                 //랭킹 버튼 클릭
-                                game.screenState = screenState.RANKING;
+                                // game.screenState = screenState.RANKING;
+                                handleOpen();
                             }
                             requestAnimationFrame(animate);
                             break;
@@ -249,6 +261,11 @@ const PlayRun = () => {
                             break;
                         case screenState.RESULT:
                             // game.init();
+                            if (player?.lastInput === 'ArrowUp Up') {
+                                player.lastInput = '';
+                                requestAnimationFrame(animate);
+                                break;
+                            }
                             game.screenState = screenState.MAIN;
                             requestAnimationFrame(animate);
                             break;
@@ -261,45 +278,45 @@ const PlayRun = () => {
             });
         }
 
-        window.addEventListener("keydown", (e) => {
-            switch (e.key) {
-                case "r":
-                    //화면 회전
-                    //완성은 모바일게임 '놈'처럼 화면을 돌려가야 함.
-                    if (player)
-                        player.rotate();
-                    // let cv = cvRef.current;
-                    // if (cv) {
+        // window.addEventListener("keydown", (e) => {
+        //     switch (e.key) {
+        //         case "r":
+        //             //화면 회전
+        //             //완성은 모바일게임 '놈'처럼 화면을 돌려가야 함.
+        //             if (player)
+        //                 player.rotate();
+        //             // let cv = cvRef.current;
+        //             // if (cv) {
 
-                    //     rotateState++;
-                    //     cv.style.animation = `canvasRotate${rotateState % 4} 1.5s ease-in-out both`;
+        //             //     rotateState++;
+        //             //     cv.style.animation = `canvasRotate${rotateState % 4} 1.5s ease-in-out both`;
 
-                    //     cv.width = rotateState % 2 === 1 ? 590 : 345;
-                    //     cv.height = rotateState % 2 === 1 ? 345 : 590;
+        //             //     cv.width = rotateState % 2 === 1 ? 590 : 345;
+        //             //     cv.height = rotateState % 2 === 1 ? 345 : 590;
 
-                    //     if (rotateState % 4 === 0) {
-                    //         rotateState = 0;
-                    //     }
+        //             //     if (rotateState % 4 === 0) {
+        //             //         rotateState = 0;
+        //             //     }
 
-                    //     bgs.forEach(v => {
-                    //         if (cv) {
-                    //             v.y = cv.height - v.imgHeight - 60;
-                    //         }
-                    //     });
+        //             //     bgs.forEach(v => {
+        //             //         if (cv) {
+        //             //             v.y = cv.height - v.imgHeight - 60;
+        //             //         }
+        //             //     });
 
-                    //     if (platform) {
-                    //         platform.height = cv.height - 35;
-                    //     }
-                    //     if (objs) {
-                    //         objs.minHeight = cv.height - 35;
-                    //     }
+        //             //     if (platform) {
+        //             //         platform.height = cv.height - 35;
+        //             //     }
+        //             //     if (objs) {
+        //             //         objs.minHeight = cv.height - 35;
+        //             //     }
 
-                    // }
-                    break;
-                default:
-                    break;
-            }
-        });
+        //             // }
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // });
     }
 
 
@@ -347,10 +364,21 @@ const PlayRun = () => {
         }
     }
 
+    const handleOpen = () => {
+        let r: HTMLElement = document.getElementsByClassName('gameRanking')[0] as HTMLElement;
+        r.style.transform = 'translate(0%,0px)';
+        r = cvRef.current as HTMLElement;
+        r.style.transform = 'translate(-120%,0px)';
+        setRankingData(true);
+    }
 
+    const [rankingData, setRankingData] = useState(false);
     return (
         <div style={{ alignItems: 'center', height: '600px' }}>
-            <canvas ref={cvRef} id='gameCanvas' />
+            <canvas ref={cvRef} id='gameCanvas' style={{
+                transition: 'transform 0.2s ease'
+            }} />
+            <PlayRanking gameID={gameID} rankingData={rankingData} gameItem={cvRef} />
         </div>
     );
 };
@@ -383,7 +411,7 @@ class Game {
     constructor(ctx: HTMLCanvasElement) {
         this.cv = ctx;
 
-        let imgPath = 'http://192.168.0.102:8000/testimg/';
+        let imgPath = 'http://dopeboyzclub.ddns.net:7733/testimg/';
 
         let btnStart = new Image();
         let btnRanking = new Image();
@@ -407,6 +435,22 @@ class Game {
             score: 0,
         }
         this.scoreMultiflier = 1;
+    }
+    submitScore = async (data: { gameIdx: string, score: number, orderBy: number }) => {
+        const serverUrl = "http://dopeboyzclub.ddns.net:7780";
+
+        return await axiosPunch({
+            method: 'post',
+            url: `${serverUrl}/api/lv1/rank`,
+            data: data
+        })
+            .then(r => r.status === 200 ? true : false)
+            .catch(r => {
+                console.error(r);
+                alert('랭킹 등록을 실패하였습니다.');
+                return false;
+            });
+
     }
 
     setGameOverScreen(src: string) {
@@ -462,15 +506,21 @@ class Game {
             ctx.fillText(
                 "조작법 : 점프 -> 화면 터치",
                 this.cv.width / 2,
-                this.cv.height - 50
+                this.cv.height - 75
             );
 
             ctx.font = `20px "Noto Sans KR"`;
             // ctx.fillStyle = 'red';
             ctx.fillText(
+                "스마트폰 '자동회전' 옵션을 꺼주세요.",
+                this.cv.width / 2,
+                this.cv.height - 40
+            );
+
+            ctx.fillText(
                 "터치하여 시작합니다.",
                 this.cv.width / 2,
-                this.cv.height - 20
+                this.cv.height - 15
             );
             // ctx.drawImage
         }
@@ -755,7 +805,7 @@ class Player {
             if (this.currentState.state === 'JumpUp' || this.currentState.state === 'JumpDown') {
                 //점프상태면 회전시킴
                 //점프 높이에 따라 추가점수 부여
-                this.game.gameState.score += Math.floor((this.cv.height - this.height - 35-this.y) * this.game.scoreMultiflier);
+                this.game.gameState.score += Math.floor((this.cv.height - this.height - 35 - this.y) * this.game.scoreMultiflier);
                 this.rotate();
             } else {
                 //벽에 박으면 아파요..
@@ -824,6 +874,11 @@ class Player {
             this.cv.width = 345;
             this.cv.height = 590;
             this.game.screenState = screenState.RESULT;
+            this.game.submitScore({
+                gameIdx: "2",
+                score: Number(this.game.gameState.score),
+                orderBy: 0
+            });
         }
 
     }
@@ -944,7 +999,7 @@ class Objects {
         this.createNewObjs();
         this.minHeight = this.cv.height - 35;
 
-        const imgPreifx = 'http://192.168.0.102:8000/testimg/';
+        const imgPreifx = 'http://dopeboyzclub.ddns.net:7733/testimg/';
 
         let img0 = new Image(24, 24);
         img0.src = `${imgPreifx}run_obj0.png`;
@@ -1180,7 +1235,7 @@ class Platform {
         length: number,
     }[] = [];
     public totalLength = 0;
-    private imgPath = 'http://192.168.0.102:8000/testimg/';
+    private imgPath = 'http://dopeboyzclub.ddns.net:7733/testimg/';
     constructor(
         cv: HTMLCanvasElement,
     ) {
@@ -1252,7 +1307,7 @@ class Platform {
 
         let lastX: number = 0;
         this.platforms.push({ x: lastX, length: 5 });
-        lastX += this.gl.width + this.gc.width * 3 + this.gr.width + this.gap
+        lastX += this.gl.width + this.gc.width * 5 + this.gr.width + this.gap
         for (let i = 0; i < 10; i++) {
             let length = RandomNumber(1, 5);
             let data = { x: lastX, length: length };
@@ -1591,8 +1646,5 @@ class DeathState extends State {
 
     }
 }
-
-
-
 
 export default PlayRun;

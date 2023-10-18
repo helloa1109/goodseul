@@ -12,6 +12,7 @@ export default function App() {
 
 
     const [PRList, SetPRList] = useState<ReviewCData[]>([]);
+    const imgurl = 'http://dopeboyzclub.ddns.net:7733/userprofile/';
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,14 +37,16 @@ export default function App() {
         loop={true}
         slidesPerView={2}
         spaceBetween={5}
-        speed={1000}
-        autoplay={{ delay: 3000, disableOnInteraction: true }}
+        speed={2000}
+        autoplay={{ delay: 5000, disableOnInteraction: true }}
         >
             {
                 PRList.map((item, idx)=>(
                     <SwiperSlide>
                        <div className="review_slide" key={idx}>
-                            {item.goodseulName}
+                            <img className="review_profile" alt="pic" src={imgurl + `${item.uprofile}`}/>
+                            <div className="review_name">{item.goodseulName}</div>
+                            <div className="review_content">{item.rcontent}</div>
                         </div>
                     </SwiperSlide>
  
