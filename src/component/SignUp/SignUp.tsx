@@ -212,9 +212,7 @@ const SignUp = () => {
 
     formData.append("userDto",JSON.stringify(SignUp));
     formData.append("goodseulDto",JSON.stringify(SignUpGoodseul));
-    for (let i = 0; i < files.length; i++) {
-        formData.append("uploads", files[i]);
-      }
+
 
     const handleEmailCertification = async() => {
         try {

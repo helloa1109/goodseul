@@ -10,12 +10,8 @@ export type signUp = {
     phoneNumber: string
 }
 export type signUpGoodseul =  {
-    goodseulDto: {
-        career:string | null,
         goodseulName: string,
         skill: string
-    },
-    userDto: signUp
 } 
 
 export type signUpCheck = signUp & {
