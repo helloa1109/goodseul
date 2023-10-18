@@ -5,7 +5,7 @@ import "../../style/play/attendance.scss"
 const Attendance = () => {
     return (
         <div>
-            <h2>누적 출석일 : 0000일</h2>
+            {/* <h2>누적 출석일 : 0000일</h2> */}
             <PlayAttendance />
             <h2>카드를 선택하여 포인트를 획득하세요!</h2>
             <br />

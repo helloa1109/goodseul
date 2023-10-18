@@ -10,14 +10,12 @@ let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 export const tokensRefresh = async (refreshToken:Token) => {
     axios({
         method:'get',
-        url: "http://dopeboyzclub.ddns.net:7780/api/jwt-test",
+        url: "http://dopeboyzclub.ddns.net:7780/api/lv1/check",
         headers: { 'Authorization-refresh': `Bearer ${refreshToken}`}
     }).then(res => {
         if(res?.status === 200 ) {
             const newAccessToken:string = res.headers['authorization'];
             const newRefreshToken:string = res.headers['authorization-refresh'];
-            // console.log("newAccessToken" + newAccessToken);
-            // console.log("newRefreshToken" + newRefreshToken);
             localStorage.setItem('accessToken', newAccessToken);
             localStorage.setItem('refreshToken', newRefreshToken);
         }
@@ -34,11 +32,9 @@ axiosPunch.interceptors.request.use(
     async (config) => {
         const accessToken:Token = localStorage.getItem('accessToken');
         const refreshToken:Token = localStorage.getItem('refreshToken');
-        console.log(1);
         //refreshToken이 존재하고 refreshToken의 만료시간이 지났거나 refreshToken이 없으면
         if(!refreshToken || !tokenExpCheck(refreshToken)){
             const navi = useNavigate();
-            console.log(2);
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             alert("로그아웃 되었습니다.");
@@ -46,11 +42,9 @@ axiosPunch.interceptors.request.use(
             window.location.reload();
         //accessToken 이 만료되고 refreshToken 이 존재할때
         } else if((!tokenExpCheck(accessToken) && refreshToken)){
-            console.log(3);
             const accessToken:Token = await tokensRefresh(refreshToken);
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }else if(accessToken) {
-            console.log(4);
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
         return config;

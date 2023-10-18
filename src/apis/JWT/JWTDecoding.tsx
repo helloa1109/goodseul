@@ -6,7 +6,6 @@ export const JWTDecoding = () => {
     const accessToken:Token = localStorage.getItem('accessToken');
     if(accessToken && loginState()){
             const TokenDecoding:decodeToken = jwt_decode(accessToken);
-            //console.log("여기다 : " + loginState());
             return TokenDecoding;
     }else {
         localStorage.removeItem('accessToken');
