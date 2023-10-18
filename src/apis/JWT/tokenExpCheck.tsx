@@ -2,9 +2,7 @@ import { Token, decodeToken } from "../../hooks/JWT/JWTType";
 import jwt_decode from "jwt-decode";
 
 export const tokenExpCheck = (token:Token) => {
-    console.log(7);
     if(token === null || !token){
-        console.log(8);
         return false;
     }else{
         const TokenDecoding:decodeToken = jwt_decode(token);

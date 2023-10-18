@@ -244,7 +244,6 @@ const SignUp = () => {
                 setCheckCase16(true);
                 return
             }
-            console.log(emailCertificationNumber);
             if(Number(emailCertificationNumber) === Number(emailCertificationInput)){
                 setCheckCase16(false);
                 setCheckCase17(false);

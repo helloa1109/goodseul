@@ -17,7 +17,7 @@ export const signUpApi = async (SignUp: signUp) => {
   
       // HTTP 상태 코드를 확인하여 성공 여부를 판단하거나 다른 작업 수행
       if (response.status === 200) {
-        alert("일반 회원가입 성공");
+        alert("일반회원가입으로 성공했습니다.");
       } else {
         // 실패한 경우 처리
         console.error("HTTP 오류:", response.status);
@@ -42,7 +42,7 @@ export const signUpApi = async (SignUp: signUp) => {
   
       // HTTP 상태 코드를 확인하여 성공 여부를 판단하거나 다른 작업 수행
       if (response.status === 200) {
-        alert("구슬 회원가입 성공");
+        alert("구슬로 회원가입이 성공했습니다.");
       } else {
         // 실패한 경우 처리
         console.error("HTTP 오류:", response.status);
