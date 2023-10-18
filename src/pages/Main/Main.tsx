@@ -6,8 +6,8 @@ import Purpose from "../../component/Slider/Main/Purpose"
 import Review from "../../component/Slider/Main/Review"
 import Locate from "../../component/Slider/Main/Locate"
 import { useNavigate } from 'react-router-dom'
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronCircleRight, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const Main = () => {
@@ -15,9 +15,10 @@ const Main = () => {
   const heaadingEstimate = () =>{
     navi("/request");
   }
+  const headingLocate = () =>{
+    navi("/Location")
+  }
 
-  
-  
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const key = e.currentTarget.getAttribute('data-key');
     const onair = document.querySelector(".main_onairarrive");
@@ -95,7 +96,7 @@ const Main = () => {
           <div className='main_locate_extxt'>
             <span className='main_lightgray main_smalltxt'>당신이 원하는<br/>
             구슬님과</span>
-            <span className='main_lightgray main_vsmalltxt'>만나러 가기 <img src='' alt='22'/></span>
+            <span className='main_lightgray main_vsmalltxt' onClick={headingLocate}>만나러 가기 <FontAwesomeIcon style={{marginTop:'2px', height:'15px', color:'#8C2323'}} icon={faChevronCircleRight} /></span>
           </div>
           <div className='main_locatepic'>
             <Locate/>
