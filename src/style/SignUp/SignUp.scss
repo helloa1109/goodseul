@@ -13,6 +13,27 @@ input[type="number"] {
     display: none !important;
 }
 
+.loader {
+    width: 23px;
+    height: 23px;
+    border: 3px solid $버건디;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    margin-left: 30px;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
 .checkInput{
     color: red;
     font-size: 12px;
@@ -187,7 +208,14 @@ input[type="number"] {
     font-weight: bold;
     font-size: 15px;
     width: 75px;
-}             
+}
+
+.emailCheckNumberMsg{
+    margin-top: 5px;
+    display: flex;
+    justify-content: right;
+    margin-bottom: -10px;
+}
 
 .signUpPwInputBodys{
     display: flex;
