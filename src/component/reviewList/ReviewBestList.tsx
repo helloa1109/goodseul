@@ -27,13 +27,13 @@ function ReviewBestList() {
       }, []);
 
       const limitedData = rList.slice(0, 2);
-      const imgurl = 'http://dopeboyzclub.ddns.net:7733/images/';
+      const imgurl = 'http://dopeboyzclub.ddns.net:7733/userprofile/';
     return (
         <div className='review_bestList_wrap'>
             {limitedData.map((item, idx) => (
               <div className='review_best' key={idx}> 
                 <div className='review_besttop'>
-                  <img className='review_bestpic' src={imgurl+`${item.goodseulProfile}`} alt="Profile"/>
+                  <img className='review_bestpic' src={imgurl+`${item.uprofile}`} alt="Profile"/>
                   <div className='review_bestcolor'></div>
                 </div>
                 

@@ -154,25 +154,6 @@ const RequestUser1 = () => {
                 {showRegin && (
                     <div className='modalRectangle'>
                         <div className='modalFrame' onClick={handleReigonClick} />
-
-                        {/* <motion.div
-                            drag="y" 
-                            className='bottom-sheet-container'
-                            initial="visible"
-                            variants={{
-                                visible: { y: 0 },
-                                hidden: { y: "100%" }
-                            }}
-                            dragConstraints={{ top: 500 }}
-                            dragElastic={0.2}
-                            onDragEnd={(event, info) => {
-                                const { point } = info;
-                                // 모달의 아래 경계에 도착했을 때
-                                if (point.y >= BOTTOM_SHEET_HEIGHT) {
-                                    setShowRegion(false);
-                                }
-                            }}
-                        > */}
                             <div className='showRegion'>
                                 <ul>
                                     <li className='CategoryFirst'>
