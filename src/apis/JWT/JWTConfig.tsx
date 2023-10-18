@@ -10,7 +10,7 @@ let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 export const tokensRefresh = async (refreshToken:Token) => {
     axios({
         method:'get',
-        url: "http://dopeboyzclub.ddns.net:7780/api/jwt-test",
+        url: "http://dopeboyzclub.ddns.net:7780/api/lv1/check",
         headers: { 'Authorization-refresh': `Bearer ${refreshToken}`}
     }).then(res => {
         if(res?.status === 200 ) {
