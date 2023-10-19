@@ -31,8 +31,32 @@ function ReviewPremiumList() {
             {rList.map((item, idx) => (
               <div className='review_premium' key={idx}>
                 <img className='review_prepic' alt='pre' src={imgurl+`${item.uprofile}`}/>
-                <div className='review_precon'>{item.rsubject}</div>
-                <div className='review_prename'>{item.unick}</div>
+                <div className='review_pretop'>
+                  <div className='review_titlewrap'>
+                    <div className='review_presubject review_vsmalltxt'>{item.rsubject}</div>
+                    <div className='review_prename review_smalltxt'>{item.unick}</div>
+                  </div>
+                  <div className='review_chkpre'>
+                    <span className='review_pretxt'>Premium</span>
+                  </div>
+                </div>
+                <div className='review_prebot'>
+                  <div className='review_markpush'></div>
+                  <div className='review_mark review_stamp' 
+                      style={{ 
+                        border: item.star === 10 ? "2px solid #8C2323" : 
+                      (item.star >= 7 && item.star < 10) ? "2px solid #2637BF" : 
+                      "2px solid #2FC02C" }}>
+                    <span style={{color: item.star === 10 ? "#8C2323" : 
+                      (item.star >= 7 && item.star < 10) ? "#2637BF" : 
+                      "#2FC02C"}}>
+                    {
+                      item.star === 10 ? "신통해요" : (item.star >= 7 && item.star < 10) ? "절묘해요" : "만족해요"
+                    }
+                    </span>
+                  </div>
+                </div>
+                
               </div>
             ))}
         </div>

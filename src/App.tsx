@@ -32,7 +32,9 @@ import FindPwSection2 from './component/FindUser/FindPwSection2';
 import FindPw3Auth from './component/FindUser/FindPw3Auth';
 import FindPw4 from './component/FindUser/FindPw4';
 import Room from './component/Chat/Room';
+import ReviewForm from './pages/Review/ReviewForm';
 import TestLobby from './component/Chat/TestLobby';
+
 
 function App() {
 
@@ -59,6 +61,7 @@ function App() {
         )}
 
         <Route path='/Review' element={<Review />} />
+        <Route path='/ReviewForm' element={<ReviewForm />} />
         <Route path='/ReviewSearch' element={<ReviewSearch />} />
 
         <Route path='/Purpose' element={<Purpose />} />

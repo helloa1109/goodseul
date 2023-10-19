@@ -1,0 +1,14 @@
+input[type="radio"] {
+    display: none;
+  }
+  
+  &:horver ~ label {
+    // svg 색상은 fill로 관리한다.
+    fill: red;
+  }
+  
+  input:checked ~ label {
+    // svg 색상은 fill로 관리한다.
+    fill: red;
+  }
+  
