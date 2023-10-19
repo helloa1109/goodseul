@@ -1,16 +1,41 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import "../../style/Mypage/MyPageReview.scss";
 import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {MyPageReviewListState} from "../../recoil/MyPage/MyPageReviewListAtom";
+import { formatDate } from 'react-calendar/dist/cjs/shared/dateFormatter';
 
 const MyPageReviewList = () => {
 
-    useEffect(()=>{
-        getMypageReviewList();
-    },[])
+    const MyReviewListValue = useRecoilValue(MyPageReviewListState);
+    const [ReviewList,setReviewList] = useRecoilState(MyPageReviewListState);
 
+    console.log("리뷰 value",MyReviewListValue);
+
+    useEffect (()=>{
+        const data = async () => {
+            try {
+                const res = await getMypageReviewList();
+                if(res){
+                  setReviewList(res.data.reviews);
+                } 
+
+                console.log("콘솔로res",res);
+              } catch (error){
+                console.error("reviewonclic에러", error);
+              };
+        }; data();
+
+    })
+
+
+
+      
   return (
     <div className='MyPageReview'>
-            <div className='MyPageReviewSectionBox'>
+        {MyReviewListValue.map((reviewlist, idx)=> 
+
+            <div key={idx} className='MyPageReviewSectionBox'>
 
                 <div className='MyPageReviewTopSection'>
                     <div className='MyPageReviewTopSectionOne'>
@@ -19,35 +44,35 @@ const MyPageReviewList = () => {
                     </div>
                     <div className='MyPageReviewTopSectionTwo'>
                         <div className='MyPageReviewTopSectionTwoTop'>
-                            경철 보살
+                            {reviewlist.goodseulName}
                         </div>
                         <div className='MyPageReviewTopSectionTwoMid'>
-                            저희 초롱이 49제관련 문의드립니다.
+                            {reviewlist.rsubject}
                         </div>
                         <div className='MyPageReviewTopSectionTwoBottom'>
-                            별 별 별 별 별
+                            {reviewlist.likeCount}
                         </div>
                     </div>
                     <div className='MyPageReviewTopSectionThree'>
                         <div className='MyPageReviewTopSectionThreeTop'>
-                            2023.10.16
+                        {reviewlist.rcreateDate.split('T')[0]}
                         </div>
                         <div className='MyPageReviewTopSectionThreeBottom'>
-                            경기도 남양주시
+                            {reviewlist.rtype} / {reviewlist.skill}
                         </div>
                     </div>
                 </div>
                 <div className='MyPageReviewBottomSection'>
                     <div className='MyPageReviewBottomSectionTextBox'>
                         <div className='MyPageReviewBottomSectionText'>
-                                야야
+                                {reviewlist.rcontent}
                         </div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-  )
-}
+            </div> 
+            )};    
+               </div>
+  );
+};
 
 export default MyPageReviewList
