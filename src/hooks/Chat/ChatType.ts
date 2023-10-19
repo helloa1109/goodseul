@@ -17,10 +17,19 @@ export interface goodseulDto {
         year: number;
       };
     skill: string;
+    userDto : userDto;
+}
+
+interface userDto {
+    idx : number;
+    goodseulName : string;
+    skill : string;
+    career : string;
+
 }
 
 export interface Message{
-    sender: string;
+    sender: number;
     message: string;
     receiver: string;
 }

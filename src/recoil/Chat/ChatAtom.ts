@@ -1,5 +1,11 @@
-import { atom } from 'recoil';
+import { atom , selector} from 'recoil';
 import { Message, goodseulDto } from '../../hooks/Chat/ChatType';
+
+import * as StompJS from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+
+const ws = new SockJS("http://dopeboyzclub.ddns.net:7780/ws");
+const chatClient = StompJS.Stomp.over(ws);
 
 // export const connect = (onConnectCallback:any, onErrorCallback:any) => {
 //     ws.disconnect();
@@ -35,3 +41,6 @@ export const getGoodSeulInfoAtom = atom<goodseulDto[]>({
     key: 'getGoodSeulInfoAtom',
     default: [],
 });
+
+// 테스트
+
