@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ShopItem from './ShopItem';
 import '../../style/play/shop.scss';
 import { axiosPunch } from '../../apis/JWT/JWTConfig';
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '../../recoil/JWT/JWTAtom';
 type Coupon = {
     buyable: string
     cpDescription: string
@@ -18,6 +20,7 @@ type Coupon = {
 const Shoplist = () => {
     const serverUrl = 'http://dopeboyzclub.ddns.net:7780';
     const [coupons, setCoupons] = useState<Coupon[]>();
+    const isLogin = useRecoilValue(isLoginState);
     const getBuyableCoupons = async () => {
         let response = (await axiosPunch({
             method: 'get',
@@ -27,6 +30,7 @@ const Shoplist = () => {
     };
 
     useEffect(() => {
+        if(isLogin)
         getBuyableCoupons();
     }, []);
 
