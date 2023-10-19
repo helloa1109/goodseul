@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PlayBanner from './PlayBanner';
-import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 
 
 
 const Playlist = () => {
-    useEffect(()=>{
-        // console.log(JWTDecoding());
-        if(!JWTDecoding()){
-            
-        }
-    },[])
     return (
         <ul>
             <PlayBanner dest='shop' src="http://dopeboyzclub.ddns.net:7733/testimg/cb.png"

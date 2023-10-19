@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './component/Header/Header';
@@ -33,6 +33,8 @@ import FindPw3Auth from './component/FindUser/FindPw3Auth';
 import FindPw4 from './component/FindUser/FindPw4';
 import Room from './component/Chat/Room';
 import ReviewForm from './pages/Review/ReviewForm';
+import TestLobby from './component/Chat/TestLobby';
+
 
 function App() {
 
@@ -82,7 +84,8 @@ function App() {
         <Route path='/MyPageCoupon' element={<MyPageCoupon />} />
 
         <Route path='/room/:roomId' element={<Room/>}/>
-
+        
+        <Route path='/test' element={<TestLobby/>}/>
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />

@@ -13,6 +13,7 @@ input[type="number"] {
     display: none !important;
 }
 
+
 .loader {
     width: 23px;
     height: 23px;
@@ -34,8 +35,21 @@ input[type="number"] {
     }
     } 
 
+.checkInfo{
+    font-size: 15px !important;
+    font-weight: bold;
+    margin-top: 28px;
+    margin-bottom: -20px;
+}
+
 .checkInput{
     color: red;
+    font-size: 12px;
+}
+
+.checkPwMsg{
+    color: 	#3CB371;
+    font-weight: bold;
     font-size: 12px;
 }
 
@@ -425,7 +439,7 @@ input[type="number"] {
     font-size: 10px;
     text-align: left;
     width: 225px;
-    margin-right: 10px;
+    margin-right: 0px;
 }
 
 .signCareerInputBody{
@@ -507,7 +521,7 @@ input[type="number"] {
     border-radius: 15px;
     border: none;
     margin-bottom: 40px;
-    margin-top: 28px;
+    margin-top: 20px;
 }
 
 @keyframes bottom-sheet-up {
