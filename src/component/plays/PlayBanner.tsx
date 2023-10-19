@@ -19,7 +19,7 @@ const PlayBanner = ({ dest, src, str, str2, order }: csProps) => {
             navi(`./${dest}`);
         else {
             alert('로그인해야 이용 가능합니다.');
-            navi(`/Login?returnPath=${dest}`)
+            navi(`/Login?returnPath=/play/${dest}`)
         }
     }
 
