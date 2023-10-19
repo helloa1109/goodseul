@@ -23,17 +23,24 @@ function SearchBar() {
     }
 
     const handleSearch = () => {
-        goSearch(searchTerm)
-        .then(res=>{
-            if(currentPage.pathname === "/Review"){
-                setSearchResult(res.data.reviews);
-                nav("/ReviewSearch");
-               
-            }else{
-                setSearchResult(res.data.reviews);
-            }
-        })
+        if(!(searchTerm === '')){
+
+            goSearch(searchTerm)
+            .then(res=>{
+                if(currentPage.pathname === "/Review"){
+                    setSearchResult(res.data.reviews);
+                    nav("/ReviewSearch");
+                   
+                }else{
+                    setSearchResult(res.data.reviews);
+                }
+            })
+        }else{
+            alert("검색어를 입력해주세요");
+        }
         
+        
+        console.log(searchTerm);
         setSearchTerm('');
     };
 

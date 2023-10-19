@@ -24,13 +24,13 @@ function ReviewPremiumList() {
     
         fetchData();
       }, []);
-      const imgurl = 'http://dopeboyzclub.ddns.net:7733/images/';
+      const imgurl = 'http://dopeboyzclub.ddns.net:7733/userprofile/';
 
     return (
         <div className='review_premiumList_wrap' >
             {rList.map((item, idx) => (
               <div className='review_premium' key={idx}>
-                <img className='review_prepic' alt='pre' src={imgurl+`${item.goodseulProfile}`}/>
+                <img className='review_prepic' alt='pre' src={imgurl+`${item.uprofile}`}/>
                 <div className='review_precon'>{item.rsubject}</div>
                 <div className='review_prename'>{item.unick}</div>
               </div>

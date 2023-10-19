@@ -9,6 +9,10 @@ export type signUp = {
     password: string,
     phoneNumber: string
 }
+export type signUpGoodseul =  {
+        goodseulName: string,
+        skill: string
+} 
 
 export type signUpCheck = signUp & {
     emailCertificationCheck: boolean,
@@ -16,3 +20,4 @@ export type signUpCheck = signUp & {
     signUpGoodseul: boolean,
     goodseulNick: string
 }
+
