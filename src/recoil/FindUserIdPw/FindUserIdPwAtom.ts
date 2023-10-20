@@ -10,6 +10,27 @@ export const isPathTrueAtom = atom<boolean>({
     default: true,
 })
 
+export const resIdAtom = atom<string>({
+    key: 'resId',
+    default: ""
+})
+
+export const resPwAtom = atom<string>({
+    key: 'resPw',
+    default: ""
+})
+
+export const resEmailAtom = atom<string>({
+    key: 'findEmail',
+    default: ""
+})
+
+
+export const resNumberAtom = atom<string>({
+    key: 'resNumber',
+    default: ""
+})
+
 export const ShowChecktPw = atom<boolean>({
     key: 'ShowChecktPw',
     default : false,

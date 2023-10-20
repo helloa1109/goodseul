@@ -14,7 +14,7 @@ import RequestListPages from './pages/RequestList/RequestPages';
 import OnAir from './pages/OnAir/OnAir';
 import GuseulDetail from './pages/GuseulDetail/GuseulDetail';
 import Community from './pages/Community/Community';
-import CommunityDetail from './pages/Community/ComminutyDetail';
+import CommunityDetail from './pages/Community/CommunityDetail';
 import CommunityForm from './pages/Community/CommunityForm';
 import CommunityList from './pages/Community/CommunityList';
 import ReviewSearch from './pages/Review/ReviewSearch';

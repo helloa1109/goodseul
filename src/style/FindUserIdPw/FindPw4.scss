@@ -28,13 +28,18 @@
         flex-direction: column;
          align-items: center;
         justify-content: center;
+        gap: 5px;
     }
     
     .FindPw4InputGroup > span {
         font-size: 15px;
         font-weight: 700;
-        margin-right: 170px;
+        display: flex;
+        align-items: center;
+        gap: 60px;
         margin-bottom: 5px;
+        width: 272px;
+        justify-content: space-between;
     }
 
     .FindPw4InputGroup > .InputWithIcon > .FindPw4Input{
@@ -58,7 +63,7 @@
         position: absolute; 
         right: 70px;
         top: 30%;
-        transform: translateY(-50%);
+        transform: translateY(-25%);
         cursor: pointer;
         width: 15px;
         height: 15px;
@@ -70,14 +75,11 @@
         position: absolute;
         right: 70px; 
         top: 37%;
-        transform: translateY(-50%);
+        transform: translateY(140%);
         margin: auto;
         cursor: pointer;
     }
 
-    .FindPw4CheckIcon1.success {
-        animation: successAnimation 1s ease-in-out; /* 애니메이션 지속 시간 및 타이밍 함수 설정 */
-    }
     
    
 
@@ -88,7 +90,7 @@
         position: absolute;
         right: 90px; 
         top: 37%;
-        transform: translateY(-50%);
+        transform: translateY(140%);
         margin: auto;
     }
 
@@ -96,7 +98,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 405px;
+        margin-top: 340px;
     }
 
     .FindPw4Footer > .FindPw4Btn {
@@ -109,6 +111,12 @@
         font-weight: 700;
         font-size: 15px;
     }
+}
+
+.checkFindPwMsg{
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
 @keyframes successAnimation {

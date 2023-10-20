@@ -26,7 +26,3 @@ export const signUpUserCheck = (SignUpCheck: signUpCheck) =>{
         return 10
     }
 }
-
-export const signUpGoodseulCheck = () =>{
-
-}

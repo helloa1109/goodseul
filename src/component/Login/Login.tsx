@@ -5,8 +5,6 @@ import { isLoginState } from '../../recoil/JWT/JWTAtom';
 import { LoginApi } from '../../apis/Login/LoginApi';
 import { login } from '../../hooks/Login/LoginTypes';
 import { useNavigate } from 'react-router-dom';
-import { axiosPunch } from '../../apis/JWT/JWTConfig';
-import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { JWTHandleError } from '../../apis/JWT/JWTHandleError';
 import kakaoLoginIcon from "../../image/Login/kakaoLoginIcon.png";
 import googleLoginIcon from "../../image/Login/googleLoginIcon.png";
@@ -60,6 +58,9 @@ const Login:React.FC = () => {
             setLoginPw("");
         }
     }; 
+    const findIdPw = () =>{
+        navi("/findidpw");
+    }
 
   return (
     <div className='loginPage'>
@@ -82,7 +83,7 @@ const Login:React.FC = () => {
         </div>
 
         <div className='lgoinSubBody'>
-            <span className='IdPwFind'>아이디/비밀번호 찾기</span>&nbsp;|&nbsp;
+            <span className='IdPwFind' onClick={findIdPw}>아이디/비밀번호 찾기</span>&nbsp;|&nbsp;
             <span className='signUpButton' onClick={naviSignUp}>회원가입</span>
         </div>
         <button className='loginButton' onClick={handleLogin}>

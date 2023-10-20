@@ -96,7 +96,7 @@ const SignUp = () => {
     
     const maxFileSize =  10 * 1024 * 1024;
     const passRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/
-
+    const inputs = document.getElementsByTagName('input');
     const changeSignUpEmail:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSignUpEmail(e.target.value);
         setEmailCertificationCheck(false);
@@ -694,6 +694,7 @@ const SignUp = () => {
     const handleSignUp = async (idx:number) => {
         switch(idx){
             case 0:
+                //이름
                 setCheckCase0(true);
                 setCheckCase1(false);
                 setCheckCase2(false);
@@ -705,8 +706,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[1].focus();
                 break;              
             case 1:
+                //닉네임
                 setCheckCase0(false);
                 setCheckCase1(true);
                 setCheckCase2(false);
@@ -718,8 +721,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[2].focus();
                 break;
             case 2:
+                //이메일
                 setCheckCase0(false);
                 setCheckCase1(false);
                 setCheckCase2(true);
@@ -731,8 +736,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[3].focus();
                 break;
             case 3:
+                //이메일인증
                 setCheckCase0(false);
                 setCheckCase1(false);
                 setCheckCase2(false);
@@ -744,8 +751,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[3].focus();
                 break;
             case 4:
+                //비밀번호
                 setCheckCase0(false);
                 setCheckCase1(false);
                 setCheckCase2(false);
@@ -757,8 +766,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[4].focus();
                 break;   
             case 5:
+                //비밀번호 확인
                 setCheckCase0(false);
                 setCheckCase1(false);
                 setCheckCase2(false);
@@ -770,8 +781,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[5].focus();
                 break;
             case 6:
+                //전화번호
                 setCheckCase0(false);
                 setCheckCase1(false);
                 setCheckCase2(false);
@@ -783,8 +796,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[6].focus();
                 break;
             case 7:
+                //생년월일
                 setCheckCase0(false);
                 setCheckCase1(false);
                 setCheckCase2(false);
@@ -796,8 +811,10 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[7].focus();
                 break;
             case 8:
+                //지역
                 setCheckCase0(false);
                 setCheckCase1(false);
                 setCheckCase2(false);
@@ -809,6 +826,7 @@ const SignUp = () => {
                 setCheckCase8(true);
                 setCheckCase9(false);
                 setCheckCase18(true);
+                inputs[8].focus();
                 break;
             case 9:
                 setCheckCase0(false);
@@ -822,6 +840,7 @@ const SignUp = () => {
                 setCheckCase8(false);
                 setCheckCase9(true);
                 setCheckCase18(true);
+                inputs[9].focus();
                 break;
             case 10:
                 setCheckCase0(false);
@@ -871,18 +890,22 @@ const SignUp = () => {
                                     }
                                 }
                             }else {
+                                inputs[4].focus();
                                 setCheckCase12(true);
                                 setCheckCase18(true);
                             }        
                         }else{
+                            inputs[6].focus();
                             setCheckCase11(true);
                             setCheckCase18(true);
                         }
                     }else{
+                        inputs[2].focus();
                         setCheckCase10(true);
                         setCheckCase18(true);
                     }
                 }else{
+                    inputs[3].focus();
                     setCheckCase3(true);
                     setCheckCase18(true);
                 }
