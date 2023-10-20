@@ -29,14 +29,14 @@ const Review = () => {
         <SearchBar/>
       </div>
       <div className='review_besttxt'>
-          <span className='review_vsamllheavytxt'>베스트리뷰</span>
+          <span className='review_vsamllheavytxt'><span className='review_burgundy'>베스트</span>리뷰</span>
       </div>
               {
                 ReviewBestList()
               }   
       <div className='review_premiumwrap'>
         <div className='review_premium_txtwrap'>
-          <span className='review_vsamllheavytxt'>프리미엄 리뷰</span>
+          <span className='review_vsamllheavytxt'><span className='review_burgundy'>프리미엄</span>리뷰</span>
               {
                 ReviewPremiumList()
               }
