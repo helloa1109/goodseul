@@ -16,6 +16,7 @@ import showPwIcon from "../../image/Mypage/showIcon.png";
 import { nickNameCheck } from '../../apis/SignUp/NickNameCheck';
 import { phoneNumberCheck } from '../../apis/SignUp/PhoneNumberCheck';
 import { useNavigate } from 'react-router-dom';
+import { Box, CircularProgress } from '@mui/material';
 
 const SignUp = () => {
     const navi = useNavigate(); 
@@ -1011,7 +1012,7 @@ const SignUp = () => {
                         <div className='signUpEmailStyle'>
                             <div className='signUpInputBodyStyle01'>
                                 <input className='signUpEmailInput signUpInputStyle01' type="email" disabled={emailCertificationCheck} placeholder='ID로 사용될 이메일 입니다.' value={signUpEmail} onChange={changeSignUpEmail}/>
-                                {emailCertificationCheck ? <div className='signUpIconState' ><img src={successIcon} className='signUpSuccessIcon' alt="성공 아이콘"/></div> : emailCertificationLoding ? <div className='signUpIconState' ><span className="loader"></span></div> : null}
+                                {emailCertificationCheck ? <div className='signUpIconState' ><img src={successIcon} className='signUpSuccessIcon' alt="성공 아이콘"/></div> : emailCertificationLoding ? <div className='signUpIconState' ><CircularProgress className='lodingIcon' color="error" size="small"/></div> : null}
                            </div>
                             { emailCertificationCheck? null : !emailCertificationHiddenState? 
                             (<button className='signUpEmailButton' type='button' onClick={handleEmailCertification}>이메일 인증받기</button>):
