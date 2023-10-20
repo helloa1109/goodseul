@@ -19,9 +19,8 @@ export default function App() {
         effect={'fade'}
         modules={[EffectFade]}
         loop={true}
-        speed={4000}
+        speed={2500}
         autoplay={{ delay: 5000, disableOnInteraction: true }}
-        className="mySwiper"
       >
         <SwiperSlide>
             <div className='locate_slide'>

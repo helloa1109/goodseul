@@ -38,7 +38,7 @@
 
     .FindPwSection2SelectGroup > .FindPwSection2Phone,
     .FindPwSection2SelectGroup > .FindPwSection2Email{
-        border: 1px solid $버건디;
+        border: 1px solid $검은색;
         width: 250px;
         height: 60px;
         border-radius: 15px;
@@ -59,7 +59,7 @@
     }
 
     .FindPwSection2SelectGroup > .FindPwSection2Email{
-        margin-top: 36px;
+        margin-top: 30px;
     }
 
     .FindPwSection2IconGroup{
@@ -67,7 +67,7 @@
         align-items: center;
         justify-content: center;
         background-color: $흰색;
-        border: 1px solid $버건디;
+        border: 1px solid $검은색;
         border-radius: 50px;
         width: 35px;
         height: 35px;
@@ -103,6 +103,21 @@
         font-weight: 800;
         font-size: 15px;
         border-radius: 15px;
-        margin-top: 31px;
+        margin-top: 10px;
     }
+
+    .selectCheck,
+    .selectCheck > .FindPwSection2IconGroup {
+        border: 2.5px solid $버건디 !important;
+        color: $버건디;
+    }
+
+    .checkInput{
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
 }

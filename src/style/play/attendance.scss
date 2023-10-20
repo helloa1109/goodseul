@@ -17,6 +17,16 @@
         font-size: 0rem;
     }
 
+    .eong {
+        width: 60px;
+        height: 84px;
+        background-image: url('http://dopeboyzclub.ddns.net:7733/testimg/cb.png');
+        border-radius: 5px;
+        background-size: contain;
+        // transition: transform 0.1s ease-in;
+        box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
+        font-weight: bold;
+    }
     .opened {
         width: 60px;
         height: 84px;
@@ -25,26 +35,18 @@
         align-items: center;
         border-radius: 5px;
         background-size: contain;
-        transition: transform 0.1s ease-in;
+        // transition: transform 0.1s ease-in;
         box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
         font-weight: bold;
         background-color: transparent;
         background-image: url('http://dopeboyzclub.ddns.net:7733/testimg/cf.png');
-        transform: rotateY(1440deg) scale(1.0);
+        // transform: rotateY(1440deg) scale(1.0);
         color: black;
         font-size: 2rem;
         filter: saturate(0);
-    }
-
-    .eong {
-        width: 60px;
-        height: 84px;
-        background-image: url('http://dopeboyzclub.ddns.net:7733/testimg/cb.png');
-        border-radius: 5px;
-        background-size: contain;
-        transition: transform 0.1s ease-in;
-        box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
-        font-weight: bold;
+        background-color: transparent;
+        visibility: initial !important;
+        animation: none !important;
     }
 
     @keyframes flip-vertical-fwd {

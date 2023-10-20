@@ -4,7 +4,6 @@ import PlayBanner from './PlayBanner';
 
 
 const Playlist = () => {
-    
     return (
         <ul>
             <PlayBanner dest='shop' src="http://dopeboyzclub.ddns.net:7733/testimg/cb.png"

@@ -28,6 +28,10 @@
     font-size: 15px;
     font-weight: 700;
 }
+.main_vmsmalltxt{
+    font-size: 10px;
+    font-weight: 400;
+}
 
 /* 메인 css 시작*/
 
@@ -71,6 +75,11 @@
     height: 350px;
     margin: 0 0 100px 55px;
 }
+.msonair_slide{
+    width: 300px!important;
+    height: 350px;
+    background-color: $더밝은회색;
+}
 .main_ad{
     height: 100px;
     display: flex;
@@ -99,6 +108,31 @@
    margin-top: 30px;
    margin-left: 20px;
    width: 480px;
+}
+.msreview_slide{
+    background-color: $더밝은회색;
+    width: 230px !important;
+    height: 150px;
+    border-radius: 15px;  
+   
+}
+.msreview_profile{
+    display: flex;
+}
+.msreview_pic{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+}
+.msreview_bot{
+    width: 80%;
+    margin: 0 auto;
+}
+.msreview_subject{
+
+}
+.msreview_content{
+
 }
 .main_locatewrap{
     margin-top: 140px;
@@ -142,6 +176,20 @@
 .main_purpose{
     margin-top: 70px;
     height: 330px;
+}
+.mspurpose_slider{
+    width: 230px;
+    height: 330px;
+}
+
+.mspurpose_slide{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
 }
 /*견적 섹션*/
 .main_estimatewrap{

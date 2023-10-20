@@ -1,17 +1,42 @@
 import React, { useRef, useEffect, useState } from 'react'
 import "../../style/FindUserIdPw/FindPw3Auth.scss";
-import { useRecoilState } from 'recoil';
-import { isPathTrueAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { isPathTrueAtom, resNumberAtom, resPwAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
 import { useNavigate } from 'react-router-dom';
+import { findPwPhoneCheckApi } from '../../apis/FindIdPw/FindPwApi';
 
 const FindPw3Auth = () => {
     const navigate = useNavigate();
-    const [seconds, setSeconds] = useState(60); // 분 -> 초단위로 계산
+    const [seconds, setSeconds] = useState(180); // 분 -> 초단위로 계산
     const [isPathTrue, setIstPathTrue] = useRecoilState<boolean>(isPathTrueAtom);
+    const [resNumber, setResNumber] = useRecoilState<string>(resNumberAtom);
+    const resPw = useRecoilValue<string>(resPwAtom);
+    const inputs = document.getElementsByTagName('input');
+    const [msgState, setMsgState] = useState<boolean>(false);
+    const [msgState02, setMsgState02] = useState<boolean>(false);
+    const [nowDate, setNowDate] = useState<Date>(new Date());
 
     const HandleCheckCode = () => {
         setIstPathTrue(false);
-        navigate("/findpw4");
+        const inputNumber = inputs[1].value + inputs[2].value + inputs[3].value + inputs[4].value;
+        console.log("inputNumber" + inputNumber);
+        console.log("resNumber" + resNumber);
+        const checkDate = new Date();
+        const checkTime = nowDate.getTime() + 180000;
+        if(Number(resNumber) === Number(inputNumber)){
+            if(checkDate.getTime() + 5000  < checkTime){
+                setMsgState(false);
+                setMsgState02(false);
+                navigate("/findpw4");
+            }else{
+                setMsgState(false);
+                setMsgState02(true);
+                return;
+            }
+        }else{
+            setMsgState(true);
+            return;
+        }
     }
 
     // Inputref 배열 초기화 시키기
@@ -32,10 +57,10 @@ const FindPw3Auth = () => {
         const inputRef = inputRefs[index];
         if (inputRef && inputRef.current) {
             const inputValue = inputRef.current.value;
-            console.log(inputValue);
             if (!/^[0-9]+$/.test(inputValue)) {
                 // 입력이 숫자가 아닌 경우, 입력을 지움
                 inputRef.current.value = '';
+                return
             }
         }
 
@@ -54,7 +79,7 @@ const FindPw3Auth = () => {
     const handleKeyDown = (index: number, event: React.KeyboardEvent<HTMLInputElement>) => {
         const inputRef = inputRefs[index];
         const lastInput = inputRefs[3].current!;
-        if (event.key === 'Backspace' && event.currentTarget.value === '') {
+        if (event.key === 'Backspace' && event.currentTarget.value === ''&& !isNaN(Number(event.currentTarget.value))) {
             event.preventDefault();
             if (index > 0) {
                 const prevInputRef = inputRefs[index - 1];
@@ -85,13 +110,14 @@ const FindPw3Auth = () => {
                 setSeconds((prevSeconds) => prevSeconds - 1);
             }, 1000);
 
-            return () => clearInterval(timer);
+            return () => 
+            clearInterval(timer);
         }
 
     }, [seconds]);
 
     // 코드 다시보내기 버튼
-    const HandleReset = () => {
+    const HandleReset =async () => {
 
         // 타이머 0 일때 타이머 초기화
         // if (seconds === 0) {
@@ -99,7 +125,11 @@ const FindPw3Auth = () => {
         // }
 
         // 그냥 클릭 시 타이머 초기화
-        setSeconds(60);
+        setResNumber(await findPwPhoneCheckApi(resPw));
+        setNowDate(new Date());
+        setMsgState(false);
+        setMsgState02(false);
+        setSeconds(180);
     }
 
     return (
@@ -108,6 +138,7 @@ const FindPw3Auth = () => {
                 <span>코드 입력</span>
                 <span>인증 수단으로 전달받은 코드를 입력해주세요.</span>
             </div>
+            {msgState ? <span className='checkInput'>인증번호가 틀렸습니다.</span> : msgState02 ? <span className='checkInput'>인증번호 입력시간이 만료되었습니다.</span> : null}
             <div className='FindPw3AuthInputGroup'>
                 <input
                     type='text'

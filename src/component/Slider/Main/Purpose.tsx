@@ -1,7 +1,4 @@
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import "../../../style/main/purposeSlider.scss"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -21,21 +18,21 @@ export default function App() {
         pagination={true}
         modules={[EffectCards, Pagination]}
         initialSlide={2}
-        className='purpose_slider'
+        className='mspurpose_slider'
       >
-        <SwiperSlide className='purpose_slide red'>
+        <SwiperSlide className='mspurpose_slide red'>
           Slide 1
         </SwiperSlide>
-        <SwiperSlide className='purpose_slide blue'>
+        <SwiperSlide className='mspurpose_slide blue'>
           Slide 2
         </SwiperSlide>
-        <SwiperSlide className='purpose_slide green'> 
+        <SwiperSlide className='mspurpose_slide green'> 
           Slide 3
         </SwiperSlide>
-        <SwiperSlide className='purpose_slide orange'>
+        <SwiperSlide className='mspurpose_slide orange'>
           Slide 4
         </SwiperSlide>
-        <SwiperSlide className='purpose_slide yellow'>
+        <SwiperSlide className='mspurpose_slide yellow'>
           Slide 5
         </SwiperSlide>
       </Swiper>
