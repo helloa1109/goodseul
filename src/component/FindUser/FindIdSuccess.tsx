@@ -1,11 +1,12 @@
 import React from 'react'
 import "../../style/FindUserIdPw/FindIdSuccess.scss";
-import { isFindIdAtom} from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
+import { isFindIdAtom, resIdAtom} from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 const FindIdSuccess = () => {
 
     const [isFindId, setIsFindId] = useRecoilState<boolean>(isFindIdAtom);
+    const [resId, setResId] = useRecoilState<string>(resIdAtom);
 
     const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ const FindIdSuccess = () => {
                 <div className='SelectCircleOut'>
                     <div className='SelectCircleIn'></div>
                 </div>
-                <span>goodseul@naver.com</span>
+                <span>{resId}</span>
             </div>
             <div className='FindIdSuccessFooter'>
                 <span onClick={handleFindPw}>비밀번호 찾기</span>
