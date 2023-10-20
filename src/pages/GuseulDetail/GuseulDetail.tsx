@@ -7,8 +7,11 @@ import { RoomIdxAtom, person1State, person2State } from '../../recoil/Chat/ChatA
 import { useRecoilState } from 'recoil';
 import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { goodseulDto } from '../../hooks/Chat/ChatType';
+import { decodeToken } from "../../hooks/JWT/JWTType";
 
 function GuseulDetail() {
+
+    console.log("idx tesrt=",(JWTDecoding() as decodeToken).idx);
 
     // sender 
     const [person1, setPerson1] = useRecoilState(person1State);
@@ -29,8 +32,8 @@ function GuseulDetail() {
             const goodSeulResponse = await getGoodSeulInfo();
     
             if (goodSeulResponse) {
-                const goodSeulIdx = goodSeulResponse.data.goodseulDto.idx;
-                console.log("bora",goodSeulIdx);
+                const goodSeulIdx = goodSeulResponse.data.userDto.idx;
+                console.log("handleChat data Idx",goodSeulIdx);
                 const roomCreateResponse = await RoomCreate(goodSeulIdx);
     
                 if (roomCreateResponse) {
@@ -43,12 +46,12 @@ function GuseulDetail() {
     
                     const roomId = roomCreateResponse.data;
                     navigate(`/room/${roomId}`);
-                    console.log("룸 디테일",roomId);
+                    console.log("handleChat in Detail RoomId",roomId);
 
                 }
             }
         } catch (error) {
-            console.error("Error creating room:", error);
+            console.error("Error", error);
         }
     }
     

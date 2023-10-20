@@ -39,6 +39,7 @@ const Login:React.FC = () => {
     const [loginError , setLoginError] = useState<string|null>(null);
 
     const handleLogin = async () => {
+        const sp = new URLSearchParams(window.location.search);
         try {
             if(loginId !== "" && loginPw !== "") {
                 await LoginApi(IdPw);
@@ -46,7 +47,7 @@ const Login:React.FC = () => {
                 setLoginState(true);
                 setLoginId("");
                 setLoginPw("");
-                navi("/"); 
+                navi(sp.get('returnPath') || "/"); 
             }else {
                 setLoginError("아이디 또는 비밀번호를 입력해주세요.");
             }

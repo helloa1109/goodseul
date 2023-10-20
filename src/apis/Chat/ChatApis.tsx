@@ -17,7 +17,7 @@ export const RoomCreate = async (goodSeulIdx:number) => {
         console.log("axios",goodSeulIdx);
         return res;
     } catch (error) {
-        console.error("Error creating room:", error);
+        console.error("Error", error);
     }
 };
 
@@ -26,7 +26,7 @@ export const getGoodSeulInfo = async () => {
     try {
         const resopnse = await axiosPunch({
             method: 'get',
-            url: (`${serverUrl}/api/lv1/gs?goodseulIdx=15`),
+            url: (`${serverUrl}/api/lv1/gs?goodseulIdx=19`),
         });
         console.log("데이터", resopnse.data);
         return resopnse;

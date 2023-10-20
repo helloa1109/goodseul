@@ -1,16 +1,10 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "../../../style/main/onairSlider.scss"
 import 'swiper/css/effect-creative';
 
 import { EffectCreative } from 'swiper/modules';
-
-
-
 
 export default function App() {
   return (
@@ -29,22 +23,22 @@ export default function App() {
       modules={[EffectCreative]}
         >
         <SwiperSlide >
-         <div className="onair_slide">
+         <div className="msonair_slide">
             ddd1
          </div>
         </SwiperSlide>
         <SwiperSlide >
-         <div className="onair_slide">
+         <div className="msonair_slide">
             ddd2
          </div>
         </SwiperSlide>
         <SwiperSlide >
-         <div className="onair_slide">
+         <div className="msonair_slide">
             ddd3
          </div>
         </SwiperSlide>   
         <SwiperSlide >
-         <div className="onair_slide">
+         <div className="msonair_slide">
             ddd4
          </div>
         </SwiperSlide>   

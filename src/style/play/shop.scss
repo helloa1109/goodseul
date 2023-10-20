@@ -27,6 +27,13 @@
         }
         .shoph{
             padding-bottom: 0px;
+            min-height:92px;
+            max-height:92px;
+            h1{
+                // text-overflow: ellipsis;
+                // white-space: nowrap;
+                // overflow: hidden;
+            }
         }
         .shopt{
             font-size: 20px;
@@ -41,6 +48,7 @@
                 background-color: $버건디;
                 color:$흰색;
                 padding:6px 20px;
+                font-weight: bolder;
             }
         }
     }
