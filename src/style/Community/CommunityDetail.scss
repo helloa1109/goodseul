@@ -1,0 +1,160 @@
+@import "../global/global.scss";
+
+// 디테일 컴포넌트 스타일
+.CommunityDetailPage {
+    width: 375px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    line-height: normal;
+
+    // 프로필 스타일
+    .CommunityDetailProfile {
+        margin-top: 40px;
+        margin-left: 31px;
+        display: flex;
+
+        p {
+            position: absolute;
+            top: 104px;
+            left: 73px;
+            margin: 0;
+            color: $밝은회색;
+            font-size: 13px;
+            font-weight: 700;
+        }
+    }
+
+    // 닉네임 스타일
+    .CommunityDetailTitle p {
+        margin-top: 23px;
+        margin-left: 36px;
+        color: #000;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    // 게시글 내용 스타일
+    .CommunityDetailContents {
+        margin-top: 15px;
+        margin-left: 36px;
+        width: 306px;
+
+        p {
+            color: $밝은회색;
+            font-size: 13px;
+            font-weight: 500;
+        }
+    }
+
+    // 게시글 카테고리 스타일
+    .CommunityDetailTag {
+        width: 50px;
+        height: 20px;
+        flex-shrink: 0;
+        border-radius: 50px;
+        background-color: $더밝은회색;
+
+        span {
+            margin: 0 auto;
+            color: #000;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 22px;
+            letter-spacing: -0.408px;
+        }
+    }
+
+    // 게시일 글씨 스타일
+    .CommunityDetailWriteDay {
+        color: $밝은회색;
+        font-size: 10px;
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+    }
+
+    // 답글 버튼 스타일
+    .CommunityDetailReplyBtn {
+        margin-left: 160px;
+        width: 60px;
+        height: 30px;
+        flex-shrink: 0;
+        border-radius: 50px;
+        background: $버건디;
+        color: $흰색;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    // 댓글 입력 영역 스타일
+    .CommunityDetailReplyArea {
+        top: 451px;
+        display: flex;
+        justify-content: center;
+    }
+
+    // 댓글 입력 하단 영역 스타일
+    .CommunityDetailReplyAreaLabel {
+        top: 625px;
+        margin-left: 33px;
+        justify-content: center;
+        background-color: #888;
+        width: 309px;
+        height: 40px;
+        border-radius: 0 0 15px 15px;
+
+        //댓글 등록 및 취소 버튼 디자인
+        button {
+            margin-top: 2px;
+            margin-left: 10px;
+            width: 75px;
+            height: 35px;
+            flex-shrink: 0;
+            border-radius: 50px;
+            background-color: $흰색;
+            border: 1px solid #000;
+            color: #000;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 900;
+        }
+    }
+
+    // 댓글 작성하기 타이틀 스타일
+    .CommunityDetailReplyTitle {
+        top: 410px;
+        margin-left: 36px;
+        color: $밝은회색;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    // 댓글 입력 영역 스타일
+    .CommunityDetailReplyArea textarea {
+        border-radius: 15px 15px 0 0;
+        background-color: $흰색;
+        resize: none;
+        padding: 10px;
+        color: $어두운회색;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    // 조회된 댓글 리스트 위치 스타일
+    .CommunityDetailReplyList {
+        margin-left: 36px;
+        margin-top: 10px;
+    }
+
+    // 댓글 갯수 스타일
+    .CommunityReplyComment {
+        color: $밝은회색;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: -0.408px;
+    }
+}
