@@ -7,50 +7,51 @@
     top: 665px;
     left: 50%;
     transform: translate(-50%, -50%);
-    // background-color: blue;
 
     p {
-        color: #000;
-        font-family: Noto Sans KR;
+        color: $검은색;
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 13px;
-        font-style: normal;
         font-weight: 700;
         margin-left: 10px;
     }
 
+    // 자유게시판 버튼 스타일
     .CommunityFreeBoard {
-        position: fixed;
+        position: absolute;
         width: 120px;
         height: 120px;
         border-radius: 15px;
-        background-color: lightgrey;
+        background-color: $더밝은회색;
     }
 
-    .CommunityClothes{
-        position: fixed;
+    // 의상 & 소품 스타일
+    .CommunityClothes {
+        position: absolute;
         width: 120px;
         height: 120px;
         border-radius: 15px;
-        background-color: lightgrey;
+        background-color: $더밝은회색;
         left: 137px;
     }
 
-    .CommunityFood{
-        position: fixed;
+    // 식품 게시판 스타일
+    .CommunityFood {
+        position: absolute; 
         width: 120px;
         height: 120px;
         border-radius: 15px;
-        background-color: lightgrey;
+        background-color: $더밝은회색;
         top: 136px;
-        
     }
 
-    .CommunityDancer{
-        position: fixed;
+    // 무용 & 악사 스타일
+    .CommunityDancer {
+        position: absolute; 
         width: 120px;
         height: 120px;
         border-radius: 15px;
-        background-color: lightgrey;
+        background-color: $더밝은회색;
         left: 137px;
         top: 136px;
     }

@@ -1,8 +1,18 @@
-import React from 'react'
-import '../../style/Community/CommunityForm.scss'
-
+import React, { useState } from 'react';
+import '../../style/Community/CommunityForm.scss';
 
 const CommunityForm = () => {
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedTag, setSelectedTag] = useState<number | null>(null);
+
+  const handleCategoryClick = (index: number) => {
+    setSelectedCategory(index);
+  };
+
+  const handleTagClick = (index: number) => {
+    setSelectedTag(index);
+  };
+
   return (
     <div className='CommunityFormPage'>
       <h1>작성하기</h1>
@@ -18,31 +28,56 @@ const CommunityForm = () => {
       </div>
 
       <p className='CommunityFormSubTitle'>
-        커뮤니티에 게시글을 작성합니다.<br/>
+        커뮤니티에 게시글을 작성합니다.<br />
         단, 개인정보에 유의하여 작성하십시오.
       </p>
 
-      <div>
-        <div className='FormTitle'>
-          <span>제목</span>
-          <input type='text' name='title' placeholder='제목을 입력하세요'/>
-        </div>
-        <div className='FormTextArea'>
-          <span>자세한 내용</span>
-          <textarea name='contents' cols={30}
-          rows={10} placeholder='내용을 입력하세요'/>
-        </div>
-        <div className='FormTags'>
-          <span>태그</span>
-          <p>주제</p>
-        </div>
-        <div className='FormBtn'>
-          <button className='FormBtnWrite'>글쓰기</button>
-          <button className='FormBtnCancel'>취소</button>
+      <div className='FormTitle'>
+        <span>제목</span>
+        <input type='text' name='title' placeholder='제목을 입력하세요' />
+      </div>
+
+      <div className='FormTextArea'>
+        <span>자세한 내용</span>
+        <textarea name='contents' cols={30} rows={10} placeholder='내용을 입력하세요' />
+      </div>
+
+      <div className='FormTags'>
+        <span>태그</span>
+
+        <div className='FormTagBtn'>
+          <div className='BoardCatagory'>
+            {['자유게시판', '의상 & 소품', '식품', '무용 & 악사'].map((category, index) => (
+              <button
+              key={index}
+              className={`active${index + 1} ${selectedCategory === index ? 'active' : ''}`}
+              onClick={() => handleCategoryClick(index)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <div className='BoardTags'>
+            {['질문', '구인', '구직', '기타'].map((tag, index) => (
+              <button
+              key={index}
+              className={`active${index + 5} ${selectedTag === index ? 'active' : ''}`}
+              onClick={() => handleTagClick(index)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default CommunityForm
+      <div className='FormBtn'>
+        <button className='FormBtnWrite'>글쓰기</button>
+        <button>취소</button>
+      </div>
+    </div>
+  );
+};
+
+export default CommunityForm;
