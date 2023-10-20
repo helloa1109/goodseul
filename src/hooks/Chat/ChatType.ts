@@ -25,7 +25,6 @@ interface userDto {
     goodseulName : string;
     skill : string;
     career : string;
-
 }
 
 export interface Message{

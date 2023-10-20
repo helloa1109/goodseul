@@ -22,7 +22,6 @@ export const RoomCreate = async (goodSeulIdx:number) => {
 };
 
 export const getGoodSeulInfo = async () => {
-
     try {
         const resopnse = await axiosPunch({
             method: 'get',
@@ -34,3 +33,4 @@ export const getGoodSeulInfo = async () => {
         console.log("error", error);
     }
 }
+
