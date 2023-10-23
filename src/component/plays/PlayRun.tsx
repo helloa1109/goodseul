@@ -323,6 +323,8 @@ const PlayRun = () => {
     let lastTime: number = 0;
     // let times: number = 0;
     let animateId: number = 0;
+    let fps:number = 60;
+    let fTick:number = 1000/fps;
     const animate = (timeStamp: number) => {
         const deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
@@ -378,7 +380,7 @@ const PlayRun = () => {
             <canvas ref={cvRef} id='gameCanvas' style={{
                 transition: 'transform 0.2s ease'
             }} />
-            <PlayRanking gameID={gameID} rankingData={rankingData} gameItem={cvRef} />
+            <PlayRanking gameID={gameID} rankingData={rankingData} gameItem={cvRef} orderBy={0} />
         </div>
     );
 };
