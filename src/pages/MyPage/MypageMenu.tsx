@@ -8,15 +8,27 @@ import review from "../../image/Mypage/review.png";
 import { useRecoilState } from 'recoil';
 import { MyPageReviewListState } from '../../recoil/MyPage/MyPageReviewListAtom';
 import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
+import { MyPageCouponListState } from '../../recoil/MyPage/MyPageCouponListAtom';
+import { getMypageCouponList } from '../../apis/MyPage/MyPageCouponListApi';
 
 const MypageMenu = () => {
 
   const navigate = useNavigate();
 
   const [ReviewList,setReviewList] = useRecoilState(MyPageReviewListState);
+  const [CouponList,setCouponList] = useRecoilState(MyPageCouponListState);
 
-  const HandleCoupon = () => {
-    navigate("/MyPageCoupon");
+  const HandleCouponOnclick = async () => {
+    try {
+      const res = await getMypageCouponList();
+      if(res){
+        setCouponList(res.data.buyable_coupons);
+      }
+      navigate("/MyPageCoupon");
+    } catch (error){
+      console.error("couponlist 에러",error);
+    }
+
   }
 
   const HandleChat = () => {
@@ -25,19 +37,16 @@ const MypageMenu = () => {
 
   useEffect(()=>{
     getMypageReviewList();
+    getMypageCouponList();
   });
 
   const HandleReviewOnclick = async () => {
-    //api 호출하고
-    // userecoilstate 선언 set으로 한번 담기 -> 
     try {
       const res = await getMypageReviewList();
       if(res){
         setReviewList(res.data.reviews);
       } 
-      //setReviewList(res);
       navigate("/MyPageReview");
-
     } catch (error){
       console.error("reviewonclic에러", error);
     };
@@ -52,7 +61,7 @@ const MypageMenu = () => {
             <span>찜 목록</span>
             <span>6</span>
         </div>
-        <div className='MypageMenuSection' onClick={HandleCoupon}>
+        <div className='MypageMenuSection' onClick={HandleCouponOnclick}>
             <img src={coupon} alt='heart' className='MypageMenuIcon'/>
             <span>쿠폰함</span>
             <span>4</span>
