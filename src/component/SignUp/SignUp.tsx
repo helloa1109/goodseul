@@ -16,7 +16,7 @@ import showPwIcon from "../../image/Mypage/showIcon.png";
 import { nickNameCheck } from '../../apis/SignUp/NickNameCheck';
 import { phoneNumberCheck } from '../../apis/SignUp/PhoneNumberCheck';
 import { useNavigate } from 'react-router-dom';
-import { Box, CircularProgress } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 const SignUp = () => {
     const navi = useNavigate(); 
