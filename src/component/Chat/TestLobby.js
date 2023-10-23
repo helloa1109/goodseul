@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const TestLobby = () => {
@@ -7,8 +7,6 @@ const TestLobby = () => {
   const [name2,setName2] = useState("");
   
   const serverUrl = "http://dopeboyzclub.ddns.net:7780";
-
-    
 
     const RoomCreate = (e) => {
 
@@ -43,7 +41,7 @@ const TestLobby = () => {
     }
 
     return (
-    <div>
+    <div >
         <input placeholder="가입 번호를 입력하세요" onChange={(e) => setName(e.target.value)} />
         <input placeholder="대화하려는 상대의 가입 번호를 입력하세요" onChange={(e) => setName2(e.target.value)} />
       <button onClick={RoomCreate}>방만들기</button>
