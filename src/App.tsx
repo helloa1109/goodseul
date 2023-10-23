@@ -34,6 +34,7 @@ import FindPw4 from './component/FindUser/FindPw4';
 import Room from './component/Chat/Room';
 import ReviewForm from './pages/Review/ReviewForm';
 import TestLobby from './component/Chat/TestLobby';
+import Floatingmenu from './component/Floatingmenu/Floatingmenu';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
+      <Floatingmenu/>
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/play' element={<PlayMain />} />
@@ -50,7 +52,6 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/findidpw' element={<FindUserIdPw />} />
-
         {isPathTure ? null : (
           <>
             <Route path='/findidsuccess' element={<FindIdSuccess />} />
