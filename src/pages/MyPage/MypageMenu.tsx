@@ -9,10 +9,10 @@ import { userInfoAtom } from '../../recoil/Mypage/MyPageAtom';
 import { myPage } from '../../hooks/MyPage/MyPageType';
 import { useRecoilValue } from 'recoil';
 import { useRecoilState } from 'recoil';
-import { MyPageReviewListState } from '../../recoil/MyPage/MyPageReviewListAtom';
-import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
-import { MyPageCouponListState } from '../../recoil/MyPage/MyPageCouponListAtom';
-import { getMypageCouponList } from '../../apis/MyPage/MyPageCouponListApi';
+import { MyPageReviewListState } from '../../recoil/Mypage/MyPageReviewListAtom';
+import { getMypageReviewList } from '../../apis/myPage/MyPageReviewListApi';
+import { MyPageCouponListState } from '../../recoil/Mypage/MyPageCouponListAtom';
+import { getMypageCouponList } from '../../apis/myPage/MyPageCouponListApi';
 
 
 const MypageMenu = () => {
