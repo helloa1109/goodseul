@@ -5,14 +5,14 @@ import heart from "../../image/Mypage/heart.png";
 import coupon from "../../image/Mypage/coupon.png";
 import chat from "../../image/Mypage/chat.png";
 import review from "../../image/Mypage/review.png";
-import { userInfoAtom } from '../../recoil/Mypage/MyPageAtom';
+import { userInfoAtom } from '../../recoil/MyPage/MyPageAtom';
 import { myPage } from '../../hooks/MyPage/MyPageType';
 import { useRecoilValue } from 'recoil';
 import { useRecoilState } from 'recoil';
-import { MyPageReviewListState } from '../../recoil/Mypage/MyPageReviewListAtom';
-import { getMypageReviewList } from '../../apis/myPage/MyPageReviewListApi';
-import { MyPageCouponListState } from '../../recoil/Mypage/MyPageCouponListAtom';
-import { getMypageCouponList } from '../../apis/myPage/MyPageCouponListApi';
+import { MyPageReviewListState } from '../../recoil/MyPage/MyPageReviewListAtom';
+import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
+import { MyPageCouponListState } from '../../recoil/MyPage/MyPageCouponListAtom';
+import { getMypageCouponList } from '../../apis/MyPage/MyPageCouponListApi';
 
 
 const MypageMenu = () => {
