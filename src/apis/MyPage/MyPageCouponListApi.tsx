@@ -7,7 +7,7 @@ const serverUrl = "http://dopeboyzclub.ddns.net:7780";
 export const getMypageCouponList = async () => {
     try {
         const res = await axiosPunch ({
-            method : 'get',
+            method: 'get',
             url: serverUrl+"/api/lv1/coupon/",
         })
         console.log(res);

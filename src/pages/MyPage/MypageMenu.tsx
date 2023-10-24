@@ -18,6 +18,10 @@ const MypageMenu = () => {
   const [ReviewList,setReviewList] = useRecoilState(MyPageReviewListState);
   const [CouponList,setCouponList] = useRecoilState(MyPageCouponListState);
 
+  const HandleFavoriteOnclick = () => {
+    navigate("/MypageFavorite");
+
+  }
   const HandleCouponOnclick = async () => {
     try {
       const res = await getMypageCouponList();
@@ -28,7 +32,6 @@ const MypageMenu = () => {
     } catch (error){
       console.error("couponlist 에러",error);
     }
-
   }
 
   const HandleChat = () => {
@@ -57,7 +60,7 @@ const MypageMenu = () => {
     <div className='MypageMenu'>
       <div className='MypageMenuSelect'>
         <div className='MypageMenuSection'>
-            <img src={heart} alt='heart' className='MypageMenuIcon'/>
+            <img src={heart} alt='heart' className='MypageMenuIcon' onClick={HandleFavoriteOnclick}/>
             <span>찜 목록</span>
             <span>6</span>
         </div>

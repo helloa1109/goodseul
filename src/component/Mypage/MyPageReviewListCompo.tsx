@@ -1,9 +1,8 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect} from 'react'
 import "../../style/Mypage/MyPageReview.scss";
 import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {MyPageReviewListState} from "../../recoil/MyPage/MyPageReviewListAtom";
-import { formatDate } from 'react-calendar/dist/cjs/shared/dateFormatter';
 
 const MyPageReviewList = () => {
 
@@ -13,7 +12,7 @@ const MyPageReviewList = () => {
     console.log("리뷰 value",MyReviewListValue);
 
     useEffect (()=>{
-        const data = async () => {
+        const fetchData = async () => {
             try {
                 const res = await getMypageReviewList();
                 if(res){
@@ -24,9 +23,8 @@ const MyPageReviewList = () => {
               } catch (error){
                 console.error("reviewonclic에러", error);
               };
-        }; data();
-
-    })
+        }; fetchData();
+    },[setReviewList])
 
 
 
@@ -40,6 +38,7 @@ const MyPageReviewList = () => {
                 <div className='MyPageReviewTopSection'>
                     <div className='MyPageReviewTopSectionOne'>
                         <div className='MyPageReviewInfo'>
+                             <img className='MyPageReviewProfile' src={`http://dopeboyzclub.ddns.net:7733/userprofile/${reviewlist.uprofile}`} alt='v' />
                         </div>
                     </div>
                     <div className='MyPageReviewTopSectionTwo'>
@@ -70,7 +69,7 @@ const MyPageReviewList = () => {
                     </div>
                 </div>
             </div> 
-            )};    
+            )}
                </div>
   );
 };

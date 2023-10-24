@@ -12,7 +12,7 @@ const MypageCouponListCompo = () => {
   console.log("쿠폰value",MyPageCouponListValue);
 
     useEffect (()=>{
-      const data = async () => {
+      const fetchData = async () => {
         try {
           const res = await getMypageCouponList();
           if(res){
@@ -23,8 +23,8 @@ const MypageCouponListCompo = () => {
         } catch (error){
           console.error("쿠폰에러",error);
         }
-      }; data();
-    },[]);
+      }; fetchData();
+    },[setMyCouponList]);
 
   return (
     <div className='MyPageCoupon'>
@@ -39,7 +39,7 @@ const MypageCouponListCompo = () => {
           </div>
 
           <div className='CouponDatebox'>
-          {couponlist.startDate} ~ {couponlist.endDate}
+            {couponlist.endDate? `${couponlist.startDate} ~ ${couponlist.endDate}`:`${couponlist.startDate} ~ 사용 시까지`}
           </div>
 
         </div>
