@@ -5,13 +5,19 @@ import heart from "../../image/Mypage/heart.png";
 import coupon from "../../image/Mypage/coupon.png";
 import chat from "../../image/Mypage/chat.png";
 import review from "../../image/Mypage/review.png";
+import { userInfoAtom } from '../../recoil/Mypage/MyPageAtom';
+import { myPage } from '../../hooks/MyPage/MyPageType';
+import { useRecoilValue } from 'recoil';
 import { useRecoilState } from 'recoil';
 import { MyPageReviewListState } from '../../recoil/MyPage/MyPageReviewListAtom';
 import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
 import { MyPageCouponListState } from '../../recoil/MyPage/MyPageCouponListAtom';
 import { getMypageCouponList } from '../../apis/MyPage/MyPageCouponListApi';
 
+
 const MypageMenu = () => {
+
+  const userInfo = useRecoilValue<myPage>(userInfoAtom);
 
   const navigate = useNavigate();
 
@@ -62,22 +68,22 @@ const MypageMenu = () => {
         <div className='MypageMenuSection'>
             <img src={heart} alt='heart' className='MypageMenuIcon' onClick={HandleFavoriteOnclick}/>
             <span>찜 목록</span>
-            <span>6</span>
+            <span>{userInfo.favoriteCount}</span>
         </div>
         <div className='MypageMenuSection' onClick={HandleCouponOnclick}>
             <img src={coupon} alt='heart' className='MypageMenuIcon'/>
             <span>쿠폰함</span>
-            <span>4</span>
+            <span>{userInfo.couponCount}</span>
         </div>
         <div className='MypageMenuSection' onClick={HandleChat}>
             <img src={chat} alt='heart' className='MypageMenuIcon'/>
             <span>채팅</span>
-            <span>104</span>
+            <span>{userInfo.chatRoomCount}</span>
         </div>
         <div className='MypageMenuSection' onClick={HandleReviewOnclick}>
             <img src={review} alt='heart' className='MypageMenuIcon'/>
             <span>후기</span>
-            <span>10</span>
+            <span>{userInfo.reviewCount}</span>
         </div>
       </div>
     </div>

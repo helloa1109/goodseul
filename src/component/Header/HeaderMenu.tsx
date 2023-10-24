@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from 'recoil';
 import { HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 import { isLoginState } from '../../recoil/JWT/JWTAtom';
+import { logoutApi } from '../../apis/Logout/LogoutApi';
 
 const HeaderMenu = () => {
 
@@ -67,11 +68,14 @@ const HeaderMenu = () => {
     }, [isOpen]);
 
     const handleLogout = async () => {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        setIsOpen(false);
-        setIsLogin(false);
-        navigate("/");
+        try {
+            await logoutApi();
+            setIsOpen(false);
+            setIsLogin(false);
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
