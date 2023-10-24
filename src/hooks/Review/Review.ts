@@ -17,10 +17,8 @@ export type ReviewCData = {
     rcreateDate: string;
 };
 export type ReviewWriteForm = {
-    r_idx : number;
     r_subject : string;
     r_content : String;
     star : number;
     r_type : String;
-    u_idx : number;
 }

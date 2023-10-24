@@ -14,7 +14,7 @@ import RequestListPages from './pages/RequestList/RequestPages';
 import OnAir from './pages/OnAir/OnAir';
 import GuseulDetail from './pages/GuseulDetail/GuseulDetail';
 import Community from './pages/Community/Community';
-import CommunityDetail from './pages/Community/ComminutyDetail';
+import CommunityDetail from './pages/Community/CommunityDetail';
 import CommunityForm from './pages/Community/CommunityForm';
 import CommunityList from './pages/Community/CommunityList';
 import ReviewSearch from './pages/Review/ReviewSearch';
@@ -33,8 +33,11 @@ import FindPw3Auth from './component/FindUser/FindPw3Auth';
 import FindPw4 from './component/FindUser/FindPw4';
 import Room from './component/Chat/Room';
 import ReviewForm from './pages/Review/ReviewForm';
-import TestLobby from './component/Chat/TestLobby';
 import Floatingmenu from './component/Floatingmenu/Floatingmenu';
+import MyPageFavorite from './pages/MyPage/MyPageFavorite';
+import MyPagePay from './pages/MyPage/MyPagePay';
+import MyPageAdminChat from './pages/MyPage/MyPageAdminChat';
+
 
 
 function App() {
@@ -83,10 +86,12 @@ function App() {
         <Route path='/MyPageChangeInfo' element={<MyPageChangeInfo />} />
         <Route path='/MyPageRequest' element={<MyPageRequest />} />
         <Route path='/MyPageCoupon' element={<MyPageCoupon />} />
+        <Route path='/MyPageFavorite' element={<MyPageFavorite />} />
+        <Route path='/MyPagePay' element={<MyPagePay />} />
+        <Route path='/MyPageAdminChat' element={<MyPageAdminChat />} />
 
         <Route path='/room/:roomId' element={<Room/>}/>
         
-        <Route path='/test' element={<TestLobby/>}/>
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />

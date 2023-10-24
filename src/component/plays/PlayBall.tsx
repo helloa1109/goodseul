@@ -130,26 +130,6 @@ const PlayBall = () => {
 
     }
 
-    const getRankinglist = async (isWeekly: boolean = false) => {
-        let data = await axiosPunch({
-            method: 'get',
-            url: `${serverUrl}/api/lv1/rank${isWeekly ? '/week' : ''}?gameIdx=${gameID}&orderBy=1`,
-        })
-            .then(r => {
-                let a = (r.data as { nickname: string, rank: number, score: number, date: number }[]);
-                if (a.length > 0)
-                    setRankingData(a);
-                else
-                    setRankingData(false);
-                return a.length > 0;
-            })
-            .catch(r => {
-                console.error(r);
-                return false;
-            });
-        // setRankData(data);
-    }
-
     const handleClickCanvas = (e: MouseEvent | TouchEvent) => {
         // e.preventDefault();
         if (ballGame) {
@@ -159,9 +139,9 @@ const PlayBall = () => {
     }
 
     const handleStart = () => {
-        if (cvRef.current) {
+        if (cvRef.current) { 
             if (!ballGame) {
-                let g: Game = new Game(cvRef.current, 2);
+                let g: Game = new Game(cvRef.current, 25);
                 g.init();
                 setBallGame(g);
             } else {
@@ -191,7 +171,7 @@ const PlayBall = () => {
                 <div className='btnGame btnStart' onClick={handleStart}>게임 시작</div>
                 <div className='btnGame btnRanking' onClick={handleOpen}>랭킹 보기</div>
             </div> : null}
-            <PlayRanking gameID={gameID} rankingData={rankingData} gameItem={gmRef} />
+            <PlayRanking gameID={gameID} rankingData={rankingData} gameItem={gmRef} orderBy={1} />
 
         </div>
     );
