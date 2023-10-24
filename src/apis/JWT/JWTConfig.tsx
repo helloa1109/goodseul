@@ -8,27 +8,38 @@ import { useNavigate } from "react-router-dom";
 let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 
 export const tokensRefresh = async (refreshToken:Token) => {
-    axios({
-        method:'get',
-        url: "http://dopeboyzclub.ddns.net:7780/api/lv1/check",
-        headers: { 'Authorization-refresh': `Bearer ${refreshToken}`}
-    }).then(res => {
+    try {
+        const res = await axios({
+            method:'get',
+            url: "http://dopeboyzclub.ddns.net:7780/api/lv1/check",
+            headers: { 'Authorization-refresh': `Bearer ${refreshToken}`}
+        });
         if(res?.status === 200 ) {
             const newAccessToken:string = res.headers['authorization'];
             const newRefreshToken:string = res.headers['authorization-refresh'];
-            if(newAccessToken && newRefreshToken){
             localStorage.setItem('accessToken', newAccessToken);
             localStorage.setItem('refreshToken', newRefreshToken);
-            }else{
-                const navi = useNavigate();
-                alert('세션이 만료되었습니다.');
-                navi("/");
-                window.location.reload();
-            }
         }
-    }).catch(error => {
-        return error;
-    }) 
+      } catch (error:any) {
+        throw error;
+      }
+    
+    // axios({
+    //     method:'get',
+    //     url: "http://dopeboyzclub.ddns.net:7780/api/lv0/check",
+    //     headers: { 'Authorization-refresh': `Bearer ${refreshToken}`}
+    // }).then(res => {
+    //     if(res?.status === 200 ) {
+    //         console.log("accessToken" + localStorage.getItem('accessToken'));
+    //         const newAccessToken:string = res.headers['authorization'];
+    //         const newRefreshToken:string = res.headers['authorization-refresh'];
+    //         localStorage.setItem('accessToken', newAccessToken);
+    //         localStorage.setItem('refreshToken', newRefreshToken);
+    //         console.log("newAccessToken" + newAccessToken)
+    //     }
+    // }).catch(error => {
+    //     return error;
+    // }) 
     
     return localStorage.getItem('accessToken');
 }

@@ -1,8 +1,8 @@
 import React,{useEffect} from 'react'
 import "../../style/Mypage/MyPageReview.scss";
-import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
+import { getMypageReviewList } from '../../apis/myPage/MyPageReviewListApi';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import {MyPageReviewListState} from "../../recoil/MyPage/MyPageReviewListAtom";
+import {MyPageReviewListState} from "../../recoil/Mypage/MyPageReviewListAtom";
 
 const MyPageReviewList = () => {
 

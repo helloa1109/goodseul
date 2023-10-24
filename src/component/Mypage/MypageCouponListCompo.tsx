@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
-import { getMypageCouponList } from '../../apis/MyPage/MyPageCouponListApi';
+import { getMypageCouponList } from '../../apis/myPage/MyPageCouponListApi';
 import "../../style/Mypage/MyPageCouponList.scss";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { MyPageCouponListState } from '../../recoil/MyPage/MyPageCouponListAtom';
+import { MyPageCouponListState } from '../../recoil/Mypage/MyPageCouponListAtom';
 
 const MypageCouponListCompo = () => {
 
