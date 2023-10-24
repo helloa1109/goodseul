@@ -8,3 +8,9 @@ export type myPage = {
     myPoint: number,
     reviewCount: number
 }
+
+export type RecentlyViewed = {
+    idx:number,
+     name:string,
+      image:string
+}
