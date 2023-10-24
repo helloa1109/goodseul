@@ -1,0 +1,67 @@
+@import "../global/global.scss";
+
+.Floatingmenu{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+
+}
+.FloatingmenuBack{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.floatingIcon{
+    width: 40px;
+    height: 40px;
+    display: contents;
+
+    .floatingLogin{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .floatingCommunication{
+        width: 37px;
+        height: 37px;
+    }
+
+    .floatingPlay{
+        width: 37px;
+        height: 37px;
+    }
+
+    .floatingRequest{
+        width: 37px;
+        height: 37px;
+    }
+    
+    .floatingHome{
+        width: 40px;
+        height: 40px;
+    }
+    
+}
+
+.userProfile{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 4px solid $버건디;
+}
+
+.css-7dv1rb-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab {
+    background-color:$버건디 !important;
+}
+
+.css-7dv1rb-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab:hover {
+    background-color:$버건디 !important;
+}

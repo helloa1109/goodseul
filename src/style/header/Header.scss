@@ -2,7 +2,7 @@
 
 .headermain {
   width: $iphone13mini;
-  height: 7vh;
+  height: 50px;
   font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   align-items: center;
@@ -90,6 +90,10 @@
     transition: all 0.3s ease-in-out;
     border-radius: 35px;
   }
+}
+
+.chatHeader{
+  background-color: #AFC0CF;
 }
 
 #toggle {

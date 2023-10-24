@@ -3,17 +3,20 @@ import "../../style/header/Header.scss";
 import logo from "../../image/header/GoodSeul-Logo_.png";
 import arrow from "../../image/header/control.png";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
 import { IsMainAtom, } from '../../recoil/header/HeaderAtom';
 import { isFindIdAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
 import HeaderMenu from './HeaderMenu';
+import { getRoomIdAtom, getUserNickAtom } from '../../recoil/Chat/ChatAtom';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useRecoilState(HeaderMenuModalAtom);
   const [isMain, setIsMain] = useRecoilState(IsMainAtom);
   const [isToggleChecked, setIsToggleChecked] = useState(false);
   const isFindId = useRecoilValue<boolean>(isFindIdAtom);
+  const RoomID = useRecoilValue(getRoomIdAtom);
+  const UserNick = useRecoilValue(getUserNickAtom);
 
   const Location = useLocation();
   const navigate = useNavigate();
@@ -64,6 +67,8 @@ const Header = () => {
     subHeaderTitle = "아이디찾기";
   } else if (Location.pathname === "/play/ball") {
     subHeaderTitle = "플레이볼랭킹";
+  } else if (Location.pathname === `/room/${RoomID}`){
+    subHeaderTitle = `${UserNick}님 채팅방`;
   }
 
   useEffect(() => {
@@ -84,7 +89,7 @@ const Header = () => {
 
   return (
     // isMain ? (
-    <div className='headermain'>
+    <div className={`headermain ${subHeaderTitle === `${UserNick}님 채팅방` ? "chatHeader" : ""}`}>
       <div>
         {
           isMain ? (
