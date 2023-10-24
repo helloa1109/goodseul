@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ReviewCData } from '../../hooks/Review/Review';
 import { reviewBList } from '../../apis/Review/ReviewBest'
+import ReviewModal from '../Review/ReviewModal';
+import { useRecoilState } from 'recoil';
+import { rIdxState } from '../../recoil/Review/ReviewAtom';
 
 
 function ReviewBestList() {
     const [rList, setRList] = useState<ReviewCData[]>([]);
+    const [rIdx, setRIdx] = useRecoilState(rIdxState);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,12 +30,17 @@ function ReviewBestList() {
         fetchData();
       }, []);
 
+      const getUidx = (ridx:number) =>{
+        setRIdx(ridx);
+        console.log(ridx);
+      }
+
       const limitedData = rList.slice(0, 2);
       const imgurl = 'http://dopeboyzclub.ddns.net:7733/userprofile/';
     return (
         <div className='review_bestList_wrap'>
             {limitedData.map((item, idx) => (
-              <div className='review_best' key={idx}> 
+              <div className='review_best' key={idx} onClick={(e)=>{getUidx(item.ridx)}}> 
                 <div className='review_besttop'>
                   <img className='review_bestpic' src={imgurl+`${item.uprofile}`} alt="Profile"/>
                   <div className='review_bestcolor'></div>
@@ -45,7 +54,11 @@ function ReviewBestList() {
                       <div className='review_vstartxt'>{item.likeCount}/</div>
                       <div className='review_vstartxt'>{item.skill}</div>
                     </div>
-                    <button className='review_goDetail'> 자세히 보기 </button>
+                    
+                    <div className='review_goDetail'> 
+                      <ReviewModal/> 
+                    </div>
+                    
                 </div>      
               </div>
             ))}

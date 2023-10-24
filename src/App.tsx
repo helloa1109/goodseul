@@ -34,6 +34,9 @@ import FindPw4 from './component/FindUser/FindPw4';
 import Room from './component/Chat/Room';
 import ReviewForm from './pages/Review/ReviewForm';
 import Floatingmenu from './component/Floatingmenu/Floatingmenu';
+import MyPageFavorite from './pages/MyPage/MyPageFavorite';
+import MyPagePay from './pages/MyPage/MyPagePay';
+import MyPageAdminChat from './pages/MyPage/MyPageAdminChat';
 
 
 
@@ -83,6 +86,9 @@ function App() {
         <Route path='/MyPageChangeInfo' element={<MyPageChangeInfo />} />
         <Route path='/MyPageRequest' element={<MyPageRequest />} />
         <Route path='/MyPageCoupon' element={<MyPageCoupon />} />
+        <Route path='/MyPageFavorite' element={<MyPageFavorite />} />
+        <Route path='/MyPagePay' element={<MyPagePay />} />
+        <Route path='/MyPageAdminChat' element={<MyPageAdminChat />} />
 
         <Route path='/room/:roomId' element={<Room/>}/>
         

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import "../../style/review/review.scss"
 import "../../style/global/global.scss"
 import SearchBar from '../../component/SearchBar/SearchBar'
-import { useNavigate } from 'react-router-dom'
 import ReviewBestList from '../../component/reviewList/ReviewBestList'
 import ReviewPremiumList from '../../component/reviewList/ReviewPremiumList'
 

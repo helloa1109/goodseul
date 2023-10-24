@@ -1,9 +1,10 @@
 import React from 'react';
+import MypageCouponListCompo from '../../component/Mypage/MypageCouponListCompo';
 
 function MyPageCoupon() {
     return (
-        <div>
-            쿠폰
+        <div className='MyPageCouponPages'> 
+            <MypageCouponListCompo/>
         </div>
     );
 }
