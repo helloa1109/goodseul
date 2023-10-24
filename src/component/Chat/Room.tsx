@@ -4,8 +4,9 @@ import emoji from "../../image/Chat/emoji.png";
 import chatprofile from "../../image/Chat/profile.png";
 import { getChatHistory } from "../../apis/Chat/ChatApis";
 import { useChatConstants } from "./useChatConstants";
+import SockJS from "sockjs-client";
+import * as StompJS from "@stomp/stompjs";
 // import ChatScroll  from "./ChatScroll"; 
-
 
 const Room = () => {
 
@@ -60,21 +61,9 @@ const Room = () => {
         }
     }, [setLoading, roomId, page, msg, setMsg]);
 
-    useEffect(() => {
-        const area = document.getElementById('ChatRoom');
-        area?.addEventListener('scroll', handleScroll, true);
-
-        return () => {
-            area?.removeEventListener('scroll', handleScroll, true);
-        };
-    }, [handleScroll]);
-
-
-
     /* connect 관련 useEffect */
     useEffect(() => {
         setChatClient(ws);
-
         connect();
         setMsg([]);
 
@@ -91,9 +80,10 @@ const Room = () => {
             });
         }
 
-        return () => disConnect();
-
+        return () => disConnect();    
     }, []);
+
+    
 
     /* disconnect */
     const disConnect = () => {
@@ -104,18 +94,19 @@ const Room = () => {
         chatClient.deactivate();
     };
 
-
     /* connect */
     const connect = () => {
-        disConnect();
-        setConnecting(true);
-        // setChatClient(ws);
-        // ws.disconnect();
+        const sockJSUrl = "http://dopeboyzclub.ddns.net:7780/ws"; // 웹 소켓 서버 URL
+    
+        const sock = new SockJS(sockJSUrl);
+        const ws = StompJS.Stomp.over(()=>sock);
 
+        setChatClient(ws);
+    
         ws.debug = function (str) {
             console.log(str);
         };
-
+    
         ws.connect({}, (e: any) => {
             console.log("WebSocket connected");
             ws.subscribe(`/sub/${roomId}`, data => {
@@ -127,16 +118,17 @@ const Room = () => {
         }, (error: any) => {
             console.log("error", error);
         });
-
-        return () => disConnect();
     };
-
+    
     const AddChat = (data: { body: string }) => {
         const messageData = JSON.parse(data.body);
-        setMsg((msg) => [messageData, ...msg]);
+        setMsg((msg) => [ 
+            ...msg,
+            messageData,
+        ]);
     };
 
-    const publish = (sender: number, receiver: number, message: React.RefObject<HTMLInputElement>) => {
+    const publish = (sender:number, receiver:number, message:React.RefObject<HTMLInputElement>) => {
         if (chatClient) {
             chatClient.send(`/pub/message`, {}, JSON.stringify({
                 type: "TALK",
@@ -150,10 +142,9 @@ const Room = () => {
         } else {
             console.log("클라이언트 null");
         }
-    }
-
-
-    const enter = (sender: number, receiver: number, message: string) => {
+    };
+    
+    const enter = (sender:number, receiver:number, message:string) => {
         if (chatClient) {
             chatClient.send(`/pub/message`, {}, JSON.stringify({
                 type: "ENTER",
@@ -165,6 +156,7 @@ const Room = () => {
             console.log("클라이언트 null");
         }
     };
+    
 
 
     const handleOneKeyEnter = (e: any) => {
@@ -182,6 +174,7 @@ const Room = () => {
         if (e.key === "Enter") {
             handleOneKeyEnter(e);
         }
+
     }
 
     // 자동으로 맨 아래있는 텍스트로 이동
@@ -207,6 +200,17 @@ const Room = () => {
 
         return currentDate !== previousDate;
     }
+
+
+    useEffect(() => {
+        const area = document.getElementById('ChatRoom');
+        area?.addEventListener('scroll', handleScroll, true);
+
+        return () => {
+            area?.removeEventListener('scroll', handleScroll, true);
+        };
+    }, [handleScroll]);
+    
 
     useEffect(() => {
         scrollToBottom();

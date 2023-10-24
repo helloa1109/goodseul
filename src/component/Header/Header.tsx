@@ -17,7 +17,6 @@ const Header = () => {
   const isFindId = useRecoilValue<boolean>(isFindIdAtom);
   const RoomID = useRecoilValue(getRoomIdAtom);
   const UserNick = useRecoilValue(getUserNickAtom);
-  console.log("header",RoomID);
 
   const Location = useLocation();
   const navigate = useNavigate();
