@@ -3,6 +3,7 @@ import FontRed from './FontRed';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isLoginState } from '../../recoil/JWT/JWTAtom';
+import { loginState } from '../../apis/JWT/JWTisLoginState';
 type csProps = {
     dest: string,
     src: string,
@@ -11,11 +12,11 @@ type csProps = {
     str2?: string,
 }
 const PlayBanner = ({ dest, src, str, str2, order }: csProps) => {
-    const isLogin = useRecoilValue(isLoginState);
+    // const isLogin = useRecoilValue(isLoginState);
     const navi = useNavigate();
     
     const handleClick = (dest: string) => {
-        if (isLogin)
+        if (loginState())
             navi(`./${dest}`);
         else {
             alert('로그인해야 이용 가능합니다.');
