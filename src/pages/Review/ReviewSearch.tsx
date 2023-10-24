@@ -10,19 +10,21 @@ const ReviewSearch = () => {
 
   return (
     <div>
-      <div className='RSSearch_wrap'>
+      <div className='rsSearch_wrap'>
         <SearchBar/>
       </div>
-      <div className='RS_Listwrap'>
-        <div className='RSList'>
+      <div className='rs_listwrap'>
+        
           {
             searchResult.map((item,idx)=>(
-              item.goodseulName
+              <div className='rs_box' key={idx}>
+                <div className='rs_name'>{item.goodseulName}</div>
+              </div>
             ))
           }
         </div>
-      </div>
     </div>
+    
   )
 }
 

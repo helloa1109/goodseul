@@ -166,9 +166,17 @@
    height: 33%;
    display: flex; 
 }
+.review_titlewrap{
+    padding-top: 5px;
+    margin-left: 5px;
+}
 .review_markpush{
     width: 82%;
     height: 50px;
+    text-align: left;
+}
+.review_markpush div{
+   margin-top: 28px;
 }
 .review_mark{
     width: 15%;
@@ -186,3 +194,4 @@
     text-shadow: -0.7px 0px $더밝은회색, 0px 0.7px $더밝은회색, 0.7px 0px $더밝은회색, 0px -0.7px $더밝은회색;
     
 }
+/* modal */
