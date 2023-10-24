@@ -33,7 +33,8 @@ import FindPw3Auth from './component/FindUser/FindPw3Auth';
 import FindPw4 from './component/FindUser/FindPw4';
 import Room from './component/Chat/Room';
 import ReviewForm from './pages/Review/ReviewForm';
-import TestLobby from './component/Chat/TestLobby';
+import Floatingmenu from './component/Floatingmenu/Floatingmenu';
+
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
+      <Floatingmenu/>
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/play' element={<PlayMain />} />
@@ -50,7 +52,6 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/findidpw' element={<FindUserIdPw />} />
-
         {isPathTure ? null : (
           <>
             <Route path='/findidsuccess' element={<FindIdSuccess />} />
@@ -85,7 +86,6 @@ function App() {
 
         <Route path='/room/:roomId' element={<Room/>}/>
         
-        <Route path='/test' element={<TestLobby/>}/>
         <Route path="/*" element={
           <h1 style={{ width: "100%", textAlign: "center", marginTop: "10%", position: "absolute" }}>페이지가 없습니다</h1>
         } />

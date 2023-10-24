@@ -1,5 +1,5 @@
 import { atom , selector} from 'recoil';
-import { Message, goodseulDto } from '../../hooks/Chat/ChatType';
+import { Message, chatHistory, chatRoomList, goodseulDto } from '../../hooks/Chat/ChatType';
 
 // export const connect = (onConnectCallback:any, onErrorCallback:any) => {
 //     ws.disconnect();
@@ -36,5 +36,29 @@ export const getGoodSeulInfoAtom = atom<goodseulDto[]>({
     default: [],
 });
 
+export const getChatHistoryAtom = atom<chatHistory[]>({
+    key: 'getChatHistoryAtom',
+    default : [],
+})
+
+export const getChatRoomListAtom = atom<chatRoomList[]>({
+    key: 'getChatRoomListAtom',
+    default : [],
+})
+
+export const getChatRoomIdxAtom = atom<chatRoomList[]>({
+    key: 'getChatRoomIdxAtom',
+    default : [],
+})
+
+export const getRoomIdAtom = atom ({
+    key:'getRoomIdAtom',
+    default : '',
+});
+
+export const getUserNickAtom = atom({
+    key: 'getUserNickAtom',
+    default: '',
+})
 // 테스트
 

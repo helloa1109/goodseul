@@ -7,10 +7,11 @@ import { axiosPunch } from '../../apis/JWT/JWTConfig';
 type csProps = {
     gameID?: number,
     rankingData: boolean | { nickname: string, rank: number, score: number, date: number }[],
-    gameItem?:React.MutableRefObject<any|null>
+    gameItem?:React.MutableRefObject<any|null>,
+    orderBy?:number
 }
 
-const PlayRanking = ({ gameID, rankingData,gameItem }: csProps) => {
+const PlayRanking = ({ gameID, rankingData,gameItem,orderBy }: csProps) => {
     const userNick = (JWTDecoding() as decodeToken).nickname;
     const [rankData, setRankData] = useState<{ nickname: string, rank: number, score: number, date: number }[]>();
     const serverUrl = "http://dopeboyzclub.ddns.net:7780";
@@ -26,7 +27,7 @@ const PlayRanking = ({ gameID, rankingData,gameItem }: csProps) => {
     const getRankinglist = async (isWeekly: boolean = false) => {
         let data = await axiosPunch({
             method: 'get',
-            url: `${serverUrl}/api/lv1/rank${isWeekly ? '/week' : ''}?gameIdx=${gameID}&orderBy=1`,
+            url: `${serverUrl}/api/lv1/rank${isWeekly ? '/week' : ''}?gameIdx=${gameID}&orderBy=${orderBy || 0}`,
         })
             .then(r => {
                 let a = (r.data as { nickname: string, rank: number, score: number, date: number }[]);
