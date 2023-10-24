@@ -1,9 +1,10 @@
 import React from 'react';
+import MyPageRequestListCompo from '../../component/Mypage/MyPageRequestListCompo';
 
 function MyPageRequest() {
     return (
         <div>
-            리퀘스트
+            <MyPageRequestListCompo/>
         </div>
     );
 }
