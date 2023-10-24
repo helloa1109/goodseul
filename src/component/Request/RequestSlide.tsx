@@ -56,7 +56,7 @@ const RequestSlide = () => {
                     <div className='SlideMap' onClick={() => handleRegionClick(index)}>
                         <img
                             className='SlideImg'
-                            src={`http://dopeboyzclub.ddns.net:7733/images/${review.goodseulProfile}`} alt='' />
+                            src={`http://dopeboyzclub.ddns.net:7733/userprofile/${review.uprofile}`} alt='' />
                         <div className='SlideMapText'>
                             <div className='SlideMapHeader'>
                                 <div className='SlideName'>

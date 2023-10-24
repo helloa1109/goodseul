@@ -3,7 +3,7 @@ export interface Review {
     goodseulName: string;
     skill: string;
     isPremium: number;
-    goodseulProfile: string;
+    uprofile: string;
     likeCount : number;
     randSubject: string;
     ridx: number;

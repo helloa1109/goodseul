@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "../../style/GuseulDetail/GuseulDetail.scss";
 import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
-import { RoomCreate, getGoodSeulInfo } from '../../apis/Chat/ChatApis';
+import { RoomCreate, getChatHistory, getGoodSeulInfo } from '../../apis/Chat/ChatApis';
 import { useNavigate } from 'react-router-dom';
-import { RoomIdxAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
+import { RoomIdxAtom, getRoomIdAtom, getUserNickAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
 import { useRecoilState } from 'recoil';
 import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { goodseulDto } from '../../hooks/Chat/ChatType';
@@ -22,6 +22,9 @@ function GuseulDetail() {
     // 구슬 idx
     const [goodSeulIdx,setGoodSeulIdx] = useState<goodseulDto[]>([]);
 
+    const [getRoomId , setRoomId] = useRecoilState(getRoomIdAtom);
+    const [getUserNick , setUserNick] = useRecoilState(getUserNickAtom);
+
     const navigate = useNavigate();
 
     // 방만들때 res 값 받아오기
@@ -33,7 +36,7 @@ function GuseulDetail() {
     
             if (goodSeulResponse) {
                 const goodSeulIdx = goodSeulResponse.data.userDto.idx;
-                console.log("handleChat data Idx",goodSeulIdx);
+                setUserNick(goodSeulResponse.data.userDto.nickname);
                 const roomCreateResponse = await RoomCreate(goodSeulIdx);
     
                 if (roomCreateResponse) {
@@ -45,6 +48,9 @@ function GuseulDetail() {
                     setPerson2(data.person2);
     
                     const roomId = roomCreateResponse.data;
+                    setRoomId(roomId);
+                    
+                    getChatHistory(roomId);
                     navigate(`/room/${roomId}`);
                     console.log("handleChat in Detail RoomId",roomId);
 
@@ -69,18 +75,6 @@ function GuseulDetail() {
     }
 
     useEffect(() => {
-    // const fetchData = async () => {
-    //     try {
-    //         const response = await getGoodSeulInfo();
-    //         if (response && response.data) {
-    //             setGoodSeulIdx(response.data.goodseulDto.idx);
-    //         }
-    //     } catch (error) {
-    //         console.log("Error", error);
-    //     }
-    // };
-
-    // fetchData();
     console.log("펄슨1 디테일",person1);
     console.log("펄슨2 디테일",person2);
 }, [person1,person2]);
