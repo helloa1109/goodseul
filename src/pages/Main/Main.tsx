@@ -7,7 +7,7 @@ import Review from "../../component/Slider/Main/Review"
 import Locate from "../../component/Slider/Main/Locate"
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronCircleRight, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const Main = () => {
