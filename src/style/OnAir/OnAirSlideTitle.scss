@@ -1,21 +1,43 @@
 @import "../global/global.scss";
 
-.OnAirSlideTitlePage {
-    position: fixed;
-    width: 375px;
-    top: 170px;
-    left: 26px;
+.OnAirSlideTitlePage{
+      position: relative;
+      top: 120px;
+      left: 18px;
+      color: $밝은회색;
+      font-family: Noto Sans KR;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
 
-    ul {
+      ul {
+        // list-style-position: inside;
         list-style: none;
-        display: flex; 
-        justify-content: space-between; 
         padding: 0; 
         margin: 0; 
-    
-        li {
-          flex: 1; // 각 li 요소가 동일한 너비를 가지도록 설정
-          text-align: center; // 텍스트 중앙 정렬
-        }
+        display: flex; 
+    }
+  
+      li {
+        margin-right: 15px;
       }
-}
+
+      li::before {
+        content: '\2022'; /* 작은 점을 나타내는 유니코드 */
+        color: $버건디; 
+        margin-right: 3px; /* 텍스트 사이의 간격 조정 */
+        font-size: 20px; /* 크기 조정 */
+        opacity: 0; /* 점을 숨김 */
+        transition: opacity 0.3s ease; /* 부드러운 페이드 효과를 위한 transition 추가 */
+      }
+
+      ul li.selected {
+        color: $버건디;
+        font-weight: 700;
+      }
+
+      li.selected::before {
+        opacity: 1; /* 선택된 li 요소에 대해서만 작은 점을 나타냄 */
+      }
+  }
