@@ -11,6 +11,8 @@ import { useRecoilValue } from 'recoil';
 import { rIdxState } from '../../recoil/Review/ReviewAtom';
 import { reviewModal } from '../../apis/Review/ReviewModal';
 import { ReviewCData } from '../../hooks/Review/Review';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 
 const Transition = React.forwardRef(function Transition(
@@ -78,6 +80,7 @@ export default function ReviewModal() {
             </React.Fragment>
         ))}
         <DialogActions>
+            <FontAwesomeIcon icon={faThumbsUp} />
             <Button onClick={handleClose}>Agree</Button>
         </DialogActions>
         </Dialog>

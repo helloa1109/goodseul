@@ -46,7 +46,6 @@ const Room = () => {
         if (divTop >= 50 && currScroll === 0) {
             // Scrolling at the top of the chat
             setLoading(true);
-            setConnecting(false);
             const previousPage = page + 1;
 
             getChatHistory(roomId, previousPage)
@@ -59,31 +58,33 @@ const Room = () => {
                     }
                 });
         }
-    }, [setLoading, roomId, page, msg, setMsg]);
+    }, [page, msg, setMsg]);
 
     /* connect 관련 useEffect */
     useEffect(() => {
         setChatClient(ws);
         connect();
         setMsg([]);
-
-        if (connecting) {
-            setConnecting(false);
+    
+        // if (connecting) {
             getChatHistory(roomId).then(res => {
                 if (res && res.data) {
                     setMsg([...res.data, ...msg]);
                     setChatHistory(res.data);
                     console.log("히스토리", chatHistory);
-                    setConnecting(false);
-                    // scrollToBottom();
                 }
             });
-        }
-
-        return () => disConnect();    
-    }, []);
-
     
+            // 여기서 connecting 상태를 변경
+        //     setConnecting(false);
+        // }
+    
+        return () => disConnect();
+    }, []);
+    
+
+    console.log(sender, receiver);
+
 
     /* disconnect */
     const disConnect = () => {
@@ -91,22 +92,32 @@ const Room = () => {
         if (chatClient === null) {
             return;
         }
-        chatClient.deactivate();
+        chatClient?.deactivate();
     };
 
     /* connect */
     const connect = () => {
+        // 웹소켓 서버 Url 
         const sockJSUrl = "http://dopeboyzclub.ddns.net:7780/ws"; // 웹 소켓 서버 URL
-    
-        const sock = new SockJS(sockJSUrl);
-        const ws = StompJS.Stomp.over(()=>sock);
 
-        setChatClient(ws);
-    
+        // sockJs 사용 웹 소켓 연결 
+        const sock = new SockJS(sockJSUrl);
+
+        // StompJs 사용 위에 만들어놓은 sock 변수로 연결 설정하고 
+        // ws 변수에 할당 
+        const ws = StompJS.Stomp.over(() => sock);
+
+        // 웹소켓 클라이언트를 상태로 설정
+
+
+        // 디버깅
         ws.debug = function (str) {
             console.log(str);
         };
-    
+
+        // 웹소켓 클라이언트 사용 웹소켓 서버에 연결
+        // 두번째 인자로 전달된 함수 호출 
+        // 에러 발생하면 세번째 인자로 감
         ws.connect({}, (e: any) => {
             console.log("WebSocket connected");
             ws.subscribe(`/sub/${roomId}`, data => {
@@ -114,21 +125,25 @@ const Room = () => {
                 console.log(JSON.parse(data.body));
                 AddChat(data);
             });
+            setChatClient(ws);
+            setConnecting(true);
             enter(sender, receiver, "입장");
         }, (error: any) => {
             console.log("error", error);
+            setChatClient(null);
         });
     };
-    
+
+    // 받은 웹소켓 메시지 ㅁ파싱 , 배열에 새로운 메세지 추가
     const AddChat = (data: { body: string }) => {
         const messageData = JSON.parse(data.body);
-        setMsg((msg) => [ 
+        setMsg((msg) => [
             ...msg,
             messageData,
         ]);
     };
 
-    const publish = (sender:number, receiver:number, message:React.RefObject<HTMLInputElement>) => {
+    const publish = (sender: number, receiver: number, message: React.RefObject<HTMLInputElement>) => {
         if (chatClient) {
             chatClient.send(`/pub/message`, {}, JSON.stringify({
                 type: "TALK",
@@ -143,8 +158,8 @@ const Room = () => {
             console.log("클라이언트 null");
         }
     };
-    
-    const enter = (sender:number, receiver:number, message:string) => {
+
+    const enter = (sender: number, receiver: number, message: string) => {
         if (chatClient) {
             chatClient.send(`/pub/message`, {}, JSON.stringify({
                 type: "ENTER",
@@ -156,8 +171,6 @@ const Room = () => {
             console.log("클라이언트 null");
         }
     };
-    
-
 
     const handleOneKeyEnter = (e: any) => {
         e.preventDefault();
@@ -210,23 +223,23 @@ const Room = () => {
             area?.removeEventListener('scroll', handleScroll, true);
         };
     }, [handleScroll]);
-    
+
 
     useEffect(() => {
         scrollToBottom();
-    }, [msg]);
+    }, []);
 
     return (
         <div className="ChatRoom" id="ChatRoom">
             <div className="chats" id="chats" ref={chatRef}>
                 {msg.map((item, index) => (
-                    <div className="Chattest">
-                        {index === 0 || isDateChanged(item, msg[index - 1]) && (
+                    <div className="Chattest" key={index}>
+                        {/* {index === 0 || (item && msg[index - 1] && isDateChanged(item, msg[index - 1])) && (
                             <div className="ChatDateGroup">
                                 <div className="Chatdate">{formatSendTime(item.sendTime)}</div>
                             </div>
-                        )}
-                        <div key={index} className="chatMyInfo">
+                        )} */}
+                        <div className="chatMyInfo">
                             <div className="GoodSeulInfo">
                                 {
                                     senderNow === item.sender ? (

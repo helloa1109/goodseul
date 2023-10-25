@@ -8,9 +8,10 @@ import { isLoginState } from '../../recoil/JWT/JWTAtom';
 import { useRecoilState } from 'recoil';
 import { decodeToken } from '../../hooks/JWT/JWTType';
 import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
-import { getUserInfoApi } from '../../apis/myPage/myPage';
+import { getUserInfoApi } from '../../apis/MyPage/myPage';
 import { myPage } from '../../hooks/MyPage/MyPageType';
-import { userInfoAtom } from '../../recoil/Mypage/MyPageAtom';
+import { userInfoAtom } from '../../recoil/MyPage/MyPageAtom';
+import { tokensRefresh } from '../../apis/JWT/JWTConfig';
 
 function MyPage() {
 
