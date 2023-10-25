@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import "../../style/Mypage/Mypage.scss";
+import "../../style/MyPage/Mypage.scss";
 import MypageRecent from './MypageRecent';
 import MypagePlay from './MypagePlay';
 import MypageMenu from './MypageMenu';

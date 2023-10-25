@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import "../../style/Mypage/MypageChat.scss";
+import "../../style/MyPage/MypageChat.scss";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { getChatRoomIdxAtom, getChatRoomListAtom, getRoomIdAtom, getUserNickAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
 import { getChatRoomList } from '../../apis/Chat/ChatApis';

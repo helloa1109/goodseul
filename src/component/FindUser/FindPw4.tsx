@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import "../../style/FindUserIdPw/FindPw4.scss";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { ShowChecktPw, ShowChecktPw1, isCorrectPwAtom, resEmailAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
-import show from "../../image/Mypage/show.png";
-import showPwIcon from "../../image/Mypage/showIcon.png";
-import check from "../../image/Mypage/Check.png";
+import show from "../../image/MyPage/show.png";
+import showPwIcon from "../../image/MyPage/showIcon.png";
+import check from "../../image/MyPage/Check.png";
 import errorIcon from '../../image/SignUp/errorIcon.png';
 import { useNavigate } from 'react-router-dom';
 import { updatePwApi } from '../../apis/FindIdPw/FindPwApi';

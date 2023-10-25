@@ -1,5 +1,5 @@
 import React from 'react'
-import MyPageFavoriteListCompo from '../../component/Mypage/MyPageFavoriteListCompo'
+import MyPageFavoriteListCompo from '../../component/MyPage/MyPageFavoriteListCompo'
 
 const MyPageFavorite = () => {
   return (

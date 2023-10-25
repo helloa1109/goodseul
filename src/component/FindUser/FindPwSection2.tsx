@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../../style/FindUserIdPw/FindPwSection2.scss";
-import phone from "../../image/Mypage/phone.png";
-import email from "../../image/Mypage/email.png";
+import phone from "../../image/MyPage/phone.png";
+import email from "../../image/MyPage/email.png";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { isFindIdAtom, isPathTrueAtom, resNumberAtom, resPwAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
 import { useNavigate } from 'react-router-dom';

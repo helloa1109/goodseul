@@ -1,5 +1,5 @@
 import React from 'react';
-import MypageCouponListCompo from '../../component/Mypage/MypageCouponListCompo';
+import MypageCouponListCompo from '../../component/MyPage/MypageCouponListCompo';
 
 function MyPageCoupon() {
     return (
