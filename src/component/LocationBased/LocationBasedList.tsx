@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../../style/LocationBased/LocationBasedList.scss";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { selectedRegionState, testList } from "../../recoil/LocationBased/LocationAtom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from "swiper";
@@ -12,18 +12,29 @@ import defaultImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import 'swiper/css/pagination';
+import { GoodSeulIdxAtom } from '../../recoil/GoodSeul/GoodSeulAtom';
+import { useNavigate } from 'react-router-dom';
 
 SwiperCore.use([Autoplay]);
 const LocationBasedList = () => {
-
+  const navigate = useNavigate();
   const selectedRegion = useRecoilValue(selectedRegionState);
 
   console.log(selectedRegion);
 
   const ListValue = useRecoilValue(testList);
-
+  const [GoodSeulIdx, setGoodSeulIdx] = useRecoilState(GoodSeulIdxAtom);
+  const idx = ListValue.map(item => item.idx);
   console.log("리스트 벨류에요", ListValue);
-
+  
+  const handleGoodSeulIdx = (clickedIndex:number) => {
+    if (ListValue.length > 0) {
+      const idx = ListValue[clickedIndex].idx;
+      setGoodSeulIdx(idx);
+      console.log("idx",GoodSeulIdx);
+      navigate("/GuseulDetail");
+    }
+  }
 
   return (
     <Swiper
@@ -44,7 +55,7 @@ const LocationBasedList = () => {
       className="mySwiper"
     >
       {ListValue.map((List, index) => (
-        <SwiperSlide key={index} className='GoodSeulList'>
+        <SwiperSlide key={index} className='GoodSeulList' onClick={() => handleGoodSeulIdx(index)}>
           <div className='LocationGoodSeultList'>
             <img
               className={`GoodSeulLocationImg ${List.goodseulProfile ? '' : 'default-img'}`}

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import "../../style/Mypage/MypageChat.scss";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { getChatRoomIdxAtom, getChatRoomListAtom, getRoomIdAtom, getUserNickAtom } from '../../recoil/Chat/ChatAtom';
+import { getChatRoomIdxAtom, getChatRoomListAtom, getRoomIdAtom, getUserNickAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
 import { getChatRoomList } from '../../apis/Chat/ChatApis';
 import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { decodeToken } from '../../hooks/JWT/JWTType';
@@ -16,6 +16,8 @@ function MyPageChat() {
     const RoomList = useRecoilValue(getChatRoomListAtom);
     const [getRoomId , setRoomId] = useRecoilState(getRoomIdAtom);
     const [UserNick, setUserNick] = useRecoilState(getUserNickAtom);
+    const [person1, setPerson1] = useRecoilState(person1State);
+    const [person2, setPerson2] = useRecoilState(person2State);
     const navigate = useNavigate();
     // 구슬 idx
     const OtherMemIdx = RoomList.map(item => item.userIdx);
@@ -24,18 +26,11 @@ function MyPageChat() {
     // 로그인 한 유저 idx
     const myIdx = (JWTDecoding() as decodeToken).idx;
 
-    console.log("myIdx",myIdx);
-    console.log("other" , otherIdx);
-    console.log("otherIDx",OtherMemNick);
-
-
     const HandleChat = (clickedIndex:number) => {
         // 클릭한 인덱스 가져오는 코드
         const userIdx = OtherMemIdx[clickedIndex];
         const userNick = OtherMemNick[clickedIndex];
         let roomId;
-
-        console.log("dd",userIdx);
         if(userIdx > myIdx){
             roomId = myIdx.toString() + "to" + userIdx.toString();
         }else{
@@ -43,13 +38,13 @@ function MyPageChat() {
         }
 
         setRoomId(roomId);
+        setPerson1(myIdx);
+        setPerson2(userIdx);
         setUserNick(userNick);
-        
-        console.log(roomId);
+
         navigate(`/room/${roomId}`);
     }
     
-    console.log(getRoomId);
 
     useEffect(()=>{
         const fetchData = async () => {
