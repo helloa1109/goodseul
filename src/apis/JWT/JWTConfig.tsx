@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 
 export const tokensRefresh = async (refreshToken:Token) => {
-    console.log("refreshToken : " + refreshToken)
     try {
         const res = await axios({
             method:'get',
@@ -63,6 +62,7 @@ axiosPunch.interceptors.request.use(
         } else if((!tokenExpCheck(accessToken) && refreshToken)){
             const accessToken:Token = await tokensRefresh(refreshToken);
             config.headers['Authorization'] = `Bearer ${accessToken}`;
+            console.log("config : " + config.headers['Authorization']);
         }else if(accessToken) {
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
