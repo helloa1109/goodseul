@@ -26,7 +26,6 @@ function Floatingmenu() {
             return (JWTDecoding() as decodeToken).userProfile;
         }
     }
-    console.log(userProfile());
     const logoutActions = [
         { icon: <div className='floatingIcon floatingLogin'><img src={mypageIcon} alt=""/></div>, name: "로그인" ,  dest:"/Login"} ,
         { icon: <div className='floatingIcon floatingCommunication'><img src={commuIcon} alt=""/></div>, name: "커뮤니티"  ,dest:"/Community"},

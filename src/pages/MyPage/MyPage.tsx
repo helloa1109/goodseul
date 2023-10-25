@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "../../style/Mypage/Mypage.scss";
-import test from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import MypageRecent from './MypageRecent';
 import MypagePlay from './MypagePlay';
 import MypageMenu from './MypageMenu';
@@ -12,7 +11,6 @@ import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { getUserInfoApi } from '../../apis/myPage/myPage';
 import { myPage } from '../../hooks/MyPage/MyPageType';
 import { userInfoAtom } from '../../recoil/Mypage/MyPageAtom';
-import { tokensRefresh } from '../../apis/JWT/JWTConfig';
 
 function MyPage() {
 
@@ -40,6 +38,9 @@ function MyPage() {
         }
     }
 
+    // const test = () =>{
+    //     tokensRefresh(localStorage.getItem('refreshToken'));
+    // }
 
     return (
         <div className='Mypage'>
