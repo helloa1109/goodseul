@@ -1,11 +1,11 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import "../../style/Mypage/MypageMenu2.scss";
-import pay from "../../image/Mypage/paypng.png";
-import offer from "../../image/Mypage/offer.png";
-import chat from "../../image/Mypage/chat2.png";
-import option from "../../image/Mypage/option.png";
-import arrow from "../../image/Mypage/chevron-right.png";
+import "../../style/MyPage/MypageMenu2.scss";
+import pay from "../../image/MyPage/paypng.png";
+import offer from "../../image/MyPage/offer.png";
+import chat from "../../image/MyPage/chat2.png";
+import option from "../../image/MyPage/option.png";
+import arrow from "../../image/MyPage/chevron-right.png";
 
 const MypageMenu2 = () => {
 

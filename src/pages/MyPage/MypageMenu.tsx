@@ -1,10 +1,10 @@
 import React,{useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
-import "../../style/Mypage/MypageMenu.scss";
-import heart from "../../image/Mypage/heart.png";
-import coupon from "../../image/Mypage/coupon.png";
-import chat from "../../image/Mypage/chat.png";
-import review from "../../image/Mypage/review.png";
+import "../../style/MyPage/MypageMenu.scss";
+import heart from "../../image/MyPage/heart.png";
+import coupon from "../../image/MyPage/coupon.png";
+import chat from "../../image/MyPage/chat.png";
+import review from "../../image/MyPage/review.png";
 import { userInfoAtom } from '../../recoil/MyPage/MyPageAtom';
 import { myPage } from '../../hooks/MyPage/MyPageType';
 import { useRecoilValue } from 'recoil';
