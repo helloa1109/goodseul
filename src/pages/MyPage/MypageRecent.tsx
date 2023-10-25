@@ -5,7 +5,7 @@ import { RecentlyViewed } from '../../hooks/MyPage/MyPageType';
 
 const MypageRecent = () => {
 
-    const RecentlyViewed = sessionStorage.getItem('RecentlyViewed');
+    const RecentlyViewed = localStorage.getItem('RecentlyViewed');
     let RecentlyViewedArray:RecentlyViewed[];
 
     if (RecentlyViewed !== null) {

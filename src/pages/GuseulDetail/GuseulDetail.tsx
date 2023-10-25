@@ -9,6 +9,7 @@ import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { goodseulDto } from '../../hooks/Chat/ChatType';
 import { decodeToken } from "../../hooks/JWT/JWTType";
 import { GoodSeulIdxAtom } from '../../recoil/GoodSeul/GoodSeulAtom';
+import { RecentlyViewedApi } from '../../apis/MyPage/myPage';
 
 function GuseulDetail() {
 
@@ -82,6 +83,10 @@ function GuseulDetail() {
             const res = await getGoodSeulInfo(pageGoodSeulIdx);
             if(res){
                 console.log("wtwt",res);
+                const Name:string = res.data.goodseulDto.goodseulName;
+                const image:string = res.data.userDto.userProfile;
+                const idx:number = res.data.goodseulDto.idx;
+                RecentlyViewedApi(idx,image,Name)
                 return res;
             }
         }catch(error){
