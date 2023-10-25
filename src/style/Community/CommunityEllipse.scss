@@ -5,10 +5,6 @@
     height: 265px;
     flex-shrink: 0;
     position: fixed;
-    // top: 250px;
-    // left: 20px;
-    fill: #D9D9D9;
-    // background-color: red;
 
     .CommunityEllipses{
         .Ellipse1{
@@ -21,6 +17,11 @@
             position: fixed;
             top: 245px;
             left: 55px;
+            border-radius: 50%;
+
+            background-image: url('http://dopeboyzclub.ddns.net:7733/resource/community/commnunity2.jpg');
+            background-size: cover; /* 이미지를 요소에 맞게 조절 */
+            background-position: center; /* 이미지의 위치를 가운데로 정렬 */
         }
     
         .Ellipse3{
@@ -39,6 +40,11 @@
             position: fixed;
             top: 265px;
             left: 288px;
+            border-radius: 50%;
+
+            background-image: url('http://dopeboyzclub.ddns.net:7733/resource/community/commnunity3.jpg');
+            background-size: cover; /* 이미지를 요소에 맞게 조절 */
+            background-position: center; /* 이미지의 위치를 가운데로 정렬 */
         }
     
         .Ellipse6{
@@ -51,10 +57,13 @@
             position: fixed;
             top: 310px;
             left: 138px;
-            background-image: url('../../image/OnAir/onair5.jpg');
-            background-size: cover;
             border-radius: 50%;
             z-index: 9999;
+
+            background-image: url('http://dopeboyzclub.ddns.net:7733/resource/community/commnunity1.jpg');
+            background-size: cover; /* 이미지를 요소에 맞게 조절 */
+            background-position: center; /* 이미지의 위치를 가운데로 정렬 */
+            
         }
     
         .Ellipse8{
@@ -73,18 +82,24 @@
             position: fixed;
             top: 398px;
             left: 217px;
+            
         }
     
         .Ellipse11{
             position: fixed;
             top: 413px;
             left: 267px;
+            border-radius: 50%;
+
+            background-image: url('http://dopeboyzclub.ddns.net:7733/resource/community/commnunity4.jpg');
+            background-size: cover; /* 이미지를 요소에 맞게 조절 */
+            background-position: center; /* 이미지의 위치를 가운데로 정렬 */
         }
     
         .Ellipse12{
             position: fixed;
             top: 385px;
-            left: 318px;
+            left: 310px;
         }
     
         @keyframes scaleAnimation {
