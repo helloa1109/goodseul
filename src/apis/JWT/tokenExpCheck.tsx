@@ -8,9 +8,6 @@ export const tokenExpCheck = (token:Token) => {
         const TokenDecoding:decodeToken = jwt_decode(token);
         const currentTime:number = Math.floor(Date.now() / 1000);
         const JWTExp:number = TokenDecoding.exp;
-        console.log(JWTExp);
-        console.log(currentTime);
-        console.log("JWTExp >= currentTime : " + (JWTExp >= currentTime));
         return JWTExp - 250 >= currentTime;
     }
 }

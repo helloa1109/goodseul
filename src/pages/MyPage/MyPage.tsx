@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "../../style/Mypage/Mypage.scss";
-import test from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import MypageRecent from './MypageRecent';
 import MypagePlay from './MypagePlay';
 import MypageMenu from './MypageMenu';
@@ -40,6 +39,9 @@ function MyPage() {
         }
     }
 
+    // const test = () =>{
+    //     tokensRefresh(localStorage.getItem('refreshToken'));
+    // }
 
     return (
         <div className='Mypage'>

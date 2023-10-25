@@ -29,7 +29,7 @@ const MypageRecent = () => {
                         </div>
                         
                     )) :
-                    <div className='MypageRecentGroup'>최근본 구슬님이 없습니다</div> }
+                    <div className='MypageRecentGroup nullRecentlyViewed'>최근본 구슬님이 없습니다</div> }
                 </div>
             </div>
         </div>
