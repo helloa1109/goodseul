@@ -2,7 +2,7 @@ import React from 'react'
 import "../../style/Mypage/MypagePlay.scss";
 import logo from "../../image/header/GoodSeul-Logo_.png";
 import { useNavigate } from "react-router-dom";
-import { userInfoAtom } from '../../recoil/Mypage/MyPageAtom';
+import { userInfoAtom } from '../../recoil/MyPage/MyPageAtom';
 import { useRecoilValue } from 'recoil';
 import { myPage } from '../../hooks/MyPage/MyPageType';
 

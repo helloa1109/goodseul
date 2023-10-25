@@ -20,13 +20,13 @@ export const RoomCreate = async (goodSeulIdx:number) => {
     }
 };
 
-export const getGoodSeulInfo = async () => {
+export const getGoodSeulInfo = async (pageGoodSeulIdx:number) => {
     try {
-        const resopnse = await axiosPunch({
+        const res = await axiosPunch({
             method: 'get',
-            url: (`${serverUrl}/api/lv1/gs?goodseulIdx=19`),
+            url: (`${serverUrl}/api/lv1/gs?goodseulIdx=${pageGoodSeulIdx}`),
         });
-        return resopnse;
+        return res;
     } catch (error) {
         console.log("error", error);
     }

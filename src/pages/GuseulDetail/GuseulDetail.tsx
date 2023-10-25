@@ -4,10 +4,11 @@ import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import { RoomCreate, getChatHistory, getGoodSeulInfo } from '../../apis/Chat/ChatApis';
 import { useNavigate } from 'react-router-dom';
 import { RoomIdxAtom, getRoomIdAtom, getUserNickAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { JWTDecoding } from '../../apis/JWT/JWTDecoding';
 import { goodseulDto } from '../../hooks/Chat/ChatType';
 import { decodeToken } from "../../hooks/JWT/JWTType";
+import { GoodSeulIdxAtom } from '../../recoil/GoodSeul/GoodSeulAtom';
 
 function GuseulDetail() {
 
@@ -15,6 +16,7 @@ function GuseulDetail() {
 
     // sender 
     const [person1, setPerson1] = useRecoilState(person1State);
+    const pageGoodSeulIdx = useRecoilValue(GoodSeulIdxAtom);
 
     // receiver
     const [person2, setPerson2] = useRecoilState(person2State);
@@ -32,7 +34,7 @@ function GuseulDetail() {
 
     const handleChat = async () => {
         try {
-            const goodSeulResponse = await getGoodSeulInfo();
+            const goodSeulResponse = await getGoodSeulInfo(pageGoodSeulIdx);
     
             if (goodSeulResponse) {
                 const goodSeulIdx = goodSeulResponse.data.userDto.idx;
@@ -62,21 +64,32 @@ function GuseulDetail() {
     }
     
 
-    const getData = async () => {
+    // const getData = async () => {
+    //     try{
+    //         const resopnse = await  getGoodSeulInfo();
+    //         if(resopnse && resopnse.data){
+    //             setGoodSeulIdx(resopnse.data.goodseulDto.idx);
+    //             console.log(goodSeulIdx);
+    //         }
+    //     } catch (error){
+    //         console.log("error",error);
+    //     }
+    // }
+
+    useEffect(() => {
+    const fetchData = async() => {
         try{
-            const resopnse = await  getGoodSeulInfo();
-            if(resopnse && resopnse.data){
-                setGoodSeulIdx(resopnse.data.goodseulDto.idx);
-                console.log(goodSeulIdx);
+            const res = await getGoodSeulInfo(pageGoodSeulIdx);
+            if(res){
+                console.log("wtwt",res);
+                return res;
             }
-        } catch (error){
-            console.log("error",error);
+        }catch(error){
+            console.log(error);
         }
     }
 
-    useEffect(() => {
-    console.log("펄슨1 디테일",person1);
-    console.log("펄슨2 디테일",person2);
+    fetchData();
 }, [person1,person2]);
 
 
@@ -89,7 +102,7 @@ function GuseulDetail() {
 
             <div className='GuseulDetailPopUp' >
 
-                <p className='GuseulName' onClick={getData}>
+                <p className='GuseulName'>
                     이상혁 구슬님
                 </p>
 

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 
 export const tokensRefresh = async (refreshToken:Token) => {
+    console.log("refreshToken : " + refreshToken)
     try {
         const res = await axios({
             method:'get',
