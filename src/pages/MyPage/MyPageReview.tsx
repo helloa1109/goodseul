@@ -1,6 +1,6 @@
 import React from 'react';
-import "../../style/Mypage/MyPageReview.scss";
-import MyPageReviewListCompo from '../../component/Mypage/MyPageReviewListCompo';
+import "../../style/MyPage/MyPageReview.scss";
+import MyPageReviewListCompo from '../../component/MyPage/MyPageReviewListCompo';
 
 function MyPageReview() {
     return (
