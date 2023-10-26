@@ -1,11 +1,11 @@
 import React from 'react'
-import "../../style/Mypage/MypageRecent.scss";
+import "../../style/MyPage/MypageRecent.scss";
 import test from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import { RecentlyViewed } from '../../hooks/MyPage/MyPageType';
 
 const MypageRecent = () => {
 
-    const RecentlyViewed = sessionStorage.getItem('RecentlyViewed');
+    const RecentlyViewed = localStorage.getItem('RecentlyViewed');
     let RecentlyViewedArray:RecentlyViewed[];
 
     if (RecentlyViewed !== null) {

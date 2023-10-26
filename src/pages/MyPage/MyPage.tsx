@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import "../../style/Mypage/Mypage.scss";
+import "../../style/MyPage/Mypage.scss";
 import MypageRecent from './MypageRecent';
 import MypagePlay from './MypagePlay';
 import MypageMenu from './MypageMenu';
@@ -39,9 +39,9 @@ function MyPage() {
         }
     }
 
-    // const test = () =>{
-    //     tokensRefresh(localStorage.getItem('refreshToken'));
-    // }
+    const test = () =>{
+        tokensRefresh(localStorage.getItem('refreshToken'));
+    }
 
     return (
         <div className='Mypage'>
@@ -60,7 +60,7 @@ function MyPage() {
             </div>
             <div className='MypageRecentlyGoodSeul'>
                 <div className='MypageRecentlyHeader'>
-                    <span>최근 본 구슬님</span>
+                    <span onClick={test}>최근 본 구슬님</span>
                 </div>
                 <MypageRecent/>
             </div>

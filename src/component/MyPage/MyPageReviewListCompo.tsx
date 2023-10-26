@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import "../../style/Mypage/MyPageReview.scss";
+import "../../style/MyPage/MyPageReview.scss";
 import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {MyPageReviewListState} from "../../recoil/MyPage/MyPageReviewListAtom";

@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { getMyPageRequestList } from '../../apis/MyPage/MyPageRequestListApi';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { MyPageRequestListState } from '../../recoil/MyPage/MyPageRequestListAtom';
-import "../../style/Mypage/MyPageRequestList.scss";
+import "../../style/MyPage/MyPageRequestList.scss";
 
 const MyPageRequestListCompo = () => {
   
