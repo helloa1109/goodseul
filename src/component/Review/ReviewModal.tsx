@@ -13,6 +13,8 @@ import { reviewModal } from '../../apis/Review/ReviewModal';
 import { ReviewCData } from '../../hooks/Review/Review';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { reviewLike } from '../../apis/Review/ReviewLike';
+import "../../style/review/reviewModal.scss";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -37,6 +39,15 @@ export default function ReviewModal() {
     setOpen(false);
   };
 
+  const handleLike =()=>{
+    reviewLike()
+    .then(res => {
+      if(res)
+      alert("공감하셨습니다.");
+    })
+
+  }
+
   useEffect(() => {
     if(open){
         console.log("go");
@@ -45,6 +56,7 @@ export default function ReviewModal() {
             console.log('clickedRIdx has changed:', clickedRIdx);
 
             const res = await reviewModal(clickedRIdx);
+            console.log(res.data);
             setSRList(Array.isArray(res.data) ? res.data : [res.data]);
           } catch (error) {
             console.error('An error occurred:', error);
@@ -60,30 +72,47 @@ export default function ReviewModal() {
       <Button 
         onClick={handleClickOpen}
         style={{color:'white'}}
-        >
-        자세히 보기
+      >
+       
       </Button>
       <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        fullScreen
-        onClose={handleClose}
-        >
-        {sRList.map((item, idx) => (
-            <React.Fragment key={idx}>
-            <DialogTitle>{item.rsubject}</DialogTitle>
-            <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                {item.rcontent}
-                </DialogContentText>
-            </DialogContent>
-            </React.Fragment>
-        ))}
-        <DialogActions>
-            <FontAwesomeIcon icon={faThumbsUp} />
-            <Button onClick={handleClose}>Agree</Button>
-        </DialogActions>
-        </Dialog>
+  open={open}
+  TransitionComponent={Transition}
+  fullScreen
+  onClose={handleClose}
+>
+  {sRList.map((item, idx) => (
+    <React.Fragment key={idx}>
+      <DialogActions>
+        <Button onClick={handleClose}>Agree</Button>
+      </DialogActions>
+      <DialogTitle className='RM_title'>{item.rsubject}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          {item.rcontent}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        {!item.likeStatus && (
+          <React.Fragment>
+            <Button>
+              <FontAwesomeIcon style={{border:'lightgray'}} icon={faThumbsUp} onClick={handleLike}/>
+              {item.likeCount}
+            </Button>
+          </React.Fragment>
+        )}
+        {item.likeStatus && (
+          <React.Fragment>
+            <Button>
+              <FontAwesomeIcon style={{color:'#8C2323'}} icon={faThumbsUp} />
+              {item.likeCount}
+            </Button>
+          </React.Fragment>
+        )}
+      </DialogActions>
+    </React.Fragment>
+  ))}
+</Dialog>
 
     </div>
   );
