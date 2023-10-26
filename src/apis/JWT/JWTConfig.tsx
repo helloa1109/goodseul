@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // let serverUrl:string = "http://192.168.0.102:8080";
 let serverUrl:string = "http://dopeboyzclub.ddns.net:7780";
 
-export const tokensRefresh = async (refreshToken:Token) => {
+export const tokensRefresh = async (refreshToken:Token) => { 
     try {
         const res = await axios({
             method:'get',
@@ -15,10 +15,13 @@ export const tokensRefresh = async (refreshToken:Token) => {
             headers: { 'Authorization-refresh': `Bearer ${refreshToken}`}
         });
         if(res?.status === 200 ) {
+            console.log("2");
             const newAccessToken:string = res.headers['authorization'];
             const newRefreshToken:string = res.headers['authorization-refresh'];
+            console.log("3");
             localStorage.setItem('accessToken', newAccessToken);
             localStorage.setItem('refreshToken', newRefreshToken);
+            console.log("4 newAccessToken : " + newAccessToken);           
         }
       } catch (error:any) {
         throw error;
@@ -48,22 +51,27 @@ export const axiosPunch:AxiosInstance = axios.create();
 
 axiosPunch.interceptors.request.use(
     async (config) => {
+        console.log("1");
         const accessToken:Token = localStorage.getItem('accessToken');
+        console.log("accessToken1 : " + accessToken);
         const refreshToken:Token = localStorage.getItem('refreshToken');
         //refreshToken이 존재하고 refreshToken의 만료시간이 지났거나 refreshToken이 없으면
         if(!refreshToken || !tokenExpCheck(refreshToken)){
-            const navi = useNavigate();
+            console.log("21");
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
-            alert("로그아웃 되었습니다.");
-            navi("/");
-            window.location.reload();
+            alert("로그인세션이 만료되었습니다.");
+            window.location.href = "/";
         //accessToken 이 만료되고 refreshToken 이 존재할때
         } else if((!tokenExpCheck(accessToken) && refreshToken)){
+            console.log("refreshToken : " + refreshToken);
             const accessToken:Token = await tokensRefresh(refreshToken);
+            console.log("newaccessToken : " + accessToken);
+            console.log("3");
             config.headers['Authorization'] = `Bearer ${accessToken}`;
-            console.log("config : " + config.headers['Authorization']);
+            console.log("config : " + `Bearer ${accessToken}`);
         }else if(accessToken) {
+            console.log("4");
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
         return config;
