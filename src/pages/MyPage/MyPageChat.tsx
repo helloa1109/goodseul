@@ -9,6 +9,11 @@ import profile from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import { chatRoomList } from '../../hooks/Chat/ChatType';
 import { useNavigate } from 'react-router-dom';
 
+interface HandleChatProps {
+    clickedIndex: number;
+    RoomList: chatRoomList[];
+}
+
 function MyPageChat() {
     
     const [chatRoom , setChatRoom] = useRecoilState(getChatRoomListAtom);
@@ -52,7 +57,7 @@ function MyPageChat() {
                 const res = await getChatRoomList();
                 if (res && res.data) {
                     setChatRoom(res.data);
-        
+                    console.log(res);
                 }
             } catch (error) {
                 console.log(error);

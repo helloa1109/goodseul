@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/header/Header.scss";
-import logo from "../../image/header/GoodSeul-Logo_.png";
-import arrow from "../../image/header/control.png";
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import { HeaderMenuModalAtom } from "../../recoil/header/HeaderAtom";
-import { IsMainAtom, } from '../../recoil/header/HeaderAtom';
-import { isFindIdAtom } from '../../recoil/FindUserIdPw/FindUserIdPwAtom';
-import HeaderMenu from './HeaderMenu';
-import { getRoomIdAtom, getUserNickAtom } from '../../recoil/Chat/ChatAtom';
+
+import {HeaderMenu,getUserNickAtom,IsMainAtom,
+  useNavigate,useLocation,HeaderMenuModalAtom,useRecoilState,useRecoilValue,
+  logo,arrow} from "./index";
+
+import HeaderTitle from './HeaderTitle';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useRecoilState(HeaderMenuModalAtom);
   const [isMain, setIsMain] = useRecoilState(IsMainAtom);
   const [isToggleChecked, setIsToggleChecked] = useState(false);
-  const isFindId = useRecoilValue<boolean>(isFindIdAtom);
-  const RoomID = useRecoilValue(getRoomIdAtom);
   const UserNick = useRecoilValue(getUserNickAtom);
 
   const Location = useLocation();
   const navigate = useNavigate();
+
+  const subHeaderTitle = HeaderTitle();
 
   const goBack = () => {
     setIsModalOpen(false);
@@ -29,46 +26,6 @@ const Header = () => {
   const toggleMenu = () => {
     setIsModalOpen(!isModalOpen);
     setIsToggleChecked(!isToggleChecked);
-  }
-
-
-  let subHeaderTitle = "구슬";
-
-  if (Location.pathname === "/login") {
-    subHeaderTitle = "로그인";
-  } else if (Location.pathname === "/signup") {
-    subHeaderTitle = "회원가입";
-  } else if (Location.pathname === "/Location") {
-    subHeaderTitle = "위치기반";
-  } else if (Location.pathname === "/Review") {
-    subHeaderTitle = "후기";
-  } else if (Location.pathname === "/Purpose") {
-    subHeaderTitle = "목적별";
-  } else if (Location.pathname === "/play") {
-    subHeaderTitle = "플레이";
-  } else if (Location.pathname === "/Request") {
-    subHeaderTitle = "견적요청";
-  } else if (Location.pathname === "/OnAir") {
-    subHeaderTitle = "실시간 상담";
-  } else if (Location.pathname === "/GuseulDetail") {
-    subHeaderTitle = "상세보기";
-
-  } else if (Location.pathname === "/findidpw" && isFindId) {
-    subHeaderTitle = "아이디찾기"
-  } else if (Location.pathname === "/findidpw" && !isFindId) {
-    subHeaderTitle = "비밀번호찾기"
-  } else if (Location.pathname === "/findpwauth") {
-    subHeaderTitle = "인증코드 입력";
-  } else if (Location.pathname === "/findpw4") {
-    subHeaderTitle = "새로운 비밀번호 입력";
-  } else if (Location.pathname === "/findpw2") {
-    subHeaderTitle = "비밀번호찾기 인증";
-  } else if (Location.pathname === "/findidsuccess") {
-    subHeaderTitle = "아이디찾기";
-  } else if (Location.pathname === "/play/ball") {
-    subHeaderTitle = "플레이볼랭킹";
-  } else if (Location.pathname === `/room/${RoomID}`){
-    subHeaderTitle = `${UserNick}님 채팅방`;
   }
 
   useEffect(() => {
@@ -86,6 +43,8 @@ const Header = () => {
     }
 
   }, [Location.pathname, setIsMain, setIsModalOpen]);
+
+  console.log("dd",isMain);
 
   return (
     // isMain ? (
@@ -127,8 +86,7 @@ const Header = () => {
             <div>{subHeaderTitle}</div>
           </div>
       }
-      <HeaderMenu />
-
+      <HeaderMenu/>
     </div>
   )
 }

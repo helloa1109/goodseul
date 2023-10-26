@@ -33,6 +33,7 @@ const Room = () => {
         setLoading,
         loading,
     } = useChatConstants();
+    
 
     const [connecting, setConnecting] = useState(true);
     // const { handleScroll } = ChatScroll();
@@ -60,40 +61,49 @@ const Room = () => {
         }
     }, [page, msg, setMsg]);
 
+    
+
     /* connect 관련 useEffect */
     useEffect(() => {
         setChatClient(ws);
+
         connect();
         setMsg([]);
+
+        const handleBeforeUnload = () => {
+            ws.disconnect();
+        }
+        window.addEventListener('beforeunload', handleBeforeUnload);
     
-        // if (connecting) {
-            getChatHistory(roomId).then(res => {
-                if (res && res.data) {
-                    setMsg([...res.data, ...msg]);
-                    setChatHistory(res.data);
-                    console.log("히스토리", chatHistory);
-                }
-            });
-    
-            // 여기서 connecting 상태를 변경
-        //     setConnecting(false);
-        // }
-    
-        return () => disConnect();
+        getChatHistory(roomId).then(res => {
+            if (res && res.data) {
+                setMsg([...res.data, ...msg]);
+                setChatHistory(res.data);
+                console.log("히스토리", chatHistory);
+            }
+        });
+
+        return () => {
+            // 웹소켓 종료 로직
+            ws.disconnect();
+            setConnecting(false);
+            console.log("return disConnect");
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        }
+        
     }, []);
     
-
-    console.log(sender, receiver);
-
-
     /* disconnect */
     const disConnect = () => {
-
         if (chatClient === null) {
-            return;
+            ws.disconnect(); 
         }
-        chatClient?.deactivate();
+        setConnecting(false);
+        
+        console.log('디스커넥트');
     };
+    
+
 
     /* connect */
     const connect = () => {
@@ -105,15 +115,12 @@ const Room = () => {
 
         // StompJs 사용 위에 만들어놓은 sock 변수로 연결 설정하고 
         // ws 변수에 할당 
-        const ws = StompJS.Stomp.over(() => sock);
-
-        // 웹소켓 클라이언트를 상태로 설정
-
+        const ws = StompJS.Stomp.over( () => sock );
 
         // 디버깅
         ws.debug = function (str) {
             console.log(str);
-        };
+        }
 
         // 웹소켓 클라이언트 사용 웹소켓 서버에 연결
         // 두번째 인자로 전달된 함수 호출 
@@ -125,6 +132,8 @@ const Room = () => {
                 console.log(JSON.parse(data.body));
                 AddChat(data);
             });
+            
+            // 웹소켓 클라이언트를 상태로 설정
             setChatClient(ws);
             setConnecting(true);
             enter(sender, receiver, "입장");
@@ -214,6 +223,7 @@ const Room = () => {
         return currentDate !== previousDate;
     }
 
+    // 브라우저 뒤로가기 이벤트 감지
 
     useEffect(() => {
         const area = document.getElementById('ChatRoom');

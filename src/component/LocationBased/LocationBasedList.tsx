@@ -6,8 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from "swiper";
 import { EffectCards , Pagination} from 'swiper/modules';
 import { Autoplay } from "swiper/modules";
-import defaultImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
-
 
 import 'swiper/css';
 import 'swiper/css/effect-cards';
@@ -24,17 +22,19 @@ const LocationBasedList = () => {
 
   const ListValue = useRecoilValue(testList);
   const [GoodSeulIdx, setGoodSeulIdx] = useRecoilState(GoodSeulIdxAtom);
-  const idx = ListValue.map(item => item.idx);
+
   console.log("리스트 벨류에요", ListValue);
   
   const handleGoodSeulIdx = (clickedIndex:number) => {
     if (ListValue.length > 0) {
-      const idx = ListValue[clickedIndex].idx;
+      const idx = ListValue[clickedIndex].goodseulDto.idx;
       setGoodSeulIdx(idx);
       console.log("idx",GoodSeulIdx);
       navigate("/GuseulDetail");
     }
   }
+
+  const defaultImg = 'http://dopeboyzclub.ddns.net:7733/userprofile/noImage.jpg';
 
   return (
     <Swiper
@@ -58,22 +58,22 @@ const LocationBasedList = () => {
         <SwiperSlide key={index} className='GoodSeulList' onClick={() => handleGoodSeulIdx(index)}>
           <div className='LocationGoodSeultList'>
             <img
-              className={`GoodSeulLocationImg ${List.goodseulProfile ? '' : 'default-img'}`}
-              src={List.goodseulProfile ? `http://dopeboyzclub.ddns.net:7733/images/${List.goodseulProfile}` : defaultImg}
+              className={`GoodSeulLocationImg ${List.userProfile ? '' : 'default-img'}`}
+              src={List.userProfile === 'NoImage' ? defaultImg : `http://dopeboyzclub.ddns.net:7733/userprofile/${List.userProfile}`}
               alt=''
             />
 
             <div className='GoodSeulLocationHeader'>
-              <p>{List.goodseulName}<span> 구슬님</span></p>
-              <p className='GoodSeulLocationReviewCount'>4.5</p>
+              <p>{List.goodseulDto.goodseulName}<span> 구슬님</span></p>
+              <p className='GoodSeulLocationReviewCount'>{List.avgStar/2}</p>
             </div>
             <div className='GoodSeulLocationCenterContent'>
-              {List.skill && List.skill.split(',')[0] && <span>{List.skill.split(',')[0]}</span>}
-              {List.skill && List.skill.split(',')[1] && <span>{List.skill.split(',')[1]}</span>}
-              {List.skill && List.skill.split(',')[2] && <span>{List.skill.split(',')[2]}</span>}
+              {List.goodseulDto.skill .split(',')[0] && <span>{List.goodseulDto.skill .split(',')[0]}</span>}
+              {List.goodseulDto.skill .split(',')[1] && <span>{List.goodseulDto.skill .split(',')[1]}</span>}
+              {List.goodseulDto.skill .split(',')[2] && <span>{List.goodseulDto.skill .split(',')[2]}</span>}
             </div>
             <div className='GoodSeulLocationFooter'>
-              <span>여러분의 성공을 위해 최선을 다하겠습니다.</span>
+              <span>{List.goodseulDto.goodseulInfo }</span>
             </div>
           </div>
           

@@ -1,0 +1,47 @@
+.isOpen3{
+    margin-top: 20px;
+    animation:  fadein 1s ease-in-out;
+    display: flex;
+
+    &.isOpen3 {
+        animation: snowfall 1s ease-in-out; 
+    }
+}
+
+$min_delay: 5; // 최소 애니메이션 지연 시간
+$max_delay: 15; // 최대 애니메이션 지연 시간
+
+$animation_delay_1: random_range($min_delay, $max_delay) + 's';
+$animation_delay_2: random_range($min_delay, $max_delay) + 's';
+
+.isOpen3 > .falldown:nth-child(1){
+    animation-delay: -#{$animation_delay_1};
+}
+
+.isOpen3 > .falldown:nth-child(2){
+    animation-delay: -#{$animation_delay_2};
+}
+
+@function random_range($min, $max) {
+    $rand: random();
+    $random_range: $min + floor($rand * (($max - $min) + 1));
+    @return $random_range;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translate3d(var(--left-ini), 0, 0);
+   }
+    100% {
+        transform: translate3d(var(--left-end), 110vh, 0);
+   }
+}
+
+@keyframes downEffect {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(-50%);
+    }
+}
