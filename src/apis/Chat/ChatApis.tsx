@@ -11,7 +11,7 @@ export const RoomCreate = async (goodSeulIdx:number) => {
         const res = await axiosPunch({
             method: 'post',
             url: serverUrl + "/api/lv1/chat/room",
-            data: JSON.stringify({ person1: (JWTDecoding() as decodeToken).idx, person2: `${goodSeulIdx}` }),
+            data: JSON.stringify({ person1: (JWTDecoding() as decodeToken).idx, person2:goodSeulIdx  }),
             headers: { 'Content-Type': 'application/json' }
         });
         return res;
@@ -26,7 +26,7 @@ export const getGoodSeulInfo = async (pageGoodSeulIdx:number) => {
             method: 'get',
             url: (`${serverUrl}/api/lv1/gs?goodseulIdx=${pageGoodSeulIdx}`),
         });
-        return res;
+        return res.data;
     } catch (error) {
         console.log("error", error);
     }

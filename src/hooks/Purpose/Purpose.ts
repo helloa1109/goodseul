@@ -5,5 +5,8 @@ export type PurposeListData = {
     career: string;
     isPremium: number;
     premiumDate: null;
-    goodseulProfile: string;
+}
+export type PurposeBData = {
+    goodseulDto : PurposeListData;
+    userProfile : string;
 }

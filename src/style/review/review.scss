@@ -8,6 +8,12 @@
 .review_lightgray{
     color: $밝은회색
 }
+.review_mlightgray{
+    color: $더밝은회색
+}
+.review_dgray{
+    color: $어두운회색;
+}
 .review_bigtxt{
     font-size: 30px;
     font-weight: 700;
@@ -92,31 +98,28 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    background-color: $더밝은회색;
-    
-    
+    background-color: $버건디;
 }
 .review_besttop{
-    height: 55%;
+    height: 45%;
 }
 .review_bestpic{
     position: absolute;
     width: 160px;
-    height: 120px;
+    height: 105px;
     object-fit: cover;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: $어두운회색;
 }
 .review_bestbot{
     margin: 0 auto;
 }
 .review_bestbot div{
-    margin-left: 5px;
-    line-height: 20px;
+    text-align: center;
+    line-height: 25px;
 }
-.review_subject{
-    color: $밝은회색;
-}
+
 .review_tags div{
     display: inline-block;
 }
@@ -127,7 +130,8 @@
     width: 140px;
     height: 30px;
     border-radius: 100px;
-    
+    background-color: $버건디;
+   
 }
 
 

@@ -42,16 +42,18 @@ function ReviewBestList() {
             {limitedData.map((item, idx) => (
               <div className='review_best' key={idx} onClick={(e)=>{getUidx(item.ridx)}}> 
                 <div className='review_besttop'>
-                  <img className='review_bestpic' src={imgurl+`${item.uprofile}`} alt="Profile"/>
+                  <img 
+                  className='review_bestpic' 
+                  src={item.uprofile === 'NoImage'? `${imgurl}noImage.jpg` : `${imgurl}${item.uprofile}`} 
+                  alt="Profile"
+                  />
                   <div className='review_bestcolor'></div>
                 </div>
                 
                 <div className='review_bestbot'>
                     <div className='review_subject review_vxsmalltxt'>"{item.rsubject}"</div>
-                    <div className='review_GSname review_vsmallheavytxt'>{item.goodseulName} 구슬님</div>
+                    <div className='review_GSname review_smalltxt review_mlightgray'>{item.goodseulName} 구슬님</div>
                     <div className='review_tags'>
-                      <div className='review_vstartxt'>{item.star}/</div>
-                      <div className='review_vstartxt'>{item.likeCount}/</div>
                       <div className='review_vstartxt'>{item.skill}</div>
                     </div>
                     
