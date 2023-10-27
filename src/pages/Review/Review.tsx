@@ -29,6 +29,7 @@ const Review = () => {
       </div>
       <div className='review_besttxt'>
           <span className='review_vsamllheavytxt'><span className='review_burgundy'>베스트</span>리뷰</span>
+          <div style={{marginLeft:'5px'}} className='review_lightgray review_vsmalltxt'> 많은 고객님들의 공감을 받은 후기들입니다. </div>
       </div>
               {
                 ReviewBestList()

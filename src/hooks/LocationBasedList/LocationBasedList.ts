@@ -40,11 +40,17 @@ interface GoodSeulProfile {
   export default UserListResponse;
 
   export interface GoodSeullist {
-    idx: number;
+    avgStar : number;
+    goodseulDto: GoodSeul
+    userProfile : string;
+  }
+
+interface GoodSeul {
+    carrer : string;
+    goodseulInfo:string;
     goodseulName : string;
+    idx: number;
     skill : string;
-    career : string;
-    isPremium: number;
-    goodseulProfile : string;
+    isPremium: number; 
   }
   

@@ -1,28 +1,20 @@
 import React from 'react'
 import SearchBar from '../../component/SearchBar/SearchBar'
 import "../../style/review/reviewSearch.scss"
-import { searchResultState } from '../../recoil/Review/ReviewAtom';
-import { useRecoilValue } from 'recoil';
+import ReviewSearchList from '../../component/reviewList/ReviewSearchList'
+
 
 
 const ReviewSearch = () => {
-  const searchResult = useRecoilValue(searchResultState);
+  
 
   return (
     <div>
       <div className='rsSearch_wrap'>
         <SearchBar/>
+        <div className='rs_txt review_vsmallheavytxt'> 검색결과 </div>
       </div>
-      <div className='rs_listwrap'>
-        
-          {
-            searchResult.map((item,idx)=>(
-              <div className='rs_box' key={idx}>
-                <div className='rs_name'>{item.goodseulName}</div>
-              </div>
-            ))
-          }
-        </div>
+      <ReviewSearchList/>
     </div>
     
   )
