@@ -187,7 +187,7 @@ const SignUp = () => {
     }
 
     const changeSignUpGoodseulNick:React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        if(e.target.value.length > 8){
+        if(e.target.value.length > 4){
             setGoodseulNick("");
             return;
         }
@@ -201,7 +201,9 @@ const SignUp = () => {
             "password":signUpPw,
             "phoneNumber":signUpPhoneNumber,
             "birth":signUpBirth,
-            "location":signUpRegion
+            "location":signUpRegion,
+            "socialType": null,
+            "socialId": null
         };
 
     const SignUpGoodseul:signUpGoodseul = {
@@ -1096,7 +1098,7 @@ const SignUp = () => {
                         <div className='signUpGoodseulNickName signUpStyle01'>
                             <div className='signUpGoodseulNickNameTxt signUpInputTxtStyle01'>*횔동명{ checkCase9 && <span className='checkInput'>활동명을 입력해주세요.</span> }</div>
                             <div className='signUpGoodseulNickNameInputBody signUpInputBodyStyle01'>
-                                <input className='signUpGoodseulNickNameInput signUpInputStyle01' onChange={changeSignUpGoodseulNick} value={goodseulNick} type="text" placeholder='본인의 활동명을 작성해주세요.' maxLength={8}/>
+                                <input className='signUpGoodseulNickNameInput signUpInputStyle01' onChange={changeSignUpGoodseulNick} value={goodseulNick} type="text" placeholder='본인의 활동명을 작성해주세요.' maxLength={4}/>
                             </div>
                         </div>
                         <div className='signUpSpecialty'>

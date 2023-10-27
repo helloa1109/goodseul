@@ -1,6 +1,5 @@
 export interface MyPageRequestlist {
 
-
          DesiredDate : {
          date: number;
          day: number;
@@ -19,18 +18,8 @@ export interface MyPageRequestlist {
           offerIdx: number;
           purpose: string;
           userIdx: number;
-          writeDate : {
-            date: number;
-            day: number;
-            hours: number;
-            minutes: number;
-            month: number;
-            nanos: number;
-            seconds: number;
-            time: number;
-            timezoneOffset: number;
-            year: number;
-          }   
+
+          writeDate : string; 
 
 }
      

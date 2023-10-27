@@ -1,6 +1,8 @@
 @import "../../style/global/global.scss";
 
-
+.purpose_white{
+    color: white;
+}
 .purpose_burgundy{
     color: $버건디;
 }
@@ -21,7 +23,7 @@
 }
 .purpose_vsmalltxt{
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
 }
 .purpose_vsmallheavytxt{
     font-size: 15px;
@@ -69,4 +71,10 @@
     object-fit: cover;
     border-radius: 15px;
     z-index: -99;
+}
+.purpose_name{
+
+}
+.purpose_info{
+
 }

@@ -1,15 +1,6 @@
 import { atom , selector} from 'recoil';
 import { Message, chatHistory, chatRoomList, goodseulDto } from '../../hooks/Chat/ChatType';
-
-// export const connect = (onConnectCallback:any, onErrorCallback:any) => {
-//     ws.disconnect();
-//     ws.debug = () => {};
-//     ws.connect({}, () => {
-//         onConnectCallback();
-//     }, (error:any) => {
-//         onErrorCallback(error);
-//     });
-// }
+import { GoodSeulInfo } from '../../hooks/GoodSeulDetail/DetailType';
 
 export const msgState = atom<Message[]>({
     key: 'msgState',
@@ -31,9 +22,9 @@ export const person2State = atom<number>({
     default: 0,
 });
 
-export const getGoodSeulInfoAtom = atom<goodseulDto[]>({
+export const getGoodSeulInfoAtom = atom<goodseulDto | null>({
     key: 'getGoodSeulInfoAtom',
-    default: [],
+    default: null,
 });
 
 export const getChatHistoryAtom = atom<chatHistory[]>({
@@ -60,5 +51,14 @@ export const getUserNickAtom = atom({
     key: 'getUserNickAtom',
     default: '',
 })
-// 테스트
 
+export const getDetailInfoAtom = atom<GoodSeulInfo | null>({
+    key: 'getDetailInfoAtom',
+    default: null,
+  });
+
+
+export const getIdxAtom = atom<number>({
+    key: 'getIdxAtom',
+    default: 0,
+})

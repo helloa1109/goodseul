@@ -1,9 +1,13 @@
 export type PurposeListData = {
     idx: number;
     goodseulName: string;
+    goodseulInfo : string;
     skill: string;
     career: string;
     isPremium: number;
     premiumDate: null;
-    goodseulProfile: string;
+}
+export type PurposeBData = {
+    goodseulDto : PurposeListData;
+    userProfile : string;
 }

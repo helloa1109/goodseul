@@ -12,7 +12,9 @@ import { rIdxState } from '../../recoil/Review/ReviewAtom';
 import { reviewModal } from '../../apis/Review/ReviewModal';
 import { ReviewCData } from '../../hooks/Review/Review';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faCircleRight, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { reviewLike } from '../../apis/Review/ReviewLike';
+import "../../style/review/reviewModal.scss";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -28,6 +30,7 @@ export default function ReviewModal() {
   const clickedRIdx = useRecoilValue(rIdxState);  
   const [sRList, setSRList] = useState<ReviewCData[]>([]);
   const [open, setOpen] = React.useState(false);
+
   
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,14 +40,23 @@ export default function ReviewModal() {
     setOpen(false);
   };
 
+  const handleLike =()=>{
+    reviewLike()
+    .then(res => {
+      if(res)
+      alert("공감하셨습니다.");
+    })
+
+  }
+
   useEffect(() => {
     if(open){
-        console.log("go");
         const fetchData = async () => {
           try {
             console.log('clickedRIdx has changed:', clickedRIdx);
 
             const res = await reviewModal(clickedRIdx);
+            console.log(res.data);
             setSRList(Array.isArray(res.data) ? res.data : [res.data]);
           } catch (error) {
             console.error('An error occurred:', error);
@@ -57,33 +69,58 @@ export default function ReviewModal() {
 
   return (
     <div>
+     
       <Button 
         onClick={handleClickOpen}
-        style={{color:'white'}}
-        >
-        자세히 보기
+        className='rm_headingDetail'
+        style={{color:'black'}}
+      >
+       <FontAwesomeIcon 
+       icon={faCircleRight} 
+       style={{width:'25px', height:'25px'}}
+       />
       </Button>
       <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        fullScreen
-        onClose={handleClose}
-        >
-        {sRList.map((item, idx) => (
-            <React.Fragment key={idx}>
-            <DialogTitle>{item.rsubject}</DialogTitle>
-            <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                {item.rcontent}
-                </DialogContentText>
-            </DialogContent>
-            </React.Fragment>
-        ))}
-        <DialogActions>
-            <FontAwesomeIcon icon={faThumbsUp} />
-            <Button onClick={handleClose}>Agree</Button>
-        </DialogActions>
-        </Dialog>
+  open={open}
+  TransitionComponent={Transition}
+  fullScreen
+  onClose={handleClose}
+  className='rm_modalwrap'
+>
+  {sRList.map((item, idx) => (
+    <React.Fragment key={idx}>
+      <DialogActions>
+        <Button onClick={handleClose}>Agree</Button>
+      </DialogActions>
+      <DialogTitle className='rm_title'>{item.rsubject}</DialogTitle>
+      <DialogContent
+      className='rm_content'
+      >
+        <DialogContentText>
+          {item.rcontent}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        {!item.likeStatus && (
+          <React.Fragment>
+            <Button>
+              <FontAwesomeIcon style={{border:'lightgray'}} icon={faThumbsUp} onClick={handleLike}/>
+              {item.likeCount}
+            </Button>
+          </React.Fragment>
+        )}
+        {item.likeStatus && (
+          <React.Fragment>
+            <Button>
+              <FontAwesomeIcon style={{color:'#8C2323'}} icon={faThumbsUp} />
+              {item.likeCount}
+            </Button>
+          </React.Fragment>
+        )}
+      </DialogActions>
+    </React.Fragment>
+  ))}
+</Dialog>
 
     </div>
   );

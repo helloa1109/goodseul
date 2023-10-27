@@ -61,6 +61,13 @@ const Login:React.FC = () => {
     const findIdPw = () =>{
         navi("/findidpw");
     }
+    
+    const handleNaverApi=() => {
+        const NAVER_CLIENT_ID=`PBeOU8cGP2GxjPHfqD9Z`;
+        const NAVER_REDIRECT_URI=`http://localhost:3000/SocialNaverCallback`;
+        const NAVER_AUTH_URI=`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}&state=test`;
+        window.location.href = NAVER_AUTH_URI;
+    }
 
   return (
     <div className='loginPage'>
@@ -98,7 +105,7 @@ const Login:React.FC = () => {
                 <img className='socialLoginIcon' src={googleLoginIcon}  alt="구글 이미지 없음" />
             </div>
             <div className='NaverLogin'>
-                <img className='socialLoginIcon' src={naverLoginIcon}  alt="네이버 이미지 없음" />
+                <img className='socialLoginIcon' src={naverLoginIcon}  alt="네이버 이미지 없음" onClick={handleNaverApi}/>
             </div>
         </div>
     </div>

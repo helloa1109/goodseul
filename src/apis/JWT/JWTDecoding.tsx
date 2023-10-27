@@ -4,6 +4,7 @@ import { loginState } from "./JWTisLoginState";
 
 export const JWTDecoding = () => {
     const accessToken:Token = localStorage.getItem('accessToken');
+    console.log("JWTDecoding");
     if(accessToken && loginState()){
             const TokenDecoding:decodeToken = jwt_decode(accessToken);
             return TokenDecoding;

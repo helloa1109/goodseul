@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { PurposeListData } from "../../hooks/Purpose/Purpose";
+import { PurposeBData } from "../../hooks/Purpose/Purpose";
 
-export const searchResultPState = atom<PurposeListData[]>({
-    key: 'earchResultPState',
+export const searchResultPState = atom<PurposeBData[]>({
+    key: 'searchResultPState',
     default :[],
 })
