@@ -2,14 +2,14 @@ import React from 'react'
 import '../../style/Community/CommunityList.scss';
 import SearchBar from '../../component/SearchBar/SearchBar';
 import CommunityBoardTitle from '../../component/Community/CommunityBoardTitle';
+import { Link } from 'react-router-dom';
 
 const CommunityList = () => {
   return (
     <div className='CommunityListPage'>
-      
+
       <div className='CommunityListIcon'>
         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
-          <rect width="70" height="70" rx="15" fill="#D9D9D9" />
         </svg>
       </div>
 
@@ -18,31 +18,17 @@ const CommunityList = () => {
       </div>
 
       <div className='CommunityListSearchbar'>
-        <SearchBar/>
+        <SearchBar />
       </div>
 
       <div className='CommunityListSummit'>
-        <button>게시글 작성하기</button>
+        <Link to="/CommunityForm">
+          <button>게시글 작성하기</button>
+        </Link>
       </div>
 
       <div className='CommunityBoardList'>
-        <ul>
-          <li>
-            <CommunityBoardTitle/>
-          </li>
-          
-          <li>
-            <CommunityBoardTitle/>
-          </li>
-
-          <li>
-            <CommunityBoardTitle/>
-          </li>
-
-          <li>
-            <CommunityBoardTitle/>
-          </li>
-        </ul>
+            <CommunityBoardTitle />
       </div>
 
       <div className='CommunityListPageBtn'>

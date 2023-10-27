@@ -1,6 +1,7 @@
 export type PurposeListData = {
     idx: number;
     goodseulName: string;
+    goodseulInfo : string;
     skill: string;
     career: string;
     isPremium: number;

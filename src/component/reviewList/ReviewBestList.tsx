@@ -51,7 +51,7 @@ function ReviewBestList() {
                 </div>
                 
                 <div className='review_bestbot'>
-                    <div className='review_subject review_vxsmalltxt'>"{item.rsubject}"</div>
+                    <div className='review_subject review_vxsmalltxt review_mlightgray'>"{item.rsubject}"</div>
                     <div className='review_GSname review_smalltxt review_mlightgray'>{item.goodseulName} 구슬님</div>
                     <div className='review_tags'>
                       <div className='review_vstartxt'>{item.skill}</div>
