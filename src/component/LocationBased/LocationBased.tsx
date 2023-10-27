@@ -10,8 +10,8 @@ import { getGoodSeulList } from '../../apis/LocationBasedList/LocationBasedListA
 import { GoodSeullist } from "../../hooks/LocationBasedList/LocationBasedList";
 
 const LocationBased = () => {
-  const regionImages = [seoul, geongi, gangwondo, gwangju,gwangju];
-  const regionTexts = ["서울", "경기/인천","충청도","경상도","제주"];
+  const regionImages = [seoul, geongi, gangwondo, gwangju,gwangju,gwangju];
+  const regionTexts = ["서울", "경기/인천","충청도","경상도","전라도","제주"];
 
   const [selectedLocation, setSelecteLocation] = useRecoilState(selectedLocationState);
   

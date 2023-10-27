@@ -11,8 +11,15 @@ import { selectedRegionState } from "../../recoil/LocationBased/LocationAtom";
 import { ReviewListApi } from "../../apis/Request/RequestApi";
 import { Review } from "../../hooks/Request/RequestType";
 
-const RequestSlide = () => {
+import SwiperCore from "swiper";
+import { Autoplay } from "swiper/modules";
+import 'swiper/css/effect-cards';
+import { EffectCards} from 'swiper/modules';
 
+
+
+SwiperCore.use([Autoplay]);
+const RequestSlide = () => {
 
     const navigate = useNavigate();
 
@@ -32,31 +39,33 @@ const RequestSlide = () => {
         const fetchData = async () => {
             try {
                 const response = await ReviewListApi();
-                console.log("오냐?", response.data);
                 setReviews(response.data);
             } catch (error) {
-                console.error("오지마", error);
+                console.error("error", error);
             }
         };
         fetchData();
     }, []);
 
-    console.log("dd", reviews);
-
+    const defaultImg = 'http://dopeboyzclub.ddns.net:7733/userprofile/noImage.jpg';
 
     return (
         <Swiper
+            effect={'cards'}
+            modules={[EffectCards]}
             centeredSlides={true} //가운데 정렬
-            slidesPerView={1} //한 슬라이드에 보여줄 갯수
-            // spaceBetween={80} //슬라이드간 거리
+            // slidesPerView={1} //한 슬라이드에 보여줄 갯수
+            // spaceBetween={500} //슬라이드간 거리
             freeMode={true}
+            loop={true}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
         >
             {reviews.map((review, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} className='RequestSlide'>
                     <div className='SlideMap' onClick={() => handleRegionClick(index)}>
                         <img
-                            className='SlideImg'
-                            src={`http://dopeboyzclub.ddns.net:7733/userprofile/${review.uprofile}`} alt='' />
+                            className='SlideImg' alt='' 
+                            src={review.uprofile === 'NoImage' ? defaultImg : `http://dopeboyzclub.ddns.net:7733/userprofile/${review.uprofile}`}/>
                         <div className='SlideMapText'>
                             <div className='SlideMapHeader'>
                                 <div className='SlideName'>
