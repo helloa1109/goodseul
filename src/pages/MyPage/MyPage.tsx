@@ -12,6 +12,7 @@ import { getUserInfoApi } from '../../apis/MyPage/myPage';
 import { myPage } from '../../hooks/MyPage/MyPageType';
 import { userInfoAtom } from '../../recoil/MyPage/MyPageAtom';
 import { tokensRefresh } from '../../apis/JWT/JWTConfig';
+import { getMyPageFavoriteList } from '../../apis/MyPage/MyPageFavoriteListApi';
 
 function MyPage() {
 
