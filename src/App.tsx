@@ -17,6 +17,9 @@ import Community from './pages/Community/Community';
 import CommunityDetail from './pages/Community/CommunityDetail';
 import CommunityForm from './pages/Community/CommunityForm';
 import CommunityList from './pages/Community/CommunityList';
+import CommunityListDance from './pages/Community/CommunityListDance';
+import CommunityListFashion from './pages/Community/CommunityListFashion';
+import CommunityListFood from './pages/Community/CommunityListFood';
 import ReviewSearch from './pages/Review/ReviewSearch';
 import MyPage from './pages/MyPage/MyPage';
 import MyPageReview from './pages/MyPage/MyPageReview';
@@ -79,6 +82,10 @@ function App() {
         <Route path='/CommunityDetail' element={<CommunityDetail />} />
         <Route path='/CommunityForm' element={<CommunityForm />} />
         <Route path='/CommunityList' element={<CommunityList />} />
+        
+        <Route path='/CommunityListDance' element={<CommunityListDance />} />
+        <Route path='/CommunityListFashion' element={<CommunityListFashion />} />
+        <Route path='/CommunityListFood' element={<CommunityListFood />} />
 
         <Route path='/MyPage' element={<MyPage />} />
         <Route path='/MyPageReview' element={<MyPageReview />} />
@@ -89,7 +96,7 @@ function App() {
         <Route path='/MyPageFavorite' element={<MyPageFavorite />} />
         <Route path='/MyPagePay' element={<MyPagePay />} />
         <Route path='/MyPageAdminChat' element={<MyPageAdminChat />} />
-
+        
         <Route path='/room/:roomId' element={<Room/>}/>
         
         <Route path="/*" element={

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import '../../style/Community/CommunityBoardTitle.scss';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { CommunityTitleListState } from "../../recoil/Community/CommunityTitleRecoil";
-import { getCommunityTitleList } from "../../apis/Community/CommunityTitleApis";
+import { getCommunityDanceTitleList } from "../../apis/Community/CommunityTitleApis";
 
-const CommunityBoardTitle = () => {
+const CommunityBoardDanceTitle = () => {
 
     const CommunityTitleListValue = useRecoilValue(CommunityTitleListState);
     const [CommunityTitleList, setCommunityTitleList] = useRecoilState(CommunityTitleListState);
@@ -14,7 +14,7 @@ const CommunityBoardTitle = () => {
     useEffect(() => {
         const CommunityTitleData = async () => {
             try {
-                const res = await getCommunityTitleList();
+                const res = await getCommunityDanceTitleList();
                 if (res) {
                     setCommunityTitleList(res.data);
                 }
@@ -31,7 +31,7 @@ const CommunityBoardTitle = () => {
             {CommunityTitleList.map((data, idx) => (
                 <div className='BoardListCard' key={idx}>
                     <div className='CommunityBoardTitlePhoto'>
-                        <img src={`http://dopeboyzclub.ddns.net:7733/userprofile/noImage.jpg`} alt={data.userProfile} />
+                    <img src={`http://dopeboyzclub.ddns.net:7733/userprofile/noImage.jpg`} alt={data.userProfile} />
                     </div>
 
                     <div className='CommunityBoardTitleName'>
@@ -61,4 +61,4 @@ const CommunityBoardTitle = () => {
     )
 }
 
-export default CommunityBoardTitle
+export default CommunityBoardDanceTitle
