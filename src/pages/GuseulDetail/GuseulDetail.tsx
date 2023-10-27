@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "../../style/GuseulDetail/GuseulDetail.scss";
-// import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
+import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import { RoomCreate, getChatHistory, getGoodSeulInfo } from '../../apis/Chat/ChatApis';
 import { RoomIdxAtom, getDetailInfoAtom, getGoodSeulInfoAtom, getIdxAtom, getRoomIdAtom, getUserNickAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
 

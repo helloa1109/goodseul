@@ -9,6 +9,7 @@ export const nickNameCheck = async (nickName:string) => {
             headers: { 'Content-Type': 'application/json' }
         });
         if(res?.status === 200 ) {
+            console.log(res.data);
             return res.data;
         }else{
             return res.data;
