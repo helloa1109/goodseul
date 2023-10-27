@@ -136,4 +136,4 @@ function GuseulDetail() {
     )
 }
 
-export default GuseulDetail
+export default GuseulDetail;
