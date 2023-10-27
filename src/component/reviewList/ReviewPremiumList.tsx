@@ -51,7 +51,9 @@ function ReviewPremiumList() {
                 </div>
                 <div className='review_prebot'>
                   <div className='review_markpush'>
-                    <ReviewModal/>
+                    <div className='review_preMo'>
+                      <ReviewModal/>
+                    </div>
                   </div>
                   <div className='review_mark review_stamp' 
                       style={{ 

@@ -1,6 +1,8 @@
 @import "../../style/global/global.scss";
 
-
+.purpose_white{
+    color: white;
+}
 .purpose_burgundy{
     color: $버건디;
 }
@@ -69,4 +71,10 @@
     object-fit: cover;
     border-radius: 15px;
     z-index: -99;
+}
+.purpose_name{
+
+}
+.purpose_info{
+
 }

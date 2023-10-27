@@ -1,3 +1,17 @@
-.RM_title{
+@import "../../style/global/global.scss";
+
+.rm_modalwrap{
+    
+}
+.rm_title{
     margin-top: 100px;
+    background-color: $더밝은회색;
+}
+.rm_content{
+    background-color: $더밝은회색;
+}
+.rm_headingDetail{
+    position: relative;
+    left: 50px;
+   
 }
