@@ -50,7 +50,7 @@ const MyPageRequestListCompo = () => {
           <div className='Rightbox'>
 
             <div className='WriteDatebox'>
-            {requestlist.writeDate.day}
+            {requestlist.writeDate.split('T')[0]}
             </div>
 
             <div className='Locationbox'>
@@ -58,7 +58,13 @@ const MyPageRequestListCompo = () => {
             </div>
 
             <div className='Etcbox'>
-            {requestlist.userIdx}
+              <div className='EtcLeftbox'>
+             {requestlist.userIdx}
+              </div>
+
+              <div className='EtcRightbox'>
+               삭제
+             </div>
             </div>
 
           </div>
