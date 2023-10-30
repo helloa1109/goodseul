@@ -21,4 +21,9 @@ export type ReviewWriteForm = {
     r_content : String;
     star : number;
     r_type : String;
-}
+};
+export type ReviewLikeDto = {
+   
+    r_idx: number;
+   
+};

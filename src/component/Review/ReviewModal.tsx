@@ -13,7 +13,7 @@ import { reviewModal } from '../../apis/Review/ReviewModal';
 import { ReviewCData } from '../../hooks/Review/Review';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleRight, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { reviewLike } from '../../apis/Review/ReviewLike';
+import { reviewCancleLike, reviewLike } from '../../apis/Review/ReviewLike';
 import "../../style/review/reviewModal.scss";
 
 
@@ -41,12 +41,23 @@ export default function ReviewModal() {
   };
 
   const handleLike =()=>{
-    reviewLike()
+    const dto = {
+      r_idx : clickedRIdx
+    }
+
+    reviewLike(dto)
     .then(res => {
       if(res)
       alert("공감하셨습니다.");
     })
+  }
 
+  const cancleLike = () =>{
+    reviewCancleLike(clickedRIdx)
+    .then(res=>{
+      if(res)
+      alert("취소되었습니다.");
+    })
   }
 
   useEffect(() => {
@@ -112,7 +123,7 @@ export default function ReviewModal() {
         {item.likeStatus && (
           <React.Fragment>
             <Button>
-              <FontAwesomeIcon style={{color:'#8C2323'}} icon={faThumbsUp} />
+              <FontAwesomeIcon style={{color:'#8C2323'}} icon={faThumbsUp} onClick={cancleLike}/>
               {item.likeCount}
             </Button>
           </React.Fragment>
