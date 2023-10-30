@@ -221,6 +221,13 @@
     margin-top: 70px;
     height: 330px;
 }
+.mspurpose_cover{
+    width: 230px;
+    height: 330px;
+    background-color: rgba($color: $검은색, $alpha: 0.3);
+    position: absolute;
+   
+}
 .mspurpose_slider{
     width: 230px;
     height: 330px;
@@ -229,6 +236,11 @@
     width: 230px;
     height: 330px;
     object-fit: cover;
+}
+.mspurpose_txt{
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }
 
 .mspurpose_slide{

@@ -2,14 +2,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import onair1 from "../../../image/Main/onair1.jpg";
 import onair2 from "../../../image/Main/onair2.jpg";
 import onair3 from "../../../image/Main/onair3.jpg";
-
-// Import Swiper styles
-import "swiper/css";
 import 'swiper/css/effect-creative';
-
 import { EffectCreative } from 'swiper/modules';
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
+   const navi = useNavigate();
+
+   const headingOnair = () => {
+      
+      navi("/OnAir");
+   }
+
   return (
     <Swiper
       grabCursor={true}
@@ -52,7 +56,7 @@ export default function App() {
          </div>
         </SwiperSlide>
         <SwiperSlide >
-         <div className="msonair_slide">
+         <div className="msonair_slide" onClick={headingOnair}>
             <img
                   alt="pic"
                   src={onair3}
@@ -60,7 +64,7 @@ export default function App() {
                   />
             <div className="msonair_txtwrap">
                   <div className="main_burgundy main_smalltxt">만나보세요!</div> 
-                  <div className="main_white main_vsmallheavytxt">고객님을 기다리는 구슬님들이 많이 계세요!</div>
+                  <div className="main_white main_vsmallheavytxt">고객님을 기다리고 계시니까요!</div>
             </div>     
          </div>
         </SwiperSlide>   
