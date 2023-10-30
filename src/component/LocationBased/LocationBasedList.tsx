@@ -29,8 +29,8 @@ const LocationBasedList = () => {
     if (ListValue.length > 0) {
       const idx = ListValue[clickedIndex].goodseulDto.idx;
       setGoodSeulIdx(idx);
-      console.log("idx",GoodSeulIdx);
-      navigate("/GuseulDetail");
+      console.log("idx : ",idx);
+      navigate(`/GuseulDetail/${idx}`);
     }
   }
 

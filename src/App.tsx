@@ -40,6 +40,8 @@ import Floatingmenu from './component/Floatingmenu/Floatingmenu';
 import MyPageFavorite from './pages/MyPage/MyPageFavorite';
 import MyPagePay from './pages/MyPage/MyPagePay';
 import MyPageAdminChat from './pages/MyPage/MyPageAdminChat';
+import SocialNaverCallback from './apis/SignUp/SocialNaverCallback';
+import SocialSignUp from './component/SignUp/SocialSignUp';
 
 
 
@@ -58,6 +60,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/findidpw' element={<FindUserIdPw />} />
+        <Route path='/SocialNaverCallback' element={<SocialNaverCallback />} />
+        <Route path='/SocialSignUp' element={<SocialSignUp />} />
         {isPathTure ? null : (
           <>
             <Route path='/findidsuccess' element={<FindIdSuccess />} />
@@ -76,7 +80,7 @@ function App() {
         <Route path='/Request' element={<RequestPages />} />
         <Route path='/RequestList' element={<RequestListPages />} />
         <Route path='/OnAir' element={<OnAir />} />
-        <Route path='/GuseulDetail' element={<GuseulDetail />} />
+        <Route path='/GuseulDetail/:index' element={<GuseulDetail />} />
 
         <Route path='/Community' element={<Community />} />
         <Route path='/CommunityDetail' element={<CommunityDetail />} />
