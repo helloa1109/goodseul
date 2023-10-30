@@ -8,6 +8,10 @@ import Locate from "../../component/Slider/Main/Locate"
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
+import onair from "../../image/Main/onair.jpg";
+import locate from "../../image/Main/locate.jpg";
+import purpose from "../../image/Main/purpose.jpeg";
+import request from "../../image/Main/request.jpg";
 
 
 const Main = () => {
@@ -49,18 +53,38 @@ const Main = () => {
         <div className='main_remote'>
           <div className='main_remote_right' style={{marginRight:'14px'}}>
             <div className='main_remote_short main_remote_form main_remoteonair' style={{marginBottom:'15px'}} onClick={handleClick} data-key="1">
-              실시간
+              <div className='main_sremote_wrap'>
+                <img alt='pic' className='main_remote_pic' src={onair}/>
+                <div className='main_remote_txt main_white'>
+                  실시간
+                </div>
+              </div>
             </div>
             <div className='main_remote_long main_remote_form main_remotelocate' onClick={handleClick} data-key="2">
-              위치별
+              <div className='main_lremote_wrap'>
+                <img alt='pic' className='main_remote_pic' src={locate}/>
+                <div className='main_remote_txt main_white'>
+                  지역별
+                </div>
+              </div>
             </div>
           </div>
           <div className='main_remote_left'>
             <div className='main_remote_long main_remote_form main_remotepurpose' style={{marginBottom:'15px'}} onClick={handleClick} data-key="3">
-              목적별
+              <div className='main_lremote_wrap'>
+                <img alt='pic' className='main_remote_pic' src={purpose}/>
+                <div className='main_remote_txt main_white'>
+                  목적별
+                </div>
+              </div>  
             </div>
             <div className='main_remote_short main_remote_form main_remoteestimate' onClick={handleClick} data-key="4">
-              견적내기
+              <div className='main_sremote_wrap'>
+                <img alt='pic' className='main_remote_pic' src={request}/>
+                <div className='main_remote_txt main_white'>
+                  견적요청
+                </div>
+              </div>
             </div>
           </div>
         </div>
