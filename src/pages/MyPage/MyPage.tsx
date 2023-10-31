@@ -44,11 +44,13 @@ function MyPage() {
         tokensRefresh(localStorage.getItem('refreshToken'));
     }
 
+    const defaultImg = 'http://dopeboyzclub.ddns.net:7733/userprofile/noImage.jpg';
+
     return (
         <div className='Mypage'>
             <div className='MypageUserInfo'>
                 <div className='MypageUserProfile'>
-                    <img src={`http://dopeboyzclub.ddns.net:7733/userprofile/${profileImgae}`} alt='profile' className='MypageUserProfileImg' />
+                    <img src={profileImgae === 'NoImage' ? defaultImg : `http://dopeboyzclub.ddns.net:7733/userprofile/${profileImgae}`} alt='profile' className='MypageUserProfileImg' />
                 </div>
                 <div className='MypageUserDetails'>
                     <div className='MypageUserNickName'>
