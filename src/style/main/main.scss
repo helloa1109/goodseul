@@ -8,6 +8,9 @@
 .main_lightgray{
     color: $밝은회색
 }
+.main_white{
+    color: white;
+}
 .main_bigtxt{
     font-size: 30px;
     font-weight: 700;
@@ -55,7 +58,7 @@
     
 }
 .main_remote_form{
-    background-color: #d9d9d9;
+    background-color: rgba($color: $검은색, $alpha: 0.6);
     border-radius: 15px;
 }
 .main_remote_long{
@@ -66,6 +69,29 @@
     width: 150px;
     height: 100px;
 }
+.main_remote_long .main_remote_pic{
+    position: absolute;
+    width: 150px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: -99;
+}
+.main_remote_short .main_remote_pic{
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: -99;
+}
+.main_remote_txt{
+    display: flex;
+    justify-content: end;
+    padding-top: 10px;
+    padding-right: 10px;
+
+}
 /*실시간 세션*/
 .main_onair_txt{
     margin: 100px 0 55px 20px;
@@ -73,12 +99,31 @@
 .main_onair{
     width: 520px;
     height: 350px;
-    margin: 0 0 100px 55px;
+    margin: 0 0 100px 65px;
 }
 .msonair_slide{
     width: 300px!important;
     height: 350px;
-    background-color: $더밝은회색;
+    background-color: rgba($color: $검은색, $alpha: 0.4);
+    border-radius: 15px;
+}
+.msonair_pic{
+    position: absolute;
+    width: 300px;
+    height: 350px;
+    border-radius: 15px;
+    z-index: -99;
+    object-fit: cover;
+}
+.msonair_txtwrap{
+   position: absolute;
+   top: 10px;
+   left: 10px;
+}
+.msonair_txtwrap div:last-child{
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
 }
 .main_ad{
     height: 100px;
@@ -95,7 +140,6 @@
     background-color: $검은색;
     color: white;
     line-height: 20px;
-
 }
 /*후기, 위치별 섹션*/
 .main_reviewwrap{
@@ -177,9 +221,26 @@
     margin-top: 70px;
     height: 330px;
 }
+.mspurpose_cover{
+    width: 230px;
+    height: 330px;
+    background-color: rgba($color: $검은색, $alpha: 0.3);
+    position: absolute;
+   
+}
 .mspurpose_slider{
     width: 230px;
     height: 330px;
+}
+.mspurpose_slider img{
+    width: 230px;
+    height: 330px;
+    object-fit: cover;
+}
+.mspurpose_txt{
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }
 
 .mspurpose_slide{
