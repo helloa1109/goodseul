@@ -1,43 +1,53 @@
 .CommunityBoardTitlePage {
     width: 272px;
-    height: 89px;
-    position: relative; /* 부모 요소를 relative로 설정 */
+    height: 30px;
+    position: relative;
+    
+    .BoardListCard{
+        width: 272px;
+        height: 100px;
+        margin-bottom: 10px;
+        padding: 10px;
+        // background-color: #595959;
+        border-radius: 15px;
+    }
 
-    .CommunityBoardTitlePhoto {
-        position: absolute; /* 상대적인 위치 조정을 위해 absolute로 설정 */
-        top: 0px;
-        left: 0px;
+
+    .CommunityBoardTitlePhoto > img {
+        position: relative; /* 상대적인 위치 조정을 위해 absolute로 설정 */
+        top: 0%;
+        left: 0%;
         width: 35px;
         height: 35px;
         border-radius: 50px;
-        background-color: plum;
+        // background-color: plum;
         display: flex;
     }
 
     .CommunityBoardTitleName {
-        position: absolute; /* 상대적인 위치 조정을 위해 absolute로 설정 */
-        top: -5px;
-        left: 50px;
+        position: relative; /* 상대적인 위치 조정을 위해 absolute로 설정 */
+        top: -40px;
+        left: 45px;
         font-size: 13px;
         font-weight: 400;
         color: #595959;
     }
 
     .CommunityBoardTitleSub {
-        position: absolute; /* 상대적인 위치 조정을 위해 absolute로 설정 */
+        position: relative; /* 상대적인 위치 조정을 위해 absolute로 설정 */
         width: 100vw;
-        top: 50px;
-        left: 50%;
+        top: -30px;
+        left: 70%;
         transform: translate(-50%, -50%);
-        text-align: center;
+        text-align: left;
         color: #000;
         font-size: 16px;
         font-weight: 500;
     }
 
     .CommunityBoardTitleTag {
-        position: absolute; /* 상대적인 위치 조정을 위해 absolute로 설정 */
-        top: 70px;
+        position: relative; /* 상대적인 위치 조정을 위해 absolute로 설정 */
+        top: -45px;
         left: 0px;
         width: 60px;
         height: 20px;
@@ -58,9 +68,9 @@
     }
 
     .CommunityBoardTitleWriteDay {
-        position: absolute; /* 상대적인 위치 조정을 위해 absolute로 설정 */
-        top: 60px;
-        left: 70px;
+        position: relative; /* 상대적인 위치 조정을 위해 absolute로 설정 */
+        top: -77px;
+        left: -35px;
 
         p {
             color: #595959;
@@ -73,9 +83,9 @@
     }
 
     .CommunityBoardTitleReply {
-        position: absolute; /* 상대적인 위치 조정을 위해 absolute로 설정 */
-        top: 60px;
-        left: 110px;
+        position: relative; /* 상대적인 위치 조정을 위해 absolute로 설정 */
+        top: -108px;
+        left: 20px;
 
         p {
             color: #595959;

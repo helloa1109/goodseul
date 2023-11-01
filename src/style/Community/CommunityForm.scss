@@ -31,6 +31,13 @@
         transform: translate(-50%, -50%);
         width: 127px;
         height: 110px;
+
+        .FormMainImg {
+        border-radius: 50px;
+        background-image: url('http://dopeboyzclub.ddns.net:7733/resource/community/menuDance.jpeg');
+        background-size: cover; /* 이미지를 요소에 맞게 조절 */
+        background-position: center; /* 이미지의 위치를 가운데로 정렬 */
+        }
     }
 
     //게시글 작성 페이지 설명 글 위치 및 스타일
@@ -68,14 +75,16 @@
             border-radius: 15px;
             background: #D9D9D9;
             padding: 5px;
+            border: 1px solid $밝은회색;
         }
+        
     }
     
     //게시글 작성 페이지 내용 입력 영역 스타일
     .FormTextArea{
         span{
             position: fixed;
-            top: 402px;
+            top: 405px;
             left: 64px;
             color: #000;
             font-size: 15px;
@@ -93,6 +102,7 @@
             height: 170px;
             border-radius: 15px;
             background: #D9D9D9;
+            resize: none;
         }
     }
 
@@ -111,36 +121,38 @@
     
         .FormTagBtn {
             position: absolute;
-            top: 603px;
+            top: 610px;
             left: 50%;
             transform: translateX(-50%);
             width: 262px;
             display: flex;
-            flex-direction: column;
+            // flex-direction: column;
             align-items: center;
     
             .BoardCatagory,
             .BoardTags {
                 width: 100%;
-                display: flex;
+                // display: flex;
                 justify-content: space-between;
                 max-width: 255px;
-                height: 20px;
+                height: 50px;
                 /* 요소간 간격 조절 */
                 margin-bottom: 5px;
             }
     
-            button {
+            select{
                 font-size: 9px;
-                width: 60px;
-                height: 20px;
-                border-radius: 50px;
+                width: 120px;
+                height: 40px;
+                border-radius: 15px;
                 margin-right: 3px;
-            }
-    
-            .active {
-                background-color: $버건디;
-                color: white;
+                background-color: #D9D9D9;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 22px;
+                letter-spacing: -0.408px;
+                text-align-last: center;
+                color: $밝은회색;
             }
         }
     }
@@ -158,15 +170,17 @@
           height: 40px; 
           border-radius: 50px; 
           background-color: $흰색; 
-          border: 1px solid #000; 
+          border: 1px solid #fff; 
           color: #000; 
           text-align: center; 
           font-size: 13px; 
-          font-weight: 900; 
+          font-weight: 900;
         }
       
         .FormBtnWrite {
-          margin-right: 10px; 
+          margin-right: 10px;
+          background-color: $버건디; 
+          color: white;
         }
       }
 }

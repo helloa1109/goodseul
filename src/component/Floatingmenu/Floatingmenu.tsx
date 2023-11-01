@@ -26,6 +26,7 @@ function Floatingmenu() {
             return (JWTDecoding() as decodeToken).userProfile;
         }
     }
+    const defaultImg = 'http://dopeboyzclub.ddns.net:7733/userprofile/noImage.jpg';
     const logoutActions = [
         { icon: <div className='floatingIcon floatingLogin'><img src={mypageIcon} alt=""/></div>, name: "로그인" ,  dest:"/Login"} ,
         { icon: <div className='floatingIcon floatingCommunication'><img src={commuIcon} alt=""/></div>, name: "커뮤니티"  ,dest:"/Community"},
@@ -35,12 +36,13 @@ function Floatingmenu() {
     ];
 
     const loginActions = [
-        { icon: <div className='floatingIcon floatingLogin'><img src={`http://dopeboyzclub.ddns.net:7733/userprofile/${userProfile()}`} className='userProfile' alt=""/></div>, name: "내정보" ,  dest:"/Mypage"},
+        { icon: <div className='floatingIcon floatingLogin'><img src={userProfile() === 'NoImage' ? defaultImg :`http://dopeboyzclub.ddns.net:7733/userprofile/${userProfile()}`} className='userProfile' alt=""/></div>, name: "내정보" ,  dest:"/Mypage"},
         { icon: <div className='floatingIcon floatingCommunication'><img src={commuIcon} alt=""/></div>, name: "커뮤니티"  ,dest:"/Community"},
         { icon: <div className='floatingIcon floatingPlay'><img src={playIcon} alt=""/></div>, name: "플레이" , dest:"/play"},
         { icon: <div className='floatingIcon floatingRequest'><img src={quickIcon} alt=""/></div>, name: "빠른견적" ,  dest:"/Request"},
         { icon: <div className='floatingIcon floatingHome'><img src={homeIfon} alt=""/></div>, name: "홈" , dest:"/"}
     ];
+
 
     return (
         <>

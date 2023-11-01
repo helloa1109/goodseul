@@ -17,6 +17,9 @@ import Community from './pages/Community/Community';
 import CommunityDetail from './pages/Community/CommunityDetail';
 import CommunityForm from './pages/Community/CommunityForm';
 import CommunityList from './pages/Community/CommunityList';
+import CommunityListDance from './pages/Community/CommunityListDance';
+import CommunityListFashion from './pages/Community/CommunityListFashion';
+import CommunityListFood from './pages/Community/CommunityListFood';
 import ReviewSearch from './pages/Review/ReviewSearch';
 import MyPage from './pages/MyPage/MyPage';
 import MyPageReview from './pages/MyPage/MyPageReview';
@@ -37,6 +40,8 @@ import Floatingmenu from './component/Floatingmenu/Floatingmenu';
 import MyPageFavorite from './pages/MyPage/MyPageFavorite';
 import MyPagePay from './pages/MyPage/MyPagePay';
 import MyPageAdminChat from './pages/MyPage/MyPageAdminChat';
+import SocialNaverCallback from './apis/SignUp/SocialNaverCallback';
+import SocialSignUp from './component/SignUp/SocialSignUp';
 
 
 
@@ -55,6 +60,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/findidpw' element={<FindUserIdPw />} />
+        <Route path='/SocialNaverCallback' element={<SocialNaverCallback />} />
+        <Route path='/SocialSignUp' element={<SocialSignUp />} />
         {isPathTure ? null : (
           <>
             <Route path='/findidsuccess' element={<FindIdSuccess />} />
@@ -73,12 +80,16 @@ function App() {
         <Route path='/Request' element={<RequestPages />} />
         <Route path='/RequestList' element={<RequestListPages />} />
         <Route path='/OnAir' element={<OnAir />} />
-        <Route path='/GuseulDetail' element={<GuseulDetail />} />
+        <Route path='/GuseulDetail/:index' element={<GuseulDetail />} />
 
         <Route path='/Community' element={<Community />} />
         <Route path='/CommunityDetail' element={<CommunityDetail />} />
         <Route path='/CommunityForm' element={<CommunityForm />} />
         <Route path='/CommunityList' element={<CommunityList />} />
+        
+        <Route path='/CommunityListDance' element={<CommunityListDance />} />
+        <Route path='/CommunityListFashion' element={<CommunityListFashion />} />
+        <Route path='/CommunityListFood' element={<CommunityListFood />} />
 
         <Route path='/MyPage' element={<MyPage />} />
         <Route path='/MyPageReview' element={<MyPageReview />} />
@@ -89,7 +100,7 @@ function App() {
         <Route path='/MyPageFavorite' element={<MyPageFavorite />} />
         <Route path='/MyPagePay' element={<MyPagePay />} />
         <Route path='/MyPageAdminChat' element={<MyPageAdminChat />} />
-
+        
         <Route path='/room/:roomId' element={<Room/>}/>
         
         <Route path="/*" element={
