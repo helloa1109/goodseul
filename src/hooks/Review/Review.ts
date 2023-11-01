@@ -1,10 +1,10 @@
 export type ReviewCData = {
     star: number;
     goodseulName: string;
-    goodseulProfile: string;
     skill: string;
     isPremium: number;
     likeCount:number;
+    likeStatus : boolean;
     uidx: number;
     unick: string;
     uprofile: string;
