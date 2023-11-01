@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=Waving&color=gradient&height=200&section=header&text=WEPLI&fontSize=90" />
+<img src="https://capsule-render.vercel.app/api?type=Waving&color=gradient&height=200&section=header&text=GoodSeul&fontSize=90" />
 
 # GoodSeul
 <h3>대한민국의 독특한 문화인 ‘굿’에 대한 온/오프라인 플랫폼 제공<h3/>
