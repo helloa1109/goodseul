@@ -4,6 +4,7 @@
     width: $iphone13mini;
     height: 100vh;
 
+
     .WhiteBox{
         width: 300px;
         height: 250px;
@@ -18,14 +19,21 @@
 
             .TopPhotoBox{
                 height: 160px;
-                width: 220px;
+                width: 250px;
                 border-radius: 15px;
-                margin: 0px auto;
+                margin: 0px 40px;
 
                 .PhotoImg{
                     height: 160px;
                     width: 220px;
                     border-radius: 15px;
+                    float: left;
+                }
+
+                .heartminus{
+                margin-top: 20px;
+                font-size: 20px;
+                color: #8c2323;
                 }
             }
         }
@@ -44,13 +52,12 @@
                     width: 200px;
                     border-radius: 15px;
                     margin: 0px auto;
-                    font-size: 12px;
+                    font-size: 17px;
 
                     .TextBoxTop{
                         height: 45px;
                         width: 200px;
                         margin: 0px auto;
-  
 
                         .TextBoxTopLeft{
                             height: 45px;
@@ -59,6 +66,7 @@
                             float: left;
                             text-align: center;
                             line-height: 45px;
+
                         }
     
                         .TextBoxTopRight{
@@ -68,6 +76,11 @@
                             margin-left: 50%;
                             text-align: center;
                             line-height: 45px;
+
+                            .Favoriteheart{
+                                color: red;
+
+                            }
                          }
     
                     }

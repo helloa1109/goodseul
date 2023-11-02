@@ -1,13 +1,38 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { MyPageFavoriteListState } from '../../recoil/MyPage/MyPageFavoriteListAtom'
-import { getMyPageFavoriteList } from '../../apis/MyPage/MyPageFavoriteListApi';
+import { delMyPageFavorite, getMyPageFavoriteList } from '../../apis/MyPage/MyPageFavoriteListApi';
 import "../../style/MyPage/MyPageFavoriteList.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCircleMinus } from '@fortawesome/free-solid-svg-icons';
+
 
 const MyPageFavoriteListCompo = () => {
 
   const MyPageFavoriteListValue=useRecoilValue(MyPageFavoriteListState);
   const [MyFavoriteList,setMyFavoriteList]=useRecoilState(MyPageFavoriteListState);
+  const [gidx,setGidx]=useState(0);
+
+  const delefavorite= async () =>{
+    delMyPageFavorite(gidx)
+  }
+
+  const delOnclick = async (gIdx:number) => {
+    alert("삭제하시겠습니까?");
+    try {
+      const response: any = await delMyPageFavorite(gIdx);
+      alert("삭제되었습니다");
+      
+    } catch (error) {
+      console.error("삭제 중 오류가 발생했습니다.", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(MyFavoriteList); // 상태 업데이트 여부 확인
+  }, [MyFavoriteList]);
+
 
   return (
 
@@ -17,6 +42,7 @@ const MyPageFavoriteListCompo = () => {
         <div className='WhiteBoxTop'>
           <div className='TopPhotoBox'>
             <img className='PhotoImg' src={`http://dopeboyzclub.ddns.net:7733/userprofile/${favoritelist.profile}`} alt='사진'/>
+            <FontAwesomeIcon className='heartminus' icon={faHeartCircleMinus} onClick={(e) => {delOnclick(favoritelist.g_idx)}}/>
           </div>
         </div>
 
@@ -29,7 +55,7 @@ const MyPageFavoriteListCompo = () => {
                 </div>
 
                 <div className='TextBoxTopRight'>
-                  하트 {favoritelist.favoriteCount}개
+                <FontAwesomeIcon className='Favoriteheart' icon={faHeart} /> {favoritelist.favoriteCount}개
                 </div>
               </div>
 

@@ -8,7 +8,7 @@ export const getMypageCouponList = async () => {
     try {
         const res = await axiosPunch ({
             method: 'get',
-            url: serverUrl+"/api/lv1/coupon/",
+            url: serverUrl+"/api/lv1/usercoupon/",
         })
         console.log(res);
     
