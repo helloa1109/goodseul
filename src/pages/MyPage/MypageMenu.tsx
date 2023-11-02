@@ -44,7 +44,7 @@ const MypageMenu = () => {
     try {
       const res = await getMypageCouponList();
       if(res){
-        setCouponList(res.data.buyable_coupons);
+        setCouponList(res.data.usercoupons);
       }
       navigate("/MyPageCoupon");
     } catch (error){
