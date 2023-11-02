@@ -3,6 +3,9 @@ import "../../style/MyPage/MyPageReview.scss";
 import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {MyPageReviewListState} from "../../recoil/MyPage/MyPageReviewListAtom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { color } from 'framer-motion';
 
 const MyPageReviewList = () => {
 
@@ -18,7 +21,6 @@ const MyPageReviewList = () => {
                 if(res){
                   setReviewList(res.data.reviews);
                 } 
-
                 console.log("콘솔로res",res);
               } catch (error){
                 console.error("reviewonclic에러", error);
@@ -27,8 +29,6 @@ const MyPageReviewList = () => {
     },[setReviewList])
 
 
-
-      
   return (
     <div className='MyPageReview'>
         {MyReviewListValue.map((reviewlist, idx)=> 
@@ -49,8 +49,23 @@ const MyPageReviewList = () => {
                             {reviewlist.rsubject}
                         </div>
                         <div className='MyPageReviewTopSectionTwoBottom'>
-                            {reviewlist.likeCount}
-                        </div>
+                        {reviewlist.likeCount > 0 ? (
+                            <>
+                                {[...Array(reviewlist.likeCount)].map((_, index) => (
+                                      <FontAwesomeIcon key={index} className='yellowstar' icon={faStar}/>
+                                 ))}&nbsp;
+                                {[...Array(5 - reviewlist.likeCount)].map((_, index) => (
+                                     <FontAwesomeIcon key={index} className='graystar' icon={faStar} />
+                                 ))}&nbsp;
+                            </>
+                        ) : (
+                          <>
+                             {[...Array(5)].map((_, index) => (
+                                 <FontAwesomeIcon key={index} className='graystar' icon={faStar} />
+                                ))}&nbsp;
+                                </>
+                         )} 
+                     </div>
                     </div>
                     <div className='MyPageReviewTopSectionThree'>
                         <div className='MyPageReviewTopSectionThreeTop'>
