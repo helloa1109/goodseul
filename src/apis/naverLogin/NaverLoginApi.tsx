@@ -16,7 +16,7 @@ export const NaverLoginApi = async (code:string) => {
             return res
         }else if(res?.status === 226) {
             alert(res.data);
-            window.location.href = "/";
+            window.location.href = "/login";
         }
       } catch (error:any) {
         throw error;
