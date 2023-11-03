@@ -15,7 +15,13 @@ function ReviewSearchList() {
 
     return (
         <div className='rs_listwrap'>
-            {
+            {  
+            searchResult.length === 0?(
+              <div className="rs_noResult">
+                검색결과가 
+                <span className='review_burgundy'> 존재</span>하지 않습니다.</div>
+            ) 
+            : 
             searchResult.map((item,idx)=>(
               <div 
               style={{ 
@@ -32,8 +38,8 @@ function ReviewSearchList() {
                     src={item.uprofile === 'NoImage'? `${imgurl}noImage.jpg` : `${imgurl}${item.uprofile}`} />
                 </div>
                 <div className='rs_bot'>
-                    <div className='rs_content'>{item.rsubject}</div>
-                    <div className='rs_name'>{item.goodseulName}</div>
+                    <div className='rs_subject review_vxsmalltxt review_mlightgray'>" {item.rsubject} "</div>
+                    <div className='rs_name review_smalltxt review_mlightgray'>{item.goodseulName}</div>
                     <div className='rs_btn'>
                       <ReviewModal/> 
                     </div>
