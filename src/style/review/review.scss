@@ -122,19 +122,13 @@
 
 .review_tags div{
     display: inline-block;
+    
 }
 .review_goDetail{
-    margin-top: 15px;
-    background-color: white;
-    border: none;
-    width: 140px;
-    height: 30px;
-    border-radius: 100px;
-    background-color: $버건디;
+    margin-top: 30px;
+    margin-left: 20px;
    
 }
-
-
 
 /*리뷰 프리미엄 리뷰*/
 .review_premiumwrap{
@@ -200,4 +194,7 @@
     right: 60px;
     bottom: 10px;
 }
-/* modal */
+/* 검색 결과 리스트 페이지 */
+.rs_btn{
+   
+}

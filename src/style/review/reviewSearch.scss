@@ -1,7 +1,11 @@
 @import "../../style/global/global.scss";
+@import "../../style/review/review.scss";
 
 .rsSearch_wrap{
     margin : 50px 20px 0 20px;
+}
+.rs_noResult{
+    margin-left: 25px;
 }
 .rs_txt{
     margin-top: 50px;
@@ -28,4 +32,9 @@
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     background-color: $어두운회색;
+  }
+  .rs_btn{
+    position: relative;
+    left: 10px;
+    top: 45px;
   }
