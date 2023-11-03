@@ -18,7 +18,7 @@ export interface MyPageRequestlist {
           offerIdx: number;
           purpose: string;
           userIdx: number;
-
+          userProfile: string;
           writeDate : string; 
 
 }
