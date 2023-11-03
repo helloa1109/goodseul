@@ -11,6 +11,7 @@ import { GoodSeulIdxAtom } from '../../recoil/GoodSeul/GoodSeulAtom';
 
 import { useNavigate,JWTDecoding,useRecoilValue,useRecoilState} from './index';
 import { useParams } from 'react-router-dom';
+import { RecentlyViewedApi } from '../../apis/MyPage/myPage';
 
 function GuseulDetail() {
 
@@ -63,6 +64,8 @@ function GuseulDetail() {
                 setDetailInfo(res);
                 setUserNick(res.userDto.nickname);
                 setIdx(res.userDto.idx);
+                console.log(res);
+                RecentlyViewedApi(res.userDto.idx, res.userDto.userProfile ,res.goodseulDto.goodseulName)
             } catch (error) {
                 console.log(error);
             }

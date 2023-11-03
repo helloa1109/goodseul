@@ -136,3 +136,49 @@
     width: 48px;
     height: 48px;
 }
+
+.socialLoding {
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+}
+.loaderLogin {
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .loader-textLogin {
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    align-self: center;
+    font-weight: bold;
+  }
+  
+  .loader-barLogin {
+    width: 30%;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $버건디;
+    animation: loader-bar-animation 2s ease-in-out infinite;
+  }
+  
+  @keyframes loader-bar-animation {
+    0% {
+      /* transform: translateX(-100%) rotate(270deg); */
+      transform: translateX(-100%);
+    }
+  
+    50% {
+      /* transform: translateX(100%) rotate(-90deg); */
+      transform: translateX(100%);
+    }
+  
+    100% {
+      /* transform: translateX(-100%) rotate(270deg); */
+      transform: translateX(-100%);
+    }
+  }

@@ -27,7 +27,11 @@ export const RecentlyViewedApi = async (idx:number, image:string, name:string) =
     RecentlyViewed.unshift(NewViewed);
 
     // 중복 항목을 제거합니다.
-    const uniqueRecentlyViewed = Array.from(new Set(RecentlyViewed));
+    const uniqueRecentlyViewed = RecentlyViewed.filter((item:any, index:any, self:any) =>
+  index === self.findIndex((t:any) => (
+    t.idx === item.idx && t.name === item.name && t.image === item.image
+  ))
+);
 
     // 최대 5개 항목만 유지합니다.
     while (uniqueRecentlyViewed.length > 5) {
