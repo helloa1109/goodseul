@@ -9,7 +9,10 @@ import { goodseulDto } from '../../hooks/Chat/ChatType';
 
 import { GoodSeulIdxAtom } from '../../recoil/GoodSeul/GoodSeulAtom';
 
-import { useNavigate, JWTDecoding, useRecoilValue, useRecoilState } from './index';
+
+import { useNavigate,JWTDecoding,useRecoilValue,useRecoilState} from './index';
+import { useParams } from 'react-router-dom';
+import { RecentlyViewedApi } from '../../apis/MyPage/myPage';
 
 function GuseulDetail() {
 
@@ -54,14 +57,16 @@ function GuseulDetail() {
             console.log(error);
         }
     }
-
+    const index = useParams();
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const res = await getGoodSeulInfo(pageGoodSeulIdx);
+            try {            
+                const res = await getGoodSeulInfo(Number(index.index));
                 setDetailInfo(res);
                 setUserNick(res.userDto.nickname);
                 setIdx(res.userDto.idx);
+                console.log(res);
+                RecentlyViewedApi(res.userDto.idx, res.userDto.userProfile ,res.goodseulDto.goodseulName)
             } catch (error) {
                 console.log(error);
             }
@@ -135,5 +140,5 @@ function GuseulDetail() {
         </div>
     )
 }
+export default GuseulDetail;
 
-export default GuseulDetail

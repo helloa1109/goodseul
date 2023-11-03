@@ -13,7 +13,7 @@ import { reviewModal } from '../../apis/Review/ReviewModal';
 import { ReviewCData } from '../../hooks/Review/Review';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleRight, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { reviewLike } from '../../apis/Review/ReviewLike';
+import { reviewCancleLike, reviewLike } from '../../apis/Review/ReviewLike';
 import "../../style/review/reviewModal.scss";
 
 
@@ -41,12 +41,23 @@ export default function ReviewModal() {
   };
 
   const handleLike =()=>{
-    reviewLike()
+    const dto = {
+      r_idx : clickedRIdx
+    }
+
+    reviewLike(dto)
     .then(res => {
       if(res)
       alert("공감하셨습니다.");
     })
+  }
 
+  const cancleLike = () =>{
+    reviewCancleLike(clickedRIdx)
+    .then(res=>{
+      if(res)
+      alert("취소되었습니다.");
+    })
   }
 
   useEffect(() => {
@@ -81,16 +92,16 @@ export default function ReviewModal() {
        />
       </Button>
       <Dialog
-  open={open}
-  TransitionComponent={Transition}
-  fullScreen
-  onClose={handleClose}
-  className='rm_modalwrap'
->
+        open={open}
+        TransitionComponent={Transition}
+        fullScreen
+        onClose={handleClose}
+        className='rm_modalwrap'
+      >
   {sRList.map((item, idx) => (
     <React.Fragment key={idx}>
       <DialogActions>
-        <Button onClick={handleClose}>Agree</Button>
+        <Button onClick={handleClose} style={{color:'#8C2323'}}> 닫기 </Button>
       </DialogActions>
       <DialogTitle className='rm_title'>{item.rsubject}</DialogTitle>
       <DialogContent
@@ -103,16 +114,18 @@ export default function ReviewModal() {
       <DialogActions>
         {!item.likeStatus && (
           <React.Fragment>
-            <Button>
-              <FontAwesomeIcon style={{border:'lightgray'}} icon={faThumbsUp} onClick={handleLike}/>
-              {item.likeCount}
+            <Button style={{display:'flex', justifyContent:'space-around'}}> 
+              <FontAwesomeIcon style={{color:'lightgray', width:'20px', height:'20px'}} icon={faThumbsUp} onClick={handleLike}/>
+                <div style={{color:'black'}}>
+                  {item.likeCount}
+                </div>
             </Button>
           </React.Fragment>
         )}
         {item.likeStatus && (
           <React.Fragment>
             <Button>
-              <FontAwesomeIcon style={{color:'#8C2323'}} icon={faThumbsUp} />
+              <FontAwesomeIcon style={{color:'#8C2323', width:'20px', height:'20px'}} icon={faThumbsUp} onClick={cancleLike}/>
               {item.likeCount}
             </Button>
           </React.Fragment>

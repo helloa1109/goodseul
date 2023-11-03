@@ -39,11 +39,14 @@ function ReviewPremiumList() {
         <div className='review_premiumList_wrap' >
             {rList.map((item, idx) => (
               <div className='review_premium' key={idx} onClick={(e)=>{getUidx(item.ridx)}}>
-                <img className='review_prepic' alt='pre' src={imgurl+`${item.uprofile}`}/>
+                <img className='review_prepic' 
+                alt='pre' 
+                src={item.uprofile === 'NoImage'? `${imgurl}noImage.jpg` : `${imgurl}${item.uprofile}`} 
+                />
                 <div className='review_pretop'>
                   <div className='review_titlewrap'>
                     <div className='review_presubject review_vsmalltxt'>{item.rsubject}</div>
-                    <div className='review_prename review_smalltxt'>{item.unick}</div>
+                    <div className='review_prename review_smalltxt'>{item.goodseulName}</div>
                     <div className='review_chkpre'>
                       <span className='review_pretxt'>Premium</span>
                     </div>
