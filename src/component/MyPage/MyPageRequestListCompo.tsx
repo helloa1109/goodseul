@@ -3,6 +3,9 @@ import { getMyPageRequestList } from '../../apis/MyPage/MyPageRequestListApi';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { MyPageRequestListState } from '../../recoil/MyPage/MyPageRequestListAtom';
 import "../../style/MyPage/MyPageRequestList.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 
 const MyPageRequestListCompo = () => {
   
@@ -29,7 +32,8 @@ const MyPageRequestListCompo = () => {
         {MyPageRequestListValue.map((requestlist,idx)=>
         <div className='MyPageRequestSectionBox' key={idx}>
           <div className='Leftbox'>
-          <img className='GoodselImg' src={`http://dopeboyzclub.ddns.net:7733/userprofile/goodselphoto`} alt='쿠폰' />
+          <img className='GoodselImg' src={`http://dopeboyzclub.ddns.net:7733/userprofile/${requestlist.userProfile}`} alt='견적' />
+          
           </div>
 
           <div className='Midbox'>
@@ -59,10 +63,12 @@ const MyPageRequestListCompo = () => {
 
             <div className='Etcbox'>
               <div className='EtcLeftbox'>
-             {requestlist.userIdx}
+              <FontAwesomeIcon className='Favoriteheart' icon={faComment} /> <br/>
+              채팅
               </div>
 
               <div className='EtcRightbox'>
+              <FontAwesomeIcon className='Favoriteheart' icon={faTrash} /> <br/>
                삭제
              </div>
             </div>

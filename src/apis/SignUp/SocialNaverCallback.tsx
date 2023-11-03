@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { NaverLoginApi } from "../naverLogin/NaverLoginApi";
-
+import '../../style/Login/Login.scss';
 import React, { useEffect } from 'react'
 
 const SocialNaverCallback = () => {
@@ -25,8 +25,12 @@ const SocialNaverCallback = () => {
     },[])
     
   return (
-    <>
-    </>
+    <div className="socialLoding">
+        <div className="loaderLogin">
+    <div className="loader-textLogin">Loading...</div>
+    <div className="loader-barLogin"></div>
+</div>
+    </div>
   )
 }
 

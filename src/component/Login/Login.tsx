@@ -62,7 +62,7 @@ const Login:React.FC = () => {
         navi("/findidpw");
     }
     
-    const handleNaverApi=() => {
+    const handleNaverApi = () => {
         const NAVER_CLIENT_ID=`PBeOU8cGP2GxjPHfqD9Z`;
         const NAVER_REDIRECT_URI=`http://localhost:3000/SocialNaverCallback`;
         const NAVER_AUTH_URI=`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}&state=test`;

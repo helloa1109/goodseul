@@ -31,6 +31,7 @@
     "react": "^18.2.0",
     "react-calendar": "^4.6.0",
     "react-dom": "^18.2.0",
+    "react-js-pagination": "^3.0.3",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-simple-star-rating": "^5.1.7",
@@ -69,6 +70,7 @@
   },
   "proxy": "http://192.168.0.102:8080",
   "devDependencies": {
+    "@types/react-js-pagination": "^3.0.6",
     "@types/sockjs-client": "^1.5.2"
   }
 }
