@@ -1,9 +1,10 @@
 import React from 'react';
+import MypageChangeInfoCompo from '../../component/MyPage/MypageChangeInfoCompo';
 
 function MyPageChangeInfo() {
     return (
         <div>
-            체인지인포
+            <MypageChangeInfoCompo/>
         </div>
     );
 }

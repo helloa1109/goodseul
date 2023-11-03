@@ -16,5 +16,15 @@ export const getMypageReviewList = async () => {
     } catch(error) {
         console.error("Error:",error);
     }
+}
 
+export const delMypageReview = async (r_idx:number)=>{
+    try {
+        const res =await axiosPunch({
+            method:'delete',
+            url: (`${serverUrl}/api/lv1/review/r_idx=${r_idx}`),
+        })
+    } catch (error) {
+        console.log("error",error);
+    }
 }
