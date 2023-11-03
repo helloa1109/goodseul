@@ -34,7 +34,7 @@ const CommunityListFashion = () => {
             </div>
 
             <div className='CommunityListPageBtn'>
-                <span>페이지 1</span>
+                <span></span>
             </div>
         </div>
     )

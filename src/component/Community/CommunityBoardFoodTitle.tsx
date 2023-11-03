@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../style/Community/CommunityBoardTitle.scss';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { CommunityTitleListState } from "../../recoil/Community/CommunityTitleRecoil";
@@ -11,10 +11,14 @@ const CommunityBoardFoodTitle = () => {
 
     console.log("게시글 리스트 출력 확인", CommunityTitleListValue);
 
+    //페이징 처리
+
+    const [currentPage, setCurrentPage] = useState(0);
+
     useEffect(() => {
         const CommunityTitleData = async () => {
             try {
-                const res = await getCommunityFoodTitleList();
+                const res = await getCommunityFoodTitleList(currentPage);
                 if (res) {
                     setCommunityTitleList(res.data);
                 }
@@ -24,7 +28,22 @@ const CommunityBoardFoodTitle = () => {
                 console.error("게시판 리스트 에러", error);
             };
         }; CommunityTitleData();
-    },[])
+    },[currentPage])
+
+    //이전 페이지로 이동하는 함수
+    const handlePrevPage = () => {
+        if(currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    //다음 페이지로 이동하는 함수
+    const handleNextPage = () => {
+        const totalPageCount = 10;
+        if (currentPage < totalPageCount -1) {
+            setCurrentPage(currentPage + 1);
+        }
+    }
 
     return (
         <div className='CommunityBoardTitlePage'>
@@ -56,6 +75,12 @@ const CommunityBoardFoodTitle = () => {
                 </div>
 
             ))}
+            <div className='PaginationBtn'>
+                <button onClick={handlePrevPage}>이전</button>
+                <button onClick={handleNextPage}>다음</button>
+            </div>
+
+
         </div>
 
     )
