@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "../../style/GuseulDetail/GuseulDetail.scss";
-// import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
+import GuseulBackImg from "../../image/GuseulDetail/GuseulDetailImg01.jpg";
 import { RoomCreate, getChatHistory, getGoodSeulInfo } from '../../apis/Chat/ChatApis';
 import { RoomIdxAtom, getDetailInfoAtom, getGoodSeulInfoAtom, getIdxAtom, getRoomIdAtom, getUserNickAtom, person1State, person2State } from '../../recoil/Chat/ChatAtom';
 
@@ -10,6 +10,7 @@ import { goodseulDto } from '../../hooks/Chat/ChatType';
 import { GoodSeulIdxAtom } from '../../recoil/GoodSeul/GoodSeulAtom';
 
 import { useNavigate,JWTDecoding,useRecoilValue,useRecoilState} from './index';
+import { useParams } from 'react-router-dom';
 
 function GuseulDetail() {
 
@@ -54,11 +55,11 @@ function GuseulDetail() {
             console.log(error);
         }
     }
-
+    const index = useParams();
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const res = await getGoodSeulInfo(pageGoodSeulIdx);
+            try {            
+                const res = await getGoodSeulInfo(Number(index.index));
                 setDetailInfo(res);
                 setUserNick(res.userDto.nickname);
                 setIdx(res.userDto.idx);
@@ -136,4 +137,4 @@ function GuseulDetail() {
     )
 }
 
-export default GuseulDetail
+export default GuseulDetail;

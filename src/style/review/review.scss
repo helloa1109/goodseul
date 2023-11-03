@@ -108,8 +108,8 @@
     width: 160px;
     height: 105px;
     object-fit: cover;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     background-color: $어두운회색;
 }
 .review_bestbot{
@@ -189,13 +189,15 @@
     text-align: center;
     background-color: rgba($color: $검은색, $alpha: 0.05);
     overflow: hidden;
-    
-    
 }
 .review_mark span{
     position: relative;
     top: 2px;
     text-shadow: -0.7px 0px $더밝은회색, 0px 0.7px $더밝은회색, 0.7px 0px $더밝은회색, 0px -0.7px $더밝은회색;
-    
+}
+.review_preMo{
+    position: relative;   
+    right: 60px;
+    bottom: 10px;
 }
 /* modal */

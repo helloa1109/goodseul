@@ -13,7 +13,8 @@ function PurposeList() {
             purposeList.map((item, idx)=>(
                 <div className='purpose_list' key={idx}>
                     <img className="purpose_pic" src={item.userProfile === 'NoImage'? `${imgurl}noImage.jpg` : `${imgurl}${item.userProfile}`}  alt="pic"/>
-                    <div className="purpose_name">{item.goodseulDto.goodseulName}</div>
+                    <div className="purpose_name purpose_white">{item.goodseulDto.goodseulName}</div>
+                    <div className="prupose_info purpose_white">" {item.goodseulDto.goodseulInfo} "</div>
                     
 
                 </div>

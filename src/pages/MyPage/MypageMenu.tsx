@@ -13,6 +13,8 @@ import { MyPageReviewListState } from '../../recoil/MyPage/MyPageReviewListAtom'
 import { getMypageReviewList } from '../../apis/MyPage/MyPageReviewListApi';
 import { MyPageCouponListState } from '../../recoil/MyPage/MyPageCouponListAtom';
 import { getMypageCouponList } from '../../apis/MyPage/MyPageCouponListApi';
+import { getMyPageFavoriteList } from '../../apis/MyPage/MyPageFavoriteListApi';
+import { MyPageFavoriteListState } from '../../recoil/MyPage/MyPageFavoriteListAtom';
 
 
 const MypageMenu = () => {
@@ -23,16 +25,26 @@ const MypageMenu = () => {
 
   const [ReviewList,setReviewList] = useRecoilState(MyPageReviewListState);
   const [CouponList,setCouponList] = useRecoilState(MyPageCouponListState);
+  const [FavoriteList,setFavoriteList] = useRecoilState(MyPageFavoriteListState);
 
-  const HandleFavoriteOnclick = () => {
-    navigate("/MypageFavorite");
+  const HandleFavoriteOnclick = async () => {
+    try {
+      const res= await getMyPageFavoriteList();
+      if(res){
+        setFavoriteList(res.data.favorites);
+      }
+      navigate("/MypageFavorite");
+    } catch (error) {
+      console.error("favorite 에러",error);
+    }
+    
 
   }
   const HandleCouponOnclick = async () => {
     try {
       const res = await getMypageCouponList();
       if(res){
-        setCouponList(res.data.buyable_coupons);
+        setCouponList(res.data.usercoupons);
       }
       navigate("/MyPageCoupon");
     } catch (error){
@@ -44,10 +56,6 @@ const MypageMenu = () => {
     navigate("/MyPageChat");
   }
 
-  useEffect(()=>{
-    getMypageReviewList();
-    getMypageCouponList();
-  });
 
   const HandleReviewOnclick = async () => {
     try {

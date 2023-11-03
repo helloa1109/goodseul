@@ -16,7 +16,7 @@ const MypageCouponListCompo = () => {
         try {
           const res = await getMypageCouponList();
           if(res){
-            setMyCouponList(res.data.buyable_coupons);
+            setMyCouponList(res.data.usercoupons);
           }
 
           console.log("콘솔로그res",res);
@@ -35,11 +35,11 @@ const MypageCouponListCompo = () => {
           </div>
 
           <div className='CouponDescriptbox'>
-          {couponlist.cpDescription}
+          {couponlist.cp_description}
           </div>
 
           <div className='CouponDatebox'>
-            {couponlist.endDate? `${couponlist.startDate} ~ ${couponlist.endDate}`:`${couponlist.startDate} ~ 사용 시까지`}
+            {couponlist.end_date? `${couponlist.start_date} ~ ${couponlist.end_date}`:`${couponlist.start_date} ~ 사용 시까지`}
           </div>
 
         </div>

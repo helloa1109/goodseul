@@ -147,6 +147,7 @@ const FindPw3Auth = () => {
                     ref={inputRefs[0]}
                     onInput={() => handleInput(0)}
                     onKeyDown={(e) => handleKeyDown(0, e)}
+                    autoFocus
                 />
                 <input
                     type='text'
