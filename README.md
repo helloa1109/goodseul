@@ -10,7 +10,7 @@
 * 인원 : 9명
 
 # 서류
-
+[구슬 프로젝트 보고(최종 완성본)_compressed.pdf](https://github.com/helloa1109/goodseul/files/13258833/_compressed.pdf)
 
 ## 기능
 
