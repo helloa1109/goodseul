@@ -81,7 +81,7 @@
 
 ![채팅](https://github.com/helloa1109/goodseul/assets/124419012/b6178f1b-7cb2-44b5-88df-b3d40d5babbf)
 
-<div align="cetner'>
+<div align="center">
      
 ![채팅](https://github.com/helloa1109/goodseul/assets/124419012/0bfe0e0b-afd2-412c-8f5b-37519e0a845d)
 
