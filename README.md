@@ -65,7 +65,8 @@
 ![마이페이지](https://github.com/helloa1109/goodseul/assets/124419012/14f16309-c2d3-42dc-bf9b-fac96ebfc1b9)
 
 ## 채팅
-![채팅](https://github.com/helloa1109/goodseul/assets/124419012/b0ec4b1e-e6be-44c2-9864-14425a194571)
+![마이페이지 채팅](https://github.com/helloa1109/goodseul/assets/124419012/aa892a57-f1ee-468e-9687-0b96c3bb1cad)
+
 
 
 
