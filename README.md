@@ -58,9 +58,15 @@
 
 ## 비밀번호찾기
 ![비밀번호찾기](https://github.com/helloa1109/goodseul/assets/124419012/78b7d04b-2d3a-45fa-8615-3353ea0ddd88)
+![비밀번호찾기](https://github.com/helloa1109/goodseul/assets/124419012/c9472074-f07a-488a-b551-41b68afd2732)
+
 
 ## 마이페이지
 ![마이페이지](https://github.com/helloa1109/goodseul/assets/124419012/14f16309-c2d3-42dc-bf9b-fac96ebfc1b9)
+
+## 채팅
+![채팅](https://github.com/helloa1109/goodseul/assets/124419012/b0ec4b1e-e6be-44c2-9864-14425a194571)
+
 
 
 ## Technology used
