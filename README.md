@@ -52,11 +52,15 @@
 
 ## 위치기반
 
+
 ## 아이디찾기
 ![아이디찾기](https://github.com/helloa1109/goodseul/assets/124419012/08aaee40-6356-4374-8963-f0b42efdebfd)
 
 ## 비밀번호찾기
 ![비밀번호찾기](https://github.com/helloa1109/goodseul/assets/124419012/78b7d04b-2d3a-45fa-8615-3353ea0ddd88)
+
+## 마이페이지
+![마이페이지](https://github.com/helloa1109/goodseul/assets/124419012/14f16309-c2d3-42dc-bf9b-fac96ebfc1b9)
 
 
 ## Technology used
