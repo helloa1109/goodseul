@@ -51,11 +51,12 @@
 구현화면
 
 ## 헤더
-<div align="center">
+<div align="center"> 
      
 ![헤더](https://github.com/helloa1109/goodseul/assets/124419012/1e5cc7d8-a0bb-4e58-8503-d54b23f41ab0)
 
 </div>
+
 ## 견적요청
 
 ## 위치기반
@@ -65,8 +66,12 @@
 
 ## 비밀번호찾기
 ![비밀번호찾기](https://github.com/helloa1109/goodseul/assets/124419012/78b7d04b-2d3a-45fa-8615-3353ea0ddd88)
+
+<div align="center"> 
+     
 ![비밀번호찾기](https://github.com/helloa1109/goodseul/assets/124419012/c9472074-f07a-488a-b551-41b68afd2732)
 
+</div>
 
 ## 마이페이지
 ![마이페이지](https://github.com/helloa1109/goodseul/assets/124419012/14f16309-c2d3-42dc-bf9b-fac96ebfc1b9)
