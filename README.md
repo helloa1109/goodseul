@@ -51,7 +51,7 @@
 구현화면
 
 ## 헤더
-<p aligin=center>
+<p align="center">
 ![헤더](https://github.com/helloa1109/goodseul/assets/124419012/1e5cc7d8-a0bb-4e58-8503-d54b23f41ab0)
 </p>
 
