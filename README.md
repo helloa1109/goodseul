@@ -9,8 +9,12 @@
 * 기간 : 2023.09.04 ~ 2023.11.04
 * 인원 : 9명
 
-# 서류
+# 프로젝트 문서
 [구슬 프로젝트 보고(최종 완성본)_compressed.pdf](https://github.com/helloa1109/goodseul/files/13258833/_compressed.pdf)
+
+# 피그마 프로토타입
+![GoodSeulFigma](https://github.com/helloa1109/goodseul/assets/124419012/dd6bbaab-621c-4054-b9f3-879e81f8d46a)
+
 
 ## 기능
 
