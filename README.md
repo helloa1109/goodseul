@@ -54,10 +54,6 @@
 
 </div>
 
-## 견적요청
-
-## 위치기반
-
 ## 아이디찾기
 ![아이디찾기](https://github.com/helloa1109/goodseul/assets/124419012/08aaee40-6356-4374-8963-f0b42efdebfd)
 
