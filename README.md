@@ -70,20 +70,6 @@
 
 </div>
 
-## 마이페이지
-![마이페이지](https://github.com/helloa1109/goodseul/assets/124419012/14f16309-c2d3-42dc-bf9b-fac96ebfc1b9)
-
-## 채팅
-![마이페이지 채팅](https://github.com/helloa1109/goodseul/assets/124419012/aa892a57-f1ee-468e-9687-0b96c3bb1cad)
-
-![채팅](https://github.com/helloa1109/goodseul/assets/124419012/b6178f1b-7cb2-44b5-88df-b3d40d5babbf)
-
-<div align="center">
-     
-![채팅](https://github.com/helloa1109/goodseul/assets/124419012/0bfe0e0b-afd2-412c-8f5b-37519e0a845d)
-
-</div>
-
 ## Technology used
 ### Front-End
 <div>
